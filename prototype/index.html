@@ -45,7 +45,12 @@
 
   /* Stage */
   .stage { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 48px; align-items: start; }
-  .card-hold { perspective: 1400px; }
+  .card-hold { perspective: 1400px; position: relative; display: grid; gap: 14px; }
+  .stepper { display: flex; justify-content: center; align-items: center; gap: 18px; }
+  .nav { width: 46px; height: 46px; padding: 0; border-radius: 50%; display: grid; place-items: center; background: var(--table); border: 1px solid var(--rule); box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.8); }
+  .nav svg { width: 18px; height: 18px; }
+  .nav:hover { border-color: var(--marigold); }
+  .pos { min-width: 7ch; text-align: center; font-family: var(--label); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; }
   .card {
     max-width: 100%; aspect-ratio: 5 / 7;
     border-radius: 4.8% / 3.4%;
@@ -171,7 +176,14 @@
   </header>
 
   <section class="stage" aria-label="Featured card">
-    <div class="card-hold"><div class="card" id="feature"></div></div>
+    <div class="card-hold">
+      <div class="card" id="feature"></div>
+      <div class="stepper">
+        <button type="button" class="nav prev" id="b-prev" aria-label="Previous card"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M11.5,3 L5.5,9 L11.5,15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="pos" id="pos" aria-live="polite"></span>
+        <button type="button" class="nav next" id="b-next" aria-label="Next card"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5,3 L12.5,9 L6.5,15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
     <div class="info">
       <span class="label" id="f-rank">Eight of Clubs · 6 PM</span>
       <h2 id="f-title">The Ride Home</h2>
@@ -323,6 +335,7 @@
         $('f-mech').textContent = j.mech; $('f-why').textContent = j.why; $('f-sound').textContent = j.sound;
       }
       $('f-title').textContent = item.title;
+      $('pos').textContent = `${all.indexOf(item) + 1} / ${all.length}`;
       reveal(id);
       document.querySelectorAll('.thumb').forEach((b) => b.setAttribute('aria-current', String(b.dataset.id === id)));
       $('status').textContent = '';
@@ -508,6 +521,29 @@
     if (reduce) $('b-print').setAttribute('aria-pressed', 'true');
     $('feature').innerHTML = render('back', { static: true });
     shuffle();
+
+    // Flip through the deck from the stage: arrows, arrow keys or a swipe.
+    function step(d) {
+      if (document.querySelector('.intro')) return;
+      const i = all.findIndex((x) => x.id === state.id);
+      const next = all[(i + d + all.length) % all.length];
+      Snd.flick && Snd.flick();
+      setFeature(next.id, true);
+    }
+    $('b-prev').addEventListener('click', () => step(-1));
+    $('b-next').addEventListener('click', () => step(1));
+    document.addEventListener('keydown', (e) => {
+      if (e.target.closest && e.target.closest('input, textarea')) return;
+      if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+    });
+    let swipeX = null;
+    $('feature').addEventListener('pointerdown', (e) => { swipeX = e.clientX; });
+    $('feature').addEventListener('pointerup', (e) => {
+      if (swipeX === null) return;
+      const dx = e.clientX - swipeX; swipeX = null;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    });
 
     $('b-shuffle').addEventListener('click', () => {
       revealed.clear();
