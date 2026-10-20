@@ -470,10 +470,10 @@
         <path d="M70,118 V60 L72,55 H92 L94,60 V118 Z" fill="url(#${p}-hatch)" opacity="0.25"/>
         <path d="M73.6,97 V76 Q73.6,68 77.6,65 Q81.6,68 81.6,76 V97 Z M82.4,97 V76 Q82.4,68 86.4,65 Q90.4,68 90.4,76 V97 Z" fill="${INK.blue}" fill-opacity="0.3" stroke="${k}" stroke-width="0.4"/>
         <path d="M70,60 H94 M70,104 H94" stroke="${k}" stroke-width="0.4"/>
-        <g stroke="${k}" stroke-width="1.4" fill="none"><rect x="44" y="36" width="76" height="82"/><path d="M69.3,36 V118 M94.6,36 V118 M44,63 H70 M94.6,63 H120 M44,90 H70 M94.6,90 H120"/></g>
+        <g stroke="${k}" stroke-width="1.4" fill="none"><rect x="44" y="36" width="76" height="82"/></g><path d="M60,36 V118 M104,36 V118 M44,52 H120 M44,108 H120" stroke="${k}" stroke-width="0.8"/>
         ${pitchScreen(ctx, 'SERIES A')}
         <g transform="translate(200 167)"><path d="M-6,0 V-26 H6 V0 Z" fill="${k}" opacity="0.7"/><path d="M-6,-20 H6 M-6,-13 H6 M-6,-6 H6" stroke="${INK.paper}" stroke-width="0.4"/></g>
-        ${bulb(ctx, 116, 30, 16, { glow: 18, op: 0.28, sway: 1.5 })}
+        ${bulb(ctx, 130, 30, 16, { glow: 16, op: 0.26, sway: 1.5 })}
         ${pitchTable(ctx, paperCup(94, 132.5, 0, 0.19) + wisps(ctx, 94, 127, 16, { count: 3, spread: 2, op: 0.45 }), paperCup(156, 132.5, 0, 0.19),
           `<rect x="114" y="118" width="9" height="5" fill="${INK.yellow}" transform="rotate(8 118 120)"/><circle cx="134" cy="122" r="3.2" fill="${INK.blue}"/><path d="M118,128 h8 v4 h-8 Z" fill="${INK.pink}"/>`, '4s')}`;
 
@@ -522,7 +522,11 @@
         <rect x="38" y="84" width="174" height="30" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
         <rect x="38" y="84" width="174" height="4" fill="${k}" fill-opacity="0.2"/>
         <rect x="38" y="104" width="174" height="3" fill="${INK.red}"/>
+        ${bust(112, 84, INK.kaapi, 0.9, `<path d="M-4,-15 h8 v-3 h-8 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.3"/>`)}${bust(140, 84, INK.kaapi, 0.9, `<path d="M-4,-15 h8 v-3 h-8 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.3"/>`)}
         ${pot(60)}${pot(84)}${pot(166)}${pot(190)}
+        <g font-family="${FONT.sans}" font-size="3.8" font-weight="700" letter-spacing="0.4" fill="${k}">
+          <text x="44" y="97">MEALS 120</text><text x="84" y="97">BISI BELE BATH 70</text><text x="146" y="97">CURD RICE 60</text><text x="184" y="97">IDLI 40</text>
+        </g>
         ${queue(ctx, [k], 142, 0.9, true)}
         <rect x="38" y="148" width="174" height="19" fill="${INK.paper}"/>
         <rect x="38" y="148" width="174" height="19" fill="url(#${p}-hatch)" opacity="0.2"/>
@@ -546,6 +550,8 @@
           <text x="49" y="60">KALE CAESAR</text><text x="113" y="60" text-anchor="end">15.45</text>
         </g>
         ${clock(ctx, 186, 56, 9, 12, 40, { spin: true })}
+        ${[134, 156].map((x) => `<path d="M${x},20 V60" stroke="${k}" stroke-width="0.5"/><path d="M${x - 6},66 Q${x - 6},58 ${x},58 Q${x + 6},58 ${x + 6},66 Z" fill="${INK.green}" stroke="${k}" stroke-width="0.5"/><ellipse cx="${x}" cy="70" rx="9" ry="4" fill="${INK.yellow}" opacity="0.25"/>`).join('')}
+        <g transform="translate(206 86)"><path d="M-6,0 L-5,-8 H5 L6,0 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.4"/><path d="M0,-8 q-8,-6 -4,-14 q6,4 4,14 Z M0,-8 q6,-10 2,-16 q-4,8 -2,16 Z" fill="${INK.green}" stroke="${k}" stroke-width="0.4"/></g>
         <path d="M38,88 L212,88" stroke="${INK.blue}" stroke-width="1" opacity="0.6"/>
         <path d="M38,86 L212,86 L212,96 L38,96 Z" fill="${INK.blue}" opacity="0.12"/>
         <rect x="38" y="96" width="174" height="20" fill="${INK.kaapi}" fill-opacity="0.45" stroke="${k}" stroke-width="0.5"/>
@@ -794,18 +800,26 @@
         <path d="M70,40 v9 M150,40 v9" stroke="${INK.paper}" stroke-width="2.4" opacity="0.35"/>
         <text x="72" y="72" text-anchor="middle" font-family="${FONT.sans}" font-size="10" font-weight="700" letter-spacing="1" fill="none" stroke="${INK.pink}" stroke-width="2.6" opacity="0.25">OPEN MIC</text>
         <text x="72" y="72" text-anchor="middle" font-family="${FONT.sans}" font-size="10" font-weight="700" letter-spacing="1" fill="none" stroke="${INK.pink}" stroke-width="0.8">OPEN MIC${ctx.a(loop('opacity', '1;1;0.2;1;0.3;1;1', '6s', ' keyTimes="0;0.6;0.62;0.64;0.66;0.68;1"'))}</text>
+        <rect x="156" y="58" width="40" height="44" fill="${INK.paper}" stroke="${k}" stroke-width="0.5" transform="rotate(3 176 80)"/>
+        <g transform="rotate(3 176 80)" font-family="${FONT.sans}" font-weight="700" fill="${k}" letter-spacing="0.4">
+          <text x="176" y="67" text-anchor="middle" font-size="4.6">SIGN UP</text>
+          <path d="M162,73 H190 M162,79 H186 M162,85 H190 M162,91 H180 M162,97 H170" stroke="${k}" stroke-width="0.35"/>
+          <path d="M164,72 q4,-3 8,0 t8,0 M164,78 q3,-3 6,0 t7,0 M164,84 q4,-2 8,0 t9,0" fill="none" stroke="${INK.blue}" stroke-width="0.4"/>
+        </g>
+        <circle cx="176" cy="59" r="1.2" fill="${INK.red}"/>
         <path d="M125,40 L84,167 H166 Z" fill="${INK.paper}" opacity="0.12">${ctx.a(easeLoop('opacity', '0.12;0.18;0.12', '3s'))}</path>
         <rect x="38" y="160" width="174" height="7" fill="${INK.kaapi}" opacity="0.6"/>
-        <ellipse cx="110" cy="142" rx="7" ry="1.6" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.4"/>
-        <path d="M105,143 L102,167 M115,143 L118,167 M104,156 H116" stroke="${k}" stroke-width="0.8"/>
-        ${seated(110, 140, { c: k, s: 1.25, extra: `<path d="M0,-15.6 L0,-9" stroke="${INK.red}" stroke-width="1.2"/>
+        <ellipse cx="108" cy="147" rx="8" ry="1.8" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.4"/>
+        <path d="M102,148 L99,167 M114,148 L117,167 M101,158 H115" stroke="${k}" stroke-width="0.9"/>
+        ${seated(108, 145, { c: k, s: 1.5, extra: `<path d="M0,-15.6 L0,-9" stroke="${INK.red}" stroke-width="1.2"/>
           <g transform="rotate(-12 4 -6)"><path d="M-1,-6 C-1,-11 4,-11 5,-8.6 C7,-12 13,-11 13,-6 C13,-1 7,-0.6 5,-2.6 C4,-0.6 -1,-1 -1,-6 Z" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.4"/><circle cx="9" cy="-6" r="1.4" fill="${k}"/><rect x="12" y="-6.8" width="12" height="1.6" fill="${k}"/></g>
           <g>${ctx.a(easeSpin('0 2 -13;18 2 -13;0 2 -13', '0.6s'))}<path d="M2,-13 L8,-6" stroke="${k}" stroke-width="1.8" stroke-linecap="round"/></g>` })}
-        ${micStand(118)}
-        <g fill="${k}" stroke="${INK.paper}" stroke-width="0.35">
-          <g>${ctx.a(easeMove('0 0;0 -1.2;0 0', '1.5s'))}${bust(50, 170, k, 1.3, '')}</g>
-          <g>${ctx.a(easeMove('0 0;0 -1;0 0', '1.5s', ' begin="-0.6s"'))}${bust(198, 172, k, 1.4, '')}</g>
-        </g>
+        ${micStand(116)}
+        ${[[56, 0], [190, 0.6]].map(([x, d]) => `<g>
+          <circle cx="${x}" cy="138" r="9" fill="${INK.yellow}" opacity="0.2">${ctx.a(easeLoop('opacity', '0.2;0.1;0.25;0.2', '1.5s', ` begin="-${d}s"`))}</circle>
+          <ellipse cx="${x}" cy="144" rx="11" ry="2" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.4"/><path d="M${x},146 V167 M${x - 5},167 H${x + 5}" stroke="${k}" stroke-width="1"/>
+          <rect x="${x - 1.6}" y="138" width="3.2" height="5" fill="${INK.red}"/><path d="M${x},138 q-1.2,-2 0,-3.4 q1.2,1.4 0,3.4 Z" fill="${INK.yellow}"/>
+          <g>${ctx.a(easeMove('0 0;0 -1.2;0 0', '1.5s', ` begin="-${d}s"`))}${bust(x + (x < 125 ? -12 : 12), 167, k, 1.3, '')}</g></g>`).join('')}
         <path d="M38,160 H212" stroke="${INK.paper}" stroke-width="0.3" opacity="0.4"/>`;
 
       return {

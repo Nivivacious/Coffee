@@ -77,7 +77,7 @@
     pair: ['Majestic', 'Port Authority'],
     sentence: ['The ugliest building in town', "is where everyone's story starts."],
     why: 'Nobody loves the bus station. Everybody remembers stepping off at one.',
-    mechanism: 'Two newcomers stand sole to sole with their suitcases. Same pose, same hesitation, opposite ends of the earth.',
+    mechanism: 'Two newcomers stand sole to sole, suitcases at their side, both pretending they know the way out.',
     sound: 'Idling diesel, a conductor\'s whistle, a PA nobody can parse.',
     draw(ctx) {
       const p = ctx.id;
@@ -281,7 +281,7 @@
     pair: ['Tabebuia', 'Cherry blossom'],
     sentence: ['Once a year the pavement', "forgets it's grey."],
     why: 'For one week the commute is a wedding aisle and nobody minds the traffic.',
-    mechanism: 'The pink on the ground runs straight through the seam. Scooter on one side, bench on the other, both buried.',
+    mechanism: 'The pink runs straight through the seam. A scooter on one side, a bench on the other, both buried.',
     sound: 'A scooter horn, a breeze, petals ticking, a camera shutter or six.',
     draw(ctx) {
       const p = ctx.id;
@@ -348,7 +348,7 @@
         ${petalBed(4, 38, 212, 128, 146, 50, INK.pink, 0.8)}
         ${cherry(76, 64, 1)}${cherry(186, 74, 3)}
         <g transform="translate(125 164)">${bench}</g>
-        <g transform="translate(${CX} 166)">${ctx.a(move('-120 0;120 0', '12s', ' begin="-3s"'))}<g transform="translate(-36 0)">${figure(ctx, { color: k })}</g></g>
+        <g transform="translate(${CX} 166)">${ctx.a(move('-120 0;120 0', '12s', ' begin="-3s"'))}<g transform="translate(-36 0)">${figure(ctx, { color: k }).replace(/0.9s/g, '1s')}</g></g>
         ${petals(9, 12)}`;
       return {
         top: { city: 'blr', caption: 'SANKEY ROAD, FEBRUARY', clause: 'Once a year the pavement', art: top },
@@ -503,9 +503,9 @@
       </g>`;
       const top = `
         <rect width="${W}" height="${H}" fill="${INK.yellow}" opacity="0.16"/>
-        <rect x="150" y="26" width="48" height="36" fill="${INK.blue}" fill-opacity="0.3" stroke="${k}" stroke-width="0.6"/>
-        <path d="M150,38 H198 M150,50 H198 M162,26 V62 M174,26 V62 M186,26 V62" stroke="${k}" stroke-width="0.5"/>
-        <path d="M150,26 H198 V30 Q174,36 150,30 Z" fill="${INK.green}" opacity="0.6"/>
+        <rect x="162" y="34" width="40" height="32" fill="${INK.blue}" fill-opacity="0.3" stroke="${k}" stroke-width="0.6"/>
+        <path d="M162,45 H202 M162,56 H202 M172,34 V66 M182,34 V66 M192,34 V66" stroke="${k}" stroke-width="0.5"/>
+        <path d="M162,34 H202 V38 Q182,44 162,38 Z" fill="${INK.green}" opacity="0.6"/>
         <g transform="translate(70 30)"><path d="M10,-6 V0" stroke="${k}" stroke-width="0.5"/>
           <rect x="0" y="0" width="20" height="30" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
           <rect x="0" y="0" width="20" height="11" fill="${INK.red}" opacity="0.85"/>
@@ -571,9 +571,9 @@
     id: 's-6', rank: '6', suit: 'spade', title: 'Fan on High',
     pair: ['Power cut', 'Heatwave'],
     sentence: ["Everyone's fan is on.", "Nobody's fan is enough."],
-    why: 'May in one city, July in the other. Both run every fan they own, and sweat anyway.',
+    why: 'May in one city, July in the other. Every fan on, everyone sweating anyway.',
     mechanism: 'An inverter and a box fan, back to back. The ceiling fan dies and the inverter starts blinking.',
-    sound: 'A fan winding down, an inverter beep, AC drip, a box fan rattle.',
+    sound: 'A fan winding down, an inverter beep, AC drip, box fan rattle.',
     draw(ctx) {
       const p = ctx.id;
       const cut = ' keyTimes="0;0.4;0.41;0.83;0.84;1"';
@@ -675,7 +675,7 @@
     pair: ['Deepavali', 'Dyker Heights'],
     sentence: ['One night a year,', 'every window shows off.'],
     why: 'Diyas or ten thousand bulbs. Either way the neighbours are keeping score.',
-    mechanism: 'A row of diyas and a row of bulbs line the ground on each side, flickering toward each other.',
+    mechanism: 'A row of diyas and a row of bulbs meet at the seam, flickering at each other.',
     sound: 'Crackers popping, a rocket whistle, sleigh bells, a generator humming.',
     draw(ctx) {
       const p = ctx.id;
@@ -883,7 +883,7 @@
     id: 's-10', rank: '10', suit: 'spade', title: 'Midnight Again',
     pair: ['Brigade Road', 'Times Square'],
     sentence: ['Midnight again.', 'Same resolutions.'],
-    why: 'Both crowds count down from ten, hug strangers, and promise to start the gym on the second.',
+    why: 'Both crowds count down, hug strangers, and swear the gym starts on the second.',
     mechanism: 'Two crowds, feet to feet. One kid on shoulders at the centre of each, arms up.',
     sound: 'A countdown, a roar, party horns, a police whistle, auld lang syne.',
     draw(ctx) {
@@ -975,8 +975,8 @@
     pair: ['Gully cricket', 'Stickball'],
     sentence: ['The game ends', "when someone's mother calls."],
     why: 'No umpire, no innings, no rules worth keeping. The only final whistle is a window opening.',
-    mechanism: 'Stone wicket and manhole plate meet at the seam. Same pitch, same swing, same window.',
-    sound: 'A tennis ball off a wall, a shout of out, a name called twice.',
+    mechanism: 'Stone wicket and manhole plate meet at the seam. Both batters swing at the same moment.',
+    sound: 'Tennis ball off a wall, a shout of out, a name called twice.',
     draw(ctx) {
       const p = ctx.id;
       // Ball pitched from the left, hit at 1.5 s, flies off up and right. 3 s loop.
@@ -999,8 +999,8 @@
         <rect width="${W}" height="${H}" fill="${INK.yellow}" opacity="0.2"/>
         <g transform="translate(200 120)"><path d="M0,47 C2,30 -4,10 2,-40" fill="none" stroke="${INK.kaapi}" stroke-width="2.6"/>
           ${[-60, -20, 20, 60, 100, 140, 180].map((a) => `<path d="M2,-40 q${f(Math.cos(a * Math.PI / 180) * 10)},${f(Math.sin(a * Math.PI / 180) * 6 - 6)} ${f(Math.cos(a * Math.PI / 180) * 22)},${f(Math.sin(a * Math.PI / 180) * 14 + 4)}" fill="none" stroke="${INK.green}" stroke-width="2.4" stroke-linecap="round"/>`).join('')}</g>
-        <path d="M150,150 V40 M144,46 H156 M144,52 H156" stroke="${k}" stroke-width="1.2"/>
-        <g>${ctx.a(easeMove('0 0;0 1.2;0 0', '6s'))}<path d="M30,60 Q90,74 150,46 T240,58 M30,66 Q92,80 150,52 T240,64" fill="none" stroke="${k}" stroke-width="0.3"/></g>
+        <path d="M164,150 V40 M158,46 H170 M158,52 H170" stroke="${k}" stroke-width="1.2"/>
+        <g>${ctx.a(easeMove('0 0;0 1.2;0 0', '6s'))}<path d="M30,60 Q100,74 164,46 T260,58 M30,66 Q102,80 164,52 T260,64" fill="none" stroke="${k}" stroke-width="0.3"/></g>
         <g transform="translate(176 56)"><path d="M-4,0 Q-3,-3 0,-3 Q2,-5 4,-3 L5.4,-2.6 L4,-2 Q3.4,0 0,0.4 Z" fill="${k}"/><path d="M-1,0.4 V2 M1,0.4 V2" stroke="${k}" stroke-width="0.4"/></g>
         <path d="M38,96 H112 V150 H38 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/>
         <path d="M32,96 L54,70 H120 L112,96 Z" fill="${INK.red}" opacity="0.8" stroke="${k}" stroke-width="0.5"/>
@@ -1060,7 +1060,7 @@
     pair: ['November, Bangalore', 'October, New York'],
     sentence: ['Two perfect weeks', 'we talk about all year.'],
     why: 'A light shawl, a light jacket. Both cities at their best and both gone by Friday.',
-    mechanism: 'Two benches back to back across the seam. A shawl on one, a jacket on the other. Nobody gets up.',
+    mechanism: 'Two benches back to back. A shawl on one, a jacket on the other. Nobody gets up.',
     sound: 'Wind in the rain trees, a barbet, leaves skittering, a tugboat.',
     draw(ctx) {
       const p = ctx.id;
