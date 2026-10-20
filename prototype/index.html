@@ -68,6 +68,7 @@
   .info dt { margin-bottom: 2px; }
   .info dd { margin: 0; max-width: 60ch; }
   .controls { display: flex; flex-wrap: wrap; gap: 10px; }
+  #b-sound[aria-pressed="true"] { background: var(--marigold); border-color: var(--marigold); color: var(--table); }
   button {
     font-family: var(--label); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--ivory); background: transparent; border: 1px solid var(--rule); border-radius: 2px;
@@ -138,9 +139,9 @@
 
 <div class="wrap">
   <header>
-    <span class="label">Prototype deck · five hero cards and two Jokers</span>
+    <span class="label">Working prototype · five cards and two Jokers</span>
     <h1>A Tale of <em>Two</em> Homes</h1>
-    <p class="thesis">Different cities. Familiar feelings. A deck of playing cards about Bangalore and New York.</p>
+    <p class="thesis">Different cities. Familiar feelings. Playing cards for anyone who has lived in Bangalore and New York, or loved someone who did.</p>
   </header>
 
   <section class="stage" aria-label="Featured card">
@@ -148,18 +149,20 @@
     <div class="info">
       <span class="label" id="f-rank">Eight of Clubs · 6 PM</span>
       <h2 id="f-title">The Ride Home</h2>
-      <div class="pairing"><span id="f-a">Auto-rickshaw</span><span class="x">×</span><span id="f-b">Yellow cab</span></div>
+      <div class="pairing"><span id="f-a">Auto-rickshaw</span><span class="x" aria-hidden="true">×</span><span id="f-b">Yellow cab</span></div>
       <div class="sentence">
         <span class="label">Hidden on the seam</span>
         <span class="half" id="f-s1"></span>
         <span class="half b" id="f-s2"></span>
-        <span class="note" id="f-note">The first half reads from Bangalore's side. Turn the card to read the rest.</span>
+        <span class="note" id="f-note"></span>
       </div>
       <dl>
-        <div><dt class="label">At the centre</dt><dd id="f-mech"></dd></div>
-        <div><dt class="label">Why it pairs</dt><dd id="f-why"></dd></div>
+        <div><dt class="label">In the middle</dt><dd id="f-mech"></dd></div>
+        <div><dt class="label">Why these two</dt><dd id="f-why"></dd></div>
+        <div><dt class="label">What you hear</dt><dd id="f-sound"></dd></div>
       </dl>
       <div class="controls">
+        <button type="button" id="b-sound" aria-pressed="false">Sound on</button>
         <button type="button" id="b-turn" aria-pressed="false">Turn card</button>
         <button type="button" id="b-play" aria-pressed="false">Pause</button>
         <button type="button" id="b-print" aria-pressed="false">Print frame</button>
@@ -172,7 +175,7 @@
   <section aria-label="The collection">
     <div class="reel-head">
       <h2>The collection</h2>
-      <span class="label">Select a card to put it on the stage</span>
+      <span class="label">Pick a card to watch it up close</span>
     </div>
     <div class="reel" id="reel"></div>
   </section>
@@ -183,12 +186,12 @@
       <div class="card" id="j-ret"></div>
     </div>
     <div class="jokers-text">
-      <span class="label">The only two cards without a mirror</span>
+      <span class="label">The two cards that don't mirror</span>
       <h2>The Departure and The Return</h2>
       <blockquote>Funny how you can miss two places at once.</blockquote>
-      <p>Every other card turns. These two can't, because a pour only goes down. Each Joker pulls coffee from one vessel to the other the way a darshini cools and froths it. The person who lives between the two cities is the stream, and the travel is what makes it right.</p>
-      <p>On The Departure the sentence flows downstream, from the steel tumbler into a New York paper cup. On The Return it runs upstream, from a davara that someone kept a little coffee in. The Return's stream is paler. You come back with more milk in you.</p>
-      <p>The other 51 cards share rotational symmetry: the same either way up. The Jokers are mirror images of each other, so they only make a whole shape side by side.</p>
+      <p>Every other card in the deck reads either way up. These two can't, because coffee only pours down. In a darshini, coffee gets poured back and forth between a tumbler and a davara until it's cool enough to drink and has a head of froth. Someone who lives between these two cities is that stream, and all the back and forth is how it gets made.</p>
+      <p>On The Departure the sentence runs downhill with the coffee, from the steel tumbler into a New York paper cup. On The Return it reads uphill, from a davara where someone kept a little coffee back for you. The Return's coffee is paler. You come back with more milk in you.</p>
+      <p>Side by side they mirror each other, and the two streams make one arch. It's the only picture in the deck that needs two cards.</p>
     </div>
   </section>
 
@@ -198,50 +201,60 @@
     <div class="specs">
       <div>
         <span class="label">Ranks keep time</span>
-        <p>Laid out from 2 to 10, each suit is one day, and every card's caption gives the hour. Aces are origins. Jacks are the people who keep the city moving, Queens are what the city loves, and Kings are what it complains about and never fixes.</p>
+        <p>Lay any suit out from 2 to 10 and you get a day, 6 AM to 11 PM. Each card's caption gives its hour. Aces are where things began. Jacks are the people who keep a city moving, Queens are what it loves, and Kings are what it complains about and never fixes.</p>
         <div class="hours" id="hours"></div>
       </div>
       <div>
         <span class="label">Inks</span>
-        <p>Seven spot colours on warm ivory stock, printed like a screen print. Marigold is shared: the same ink makes the auto's hood and the cab.</p>
+        <p>Seven spot colours on warm ivory card, printed like a screen print. The auto's hood and the cab come out of the same pot of marigold.</p>
         <div class="inks" id="inks"></div>
       </div>
       <div>
-        <span class="label">Print and motion</span>
-        <p>Every card is vector SVG on an exact 2.5 × 3.5 in grid, with a 0.125 in bleed version for the printer. The animation lives in the file. For the printed deck, the seam band can be lenticular, so tilting the card in your hand plays the motion.</p>
+        <span class="label">Print, motion and sound</span>
+        <p>Each card is a vector SVG on an exact 2.5 × 3.5 inch grid, with a 0.125 inch bleed version for the printer. The films loop with no visible join. The sound is generated in your browser and keeps time with the picture. On the printed deck, the centre strip could be lenticular, so the card moves when you tilt it.</p>
       </div>
     </div>
   </section>
 </div>
 
 <script src="cards.js"></script>
+<script src="sound.js"></script>
 <script>
   (function () {
     const T = window.TaleCards;
+    const Snd = window.TaleSound;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const all = [...T.CARDS.map((c) => ({ ...c, kind: 'card' })), ...T.JOKERS.map((j) => ({ ...j, kind: 'joker' }))];
     const state = { id: 'ride', still: reduce, turned: false, paused: false };
     let uid = 0;
     const $ = (id) => document.getElementById(id);
+    const isJoker = (id) => id === 'departure' || id === 'return';
+    const NOTE = 'Read the first half from Bangalore\'s side, then turn the card for the rest.';
 
     const jokerInfo = {
       departure: {
         rank: 'Joker · I', a: 'Steel tumbler', b: 'New York paper cup',
-        s1: 'Funny how you can miss', s2: 'two places at once.',
-        note: 'The whole sentence travels inside the stream, downstream with the pour.',
-        mech: 'The only diagonal in the deck. The stream crosses the seam instead of meeting at it, and the vermilion seam line breaks where it passes. A single index, top left.',
-        why: 'The deck spends 51 cards arguing that two cities are alike. The Joker admits it was about the person who had to call both of them home.'
+        note: 'The whole line travels inside the stream, downhill with the coffee.',
+        mech: 'This is the only diagonal in the deck. The stream cuts across the centre line, so the vermilion seam breaks where it passes. There is one index, top left, where every other card has two.',
+        why: 'Fifty-one cards make the case that two cities are alike. This one admits the deck was about the person who calls both of them home.',
+        sound: 'Coffee pouring, a little steel, and a low drone underneath.'
       },
       return: {
         rank: 'Joker · II', a: 'New York paper cup', b: 'Steel davara',
-        s1: 'Funny how you can miss', s2: 'two places at once.',
-        note: 'Here the sentence runs upstream, back toward the cup. Going back is the point.',
-        mech: 'The Departure mirrored left to right. The davara already holds a little coffee, and the stream is paler. Side by side, the two streams form one arch.',
-        why: 'Every card but these two turns. A person, unlike a city, isn\'t reversible.'
+        note: 'This time the line runs uphill, back toward the cup.',
+        mech: 'The Departure flipped left to right. The davara already has some coffee in it, and the stream is paler.',
+        why: 'Turn any other card over and it still works. Turn this one and the coffee pours into the sky. People don\'t flip as neatly as cities do.',
+        sound: 'The same pour going back, with one extra note in the drone.'
       }
     };
 
     function render(id, opts) { return T.render(id, Object.assign({ uid: '-' + (uid++) }, opts)); }
+
+    function follow() {
+      const svg = $('feature').querySelector('svg');
+      Snd.follow(state.id, () => (svg && svg.getCurrentTime ? svg.getCurrentTime() : null));
+      Snd.mute(state.still);
+    }
 
     function setFeature(id) {
       state.id = id;
@@ -254,22 +267,23 @@
         $('f-b').textContent = item.pair[1];
         $('f-s1').textContent = item.sentence[0];
         $('f-s2').textContent = item.sentence[1];
-        $('f-note').textContent = 'The first half reads from Bangalore\'s side. Turn the card to read the rest.';
+        $('f-note').textContent = NOTE;
         $('f-mech').textContent = item.mechanism;
         $('f-why').textContent = item.why;
-        $('b-turn').disabled = false;
+        $('f-sound').textContent = item.sound;
       } else {
         const j = jokerInfo[id];
         $('f-rank').textContent = j.rank;
         $('f-a').textContent = j.a; $('f-b').textContent = j.b;
-        $('f-s1').textContent = j.s1; $('f-s2').textContent = j.s2;
+        $('f-s1').textContent = 'Funny how you can miss';
+        $('f-s2').textContent = 'two places at once.';
         $('f-note').textContent = j.note;
-        $('f-mech').textContent = j.mech; $('f-why').textContent = j.why;
-        $('b-turn').disabled = false;
+        $('f-mech').textContent = j.mech; $('f-why').textContent = j.why; $('f-sound').textContent = j.sound;
       }
       $('f-title').textContent = item.title;
       document.querySelectorAll('.thumb').forEach((b) => b.setAttribute('aria-current', String(b.dataset.id === id)));
       $('status').textContent = '';
+      follow();
     }
 
     function pauseAll(p) {
@@ -279,27 +293,25 @@
       });
     }
 
-    // Reel
+    // Reel: still frames, so the stage is the only film running at full size.
     const reel = $('reel');
     all.forEach((item) => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'thumb'; b.dataset.id = item.id;
       const idx = item.kind === 'card' ? `${item.rank} ${T.SUIT_NAME[item.suit]}` : 'Joker';
-      b.innerHTML = `<div class="mini">${render(item.id, { static: reduce })}</div><span class="idx">${idx}</span><span>${item.title}</span>`;
+      b.innerHTML = `<div class="mini">${render(item.id, { static: true })}</div><span class="idx">${idx}</span><span>${item.title}</span>`;
       b.addEventListener('click', () => { setFeature(item.id); if (window.innerWidth < 860) $('feature').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); });
       reel.appendChild(b);
     });
 
-    // Jokers
     $('j-dep').innerHTML = render('departure', { static: reduce });
     $('j-ret').innerHTML = render('return', { static: reduce });
 
-    // Suits
     const suits = [
-      { s: 'heart', name: 'Hearts', theme: 'Belonging', d: 'Rituals, regulars, the people who know your order.', ex: 'Cubbon Park × Central Park · Darshini × diner' },
-      { s: 'diamond', name: 'Diamonds', theme: 'Ambition', d: 'Work, money, early starts, getting somewhere.', ex: 'KR Market at dawn × the 28th Street flower district' },
-      { s: 'club', name: 'Clubs', theme: 'Streets', d: 'Commutes, corners, food, small daily annoyances.', ex: 'Auto × cab · St. Mark\'s Road × St. Marks Place' },
-      { s: 'spade', name: 'Spades', theme: 'Weather and time', d: 'Seasons, arrivals, leaving, growing up.', ex: 'The April storm × the first snow' }
+      { s: 'heart', name: 'Hearts', theme: 'Belonging', d: 'The people who know your order, and the places you keep going back to.', ex: 'Cubbon Park × Central Park · Darshini × diner' },
+      { s: 'diamond', name: 'Diamonds', theme: 'Ambition', d: 'Early starts, money, and whatever made you move in the first place.', ex: 'KR Market at dawn × the 28th Street flower district' },
+      { s: 'club', name: 'Clubs', theme: 'Streets', d: 'Commutes, corners, food, and the daily annoyances you would secretly miss.', ex: 'Auto × cab · St. Mark\'s Road × St. Marks Place' },
+      { s: 'spade', name: 'Spades', theme: 'Weather and time', d: 'Seasons, arrivals, leaving, getting older.', ex: 'The April storm × the first snow' }
     ];
     const pipPath = {
       heart: 'M0,5.6 C-1.2,4 -6,1.2 -6,-2 C-6,-5 -2.4,-6.4 0,-3.5 C2.4,-6.4 6,-5 6,-2 C6,1.2 1.2,4 0,5.6 Z',
@@ -309,16 +321,24 @@
     };
     $('suits').innerHTML = suits.map((x) => `<div><span class="label">${x.name}</span><h3><svg viewBox="-7 -7 14 14" aria-hidden="true"><path d="${pipPath[x.s]}" fill="${x.s === 'heart' || x.s === 'diamond' ? 'var(--vermilion)' : 'var(--ivory)'}"/></svg>${x.theme}</h3><p>${x.d}</p><p class="ex">${x.ex}</p></div>`).join('');
     $('hours').innerHTML = ['2', '3', '4', '5', '6', '7', '8', '9', '10'].map((r) => `<span><b>${r}</b> ${T.HOURS[r]}</span>`).join('');
-    const inkNames = { paper: 'Ivory stock', ink: 'Indigo black', red: 'Kumkum', yellow: 'Marigold', green: 'Canopy', blue: 'Monsoon', pink: 'Neon', kaapi: 'Kaapi' };
+    const inkNames = { paper: 'Ivory card', ink: 'Indigo black', red: 'Kumkum', yellow: 'Marigold', green: 'Canopy', blue: 'Monsoon', pink: 'Neon', kaapi: 'Kaapi' };
     $('inks').innerHTML = Object.entries(T.INK).map(([k, v]) => `<span class="ink"><i style="background:${v}"></i>${inkNames[k]}</span>`).join('');
 
-    // Controls
+    $('b-sound').addEventListener('click', () => {
+      const on = !Snd.enabled;
+      if (on) { Snd.enable(); follow(); } else Snd.disable();
+      $('b-sound').setAttribute('aria-pressed', String(on));
+      $('b-sound').textContent = on ? 'Sound off' : 'Sound on';
+      $('status').textContent = on
+        ? (state.still ? 'Sound plays with the moving card. Switch off the print frame to hear it.' : 'Sound is on. It follows whichever card is on the stage.')
+        : '';
+    });
     $('b-turn').addEventListener('click', () => {
       state.turned = !state.turned;
       $('feature').classList.toggle('turned', state.turned);
       $('b-turn').setAttribute('aria-pressed', String(state.turned));
       $('status').textContent = state.turned
-        ? (state.id === 'departure' || state.id === 'return' ? 'Upside down, the coffee pours into the sky. The Jokers are the only cards with an up.' : 'New York is upright now. Read the second half along the seam.')
+        ? (isJoker(state.id) ? 'Upside down, the coffee would pour into the sky. These are the only two cards with a right way up.' : 'New York is the right way up now. The second half of the sentence is on the seam.')
         : '';
     });
     $('b-play').addEventListener('click', () => {
@@ -331,23 +351,23 @@
       state.still = !state.still;
       $('b-print').setAttribute('aria-pressed', String(state.still));
       setFeature(state.id);
-      $('status').textContent = state.still ? 'Showing the print frame: the still pose used for the printed card.' : '';
+      $('status').textContent = state.still ? 'This is the still frame that gets printed.' : '';
     });
     $('b-copy').addEventListener('click', () => {
       const svg = T.render(state.id, { standalone: true, static: state.still, size: { w: '2.5in', h: '3.5in' } });
-      const done = () => { $('status').textContent = 'Copied the SVG. Paste it into a .svg file to open it in a browser or Illustrator.'; };
+      const done = () => { $('status').textContent = 'SVG copied. Paste it into a new .svg file to open it in a browser or Illustrator.'; };
       const fallback = () => {
         const ta = document.createElement('textarea');
         ta.value = svg; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
         document.body.appendChild(ta); ta.select();
         let ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
         ta.remove();
-        $('status').textContent = ok ? 'Copied the SVG.' : 'Copy is blocked here. The SVG files are in the repository under prototype/svg.';
+        $('status').textContent = ok ? 'SVG copied.' : 'Your browser blocked the copy. The SVG files are in the repository under prototype/svg.';
       };
       try { navigator.clipboard.writeText(svg).then(done, fallback); } catch (e) { fallback(); }
     });
 
-    if (reduce) { $('b-print').setAttribute('aria-pressed', 'true'); }
+    if (reduce) $('b-print').setAttribute('aria-pressed', 'true');
     setFeature('ride');
   })();
 </script>
