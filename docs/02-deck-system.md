@@ -154,7 +154,7 @@ Hero cards are marked ★.
 | 2♦ | KR Market flowers before dawn | The 28th Street flower district before dawn | *The prettiest hour / belongs to the people working it.* |
 | 3♦ | The company shuttle to Electronic City | Metro-North into Grand Central | *Same seat every morning. / Same nap.* |
 | 4♦ | A Koramangala café full of pitches | A DUMBO coworking space | *Every table is a startup. / Every startup needs more coffee.* |
-| 5♦ | The tech park food court queue | The Midtown salad line | *Forty-five minutes for lunch. / Forty of them in the queue.* |
+| 5♦ | Naru Noodle Bar's eight seats, gone in two minutes | 4 Charles Prime Rib on Resy, 9 AM, 21 days out | *The table was gone / before the page loaded.* |
 | 6♦ | Bargaining on Commercial Street | Bargaining on Canal Street | *Everything has a price. / Nothing has a price tag.* |
 | 7♦ | A Chickpet gold shop | A 47th Street diamond counter | *Gold by the gram. / Trust by the decade.* |
 | 8♦ | A band in a Church Street pub | An open mic in the Village | *Day job till six. / Rock star till close.* |

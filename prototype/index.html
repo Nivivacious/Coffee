@@ -161,6 +161,18 @@
   @media (max-width: 480px) {
     .grid { grid-template-columns: minmax(0, 1fr); }
   }
+  #feature { touch-action: pan-y; }
+  @media (pointer: coarse) {
+    button { min-height: 44px; }
+    .controls { gap: 8px; }
+  }
+  @media (hover: none) {
+    .fan .thumb:hover { transform: rotate(var(--r)) translateY(var(--y)); }
+    .suit:hover .pile > span:nth-child(1) { transform: rotate(-9deg) translate(-3px, 2px); }
+    .suit:hover .pile > span:nth-child(2) { transform: rotate(5deg) translate(2px, 1px); }
+    .grid > .suit:hover { background: var(--table); }
+    .grid > .suit[aria-expanded="true"] { background: var(--panel); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .card { transition: none; }
     .flip { transition: none; }
@@ -561,12 +573,14 @@
       if (e.key === 'ArrowRight') step(1);
       else if (e.key === 'ArrowLeft') step(-1);
     });
-    let swipeX = null;
-    $('feature').addEventListener('pointerdown', (e) => { swipeX = e.clientX; });
+    // Swipe only when the gesture is clearly sideways, so scrolling never flips a card.
+    let swipe = null;
+    $('feature').addEventListener('pointerdown', (e) => { swipe = { x: e.clientX, y: e.clientY }; });
+    $('feature').addEventListener('pointercancel', () => { swipe = null; });
     $('feature').addEventListener('pointerup', (e) => {
-      if (swipeX === null) return;
-      const dx = e.clientX - swipeX; swipeX = null;
-      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+      if (!swipe) return;
+      const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y; swipe = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
     });
 
     $('b-shuffle').addEventListener('click', () => {

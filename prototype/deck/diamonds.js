@@ -497,78 +497,99 @@
     // One step every 3 s; four steps per film.
     return `<g>${ctx.a(move('0 0;0 0;18 0', '3s', ' calcMode="spline" keyTimes="0;0.55;1" keySplines="0 0 1 1;0.45 0 0.55 1"'))}${q}</g>`;
   }
+  // The phone in the middle of the Fastest Finger card. Countdown, three
+  // frantic taps, then the stamp. One 12 s film.
+  function bookingPhone(ctx, stampText, stampSize) {
+    const disc = (vals, times) => ctx.a(loop('opacity', vals, '12s', ` calcMode="discrete" keyTimes="${times}"`));
+    const count = ['00:03', '00:02', '00:01', 'LIVE'].map((t, i) => {
+      const on = ['1;0;0', '0;1;0;0', '0;0;1;0;0', '0;0;0;1;0'][i];
+      const kt = ['0;0.083;1', '0;0.083;0.166;1', '0;0.083;0.166;0.25;1', '0;0.083;0.166;0.25;1'][i];
+      // Print frame shows LIVE.
+      return `<text x="125" y="89" text-anchor="middle" font-family="${FONT.sans}" font-size="5.2" font-weight="700" fill="${i === 3 ? INK.red : k}" opacity="${ctx.still ? (i === 3 ? 1 : 0) : (i === 0 ? 1 : 0)}">${t}${disc(on, kt)}</text>`;
+    }).join('');
+    let pills = '';
+    for (let i = 0; i < 4; i++) {
+      const y = 95 + i * 10;
+      pills += `<rect x="112" y="${y}" width="26" height="7" rx="3.5" fill="${INK.green}"/>
+        <text x="125" y="${y + 5}" text-anchor="middle" font-family="${FONT.sans}" font-size="3.4" font-weight="700" fill="${INK.paper}">${['12:30', '1:30', '7:00', '8:30'][i]}</text>
+        <rect x="112" y="${y}" width="26" height="7" rx="3.5" fill="${k}" opacity="${ctx.still ? 0.55 : 0}">${ctx.a(loop('opacity', '0;0;0.55;0.55;0', '12s', ` keyTimes="0;${(0.27 + i * 0.012).toFixed(3)};${(0.29 + i * 0.012).toFixed(3)};0.95;1"`))}</rect>`;
+    }
+    return `<g>
+      <rect x="105" y="70" width="40" height="80" rx="6" fill="${k}"/>
+      <rect x="108.5" y="76" width="33" height="66" rx="2.5" fill="${INK.paper}"/>
+      <rect x="120" y="72.4" width="10" height="1.6" rx="0.8" fill="${INK.paper}" opacity="0.5"/>
+      ${count}
+      ${pills}
+      <g transform="translate(125 112) rotate(-14)" opacity="${ctx.still ? 1 : 0}">${ctx.a(loop('opacity', '0;0;1;1;0', '12s', ' keyTimes="0;0.31;0.32;0.94;1"'))}
+        <rect x="-19" y="-6.5" width="38" height="13" rx="1.2" fill="${INK.paper}" stroke="${INK.red}" stroke-width="1.2"/>
+        <text y="2" text-anchor="middle" font-family="${FONT.sans}" font-size="${stampSize}" font-weight="700" letter-spacing="0.4" fill="${INK.red}">${stampText}</text>
+      </g>
+      <g transform="translate(146 132)">${ctx.a(move('0 0;0 0;-5 -3;0 0;-5 -3;0 0;-5 -3;0 0;0 0', '12s', ' keyTimes="0;0.25;0.262;0.274;0.286;0.298;0.31;0.322;1"'))}
+        <path d="M-6,4 C-10,0 -11,-6 -7,-8 C-4,-9.4 -1,-6 2,-2 L12,10 L6,22 Z" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
+      </g>
+    </g>`;
+  }
   T.register({
-    id: 'd-5', rank: '5', suit: 'diamond', title: 'Lunch Hour',
-    pair: ['Tech park food court', 'Midtown salad line'],
-    sentence: ['Forty-five minutes for lunch.', 'Forty of them in the queue.'],
-    why: 'The lunch hour is mostly a line, with a little lunch at the end.',
-    mechanism: 'Both queues shuffle forward one step at a time. The clocks do not wait.',
-    sound: 'Trays, a token number called, a cash beep, many sighs.',
+    id: 'd-5', rank: '5', suit: 'diamond', title: 'Fastest Finger',
+    pair: ['Naru Noodle Bar', '4 Charles Prime Rib'],
+    sentence: ['The table was gone', 'before the page loaded.'],
+    why: '', mechanism: '', sound: '',
     draw(ctx) {
-      const p = ctx.id;
-      const panel = (x, w, label, c, tc) => `<rect x="${x}" y="38" width="${w}" height="12" fill="${c}" stroke="${k}" stroke-width="0.45"/><text x="${x + w / 2}" y="46" text-anchor="middle" font-family="${FONT.sans}" font-size="4.4" font-weight="700" letter-spacing="0.6" fill="${tc || INK.paper}">${label}</text>`;
-      const token = [147, 148, 149, 150].map((n, i) => {
-        const vals = [0, 1, 2, 3].map((j) => (j === i ? 1 : 0)).join(';');
-        return `<text x="196" y="70.4" text-anchor="end" font-family="${FONT.sans}" font-size="6.4" font-weight="700" fill="${INK.red}" opacity="${i === 0 ? 1 : 0}">${n}${ctx.a(loop('opacity', vals, '12s', ' calcMode="discrete" keyTimes="0;0.25;0.5;0.75" begin="-1.6s"'))}</text>`;
+      const stools = Array.from({ length: 8 }, (_, i) => {
+        const x = 48 + i * 22;
+        return `<path d="M${x},167 V154 M${x - 3},167 L${x},158 L${x + 3},167" stroke="${k}" stroke-width="0.8" fill="none"/><ellipse cx="${x}" cy="153" rx="5" ry="1.6" fill="${INK.red}" stroke="${k}" stroke-width="0.4"/>`;
       }).join('');
-      const pot = (x) => `<path d="M${x - 9},84 h18 v-2 q0,-6 -9,-6 q-9,0 -9,6 Z" fill="${k}" fill-opacity="0.15" stroke="${k}" stroke-width="0.5"/>`;
+      const bowl = (x, y) => `<g transform="translate(${x} ${y})">
+        <path d="M-12,0 H12 Q11,9 0,10 Q-11,9 -12,0 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/>
+        <path d="M-10,3 H10" stroke="${INK.red}" stroke-width="0.8"/>
+        <ellipse cx="0" cy="0" rx="12" ry="2" fill="${INK.yellow}" stroke="${k}" stroke-width="0.5"/>
+        <circle cx="-4" cy="-0.3" r="1.8" fill="${INK.paper}" stroke="${k}" stroke-width="0.3"/><circle cx="-4" cy="-0.3" r="0.8" fill="${INK.yellow}"/>
+        <path d="M3,-0.5 h5" stroke="${INK.green}" stroke-width="1.2"/>
+        <path d="M2,-1 C2,-8 6,-12 8,-20 M4,-1 C4,-8 8,-12 10,-19" stroke="${INK.yellow}" stroke-width="0.6" fill="none"/>
+        <path d="M6,-26 L11,-2 M9,-26 L12,-2" stroke="${INK.kaapi}" stroke-width="0.8"/>
+      </g>`;
       const top = `
-        ${bg(INK.green, 0.12)}
-        ${panel(44, 50, 'SOUTH INDIAN', INK.red)}${panel(156, 50, 'NORTH INDIAN', INK.yellow, k)}
-        ${clock(ctx, 70, 66, 8, 1, 0, { spin: true })}
-        <rect x="160" y="60" width="40" height="13" fill="${k}" rx="1"/>
-        <text x="164" y="69.6" font-family="${FONT.sans}" font-size="4" font-weight="700" letter-spacing="0.5" fill="${INK.red}">TOKEN</text>
-        ${token}
-        <rect x="38" y="84" width="174" height="30" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
-        <rect x="38" y="84" width="174" height="4" fill="${k}" fill-opacity="0.2"/>
-        <rect x="38" y="104" width="174" height="3" fill="${INK.red}"/>
-        ${bust(112, 84, INK.kaapi, 0.9, `<path d="M-4,-15 h8 v-3 h-8 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.3"/>`)}${bust(140, 84, INK.kaapi, 0.9, `<path d="M-4,-15 h8 v-3 h-8 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.3"/>`)}
-        ${pot(60)}${pot(84)}${pot(166)}${pot(190)}
-        <g font-family="${FONT.sans}" font-size="3.8" font-weight="700" letter-spacing="0.4" fill="${k}">
-          <text x="44" y="97">MEALS 120</text><text x="84" y="97">BISI BELE BATH 70</text><text x="146" y="97">CURD RICE 60</text><text x="184" y="97">IDLI 40</text>
-        </g>
-        ${queue(ctx, [k], 142, 0.9, true)}
-        <rect x="38" y="148" width="174" height="19" fill="${INK.paper}"/>
-        <rect x="38" y="148" width="174" height="19" fill="url(#${p}-hatch)" opacity="0.2"/>
-        <path d="M38,148 H212" stroke="${k}" stroke-width="0.6"/>
-        <ellipse cx="125" cy="158" rx="32" ry="7" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/>
-        <ellipse cx="125" cy="158" rx="32" ry="7" fill="${k}" opacity="0.12"/>
-        <ellipse cx="125" cy="157.4" rx="26" ry="5.2" fill="none" stroke="${k}" stroke-width="0.35"/>
-        <path d="M106,158 Q106,148 118,147 Q132,146 136,155 Q130,161 116,161 Q108,161 106,158 Z" fill="${INK.red}" fill-opacity="0.75" stroke="${k}" stroke-width="0.45"/>
-        <path d="M106,158 Q106,148 118,147 Q132,146 136,155 Q130,161 116,161 Q108,161 106,158 Z" fill="${INK.kaapi}" opacity="0.4"/>
-        ${[[112, 151], [117, 149], [123, 150], [128, 152], [119, 154], [110, 155]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1" fill="${INK.yellow}" stroke="${k}" stroke-width="0.2"/>`).join('')}
-        <ellipse cx="146" cy="157" rx="8" ry="2.6" fill="${INK.yellow}" stroke="${k}" stroke-width="0.4"/>
-        <path d="M128,150 L150,143" stroke="${k}" stroke-width="1.4" stroke-linecap="round"/>
-        ${wisps(ctx, 118, 146, 18, { count: 3, spread: 3, op: 0.45 })}`;
-
-      const bin = (x, c) => `<rect x="${x}" y="96" width="18" height="8" fill="${c}" stroke="${k}" stroke-width="0.4"/>`;
+        <rect width="${W}" height="${H}" fill="${INK.yellow}" opacity="0.16"/>
+        <rect x="38" y="34" width="174" height="2" fill="${INK.kaapi}"/>
+        <path d="M58,36 H192 V64 H58 Z" fill="${k}"/>
+        <path d="M80,40 V64 M102,40 V64 M148,40 V64 M170,40 V64" stroke="${INK.yellow}" stroke-width="0.8" opacity="0.3"/>
+        <circle cx="125" cy="49" r="7" fill="${INK.paper}"/>
+        <path d="M120,48 H130 Q129.5,53 125,53.6 Q120.5,53 120,48 Z" fill="${k}"/>
+        <path d="M122,46.5 c0,-2 2,-2 2,-4 M126,46.5 c0,-2 2,-2 2,-4" stroke="${k}" stroke-width="0.5" fill="none"/>
+        <g opacity="0.9"><rect x="44" y="80" width="40" height="30" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
+          <text x="64" y="90" text-anchor="middle" font-family="${FONT.sans}" font-size="4" font-weight="700" fill="${k}">8 SEATS</text>
+          <text x="64" y="98" text-anchor="middle" font-family="${FONT.sans}" font-size="3.2" fill="${k}">BOOKINGS OPEN</text>
+          <text x="64" y="104" text-anchor="middle" font-family="${FONT.sans}" font-size="3.2" fill="${k}">MONDAYS</text></g>
+        <rect x="38" y="128" width="174" height="7" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
+        <rect x="38" y="135" width="174" height="32" fill="${INK.kaapi}" opacity="0.35"/>
+        ${stools}
+        ${bowl(186, 118)}
+        ${wisps(ctx, 186, 112, 22, { dur: 3, count: 3, spread: 3, op: 0.5 })}
+        ${bookingPhone(ctx, 'SOLD OUT', 6)}`;
+      const frames = [52, 82, 168, 198].map((x, i) => `<rect x="${x - 10}" y="40" width="20" height="16" fill="${INK.paper}" stroke="${INK.yellow}" stroke-width="1.6"/><path d="M${x - 6},52 L${x - 1},${46 + (i % 2) * 2} L${x + 5},52 Z" fill="${INK.green}" opacity="0.7"/>`).join('');
       const bottom = `
-        ${bg(INK.yellow, 0.08)}
-        <rect x="44" y="36" width="74" height="30" fill="${k}"/>
-        <g font-family="${FONT.sans}" font-weight="700" fill="${INK.paper}" letter-spacing="0.5" font-size="4">
-          <text x="49" y="45" font-size="5">SALADS</text><text x="49" y="53">HARVEST BOWL</text><text x="113" y="53" text-anchor="end">16.95</text>
-          <text x="49" y="60">KALE CAESAR</text><text x="113" y="60" text-anchor="end">15.45</text>
+        <rect width="${W}" height="${H}" fill="${INK.kaapi}" opacity="0.6"/>
+        <path d="${Array.from({ length: 12 }, (_, i) => `M${44 + i * 15},20 V120`).join(' ')}" stroke="${k}" stroke-width="0.4" opacity="0.5"/>
+        <rect x="38" y="66" width="174" height="2" fill="${INK.yellow}" opacity="0.6"/>
+        ${frames}
+        <circle cx="72" cy="80" r="9" fill="${INK.yellow}" opacity="0.35">${ctx.a(easeLoop('opacity', '0.35;0.2;0.35', '4s'))}</circle>
+        <path d="M68,70 h8 l2,8 h-12 Z" fill="${INK.yellow}" stroke="${k}" stroke-width="0.4"/>
+        <rect x="38" y="118" width="174" height="34" fill="${INK.red}" stroke="${k}" stroke-width="0.5"/>
+        ${Array.from({ length: 10 }, (_, i) => `<circle cx="${46 + i * 18}" cy="128" r="0.9" fill="${k}" opacity="0.6"/><circle cx="${55 + i * 18}" cy="140" r="0.9" fill="${k}" opacity="0.6"/>`).join('')}
+        <rect x="38" y="146" width="174" height="6" fill="${INK.paper}" stroke="${k}" stroke-width="0.4"/>
+        <rect x="38" y="152" width="174" height="15" fill="${k}" opacity="0.5"/>
+        <g transform="translate(66 145)">
+          <ellipse cx="0" cy="0" rx="15" ry="3" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
+          <path d="M-9,-1 Q-9,-7 -2,-8 Q7,-8 8,-2 Q0,0 -9,-1 Z" fill="${INK.pink}" stroke="${INK.kaapi}" stroke-width="1.2"/>
         </g>
-        ${clock(ctx, 186, 56, 9, 12, 40, { spin: true })}
-        ${[134, 156].map((x) => `<path d="M${x},20 V60" stroke="${k}" stroke-width="0.5"/><path d="M${x - 6},66 Q${x - 6},58 ${x},58 Q${x + 6},58 ${x + 6},66 Z" fill="${INK.green}" stroke="${k}" stroke-width="0.5"/><ellipse cx="${x}" cy="70" rx="9" ry="4" fill="${INK.yellow}" opacity="0.25"/>`).join('')}
-        <g transform="translate(206 86)"><path d="M-6,0 L-5,-8 H5 L6,0 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.4"/><path d="M0,-8 q-8,-6 -4,-14 q6,4 4,14 Z M0,-8 q6,-10 2,-16 q-4,8 -2,16 Z" fill="${INK.green}" stroke="${k}" stroke-width="0.4"/></g>
-        <path d="M38,88 L212,88" stroke="${INK.blue}" stroke-width="1" opacity="0.6"/>
-        <path d="M38,86 L212,86 L212,96 L38,96 Z" fill="${INK.blue}" opacity="0.12"/>
-        <rect x="38" y="96" width="174" height="20" fill="${INK.kaapi}" fill-opacity="0.45" stroke="${k}" stroke-width="0.5"/>
-        ${bin(46, INK.green)}${bin(66, INK.red)}${bin(86, INK.yellow)}${bin(106, INK.paper)}${bin(126, INK.green)}${bin(146, INK.kaapi)}${bin(166, INK.pink)}${bin(186, INK.green)}
-        <path d="M38,104 H212" stroke="${k}" stroke-width="0.5"/>
-        ${queue(ctx, [k], 142, 0.9, false)}
-        <rect x="38" y="148" width="174" height="19" fill="${INK.paper}"/>
-        <rect x="38" y="148" width="174" height="19" fill="url(#${p}-hatch)" opacity="0.2"/>
-        <path d="M38,148 H212" stroke="${k}" stroke-width="0.6"/>
-        <path d="M97,151 Q99,165 125,165 Q151,165 153,151 Z" fill="${INK.kaapi}" fill-opacity="0.5" stroke="${k}" stroke-width="0.6"/>
-        <path d="${scallop(125, 150, 27, 4, 14, 2.4)}" fill="${INK.green}" stroke="${k}" stroke-width="0.4"/>
-        ${[[110, 148, INK.red], [120, 147, INK.red], [134, 149, INK.yellow], [140, 147, INK.yellow], [128, 146, INK.paper]].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="1.7" fill="${c}" stroke="${k}" stroke-width="0.25"/>`).join('')}
-        <path d="M150,150 L170,138 M168,136 l4,3 M166,137 l4,3" stroke="${k}" stroke-width="0.9" stroke-linecap="round"/>`;
-
+        <g transform="translate(188 145)">
+          <path d="M-6,-14 H6 L0,-6 Z" fill="${INK.paper}" fill-opacity="0.6" stroke="${k}" stroke-width="0.5"/>
+          <path d="M0,-6 V0 M-3,0 H3" stroke="${k}" stroke-width="0.6"/><circle cx="1.5" cy="-11" r="1" fill="${INK.green}"/>
+        </g>
+        ${bookingPhone(ctx, 'FULLY BOOKED', 4.3)}`;
       return {
-        top: { city: 'blr', caption: 'MANYATA TECH PARK', clause: 'Forty-five minutes for lunch.', art: top },
-        bottom: { city: 'nyc', caption: 'MIDTOWN', clause: 'Forty of them in the queue.', art: bottom }
+        top: { city: 'blr', caption: 'NARU NOODLE BAR', hour: 'MONDAY', clause: 'The table was gone', art: top },
+        bottom: { city: 'nyc', caption: '4 CHARLES ST', hour: '9 AM', clause: 'before the page loaded.', art: bottom }
       };
     }
   });
