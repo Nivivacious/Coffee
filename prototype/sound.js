@@ -334,6 +334,225 @@
     return(S) { return jokerScene(S, true); }
   };
 
+  // ---------- a sound library, and one recipe per card ----------
+  // Every card below the heroes is scored from these pieces. Each recipe
+  // matches the card's "Listen" line in copy.js, so no two cards sound alike.
+  function fx(S) {
+    const r = Math.random;
+    const vib = (at, notes, o) => {
+      // A reed or a voice: sawtooth through a bandpass, with vibrato.
+      o = Object.assign({ dur: 0.28, gain: 0.05, bp: 1400, q: 1, pan: 0, rate: 6, depth: 8, verb: 0.2 }, o);
+      notes.forEach((f, i) => {
+        const t = at + i * o.dur;
+        const osc = ac.createOscillator(); osc.type = 'sawtooth'; osc.frequency.value = f;
+        const l = ac.createOscillator(); l.frequency.value = o.rate; const lg = ac.createGain(); lg.gain.value = o.depth; l.connect(lg); lg.connect(osc.frequency);
+        const g = ac.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(o.gain, t + 0.04);
+        g.gain.setValueAtTime(o.gain, t + o.dur * 0.8); g.gain.exponentialRampToValueAtTime(0.0001, t + o.dur * 1.05);
+        const out = S.pan(o.pan); const f2 = S.filter('bandpass', o.bp, o.q, out);
+        osc.connect(g); g.connect(f2); if (o.verb) S.send(out, o.verb);
+        osc.start(t); l.start(t); osc.stop(t + o.dur * 1.1); l.stop(t + o.dur * 1.1);
+      });
+    };
+    const C = {
+      // birds and animals
+      crow: (at, o = {}) => [0, 0.34, 0.7].forEach((d) => S.tone({ at: at + d, type: 'sawtooth', f: 540, f2: 430, attack: 0.02, decay: 0.2, gain: 0.05, lp: 1500, pan: o.pan ?? -0.3, verb: 0.2 })),
+      pigeon: (at, o = {}) => { S.tone({ at, f: 320, f2: 380, attack: 0.08, decay: 0.3, gain: 0.08, lp: 900, pan: o.pan ?? 0.4 }); S.tone({ at: at + 0.36, f: 380, f2: 290, attack: 0.05, decay: 0.42, gain: 0.07, lp: 900, pan: o.pan ?? 0.4 }); },
+      wings: (at, o = {}) => { for (let i = 0; i < 9; i++) S.burst({ at: at + i * 0.07, kind: 'pink', type: 'bandpass', freq: 700, q: 1, decay: 0.05, gain: 0.07, pan: o.pan ?? 0.3 }); },
+      gull: (at, o = {}) => [0, 0.5].forEach((d) => S.tone({ at: at + d, f: 1400, f2: 950, attack: 0.03, decay: 0.42, gain: 0.05, pan: o.pan ?? 0.4, verb: 0.3 })),
+      kite: (at, o = {}) => S.tone({ at, f: 2500, f2: 1500, attack: 0.05, decay: 0.8, gain: 0.05, pan: o.pan ?? -0.4, verb: 0.4 }),
+      chirps: (at, o = {}) => { for (let i = 0; i < 5; i++) { const f = 2600 + r() * 1200; S.tone({ at: at + i * 0.13, f, f2: f * 1.2, decay: 0.07, gain: 0.04, pan: o.pan ?? -0.3, verb: 0.25 }); } },
+      barbet: (at, o = {}) => { for (let i = 0; i < 6; i++) { S.tone({ at: at + i * 0.32, f: 640, f2: 600, attack: 0.01, decay: 0.09, gain: 0.07, pan: o.pan ?? -0.3, verb: 0.3 }); S.tone({ at: at + i * 0.32 + 0.12, f: 780, decay: 0.12, gain: 0.06, pan: o.pan ?? -0.3 }); } },
+      bark: (at, o = {}) => [0, 0.28].forEach((d) => { S.burst({ at: at + d, kind: 'pink', type: 'bandpass', freq: 650, q: 2, decay: 0.1, gain: 0.18, pan: o.pan ?? 0.2 }); S.tone({ at: at + d, type: 'sawtooth', f: 260, f2: 180, decay: 0.09, gain: 0.05, lp: 1200, pan: o.pan ?? 0.2 }); }),
+      wag: (at, o = {}) => { for (let i = 0; i < 6; i++) S.burst({ at: at + i * 0.16, kind: 'brown', freq: 260, decay: 0.06, gain: 0.14, pan: o.pan ?? -0.2 }); },
+      purr: (at, o = {}) => { const s = ac.createBufferSource(); s.buffer = bufs.brown; const g = ac.createGain(); g.gain.value = 0; const l = ac.createOscillator(); l.frequency.value = 24; const lg = ac.createGain(); lg.gain.value = 0.09; l.connect(lg); lg.connect(g.gain); const out = S.pan(o.pan ?? 0.3); const f = S.filter('lowpass', 320, 0.7, out); s.connect(g); g.connect(f); s.start(at); l.start(at); s.stop(at + 1.6); l.stop(at + 1.6); },
+      wasp: (at, o = {}) => { const osc = ac.createOscillator(); osc.type = 'sawtooth'; osc.frequency.value = 230; const g = ac.createGain(); g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(0.02, at + 0.3); g.gain.exponentialRampToValueAtTime(0.0001, at + 1.6); const out = S.pan(-0.6); out.pan.linearRampToValueAtTime(0.6, at + 1.6); osc.connect(g); g.connect(S.filter('lowpass', 1400, 1, out)); osc.start(at); osc.stop(at + 1.7); },
+      // vehicles
+      horn: (at, o = {}) => {
+        const k = o.kind || 'auto', pan = o.pan ?? 0;
+        if (k === 'auto') [0, 0.18].forEach((d) => S.tone({ at: at + d, type: 'square', f: 470, decay: 0.1, gain: 0.05, lp: 1800, pan }));
+        else if (k === 'scooter') [0, 0.14].forEach((d) => S.tone({ at: at + d, type: 'square', f: 640, decay: 0.08, gain: 0.04, lp: 2200, pan }));
+        else if (k === 'squeak') S.tone({ at, type: 'square', f: 980, f2: 900, decay: 0.07, gain: 0.04, lp: 2600, pan });
+        else if (k === 'bus') [220, 277].forEach((f) => S.tone({ at, type: 'sawtooth', f, attack: 0.02, hold: 0.45, decay: 0.15, gain: 0.04, lp: 1200, pan }));
+        else if (k === 'pressure') [330, 415, 494].forEach((f) => S.tone({ at, type: 'sawtooth', f, attack: 0.03, hold: 0.9, decay: 0.2, gain: 0.03, lp: 2400, pan }));
+        else [370, 466].forEach((f) => S.tone({ at, type: 'sawtooth', f, attack: 0.01, hold: o.long ? 0.8 : 0.25, decay: 0.15, gain: 0.035, lp: 1500, pan }));
+      },
+      hornWall: (at) => { const ks = ['auto', 'cab', 'scooter', 'bus', 'auto', 'squeak', 'cab', 'scooter']; ks.forEach((k, i) => C.horn(at + i * 0.17 + r() * 0.1, { kind: k, pan: r() * 1.6 - 0.8 })); },
+      pass: (at, o = {}) => {
+        // An engine crossing the stereo field.
+        const osc = ac.createOscillator(); osc.type = 'sawtooth'; osc.frequency.setValueAtTime(o.f || 80, at); osc.frequency.linearRampToValueAtTime((o.f || 80) * 1.15, at + (o.dur || 2) / 2); osc.frequency.linearRampToValueAtTime((o.f || 80) * 0.9, at + (o.dur || 2));
+        const g = ac.createGain(); g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(o.gain || 0.05, at + (o.dur || 2) / 2); g.gain.exponentialRampToValueAtTime(0.0001, at + (o.dur || 2));
+        const out = S.pan(o.from ?? -0.8); out.pan.linearRampToValueAtTime(o.to ?? 0.8, at + (o.dur || 2));
+        osc.connect(g); g.connect(S.filter('lowpass', o.lp || 700, 1.5, out)); osc.start(at); osc.stop(at + (o.dur || 2) + 0.1);
+      },
+      whine: (at, o = {}) => { S.tone({ at, f: 900, f2: 1250, attack: 0.3, hold: 0.6, decay: 0.5, gain: 0.025, pan: o.pan ?? 0.4 }); },
+      metro: (at) => { S.tone({ at, f: 280, f2: 620, attack: 0.8, hold: 0.8, decay: 1.2, gain: 0.03, pan: 0.3, verb: 0.3 }); S.burst({ at, kind: 'white', type: 'highpass', freq: 3000, attack: 0.8, hold: 0.8, decay: 1.2, gain: 0.03, pan: 0.3 }); },
+      elTrain: (at) => { S.burst({ at, kind: 'brown', freq: 140, attack: 0.8, hold: 1, decay: 1.4, gain: 0.3, pan: 0.4 }); for (let i = 0; i < 8; i++) S.burst({ at: at + 0.5 + i * 0.22, kind: 'pink', freq: 500, decay: 0.05, gain: 0.07, pan: 0.4 }); },
+      rails: (at) => [0, 0.12, 0.6, 0.72].forEach((d) => S.burst({ at: at + d, kind: 'brown', freq: 420, decay: 0.06, gain: 0.12, pan: 0.2 })),
+      bump: (at) => [0, 0.25].forEach((d) => S.burst({ at: at + d, kind: 'brown', freq: 120, decay: 0.18, gain: 0.3 })),
+      brakes: (at, o = {}) => { S.tone({ at, f: 2300, f2: 2100, attack: 0.1, hold: 0.4, decay: 0.3, gain: 0.02, pan: o.pan ?? 0.3 }); S.burst({ at, kind: 'pink', type: 'bandpass', freq: 900, attack: 0.1, hold: 0.4, decay: 0.3, gain: 0.05, pan: o.pan ?? 0.3 }); },
+      doorHiss: (at, o = {}) => S.burst({ at, kind: 'white', type: 'highpass', freq: 1800, attack: 0.02, decay: 0.6, gain: 0.08, pan: o.pan ?? 0.3 }),
+      slide: (at, o = {}) => S.burst({ at, kind: 'white', type: 'bandpass', freq: 1200, q: 0.8, attack: 0.25, decay: 0.45, gain: 0.06, pan: o.pan ?? 0 }),
+      trolley: (at) => { const s = ac.createBufferSource(); s.buffer = bufs.pink; const g = ac.createGain(); g.gain.value = 0; const l = ac.createOscillator(); l.frequency.value = 19; const lg = ac.createGain(); lg.gain.value = 0.06; l.connect(lg); lg.connect(g.gain); s.connect(g); g.connect(S.filter('lowpass', 900, 0.7, S.pan(-0.4))); s.start(at); l.start(at); s.stop(at + 1.8); l.stop(at + 1.8); },
+      wobble: (at) => S.tone({ at, type: 'sawtooth', f: 95, f2: 70, attack: 0.05, decay: 0.4, gain: 0.05, lp: 600, pan: -0.3 }),
+      splash: (at, o = {}) => { S.burst({ at, kind: 'pink', type: 'bandpass', freq: 900, q: 0.8, decay: 0.45, gain: 0.18, pan: o.pan ?? 0 }); for (let i = 0; i < 5; i++) S.tone({ at: at + 0.05 + r() * 0.3, f: 500 + r() * 600, f2: 300, decay: 0.05, gain: 0.03 }); },
+      thud: (at, o = {}) => S.burst({ at, kind: 'brown', freq: o.f || 200, decay: o.decay || 0.2, gain: o.gain || 0.25, pan: o.pan ?? 0 }),
+      // signals and machines
+      whistle: (at, o = {}) => { S.tone({ at, f: 2900, attack: 0.01, hold: o.long ? 0.6 : 0.3, decay: 0.08, gain: 0.04, pan: o.pan ?? 0 }); S.tone({ at, f: 3060, attack: 0.01, hold: o.long ? 0.6 : 0.3, decay: 0.08, gain: 0.03, pan: o.pan ?? 0 }); },
+      subwayChime: (at, o = {}) => { S.tone({ at, f: 784, decay: 0.5, gain: 0.07, pan: o.pan ?? 0.3, verb: 0.3 }); S.tone({ at: at + 0.32, f: 622, decay: 0.7, gain: 0.07, pan: o.pan ?? 0.3, verb: 0.3 }); },
+      doorBell: (at, o = {}) => [0, 0.09].forEach((d) => S.metal({ at: at + d, f: 2600, partials: [1, 2.4, 3.9], decay: 0.5, gain: 0.05, pan: o.pan ?? 0.3 })),
+      cycleBell: (at, o = {}) => { for (let i = 0; i < 6; i++) S.metal({ at: at + i * 0.05, f: 3500, partials: [1, 2.1], decay: 0.15, gain: 0.04, pan: o.pan ?? -0.3 }); },
+      orderBell: (at, o = {}) => { S.tone({ at, f: 2093, decay: 1.4, gain: 0.06, pan: o.pan ?? 0.3, verb: 0.4 }); S.tone({ at, f: 4186, decay: 0.8, gain: 0.02, pan: o.pan ?? 0.3 }); },
+      boarding: (at) => [659, 784, 988].forEach((f, i) => S.tone({ at: at + i * 0.28, f, decay: 0.7, gain: 0.05, pan: 0.2, verb: 0.5 })),
+      buzzer: (at, o = {}) => S.tone({ at, type: 'square', f: 120, attack: 0.01, hold: o.hold || 0.6, decay: 0.05, gain: 0.04, lp: 800, pan: o.pan ?? 0.3 }),
+      beep: (at, o = {}) => [0, 0.14].slice(0, o.n || 2).forEach((d) => S.tone({ at: at + d, type: 'square', f: o.f || 1600, decay: 0.07, gain: 0.03, lp: 4000, pan: o.pan ?? 0.2 })),
+      ping: (at, o = {}) => { S.tone({ at, f: 1318, decay: 0.25, gain: 0.05, pan: o.pan ?? 0 }); S.tone({ at: at + 0.08, f: 1760, decay: 0.3, gain: 0.04, pan: o.pan ?? 0 }); },
+      pings: (at) => [0, 0.6, 1.1, 1.3, 1.5].forEach((d, i) => C.ping(at + d, { pan: i % 2 ? 0.3 : -0.3 })),
+      vibrate: (at, o = {}) => [0, 0.5].forEach((d) => S.tone({ at: at + d, type: 'square', f: 160, attack: 0.01, hold: 0.3, decay: 0.05, gain: 0.03, lp: 400, pan: o.pan ?? 0 })),
+      ring: (at, o = {}) => [0, 0.9].forEach((d) => { S.tone({ at: at + d, f: 480, attack: 0.01, hold: 0.55, decay: 0.05, gain: 0.03, pan: o.pan ?? 0.3 }); S.tone({ at: at + d, f: 440, attack: 0.01, hold: 0.55, decay: 0.05, gain: 0.03, pan: o.pan ?? 0.3 }); }),
+      typing: (at, o = {}) => { let t = at; for (let i = 0; i < (o.n || 14); i++) { S.burst({ at: t, kind: 'white', type: 'bandpass', freq: 3000 + r() * 1500, q: 3, decay: 0.02, gain: 0.08, pan: o.pan ?? -0.2 }); t += 0.07 + r() * 0.1; } },
+      grinder: (at) => { const s = ac.createBufferSource(); s.buffer = bufs.white; const g = ac.createGain(); g.gain.value = 0; const l = ac.createOscillator(); l.frequency.value = 42; const lg = ac.createGain(); lg.gain.value = 0.05; l.connect(lg); lg.connect(g.gain); s.connect(g); g.connect(S.filter('bandpass', 1900, 1, S.pan(0.3))); s.start(at); l.start(at); s.stop(at + 1.3); l.stop(at + 1.3); },
+      tokenBuzz: (at) => S.tone({ at, type: 'square', f: 880, attack: 0.01, hold: 0.22, decay: 0.05, gain: 0.03, lp: 3000, pan: -0.2 }),
+      inverter: (at) => S.tone({ at, type: 'square', f: 2800, decay: 0.07, gain: 0.025, lp: 6000, pan: -0.3 }),
+      windDown: (at) => S.tone({ at, type: 'sawtooth', f: 90, f2: 18, attack: 0.05, hold: 0.5, decay: 2.4, gain: 0.09, lp: 400, pan: -0.2 }),
+      stamp: (at, o = {}) => { C.thud(at, { f: 260, decay: 0.12, gain: 0.3, pan: o.pan ?? 0.3 }); S.burst({ at, kind: 'white', type: 'bandpass', freq: 2500, decay: 0.04, gain: 0.05, pan: o.pan ?? 0.3 }); },
+      camera: (at) => [0, 0.05].forEach((d) => S.burst({ at: at + d, kind: 'white', type: 'bandpass', freq: 4200, q: 2, decay: 0.025, gain: 0.12, pan: 0.3 })),
+      cooker: (at) => { S.burst({ at, kind: 'white', type: 'bandpass', freq: 2600, q: 6, attack: 0.05, hold: 1.0, decay: 0.3, gain: 0.25, pan: -0.3 }); S.tone({ at, f: 2600, attack: 0.05, hold: 1.0, decay: 0.3, gain: 0.015, pan: -0.3 }); },
+      // hands and objects
+      clink: (at, o = {}) => S.metal({ at, f: o.f || 1650, decay: o.decay || 0.8, gain: o.gain || 0.07, pan: o.pan ?? -0.2, verb: 0.15 }),
+      ladle: (at, o = {}) => S.metal({ at, f: 620, partials: [1, 2.2, 3.7, 5.1], decay: 0.7, gain: 0.08, pan: o.pan ?? -0.2 }),
+      bangles: (at, o = {}) => { for (let i = 0; i < 5; i++) S.metal({ at: at + i * 0.07 + r() * 0.04, f: 3600 + r() * 600, partials: [1, 1.4, 2.2], decay: 0.35, gain: 0.03, pan: o.pan ?? -0.3 }); },
+      coins: (at, o = {}) => { for (let i = 0; i < 4; i++) S.metal({ at: at + i * 0.09, f: 4200 + r() * 400, partials: [1, 2.7], decay: 0.15, gain: 0.03, pan: o.pan ?? 0.3 }); },
+      keys: (at, o = {}) => { for (let i = 0; i < 8; i++) S.metal({ at: at + i * 0.06 + r() * 0.03, f: 3000 + r() * 1500, partials: [1, 2.3], decay: 0.12, gain: 0.025, pan: o.pan ?? 0.3 }); },
+      token: (at) => { for (let i = 0; i < 7; i++) S.metal({ at: at + i * (0.18 - i * 0.02), f: 2800, partials: [1, 2.6], decay: 0.08, gain: 0.04 - i * 0.004, pan: -0.2 }); },
+      sleigh: (at) => { for (let i = 0; i < 16; i++) S.metal({ at: at + i * 0.06 + r() * 0.02, f: 4600 + r() * 800, partials: [1, 1.7], decay: 0.12, gain: 0.025, pan: 0.4 }); },
+      scale: (at, o = {}) => [0, 0.2, 0.36].forEach((d) => S.metal({ at: at + d, f: 2400, partials: [1, 2.5], decay: 0.12, gain: 0.03, pan: o.pan ?? -0.2 })),
+      latch: (at, o = {}) => { S.metal({ at, f: 2200, partials: [1, 2.9], decay: 0.12, gain: 0.06, pan: o.pan ?? -0.2 }); C.thud(at + 0.03, { f: 300, decay: 0.08, gain: 0.12, pan: o.pan ?? -0.2 }); },
+      jar: (at) => { S.burst({ at, kind: 'white', type: 'bandpass', freq: 2200, q: 2, attack: 0.05, decay: 0.25, gain: 0.05, pan: -0.2 }); S.metal({ at: at + 0.3, f: 1800, partials: [1, 2.4], decay: 0.2, gain: 0.04, pan: -0.2 }); },
+      paper: (at, o = {}) => { for (let i = 0; i < 7; i++) S.burst({ at: at + i * 0.05 + r() * 0.03, kind: 'white', type: 'bandpass', freq: 2500 + r() * 2000, q: 1.5, decay: 0.03, gain: 0.08, pan: o.pan ?? 0.2 }); },
+      thwack: (at) => S.burst({ at, kind: 'pink', freq: 1300, decay: 0.12, gain: 0.25, pan: 0.2 }),
+      tear: (at) => S.burst({ at, kind: 'white', type: 'bandpass', freq: 1500, freqTo: 4000, q: 1.5, decay: 0.28, gain: 0.08, pan: -0.2 }),
+      knock: (at, o = {}) => [0, 0.16, 0.32].forEach((d) => C.thud(at + d, { f: 420, decay: 0.07, gain: 0.18, pan: o.pan ?? 0 })),
+      creak: (at, o = {}) => { const osc = ac.createOscillator(); osc.type = 'sawtooth'; osc.frequency.setValueAtTime(o.f || 180, at); osc.frequency.linearRampToValueAtTime((o.f || 180) * 1.3, at + (o.dur || 0.6)); const g = ac.createGain(); g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(0.025, at + 0.1); g.gain.exponentialRampToValueAtTime(0.0001, at + (o.dur || 0.6)); const l = ac.createOscillator(); l.frequency.value = 23; const lg = ac.createGain(); lg.gain.value = 0.015; l.connect(lg); lg.connect(g.gain); osc.connect(g); g.connect(S.filter('lowpass', 1000, 2, S.pan(o.pan ?? 0))); osc.start(at); l.start(at); osc.stop(at + (o.dur || 0.6) + 0.05); l.stop(at + (o.dur || 0.6) + 0.05); },
+      shutter: (at, o = {}) => { const n = Math.round((o.dur || 1.4) / 0.03); for (let i = 0; i < n; i++) S.burst({ at: at + i * 0.03, kind: 'white', type: 'bandpass', freq: 1300 + r() * 900, q: 2, decay: 0.03, gain: 0.05 + r() * 0.04, pan: o.pan ?? 0 }); },
+      broom: (at) => { for (let i = 0; i < 4; i++) S.burst({ at: at + i * 0.4, kind: 'pink', type: 'highpass', freq: 2000, attack: 0.12, decay: 0.2, gain: 0.07, pan: -0.3 }); },
+      hiss: (at, o = {}) => S.burst({ at, kind: 'white', type: 'highpass', freq: 3000, attack: 0.02, decay: o.decay || 0.5, gain: o.gain || 0.08, pan: o.pan ?? -0.2 }),
+      crackle: (at, o = {}) => { for (let i = 0; i < 10; i++) S.burst({ at: at + r() * 1.2, kind: 'white', type: 'highpass', freq: 2500, decay: 0.01, gain: 0.06, pan: o.pan ?? -0.2 }); },
+      dryer: (at) => [0, 0.55, 1.1, 1.65].forEach((d) => C.thud(at + d, { f: 150, decay: 0.2, gain: 0.16, pan: 0.3 })),
+      crack: (at, o = {}) => { S.burst({ at, kind: 'white', type: 'highpass', freq: 1500, decay: 0.05, gain: 0.2, pan: o.pan ?? 0 }); C.thud(at, { f: 260, decay: 0.08, gain: 0.15, pan: o.pan ?? 0 }); },
+      puris: (at) => { for (let i = 0; i < 4; i++) S.burst({ at: at + i * 0.5 + r() * 0.1, kind: 'white', type: 'bandpass', freq: 3200, q: 1.5, decay: 0.04, gain: 0.14, pan: -0.2 }); },
+      swoosh: (at, o = {}) => S.burst({ at, kind: 'pink', type: 'bandpass', freq: 1500, q: 1, attack: 0.25, decay: 0.3, gain: 0.08, pan: o.from ?? -0.6, panTo: o.to ?? 0.6 }),
+      firework: (at, o = {}) => { S.tone({ at, f: 600, f2: 2600, attack: 0.05, decay: 1, gain: 0.025, pan: o.pan ?? -0.3 }); S.burst({ at: at + 1.05, kind: 'white', freq: 3000, decay: 0.3, gain: 0.2, pan: o.pan ?? -0.3, verb: 0.4 }); C.thud(at + 1.05, { f: 120, decay: 0.4, gain: 0.3, pan: o.pan ?? -0.3 }); },
+      crackers: (at) => { for (let i = 0; i < 8; i++) { const t = at + i * 0.09 + r() * 0.05; S.burst({ at: t, kind: 'white', freq: 2500, decay: 0.05, gain: 0.15, pan: -0.4 + r() * 0.3 }); } },
+      woodblock: (at, o = {}) => { S.tone({ at, f: o.f || 950, decay: 0.05, gain: 0.07, pan: o.pan ?? 0 }); S.burst({ at, kind: 'white', type: 'bandpass', freq: 2000, decay: 0.01, gain: 0.05, pan: o.pan ?? 0 }); },
+      countdown: (at) => { for (let i = 0; i < 6; i++) C.woodblock(at + i * 0.5, { f: 1100 - i * 40 }); S.burst({ at: at + 3, kind: 'pink', freq: 2000, attack: 0.3, decay: 2.5, gain: 0.25, verb: 0.3 }); },
+      partyHorns: (at) => { for (let i = 0; i < 4; i++) S.tone({ at: at + i * 0.22, type: 'sawtooth', f: 420 + i * 40, f2: 470 + i * 40, attack: 0.02, hold: 0.25, decay: 0.08, gain: 0.025, lp: 2500, pan: -0.5 + i * 0.3 }); },
+      applause: (at, o = {}) => { for (let i = 0; i < 40; i++) S.burst({ at: at + r() * (o.dur || 1.8), kind: 'white', type: 'bandpass', freq: 1500 + r() * 1500, q: 1, decay: 0.02, gain: 0.05, pan: r() * 1.4 - 0.7 }); },
+      kids: (at) => { for (let i = 0; i < 6; i++) vib(at + i * 0.22 + r() * 0.1, [700 + r() * 500], { dur: 0.18, gain: 0.02, bp: 1800, q: 2, pan: r() - 0.5, rate: 9, depth: 40 }); },
+      sniffle: (at) => [0, 0.3].forEach((d) => S.burst({ at: at + d, kind: 'pink', type: 'bandpass', freq: 3000, attack: 0.05, decay: 0.14, gain: 0.08, pan: 0.2 })),
+      sigh: (at, o = {}) => S.burst({ at, kind: 'pink', type: 'bandpass', freq: 800, attack: 0.5, decay: 1, gain: 0.08, pan: o.pan ?? 0 }),
+      snore: (at) => S.burst({ at, kind: 'pink', freq: 380, attack: 0.8, decay: 0.8, gain: 0.12, pan: 0.2 }),
+      // voices and music, sung by reeds and filters
+      call: (at, o = {}) => vib(at, o.notes || [300, 420, 360], Object.assign({ dur: 0.45, gain: 0.04, bp: 900, q: 2, rate: 5, depth: 6, verb: 0.35, pan: -0.3 }, o)),
+      mumble: (at, o = {}) => { for (let i = 0; i < 10; i++) vib(at + i * 0.17, [180 + r() * 60], { dur: 0.15, gain: 0.025, bp: 700, q: 3, pan: o.pan ?? 0.2, verb: 0.6 }); },
+      nadaswaram: (at) => vib(at, [587, 659, 740, 880, 740, 659, 587, 659], { dur: 0.32, gain: 0.04, bp: 1600, q: 0.9, rate: 5.5, depth: 10, verb: 0.3, pan: -0.2 }),
+      thavil: (at) => [0, 0.25, 0.5, 0.62, 0.75, 1.0, 1.25, 1.37].forEach((d, i) => { S.tone({ at: at + d, f: i % 3 ? 180 : 120, f2: 70, decay: 0.18, gain: 0.12, pan: -0.25 }); S.burst({ at: at + d, kind: 'white', type: 'bandpass', freq: 2200, decay: 0.03, gain: 0.05, pan: -0.25 }); }),
+      hum: (at) => vib(at, [262, 294, 330, 294, 262, 247, 262], { dur: 0.42, gain: 0.03, bp: 500, q: 1, rate: 4, depth: 3, verb: 0.4, pan: 0.1 }),
+      musicBox: (at) => [784, 659, 784, 880, 784, 659, 587, 659].forEach((f, i) => S.tone({ at: at + i * 0.2, f, decay: 0.35, gain: 0.04, pan: 0.4, verb: 0.2 })),
+      band: (at) => { for (let i = 0; i < 8; i++) { const t = at + i * 0.25; S.tone({ at: t, f: 120, f2: 45, decay: i % 2 ? 0.1 : 0.2, gain: i % 2 ? 0.05 : 0.14 }); if (i % 2) S.burst({ at: t, kind: 'white', type: 'bandpass', freq: 1800, decay: 0.12, gain: 0.08 }); S.tone({ at: t, type: 'sawtooth', f: [82, 82, 110, 98][i % 4], decay: 0.22, gain: 0.04, lp: 320 }); } },
+      feedback: (at) => S.tone({ at, f: 2200, attack: 0.6, decay: 0.25, gain: 0.03, pan: 0.2 }),
+      windowMusic: (at) => { for (let i = 0; i < 8; i++) { S.tone({ at: at + i * 0.5, f: 110, f2: 50, decay: 0.15, gain: 0.08, lp: 250, pan: 0.4 }); } },
+      tugboat: (at) => [110, 138].forEach((f) => S.tone({ at, type: 'sawtooth', f, attack: 0.1, hold: 1, decay: 0.4, gain: 0.03, lp: 500, pan: 0.5, verb: 0.5 })),
+      crane: (at) => { C.creak(at, { f: 70, dur: 1.6, pan: 0.4 }); },
+      gongBell: (at, o = {}) => S.bell({ at, f: o.f || 220, gain: 0.12, pan: o.pan ?? -0.2, verb: 0.6 })
+    };
+    // Continuous beds. Each returns nothing; levels are fixed per recipe.
+    const B = {
+      traffic: (g = 0.1) => S.bed('brown', [['lowpass', 260]], g, 0.15),
+      rain: (g = 0.2) => S.bed('pink', [['highpass', 450], ['lowpass', 7000]], g, -0.1),
+      drizzle: (g = 0.05) => S.bed('white', [['bandpass', 4200, 0.8]], g),
+      wind: (g = 0.08) => { const w = S.bed('pink', [['bandpass', 500, 1.8]], g, 0.2); S.lfo(w.gain, 0.15, g * 0.5); },
+      breeze: (g = 0.05) => { const w = S.bed('pink', [['lowpass', 900]], g, -0.1); S.lfo(w.gain, 0.2, g * 0.4); },
+      leaves: (g = 0.015) => S.bed('white', [['bandpass', 4200, 0.8]], g, -0.2),
+      crowd: (g = 0.04) => [380, 760, 1400].forEach((f, i) => { const b = S.bed('pink', [['bandpass', f, 1.3]], g, (i - 1) * 0.4); S.lfo(b.gain, 0.7 + i * 0.9, g * 0.6); }),
+      room: (g = 0.08) => S.bed('brown', [['lowpass', 180]], g),
+      hum: (f = 100, g = 0.015) => S.osc('sine', f, S.gain(g)),
+      tube: (g = 0.01) => S.osc('sawtooth', 120, S.filter('lowpass', 700, 1, S.gain(g, S.pan(0.2)))),
+      fan: (g = 0.02) => { S.osc('sine', 92, S.gain(g)); const w = S.bed('white', [['bandpass', 420, 0.5]], g * 0.6, -0.3); S.lfo(w.gain, 7.5, g * 0.4); },
+      water: (g = 0.05) => { const w = S.bed('pink', [['bandpass', 1500, 0.6]], g, -0.2); S.lfo(w.gain, 6, g * 0.4); },
+      rumble: (g = 0.1) => S.bed('brown', [['lowpass', 110]], g, 0.2),
+      sizzle: (g = 0.04) => { const s = S.bed('white', [['highpass', 3500]], g, 0.2); S.lfo(s.gain, 11, g * 0.7, 'square'); },
+      steam: (g = 0.02) => S.bed('white', [['highpass', 5000]], g, -0.2),
+      engine: (f = 45, g = 0.04) => { const a = S.gain(g, S.pan(0.1)); S.lfo(a.gain, 9, g * 0.3); S.osc('sawtooth', f, S.filter('lowpass', 300, 1, a)); },
+      motor: (g = 0.02) => S.osc('sawtooth', 100, S.filter('lowpass', 380, 1, S.gain(g, S.pan(-0.3)))),
+      crickets: (g = 0.01) => { const a = S.gain(0.5, S.gain(g, S.pan(-0.4))); const b = S.gain(0.5, a); S.lfo(a.gain, 1.1, 0.5, 'square'); S.lfo(b.gain, 26, 0.5, 'square'); S.osc('sine', 4500, b); },
+      boxfan: (g = 0.03) => { const w = S.bed('white', [['bandpass', 320, 0.8]], g, 0.3); S.lfo(w.gain, 18, g * 0.6); }
+    };
+    return { C, B };
+  }
+
+  // Recipes: beds to run, then cues at times in the 12 s loop. A cue with
+  // an `every` fourth field repeats through the loop.
+  const RECIPES = {
+    'h-a': { beds: [['traffic', 0.05], ['breeze', 0.04]], cues: [[0.5, 'crow'], [3, 'thwack'], [5.5, 'pigeon'], [8.5, 'clink', { f: 1500 }]] },
+    'h-4': { beds: [['crowd', 0.05]], cues: [[1, 'ladle'], [3.5, 'swoosh', { from: 0.5, to: 0.4 }], [6, 'doorBell'], [9, 'ladle']] },
+    'h-5': { beds: [['traffic', 0.06], ['crowd', 0.025]], cues: [[1, 'call', { notes: [360, 440, 400] }], [4, 'scale'], [6.5, 'paper'], [9.5, 'doorBell', { pan: 0.4 }]] },
+    'h-6': { beds: [['room', 0.06], ['hum', 60, 0.01]], cues: [[0.5, 'typing'], [4, 'latch'], [6.5, 'paper'], [9.5, 'vibrate']] },
+    'h-7': { beds: [['room', 0.05]], cues: [[1, 'pings'], [5, 'horn', { kind: 'scooter', pan: -0.5 }], [7, 'pings'], [10, 'typing', { n: 30 }]] },
+    'h-8': { beds: [['traffic', 0.05], ['breeze', 0.05]], cues: [[0.5, 'crow'], [3, 'cooker'], [6, 'wings'], [9, 'pigeon']] },
+    'h-9': { beds: [['crowd', 0.035]], cues: [[0.5, 'nadaswaram'], [0.5, 'thavil'], [4, 'thavil'], [6.5, 'stamp'], [8.5, 'sniffle']] },
+    'h-10': { beds: [['tube', 0.012], ['water', 0.03]], cues: [[1, 'knock'], [3, 'hum'], [7, 'knock'], [9, 'hum']] },
+    'h-j': { beds: [['traffic', 0.05]], cues: [[0.5, 'hiss'], [1, 'crackle'], [4, 'dryer'], [7, 'coins'], [9.5, 'hiss']] },
+    'h-q': { beds: [['traffic', 0.05]], cues: [[0.5, 'wag'], [3, 'tear'], [5, 'bark', { pan: -0.3 }], [7.5, 'purr'], [10, 'doorBell']] },
+    'h-k': { beds: [['traffic', 0.06]], cues: [[1, 'keys'], [3.5, 'creak', { f: 220 }], [6, 'buzzer', { hold: 1.2 }], [9, 'keys']] },
+    'd-a': { beds: [['breeze', 0.06]], cues: [[0.5, 'chirps'], [3, 'kite'], [6, 'creak', { f: 120, dur: 0.9, pan: 0.4 }], [9, 'gull']] },
+    'd-2': { beds: [['engine', 38, 0.03], ['tube', 0.01]], cues: [[1, 'mumble', { pan: -0.3 }], [4, 'creak', { f: 400, dur: 0.4 }], [6, 'mumble', { pan: 0.3 }], [9, 'thud', { f: 300 }]] },
+    'd-3': { beds: [['engine', 42, 0.05]], cues: [[1, 'bump'], [3, 'rails'], [6, 'snore'], [9, 'rails']] },
+    'd-4': { beds: [['crowd', 0.025]], cues: [[0.5, 'typing'], [3, 'grinder'], [6, 'ping'], [8.5, 'clink', { f: 900, decay: 0.3 }]] },
+    'd-5': { beds: [['crowd', 0.045]], cues: [[1, 'clink', { f: 800, decay: 0.3 }], [3, 'tokenBuzz'], [6, 'beep'], [9, 'sigh'], [10.5, 'tokenBuzz']] },
+    'd-6': { beds: [['crowd', 0.05]], cues: [[0.5, 'bangles'], [3, 'call', { notes: [320, 400, 300, 380] }], [6, 'elTrain'], [10, 'bangles']] },
+    'd-7': { beds: [['fan', 0.02]], cues: [[1, 'scale'], [4, 'scale'], [7, 'buzzer', { hold: 0.5 }]] },
+    'd-8': { beds: [['crowd', 0.025]], cues: [[0, 'band'], [2, 'band'], [4, 'feedback'], [5, 'band'], [8.5, 'applause']] },
+    'd-9': { beds: [['hum', 60, 0.02], ['room', 0.04]], cues: [[1, 'mumble', { pan: -0.2 }], [4, 'ring'], [7, 'typing'], [10, 'mumble', { pan: 0.3 }]] },
+    'd-10': { beds: [['steam', 0.03], ['sizzle', 0.04], ['traffic', 0.05]], cues: [[2, 'hiss', { decay: 1 }], [7, 'horn', { kind: 'cab', pan: 0.5 }], [10, 'horn', { kind: 'auto', pan: -0.5 }]] },
+    'd-j': { beds: [['rain', 0.16]], cues: [[0.5, 'pass', { f: 85, from: -0.8, to: 0.8 }], [4, 'whine'], [7, 'ping'], [9, 'pass', { f: 90, from: 0.8, to: -0.8 }]] },
+    'd-q': { beds: [['traffic', 0.04]], cues: [[0, 'windowMusic'], [5, 'creak', { f: 260 }], [8, 'pigeon']] },
+    'd-k': { beds: [['traffic', 0.14], ['engine', 40, 0.05]], cues: [[0.5, 'hornWall'], [5, 'metro'], [8, 'hornWall']] },
+    'c-a': { beds: [['breeze', 0.04]], cues: [[0.3, 'crow'], [2, 'shutter'], [5, 'broom'], [8, 'shutter', { pan: 0.3 }], [10.5, 'wings']] },
+    'c-2': { beds: [['breeze', 0.04]], cues: [[0.5, 'cycleBell'], [3, 'latch'], [5.5, 'elTrain'], [9.5, 'pigeon']] },
+    'c-3': { beds: [['traffic', 0.06], ['engine', 55, 0.03]], cues: [[0.5, 'kids'], [3, 'horn', { kind: 'squeak' }], [5.5, 'kids'], [8, 'doorHiss'], [10, 'horn', { kind: 'bus' }]] },
+    'c-4': { beds: [['rumble', 0.08], ['crowd', 0.03]], cues: [[0.5, 'whistle'], [2.5, 'coins'], [5, 'brakes'], [7.5, 'subwayChime']] },
+    'c-5': { beds: [['motor', 0.02], ['water', 0.05], ['wind', 0.05]], cues: [[3, 'crow'], [8, 'thud', { f: 160, gain: 0.1 }]] },
+    'c-6': { beds: [['traffic', 0.04]], cues: [[0.5, 'call', { notes: [330, 330, 440, 392], dur: 0.5 }], [3, 'creak', { f: 300, dur: 1.2 }], [5, 'musicBox'], [9, 'musicBox']] },
+    'c-7': { beds: [['traffic', 0.07], ['steam', 0.015]], cues: [[0.5, 'puris'], [4, 'clink', { f: 900, decay: 0.5 }], [7, 'puris'], [10, 'horn', { kind: 'cab', pan: 0.6 }]] },
+    'c-9': { beds: [['traffic', 0.12]], cues: [[0.5, 'hornWall'], [3, 'horn', { kind: 'pressure', pan: -0.3 }], [6, 'horn', { kind: 'squeak' }], [7, 'horn', { kind: 'cab', long: true, pan: 0.4 }], [9.5, 'hornWall']] },
+    'c-j': { beds: [['rumble', 0.06], ['crowd', 0.02]], cues: [[1, 'whistle', { long: true, pan: -0.3 }], [4, 'subwayChime'], [6, 'thud', { f: 180, gain: 0.2 }], [9, 'whistle', { pan: -0.3 }]] },
+    'c-q': { beds: [['tube', 0.012]], cues: [[1, 'jar'], [4, 'doorBell'], [6.5, 'purr'], [10, 'jar']] },
+    'c-k': { beds: [['rain', 0.15]], cues: [[1, 'pass', { f: 90, from: -0.8, to: 0.4, dur: 1.5 }], [2.2, 'splash'], [3, 'wobble'], [6, 'pass', { f: 60, from: 0.8, to: -0.4, dur: 1.5 }], [7.2, 'thud', { f: 100, gain: 0.3 }]] },
+    's-a': { beds: [['engine', 40, 0.05], ['crowd', 0.035]], cues: [[1, 'whistle', { pan: -0.4 }], [3.5, 'mumble'], [7, 'horn', { kind: 'bus', pan: -0.3 }], [9.5, 'mumble', { pan: 0.4 }]] },
+    's-2': { beds: [['breeze', 0.04]], cues: [[0.5, 'clink', { f: 1500 }], [2.5, 'chirps'], [5.5, 'swoosh', { from: 0.8, to: -0.2 }], [8, 'bark', { pan: 0.4 }]] },
+    's-3': { beds: [['breeze', 0.07], ['leaves', 0.02]], cues: [[1, 'horn', { kind: 'scooter', pan: -0.4 }], [4, 'camera'], [6, 'camera'], [6.6, 'camera'], [9.5, 'camera']] },
+    's-4': { beds: [['crowd', 0.03]], cues: [[0.5, 'call', { notes: [400, 480, 440] }], [3, 'scale'], [5.5, 'wasp'], [9, 'paper']] },
+    's-5': { beds: [['room', 0.05], ['hum', 50, 0.008]], cues: [[1, 'creak', { f: 140, dur: 0.5 }], [1.6, 'thud', { f: 220, gain: 0.12 }], [4, 'keys', { pan: -0.2 }], [7, 'token']] },
+    's-6': { beds: [['boxfan', 0.08], ['room', 0.05]], cues: [[0.5, 'windDown'], [3.5, 'inverter', {}, 2], [5, 'clink', { f: 1200, decay: 0.2, gain: 0.03 }], [9, 'clink', { f: 1300, decay: 0.2, gain: 0.03 }]] },
+    's-8': { beds: [['engine', 50, 0.02]], cues: [[0.5, 'crackers'], [3, 'firework'], [6, 'sleigh'], [9, 'crackers']] },
+    's-9': { beds: [['crowd', 0.03], ['room', 0.04]], cues: [[1, 'slide'], [3, 'trolley'], [5.5, 'boarding'], [8, 'mumble', { pan: 0.3 }], [10, 'slide', { pan: 0.3 }]] },
+    's-10': { beds: [['crowd', 0.07]], cues: [[0.5, 'countdown'], [4, 'partyHorns'], [6.5, 'whistle', { pan: 0.4 }], [8, 'firework', { pan: 0.3 }]] },
+    's-j': { beds: [['traffic', 0.04]], cues: [[0.5, 'thud', { f: 500, decay: 0.06, gain: 0.2 }], [2, 'crack'], [5, 'thud', { f: 520, decay: 0.06, gain: 0.2 }], [7, 'crack', { pan: 0.3 }], [9.5, 'creak', { f: 320, dur: 0.5 }]] },
+    's-q': { beds: [['wind', 0.05], ['leaves', 0.02]], cues: [[1, 'barbet'], [5, 'swoosh', { from: 0.5, to: -0.5 }], [8, 'tugboat']] },
+    's-k': { beds: [['traffic', 0.05]], cues: [[0.5, 'crane'], [3, 'woodblock', { f: 700 }], [3.6, 'woodblock', { f: 700 }], [4.2, 'woodblock', { f: 700 }], [6, 'pigeon'], [9, 'sigh']] }
+  };
+
+  function recipeScene(S, recipe) {
+    const { C, B } = fx(S);
+    recipe.beds.forEach(([name, ...args]) => B[name](...args));
+    const events = [];
+    recipe.cues.forEach(([time, name, opts, every]) => {
+      if (every) for (let t = time; t < 12; t += every) events.push([t, (at) => C[name](at, opts || {})]);
+      else events.push([time, (at) => C[name](at, opts || {})]);
+    });
+    return { cycle: 12, update() {}, events };
+  }
+
   // Cards without their own score get a city bed that suits the suit: a
   // morning yard for Hearts, an office hum for Diamonds, traffic for Clubs,
   // weather for Spades. A small cue lands once per loop.
@@ -386,7 +605,7 @@
     const nodes = [];
     const S = kit(bus, nodes);
     const suit = { h: 'heart', d: 'diamond', c: 'club', s: 'spade' }[id[0]];
-    const scene = SCENES[id] ? SCENES[id](S) : cityScene(S, suit);
+    const scene = SCENES[id] ? SCENES[id](S) : RECIPES[id] ? recipeScene(S, RECIPES[id]) : cityScene(S, suit);
     current = { id, clock, bus, nodes, scene, last: null, prevP: null, idle: 0 };
   }
 

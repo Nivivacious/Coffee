@@ -170,7 +170,7 @@
 
 <div class="wrap">
   <header>
-    <span class="label" id="count">Prototype deck</span>
+    <span class="label" id="count">52 cards, 2 Jokers, one very long flight</span>
     <h1>A Tale of <em>Two</em> Cities</h1>
     <p class="thesis">For anyone whose phone shows two clocks.</p>
   </header>
@@ -207,6 +207,10 @@
         <button type="button" id="b-print" aria-pressed="false">Print frame</button>
         <button type="button" id="b-copy">Copy SVG</button>
       </div>
+      <div class="controls" id="print-row" hidden>
+        <button type="button" id="b-pdf-card">Save this card as PDF</button>
+        <button type="button" id="b-pdf-deck">Save the whole deck as PDF</button>
+      </div>
       <p class="status" id="status" role="status"></p>
     </div>
   </section>
@@ -227,12 +231,12 @@
     <div class="specs">
       <div>
         <span class="label">Ranks tell time</span>
-        <p>Lay out a suit from 2 to 10 and you get a day. Aces start things. Jacks hustle, Queens charm, Kings complain.</p>
+        <p>Lay out a suit from 2 to 10 and you get a day, first coffee to last auto. Aces start things. Jacks hustle, Queens charm, Kings complain.</p>
         <div class="hours" id="hours"></div>
       </div>
       <div>
         <span class="label">Print, motion, sound</span>
-        <p>Vector SVG at exactly 2.5 × 3.5 in, bleed included. The loops never stutter, and the sound is made live, in time with the picture. In print, the seam can go lenticular. Tilt to play.</p>
+        <p>Vector art at exactly 2.5 × 3.5 in. Press Print frame for a print-ready PDF with 0.125 in bleed, one card or the whole deck. Every card has its own soundtrack, made live in time with the picture. In print, the seam could go lenticular. Tilt to play.</p>
       </div>
     </div>
   </section>
@@ -259,6 +263,7 @@
 <script src="deck/diamonds.js"></script>
 <script src="deck/clubs.js"></script>
 <script src="deck/spades.js"></script>
+<script src="copy.js"></script>
 <script src="sound.js"></script>
 <script>
   (function () {
@@ -399,7 +404,6 @@
       });
       $('spread').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
     }
-    $('count').textContent = `Prototype deck · ${T.CARDS.length} cards and 2 Jokers`;
 
     // The Jokers wait face down too. Turned over, they play.
     ['j-dep', 'j-ret'].forEach((el) => {
@@ -415,10 +419,10 @@
     });
 
     const suits = [
-      { s: 'heart', name: 'Hearts', theme: 'Belonging', d: 'Regulars, rituals, people who know your order.', ex: 'Cubbon Park × Central Park · Darshini × diner' },
-      { s: 'diamond', name: 'Diamonds', theme: 'Ambition', d: 'Early starts and the reason you moved.', ex: 'KR Market at dawn × the 28th Street flower district' },
-      { s: 'club', name: 'Clubs', theme: 'Streets', d: 'Commutes, corners, and potholes you\'d miss.', ex: 'Auto × cab · St. Mark\'s Road × St. Marks Place' },
-      { s: 'spade', name: 'Spades', theme: 'Weather and time', d: 'Seasons, arrivals, goodbyes.', ex: 'The April storm × the first snow' }
+      { s: 'heart', name: 'Hearts', theme: 'Belonging', d: 'The aunty, the istriwala, the bodega cat and everyone else who knows your business.', ex: 'Cubbon Park × Central Park · Darshini × diner' },
+      { s: 'diamond', name: 'Diamonds', theme: 'Ambition', d: 'Shuttle buses, salad lines and the night shift that pays the rent.', ex: 'Night shift × Midtown stand-up · Silk Board × Cross Bronx' },
+      { s: 'club', name: 'Clubs', theme: 'Streets', d: 'Potholes with names, horns with opinions and a snack at four.', ex: 'Auto × cab · St. Mark\'s Road × St. Marks Place' },
+      { s: 'spade', name: 'Spades', theme: 'Weather and time', d: 'Monkey caps at fifteen degrees and other seasonal emergencies.', ex: 'The April storm × the first snow · Majestic × Port Authority' }
     ];
     const pipPath = {
       heart: 'M0,5.6 C-1.2,4 -6,1.2 -6,-2 C-6,-5 -2.4,-6.4 0,-3.5 C2.4,-6.4 6,-5 6,-2 C6,1.2 1.2,4 0,5.6 Z',
@@ -457,8 +461,28 @@
       state.still = !state.still;
       $('b-print').setAttribute('aria-pressed', String(state.still));
       setFeature(state.id);
-      $('status').textContent = state.still ? 'The still that gets printed.' : '';
+      $('print-row').hidden = !state.still;
+      $('status').textContent = state.still ? 'The still that goes to the printer. Trim 2.5 × 3.5 in, bleed 0.125 in.' : '';
     });
+    // Print-ready PDFs are published next to the page in print/.
+    let dl = null;
+    window.claude && window.claude.use && window.claude.use('downloads').then((d) => { dl = d; }).catch(() => {});
+    async function savePdf(file, name) {
+      if (!dl) { $('status').textContent = 'Saving files is off in this view. The PDFs are in the repo under prototype/print.'; return; }
+      try {
+        $('status').textContent = 'Getting the PDF ready.';
+        const blob = await (await fetch('print/' + file)).blob();
+        await dl.save({ filename: name, data: blob });
+        $('status').textContent = 'Saved. Send it to the printer with love.';
+      } catch (e) {
+        $('status').textContent = e && e.code === 'declined' ? 'No problem. It is here whenever you want it.' : 'That did not save. The PDFs are also in the repo under prototype/print.';
+      }
+    }
+    $('b-pdf-card').addEventListener('click', () => {
+      const item = all.find((x) => x.id === state.id);
+      savePdf(`${state.id}.pdf`, `${item.title.replace(/[^A-Za-z0-9 ]/g, '').trim().replace(/ +/g, '-').toLowerCase()}.pdf`);
+    });
+    $('b-pdf-deck').addEventListener('click', () => savePdf('a-tale-of-two-cities-deck.pdf', 'a-tale-of-two-cities-deck.pdf'));
     $('b-copy').addEventListener('click', () => {
       const svg = T.render(state.id, { standalone: true, static: state.still, size: { w: '2.5in', h: '3.5in' } });
       const done = () => { $('status').textContent = 'Copied. Paste it into a .svg file.'; };
@@ -518,7 +542,7 @@
       finish();
     }
 
-    if (reduce) $('b-print').setAttribute('aria-pressed', 'true');
+    if (reduce) { $('b-print').setAttribute('aria-pressed', 'true'); $('print-row').hidden = false; }
     $('feature').innerHTML = render('back', { static: true });
     shuffle();
 
