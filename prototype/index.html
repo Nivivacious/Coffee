@@ -173,7 +173,11 @@
   .seg .label { margin-right: 4px; }
   .seg button { text-transform: none; letter-spacing: 0.02em; font-size: 14px; }
   .progress { display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .bar { width: 120px; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+  .deck-count { display: grid; gap: 2px; }
+  .deck-count b { font-family: var(--display); font-weight: 500; font-size: 22px; font-variant-numeric: tabular-nums; }
+  .tips { font-size: 16px; color: var(--muted); margin-top: 6px; }
+  .tips b { color: var(--ivory); font-weight: 600; }
+  .bar { width: 140px; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
   .bar i { display: block; height: 100%; width: 0; background: var(--marigold); transition: width 0.5s; }
   .linkish { border: 0; padding: 4px 2px; min-height: 0; font-size: 11px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
   #cat-badge svg { width: 22px; height: 22px; display: block; }
@@ -181,23 +185,25 @@
   /* The card leans toward the cursor and catches the light */
   .tilt { position: relative; transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.25s ease-out; border-radius: 4.8% / 3.4%; }
   .glint { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.22) 50%, transparent 62%) no-repeat; background-size: 250% 100%; background-position: var(--gx, 120%) 0; mix-blend-mode: soft-light; }
-  .card.peek { transform: rotate(180deg); }
-  .card.turned.peek { transform: rotate(0deg); }
+  #feature { cursor: pointer; }
+  #feature:focus-visible { outline: 2px solid var(--marigold); outline-offset: 4px; }
   .caption { text-align: center; font-size: 15px; color: var(--muted); font-style: italic; margin: 0; }
   .sentence-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-  .chip { font-family: var(--kn, 'Noto Sans Kannada', sans-serif); text-transform: none; letter-spacing: 0; font-size: 14px; padding: 4px 10px; }
+  .chip { font-family: var(--body); text-transform: none; letter-spacing: 0; font-size: 16px; padding: 6px 12px; border-color: var(--marigold); color: var(--marigold); }
+  .chip span { font-family: 'Noto Sans Kannada', sans-serif; }
+  .chip[aria-pressed="true"] { background: var(--marigold); color: var(--table); }
   .kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 18px; line-height: 1.5; color: var(--ivory); }
   .lock { color: var(--marigold); font-style: italic; }
   .pair .thumb.locked .side.back { filter: saturate(0.6) brightness(0.8); }
 
   /* Owner's numbers */
   .owner-desk { display: grid; gap: 16px; }
-  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
   .tile { background: var(--table); padding: 18px 20px; display: grid; gap: 4px; min-width: 0; }
   .tile b { font-family: var(--display); font-weight: 500; font-size: 38px; font-variant-numeric: tabular-nums; line-height: 1.1; }
   .tile b.small { font-size: 20px; line-height: 1.3; }
   .tile .sub, .note-small { font-size: 15px; color: var(--muted); }
-  @media (max-width: 600px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 860px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
   /* Toasts */
   .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 60; background: var(--ivory); color: var(--table); font-family: var(--body); font-size: 17px; padding: 12px 18px; border-radius: 3px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8); max-width: calc(100vw - 32px); }
@@ -254,6 +260,7 @@
     <span class="label" id="count">52 cards, 2 Jokers, one very long flight</span>
     <h1>A Tale of <em>Two</em> Cities</h1>
     <p class="thesis">For anyone whose phone shows two clocks.</p>
+    <p class="tips"><b>Tap the card</b> to turn it. <b>Swipe</b> or use the arrows to flip through. Turn <b>all 52</b> to unlock the two Jokers. Read any line <b>in Kannada</b>. There are a few cats to find.</p>
     <div class="strip">
       <div class="clocks" aria-label="Local time in both cities">
         <span class="clock"><span class="label">Bengaluru</span><b id="clk-blr">--:--</b></span>
@@ -265,7 +272,7 @@
         <button type="button" id="city-nyc" aria-pressed="false">New York</button>
       </div>
       <div class="progress">
-        <span class="label" id="prog-label">0 / 52 turned</span>
+        <span class="deck-count"><span class="label">Your deck</span><b id="prog-label">0 / 52 turned</b></span>
         <span class="bar" aria-hidden="true"><i id="prog-bar"></i></span>
         <span id="cat-badge" hidden title="You found all three cats"><svg viewBox="0 0 24 24" aria-label="Cat badge"><path d="M5,20 C4,14 6,10 9,9 L8,4 L11,7 H13 L16,4 L15,9 C18,10 20,14 19,20 Z" fill="#f2b330"/><circle cx="10" cy="13" r="1" fill="#12151f"/><circle cx="14" cy="13" r="1" fill="#12151f"/></svg></span>
         <button type="button" class="linkish" id="b-reset">Start over</button>
@@ -275,7 +282,7 @@
 
   <section class="stage" aria-label="Featured card">
     <div class="card-hold">
-      <div class="tilt" id="tilt"><div class="card" id="feature"></div><span class="glint" id="glint" aria-hidden="true"></span></div>
+      <div class="tilt" id="tilt"><div class="card" id="feature" role="button" tabindex="0" aria-label="Turn the card around"></div><span class="glint" id="glint" aria-hidden="true"></span></div>
       <div class="stepper">
         <button type="button" class="nav prev" id="b-prev" aria-label="Previous card"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M11.5,3 L5.5,9 L11.5,15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <span class="pos" id="pos" aria-live="polite"></span>
@@ -288,7 +295,7 @@
       <h2 id="f-title">The Ride Home</h2>
       <div class="pairing"><span id="f-a">Auto-rickshaw</span><span class="x" aria-hidden="true">×</span><span id="f-b">Yellow cab</span></div>
       <div class="sentence">
-        <div class="sentence-head"><span class="label">On the seam</span><button type="button" class="chip" id="b-kn" aria-pressed="false" lang="kn" aria-label="Show the line in Kannada">ಕನ್ನಡ</button></div>
+        <div class="sentence-head"><span class="label">On the seam</span><button type="button" class="chip" id="b-kn" aria-pressed="false" aria-label="Read the line in Kannada">Read in <span lang="kn">ಕನ್ನಡ</span></button></div>
         <span class="half" id="f-s1"></span>
         <span class="half b" id="f-s2"></span>
         <span class="kn" id="f-kn" lang="kn" hidden></span>
@@ -302,7 +309,6 @@
       <div class="controls">
         <button type="button" id="b-shuffle">Shuffle</button>
         <button type="button" id="b-sound" aria-pressed="false">Sound on</button>
-        <button type="button" id="b-turn" aria-pressed="false">Turn card</button>
         <button type="button" id="b-play" aria-pressed="false">Pause</button>
       </div>
       <div class="controls">
@@ -363,25 +369,6 @@
     </div>
   </section>
 
-  <section class="product" aria-label="Get the deck">
-    <div class="panel">
-      <span class="label">First print run</span>
-      <h2>Want it in your hand?</h2>
-      <p>We're printing a small first run and delivering within Bengaluru for now. New York, we'll call you.</p>
-      <p class="note-small">The price and delivery cost will be shared with you before you pay a single rupee.</p>
-      <form id="wl-form">
-        <div class="field">Decks
-          <span class="count"><button type="button" id="wl-minus" aria-label="One fewer deck">−</button><output id="wl-n" aria-live="polite">1</output><button type="button" id="wl-plus" aria-label="One more deck">+</button></span>
-        </div>
-        <label class="field" for="wl-note">Who's it for?
-          <input id="wl-note" maxlength="120" placeholder="Me, obviously. Or my cousin in Whitefield.">
-        </label>
-        <div><button type="submit" id="wl-go">Put me on the list</button></div>
-        <p class="status" id="wl-status" role="status"></p>
-        <p class="owner" id="wl-owner" hidden></p>
-      </form>
-    </div>
-  </section>
 
   <section class="pairings" aria-label="Your pairings">
     <div class="reel-head">
@@ -408,7 +395,6 @@
       <div class="tile"><span class="label">Here right now</span><b id="st-live">1</b></div>
       <div class="tile"><span class="label">Visitors</span><b id="st-people">0</b></div>
       <div class="tile"><span class="label">Visits</span><b id="st-visits">0</b></div>
-      <div class="tile"><span class="label">On the waitlist</span><b id="st-wl">0</b><span class="sub" id="st-wl-sub">0 decks</span></div>
       <div class="tile"><span class="label">Deck finished</span><b id="st-done">0</b><span class="sub">people who turned all 52</span></div>
       <div class="tile"><span class="label">Top pairing</span><b class="small" id="st-top">None yet</b></div>
     </div>
@@ -434,7 +420,7 @@
     let uid = 0;
     const $ = (id) => document.getElementById(id);
     const isJoker = (id) => id === 'departure' || id === 'return';
-    const NOTE = 'Read one half. Turn the card for the rest.';
+    const NOTE = 'Read one half, then tap the card to read the rest.';
 
     const jokerInfo = {
       departure: {
@@ -481,7 +467,6 @@
       // Your city reads upright: New York turns every mirrored card around.
       state.turned = item.kind === 'card' && state.city === 'nyc';
       $('feature').classList.toggle('turned', state.turned);
-      $('b-turn').setAttribute('aria-pressed', String(state.turned));
       flipStage(render(locked ? 'back' : id, { static: state.still || locked }), animate);
       if (state.paused) pauseAll(true);
       sweepGlint();
@@ -641,13 +626,17 @@
         ? (state.still ? 'Sound plays with the moving card. Turn off the print frame.' : 'Sound on. It follows the card on stage.')
         : '';
     });
-    $('b-turn').addEventListener('click', () => {
+    // Tap the card to turn it around, like a real one. Your city's side comes back on the next card.
+    function turnCard() {
       state.turned = !state.turned;
       $('feature').classList.toggle('turned', state.turned);
-      $('b-turn').setAttribute('aria-pressed', String(state.turned));
-      $('status').textContent = state.turned
-        ? (isJoker(state.id) ? 'Careful. That\'s coffee on the ceiling.' : 'New York\'s turn. Read the seam.')
-        : '';
+      const nycUp = state.turned;
+      $('status').textContent = isJoker(state.id)
+        ? (state.turned ? 'Careful. That\'s coffee on the ceiling.' : 'Right way up. Coffee back in the cup.')
+        : (nycUp ? 'New York side up. Read the seam.' : 'Bengaluru side up. Read the seam.');
+    }
+    $('feature').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turnCard(); }
     });
     $('b-play').addEventListener('click', () => {
       state.paused = !state.paused;
@@ -846,7 +835,7 @@
     setKn(state.kn);
     $('b-kn').addEventListener('click', () => setKn(!state.kn));
 
-    // ---------- physical: tilt, glint, press and hold to peek ----------
+    // ---------- physical: tilt and glint ----------
     const tilt = $('tilt');
     function sweepGlint() {
       if (reduce || !tilt.animate) return;
@@ -861,15 +850,6 @@
       tilt.style.setProperty('--gx', `${(50 - x * 120).toFixed(1)}%`);
     });
     tilt.addEventListener('pointerleave', () => { tilt.style.setProperty('--rx', '0deg'); tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--gx', '120%'); });
-    let peekTimer = null, peeked = false;
-    $('feature').addEventListener('pointerdown', (e) => {
-      if (e.pointerType !== 'touch') return;
-      peeked = false;
-      peekTimer = setTimeout(() => { peeked = true; $('feature').classList.add('peek'); }, 420);
-    });
-    const endPeek = () => { clearTimeout(peekTimer); $('feature').classList.remove('peek'); };
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => $('feature').addEventListener(ev, endPeek));
-    $('feature').addEventListener('contextmenu', (e) => { if (peeked) e.preventDefault(); });
 
     // ---------- shareable: a link per card, a story image ----------
     const ARTIFACT = 'https://claude.ai/artifact/UQW9ejggK1W4hsSihkDiDQ';
@@ -922,19 +902,7 @@
 
     // ---------- product, voting and numbers (shared data) ----------
     let db = null, me = null, user = null, canWrite = null;
-    const wl = { city: 'blr', n: 1 };
-    $('wl-minus').addEventListener('click', () => { wl.n = Math.max(1, wl.n - 1); $('wl-n').textContent = wl.n; });
-    $('wl-plus').addEventListener('click', () => { wl.n = Math.min(10, wl.n + 1); $('wl-n').textContent = wl.n; });
     const noWrite = 'Only people with Contributor access can save here. Ask whoever sent you the link.';
-    $('wl-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!db || !me) { $('wl-status').textContent = 'Sign in to claude.ai to join the list.'; return; }
-      if (canWrite === false) { $('wl-status').textContent = noWrite; return; }
-      try {
-        await db.doc(`waitlist/${me}`).set({ city: wl.city, decks: wl.n, note: $('wl-note').value.slice(0, 120), at: new Date().toISOString() });
-        $('wl-status').textContent = `You're on the list for ${wl.n} ${wl.n > 1 ? 'decks' : 'deck'}. We'll message you the price and delivery cost before anything is charged.`;
-      } catch (err) { $('wl-status').textContent = err && err.code === 'invalid_argument' ? noWrite : 'That did not save. Try again in a moment.'; }
-    });
     async function savePdfTo(file, name, el) {
       if (!dl) { $(el).textContent = 'Saving files is off in this view. The PDFs are in the repo under prototype/print.'; return; }
       try {
@@ -1044,14 +1012,6 @@
           snap.docs.forEach((d) => { const x = d.data() || {}; v += x.visits || 0; if ((x.turned || 0) >= cardIds.size) done++; });
           $('st-people').textContent = snap.size; $('st-visits').textContent = v; $('st-done').textContent = done;
         }, () => {});
-        db.collection('waitlist').onSnapshot((snap) => {
-          let decks = 0;
-          snap.docs.forEach((d) => { decks += (d.data() || {}).decks || 0; });
-          $('st-wl').textContent = snap.size;
-          $('st-wl-sub').textContent = `${decks} decks, all for Bengaluru`;
-          $('wl-owner').hidden = false;
-          $('wl-owner').textContent = `So far: ${snap.size} people, ${decks} decks.`;
-        }, () => {});
       }
     })();
     function updateDesk(rows) {
@@ -1091,8 +1051,8 @@
     $('feature').addEventListener('pointercancel', () => { swipe = null; });
     $('feature').addEventListener('pointerup', (e) => {
       if (!swipe) return;
-      if (peeked) { swipe = null; peeked = false; return; }
       const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y; swipe = null;
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) { turnCard(); return; }
       if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
     });
 
