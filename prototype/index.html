@@ -29,7 +29,8 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     padding-block: 0 64px;
   }
-  .wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 72px; }
+  .wrap { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 72px; }
+  .wrap > section { min-width: 0; }
   .label {
     font-family: var(--label); font-weight: 700; font-size: 12px;
     letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
@@ -79,15 +80,29 @@
   button[aria-pressed="true"] { background: var(--ivory); color: var(--table); border-color: var(--ivory); }
   .status { font-size: 15px; color: var(--muted); min-height: 1.5em; }
 
-  /* Deck: face-down rows, one per suit */
+  /* The deck lives in House rules: tap a suit, its cards fan out */
   .reel-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 24px; }
   .reel-head h2 { font-size: 32px; }
   .reel-head .controls { gap: 8px; }
-  .suit-row { display: grid; gap: 10px; margin-bottom: 26px; }
-  .suit-row h3 { font-family: var(--display); font-weight: 500; font-size: 20px; display: flex; gap: 10px; align-items: baseline; }
-  .suit-row h3 svg { width: 13px; height: 13px; flex: none; }
-  .suit-row h3 .label { font-size: 11px; }
-  .reel { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 8px; }
+  .grid > .suit { font: inherit; color: inherit; text-align: left; text-transform: none; letter-spacing: 0; border: 0; border-radius: 0; cursor: pointer; grid-template-columns: 1fr auto; column-gap: 14px; }
+  .grid > .suit > :not(.pile) { grid-column: 1; }
+  .grid > .suit:hover, .grid > .suit[aria-expanded="true"] { background: var(--panel); }
+  .grid > .suit[aria-expanded="true"] { box-shadow: inset 0 -2px 0 var(--marigold); }
+  .pile { grid-column: 2; grid-row: 1 / span 4; position: relative; width: 46px; aspect-ratio: 5 / 7; align-self: start; }
+  .pile > span { position: absolute; inset: 0; border-radius: 6% / 4.3%; overflow: hidden; box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.8); transition: transform 0.3s; }
+  .pile > span svg { display: block; width: 100%; height: 100%; }
+  .pile > span:nth-child(1) { transform: rotate(-9deg) translate(-3px, 2px); }
+  .pile > span:nth-child(2) { transform: rotate(5deg) translate(2px, 1px); }
+  .suit:hover .pile > span:nth-child(1) { transform: rotate(-16deg) translate(-7px, 1px); }
+  .suit:hover .pile > span:nth-child(2) { transform: rotate(11deg) translate(6px, 0); }
+  .spread { border: 1px solid var(--rule); border-top: 0; padding: 16px 20px 8px; }
+  .spread-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .fan-wrap { overflow-x: auto; padding: 34px 8px 26px; }
+  .fan { display: flex; justify-content: center; min-width: max-content; }
+  .fan .thumb { width: 112px; margin-left: -40px; transform-origin: 50% 130%; transform: rotate(var(--r)) translateY(var(--y)); transition: transform 0.25s; animation: deal 0.45s cubic-bezier(0.3, 0, 0.2, 1) backwards; animation-delay: var(--d); }
+  .fan .thumb:first-child { margin-left: 0; }
+  .fan .thumb:hover, .fan .thumb:focus-visible { transform: rotate(var(--r)) translateY(calc(var(--y) - 18px)); z-index: 2; }
+  @keyframes deal { from { opacity: 0; transform: translateY(-50px) rotate(0deg) scale(0.6); } }
   .thumb { padding: 0; border: 0; background: none; cursor: pointer; perspective: 700px; }
   .flip { position: relative; display: block; aspect-ratio: 5 / 7; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.6, 0, 0.2, 1), translate 0.25s; }
   .thumb:hover .flip { translate: 0 -4px; }
@@ -119,7 +134,7 @@
   /* System */
   .system h2 { font-size: 32px; margin-bottom: 24px; }
   .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-  .grid > div { background: var(--table); padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .grid > div, .grid > .suit { background: var(--table); padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
   .grid h3 { font-size: 24px; display: flex; gap: 10px; align-items: baseline; }
   .grid h3 svg { width: 16px; height: 16px; flex: none; }
   .grid p { font-size: 17px; }
@@ -133,8 +148,8 @@
   @media (max-width: 860px) {
     .stage, .jokers { grid-template-columns: minmax(0, 1fr); }
     .card-hold { max-width: 380px; width: 100%; margin: 0 auto; }
-    .reel { grid-template-columns: repeat(13, 62px); overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x proximity; }
-    .thumb { scroll-snap-align: start; }
+    .fan { justify-content: flex-start; }
+    .fan .thumb { width: 86px; margin-left: -44px; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .specs { grid-template-columns: minmax(0, 1fr); }
   }
@@ -144,6 +159,7 @@
   @media (prefers-reduced-motion: reduce) {
     .card { transition: none; }
     .flip { transition: none; }
+    .fan .thumb { animation: none; }
   }
 </style>
 
@@ -172,6 +188,7 @@
         <div><dt class="label">Listen</dt><dd id="f-sound"></dd></div>
       </dl>
       <div class="controls">
+        <button type="button" id="b-shuffle">Shuffle</button>
         <button type="button" id="b-sound" aria-pressed="false">Sound on</button>
         <button type="button" id="b-turn" aria-pressed="false">Turn card</button>
         <button type="button" id="b-play" aria-pressed="false">Pause</button>
@@ -182,16 +199,30 @@
     </div>
   </section>
 
-  <section aria-label="The deck">
+  <section class="system" aria-label="Deck system">
     <div class="reel-head">
-      <h2>The deck</h2>
-      <div class="controls">
-        <button type="button" id="b-shuffle">Shuffle again</button>
-        <button type="button" id="b-all" aria-pressed="false">Turn all over</button>
+      <h2>House rules</h2>
+      <span class="label">Tap a suit to fan out its cards</span>
+    </div>
+    <div class="grid" id="suits"></div>
+    <div class="spread" id="spread" hidden>
+      <div class="spread-head">
+        <span class="label" id="spread-name"></span>
+        <button type="button" id="b-all" aria-pressed="false">Turn these over</button>
+      </div>
+      <div class="fan-wrap"><div class="fan" id="fan"></div></div>
+    </div>
+    <div class="specs">
+      <div>
+        <span class="label">Ranks tell time</span>
+        <p>Lay out a suit from 2 to 10 and you get a day. Aces start things. Jacks hustle, Queens charm, Kings complain.</p>
+        <div class="hours" id="hours"></div>
+      </div>
+      <div>
+        <span class="label">Print, motion, sound</span>
+        <p>Vector SVG at exactly 2.5 × 3.5 in, bleed included. The loops never stutter, and the sound is made live, in time with the picture. In print, the seam can go lenticular. Tilt to play.</p>
       </div>
     </div>
-    <p class="status" style="margin-bottom:18px">Face down, like a proper deck. Tap one to turn it over.</p>
-    <div id="rows"></div>
   </section>
 
   <section class="jokers" aria-label="The Jokers">
@@ -209,21 +240,6 @@
     </div>
   </section>
 
-  <section class="system" aria-label="Deck system">
-    <h2>House rules</h2>
-    <div class="grid" id="suits"></div>
-    <div class="specs">
-      <div>
-        <span class="label">Ranks tell time</span>
-        <p>Lay out a suit from 2 to 10 and you get a day. Aces start things. Jacks hustle, Queens charm, Kings complain.</p>
-        <div class="hours" id="hours"></div>
-      </div>
-      <div>
-        <span class="label">Print, motion, sound</span>
-        <p>Vector SVG at exactly 2.5 × 3.5 in, bleed included. The loops never stutter, and the sound is made live, in time with the picture. In print, the seam can go lenticular. Tilt to play.</p>
-      </div>
-    </div>
-  </section>
 </div>
 
 <script src="cards.js"></script>
@@ -325,45 +341,52 @@
     const suitTheme = { heart: 'Belonging', diamond: 'Ambition', club: 'Streets', spade: 'Weather and time' };
     const thumbs = {};
     function label(item) { return item.kind === 'card' ? `${item.rankName} of ${T.SUIT_NAME[item.suit]}, ${item.title}` : `Joker, ${item.title}`; }
+    const revealed = new Set();
     function reveal(id) {
+      revealed.add(id);
       const b = thumbs[id];
       if (!b || b.classList.contains('revealed')) return;
       b.querySelector('.front').innerHTML = render(id, { static: true });
       b.classList.add('revealed');
       b.setAttribute('aria-label', label(all.find((x) => x.id === id)));
     }
-    function buildRows() {
-      const groups = T.SUIT_ORDER.map((suit) => ({ suit, items: all.filter((x) => x.suit === suit) })).filter((g) => g.items.length);
-      groups.push({ suit: null, items: all.filter((x) => x.kind === 'joker') });
-      $('rows').innerHTML = '';
-      groups.forEach((g) => {
-        const row = document.createElement('div');
-        row.className = 'suit-row';
-        row.innerHTML = g.suit
-          ? `<h3>${pip(g.suit, g.suit === 'heart' || g.suit === 'diamond' ? 'var(--vermilion)' : 'var(--ivory)')}${T.SUIT_NAME[g.suit]} <span class="label">${suitTheme[g.suit]}</span></h3>`
-          : '<h3>Jokers <span class="label">No mirror</span></h3>';
-        const grid = document.createElement('div');
-        grid.className = 'reel';
-        g.items.forEach((item) => {
-          const b = document.createElement('button');
-          b.type = 'button'; b.className = 'thumb'; b.dataset.id = item.id;
-          b.setAttribute('aria-label', 'Face-down card');
-          b.innerHTML = `<span class="flip"><span class="side back">${render('back', { static: true })}</span><span class="side front"></span></span>`;
-          b.addEventListener('click', () => {
-            const fresh = !b.classList.contains('revealed');
-            reveal(item.id);
-            if (fresh) Snd.flick && Snd.flick();
-            setFeature(item.id, true);
-            if (window.innerWidth < 860) $('feature').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-          });
-          thumbs[item.id] = b;
-          grid.appendChild(b);
+    // Tap a suit in House rules: its cards fan out face down, bigger.
+    let openSuitId = null;
+    function openSuit(suit) {
+      const same = openSuitId === suit;
+      openSuitId = same ? null : suit;
+      document.querySelectorAll('#suits .suit').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.suit === openSuitId)));
+      Object.keys(thumbs).forEach((k) => delete thumbs[k]);
+      $('fan').innerHTML = '';
+      $('spread').hidden = !openSuitId;
+      $('b-all').setAttribute('aria-pressed', 'false');
+      if (!openSuitId) return;
+      Snd.riffle && Snd.riffle();
+      const items = all.filter((x) => x.suit === suit), n = items.length;
+      $('spread-name').textContent = `${T.SUIT_NAME[suit]} · ${suitTheme[suit]} · face down until you tap`;
+      items.forEach((item, i) => {
+        const u = n > 1 ? i / (n - 1) - 0.5 : 0;
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'thumb'; b.dataset.id = item.id;
+        b.style.setProperty('--r', `${(u * 28).toFixed(1)}deg`);
+        b.style.setProperty('--y', `${(u * u * 46).toFixed(1)}px`);
+        b.style.setProperty('--d', `${i * 35}ms`);
+        b.setAttribute('aria-label', 'Face-down card');
+        b.innerHTML = `<span class="flip"><span class="side back">${render('back', { static: true })}</span><span class="side front"></span></span>`;
+        b.addEventListener('click', () => {
+          const fresh = !b.classList.contains('revealed');
+          reveal(item.id);
+          if (fresh) Snd.flick && Snd.flick();
+          setFeature(item.id, true);
+          $('feature').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
         });
-        row.appendChild(grid);
-        $('rows').appendChild(row);
+        thumbs[item.id] = b;
+        $('fan').appendChild(b);
+        if (revealed.has(item.id)) reveal(item.id);
       });
-      $('count').textContent = `Prototype deck · ${T.CARDS.length} cards and 2 Jokers`;
+      $('spread').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
     }
+    $('count').textContent = `Prototype deck · ${T.CARDS.length} cards and 2 Jokers`;
 
     // The Jokers wait face down too. Turned over, they play.
     ['j-dep', 'j-ret'].forEach((el) => {
@@ -390,7 +413,8 @@
       club: 'M0,-6 A2.7,2.7 0 1 1 0.01,-6 Z M-3,-0.6 A2.7,2.7 0 1 1 -2.99,-0.6 Z M3,-0.6 A2.7,2.7 0 1 1 3.01,-0.6 Z M-0.8,0.6 L-1.9,6.2 L1.9,6.2 L0.8,0.6 Z',
       spade: 'M0,-6.2 C1,-4 6,-1.6 6,1.6 C6,4.1 3,5 0.9,3.3 L1.9,6.2 L-1.9,6.2 L-0.9,3.3 C-3,5 -6,4.1 -6,1.6 C-6,-1.6 -1,-4 0,-6.2 Z'
     };
-    $('suits').innerHTML = suits.map((x) => `<div><span class="label">${x.name}</span><h3><svg viewBox="-7 -7 14 14" aria-hidden="true"><path d="${pipPath[x.s]}" fill="${x.s === 'heart' || x.s === 'diamond' ? 'var(--vermilion)' : 'var(--ivory)'}"/></svg>${x.theme}</h3><p>${x.d}</p><p class="ex">${x.ex}</p></div>`).join('');
+    $('suits').innerHTML = suits.map((x) => `<button type="button" class="suit" data-suit="${x.s}" aria-expanded="false" aria-controls="spread"><span class="pile" aria-hidden="true"><span>${render('back', { static: true })}</span><span>${render('back', { static: true })}</span><span>${render('back', { static: true })}</span></span><span class="label">${x.name} · ${all.filter((c) => c.suit === x.s).length} cards</span><h3><svg viewBox="-7 -7 14 14" aria-hidden="true"><path d="${pipPath[x.s]}" fill="${x.s === 'heart' || x.s === 'diamond' ? 'var(--vermilion)' : 'var(--ivory)'}"/></svg>${x.theme}</h3><p>${x.d}</p><p class="ex">${x.ex}</p></button>`).join('');
+    document.querySelectorAll('#suits .suit').forEach((b) => b.addEventListener('click', () => openSuit(b.dataset.suit)));
     $('hours').innerHTML = ['2', '3', '4', '5', '6', '7', '8', '9', '10'].map((r) => `<span><b>${r}</b> ${T.HOURS[r]}</span>`).join('');
 
     $('b-sound').addEventListener('click', () => {
@@ -482,12 +506,12 @@
     }
 
     if (reduce) $('b-print').setAttribute('aria-pressed', 'true');
-    buildRows();
     $('feature').innerHTML = render('back', { static: true });
     shuffle();
 
     $('b-shuffle').addEventListener('click', () => {
-      document.querySelectorAll('.thumb.revealed').forEach((b) => b.classList.remove('revealed'));
+      revealed.clear();
+      document.querySelectorAll('.thumb.revealed').forEach((b) => { if (!b.classList.contains('jflip')) b.classList.remove('revealed'); });
       $('b-all').setAttribute('aria-pressed', 'false');
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
       $('feature').innerHTML = render('back', { static: true });
@@ -497,8 +521,8 @@
       const on = $('b-all').getAttribute('aria-pressed') !== 'true';
       $('b-all').setAttribute('aria-pressed', String(on));
       Object.keys(thumbs).forEach((id, i) => {
-        if (on) setTimeout(() => reveal(id), reduce ? 0 : i * 18);
-        else if (id !== state.id) thumbs[id].classList.remove('revealed');
+        if (on) setTimeout(() => reveal(id), reduce ? 0 : i * 40);
+        else if (id !== state.id) { thumbs[id].classList.remove('revealed'); revealed.delete(id); }
       });
     });
   })();
