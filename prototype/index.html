@@ -166,18 +166,20 @@
 
   /* Header strip: two clocks, where you are, how far through the deck */
   .strip { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 10px; }
-  .clocks { display: flex; gap: 18px; }
-  .clock { display: grid; gap: 2px; }
-  .clock b { font-family: var(--display); font-weight: 500; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .where { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .where .label { margin-right: 6px; }
+  .city { display: grid; gap: 2px; justify-items: start; text-align: left; padding: 8px 16px; text-transform: none; letter-spacing: 0; }
+  .city span { font-family: var(--label); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
+  .city b { font-family: var(--display); font-weight: 500; font-size: 24px; font-variant-numeric: tabular-nums; line-height: 1.1; }
   .seg { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
   .seg .label { margin-right: 4px; }
   .seg button { text-transform: none; letter-spacing: 0.02em; font-size: 14px; }
-  .progress { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .progress { display: flex; align-items: center; gap: 10px 14px; min-width: 0; flex: 1 1 260px; max-width: 460px; }
   .deck-count { display: grid; gap: 2px; }
-  .deck-count b { font-family: var(--display); font-weight: 500; font-size: 22px; font-variant-numeric: tabular-nums; }
+  .deck-count b { font-family: var(--display); font-weight: 500; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .tips { font-size: 16px; color: var(--muted); margin-top: 6px; }
   .tips b { color: var(--ivory); font-weight: 600; }
-  .bar { width: 140px; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+  .bar { flex: 1 1 80px; min-width: 60px; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
   .bar i { display: block; height: 100%; width: 0; background: var(--marigold); transition: width 0.5s; }
   .linkish { border: 0; padding: 4px 2px; min-height: 0; font-size: 11px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
   #cat-badge svg { width: 22px; height: 22px; display: block; }
@@ -196,14 +198,7 @@
   .lock { color: var(--marigold); font-style: italic; }
   .pair .thumb.locked .side.back { filter: saturate(0.6) brightness(0.8); }
 
-  /* Owner's numbers */
-  .owner-desk { display: grid; gap: 16px; }
-  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-  .tile { background: var(--table); padding: 18px 20px; display: grid; gap: 4px; min-width: 0; }
-  .tile b { font-family: var(--display); font-weight: 500; font-size: 38px; font-variant-numeric: tabular-nums; line-height: 1.1; }
-  .tile b.small { font-size: 20px; line-height: 1.3; }
-  .tile .sub, .note-small { font-size: 15px; color: var(--muted); }
-  @media (max-width: 860px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  #visitors b { color: var(--ivory); font-weight: 700; }
 
   /* Toasts */
   .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 60; background: var(--ivory); color: var(--table); font-family: var(--body); font-size: 17px; padding: 12px 18px; border-radius: 3px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8); max-width: calc(100vw - 32px); }
@@ -235,7 +230,7 @@
   @media (max-width: 860px) {
     .product { grid-template-columns: minmax(0, 1fr); }
     .pp-form { grid-template-columns: minmax(0, 1fr); }
-    .clock b { font-size: 22px; }
+    .city b { font-size: 20px; }
   }
   @media (pointer: coarse) {
     button { min-height: 44px; }
@@ -257,19 +252,15 @@
 
 <div class="wrap">
   <header>
-    <span class="label" id="count">52 cards, 2 Jokers, one very long flight</span>
+    <span class="label" id="count">52 cards, 2 Jokers, one very long flight<span id="visitors" hidden> · <b id="vcount">0</b> visitors so far</span></span>
     <h1>A Tale of <em>Two</em> Cities</h1>
     <p class="thesis">For anyone whose phone shows two clocks.</p>
     <p class="tips"><b>Tap the card</b> to turn it. <b>Swipe</b> or use the arrows to flip through. Turn <b>all 52</b> to unlock the two Jokers. Read any line <b>in Kannada</b>. There are a few cats to find.</p>
     <div class="strip">
-      <div class="clocks" aria-label="Local time in both cities">
-        <span class="clock"><span class="label">Bengaluru</span><b id="clk-blr">--:--</b></span>
-        <span class="clock"><span class="label">New York</span><b id="clk-nyc">--:--</b></span>
-      </div>
-      <div class="seg" role="group" aria-label="Which city are you in?">
+      <div class="where" role="group" aria-label="Which city are you in?">
         <span class="label">I'm in</span>
-        <button type="button" id="city-blr" aria-pressed="true">Bengaluru</button>
-        <button type="button" id="city-nyc" aria-pressed="false">New York</button>
+        <button type="button" class="city" id="city-blr" aria-pressed="true"><span>Bengaluru</span><b id="clk-blr">--:--</b></button>
+        <button type="button" class="city" id="city-nyc" aria-pressed="false"><span>New York</span><b id="clk-nyc">--:--</b></button>
       </div>
       <div class="progress">
         <span class="deck-count"><span class="label">Your deck</span><b id="prog-label">0 / 52 turned</b></span>
@@ -386,20 +377,6 @@
     <ol class="pp-list" id="pp-list"><li class="pp-empty">Nothing here yet. Silk Board × the BQE is taken, sorry.</li></ol>
   </section>
 
-  <section class="owner-desk" id="owner-desk" aria-label="Owner's numbers" hidden>
-    <div class="reel-head">
-      <h2>Your numbers</h2>
-      <span class="label">Only you can see this</span>
-    </div>
-    <div class="tiles">
-      <div class="tile"><span class="label">Here right now</span><b id="st-live">1</b></div>
-      <div class="tile"><span class="label">Visitors</span><b id="st-people">0</b></div>
-      <div class="tile"><span class="label">Visits</span><b id="st-visits">0</b></div>
-      <div class="tile"><span class="label">Deck finished</span><b id="st-done">0</b><span class="sub">people who turned all 52</span></div>
-      <div class="tile"><span class="label">Top pairing</span><b class="small" id="st-top">None yet</b></div>
-    </div>
-    <p class="note-small">Here right now counts everyone with the page open. Visitors and visits count people you've shared it with as Contributor or above, because only they can save data.</p>
-  </section>
 
 </div>
 
@@ -981,7 +958,7 @@
         try {
           const snap = await ref.get();
           const prev = snap.exists ? snap.data() : {};
-          await ref.set({ first: prev.first || new Date().toISOString(), last: new Date().toISOString(), visits: (prev.visits || 0) + (visitLogged ? 0 : 1), turned: turned.size, city: state.city });
+          await ref.set({ first: prev.first || new Date().toISOString(), last: new Date().toISOString(), visits: (prev.visits || 0) + (visitLogged ? 0 : 1) });
           visitLogged = true;
         } catch (err) { /* reads stay quiet */ }
       }, 1500);
@@ -998,32 +975,17 @@
       db.collection('pairings').onSnapshot((snap) => {
         pairings = [];
         snap.docs.forEach((d) => ((d.data() || {}).items || []).forEach((it, i) => pairings.push({ ...it, by: d.id, key: `${d.id}:${i}` })));
-        updateDesk(renderPairings());
+        renderPairings();
       }, () => {});
       db.collection('votes').onSnapshot((snap) => {
         votes = {}; snap.docs.forEach((d) => { votes[d.id] = (d.data() || {}).picks || {}; });
-        updateDesk(renderPairings());
+        renderPairings();
       }, () => {});
-      const owner = user ? await user.isOwner().catch(() => false) : false;
-      if (owner) {
-        $('owner-desk').hidden = false;
-        db.collection('visits').onSnapshot((snap) => {
-          let v = 0, done = 0;
-          snap.docs.forEach((d) => { const x = d.data() || {}; v += x.visits || 0; if ((x.turned || 0) >= cardIds.size) done++; });
-          $('st-people').textContent = snap.size; $('st-visits').textContent = v; $('st-done').textContent = done;
-        }, () => {});
-      }
-    })();
-    function updateDesk(rows) {
-      if (!rows || $('owner-desk').hidden) return;
-      $('st-top').textContent = rows.length ? `${rows[0].blr} × ${rows[0].nyc} (${rows[0].n})` : 'None yet';
-    }
-    // Here right now: presence counts everyone with the page open.
-    (async () => {
-      if (!window.claude || !window.claude.use) return;
-      const room = await window.claude.use('room').catch(() => null);
-      if (!room) return;
-      try { room.presence({ here: true }); room.onPeers((peers) => { $('st-live').textContent = Math.max(1, (peers || []).length); }); } catch (e) { /* presence off */ }
+      // One public number: how many people have visited.
+      db.collection('visits').onSnapshot((snap) => {
+        $('vcount').textContent = snap.size.toLocaleString('en-IN');
+        $('visitors').hidden = snap.size < 1;
+      }, () => {});
     })();
 
     if (reduce) { $('b-print').setAttribute('aria-pressed', 'true'); $('print-row').hidden = false; }
