@@ -161,7 +161,76 @@
   @media (max-width: 480px) {
     .grid { grid-template-columns: minmax(0, 1fr); }
   }
+  [hidden] { display: none !important; }
   #feature { touch-action: pan-y; }
+
+  /* Header strip: two clocks, where you are, how far through the deck */
+  .strip { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 10px; }
+  .clocks { display: flex; gap: 18px; }
+  .clock { display: grid; gap: 2px; }
+  .clock b { font-family: var(--display); font-weight: 500; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .seg { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .seg .label { margin-right: 4px; }
+  .seg button { text-transform: none; letter-spacing: 0.02em; font-size: 14px; }
+  .progress { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .bar { width: 120px; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--marigold); transition: width 0.5s; }
+  .linkish { border: 0; padding: 4px 2px; min-height: 0; font-size: 11px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  #cat-badge svg { width: 22px; height: 22px; display: block; }
+
+  /* The card leans toward the cursor and catches the light */
+  .tilt { position: relative; transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.25s ease-out; border-radius: 4.8% / 3.4%; }
+  .glint { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.22) 50%, transparent 62%) no-repeat; background-size: 250% 100%; background-position: var(--gx, 120%) 0; mix-blend-mode: soft-light; }
+  .card.peek { transform: rotate(180deg); }
+  .card.turned.peek { transform: rotate(0deg); }
+  .caption { text-align: center; font-size: 15px; color: var(--muted); font-style: italic; margin: 0; }
+  .sentence-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .chip { font-family: var(--kn, 'Noto Sans Kannada', sans-serif); text-transform: none; letter-spacing: 0; font-size: 14px; padding: 4px 10px; }
+  .kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 18px; line-height: 1.5; color: var(--ivory); }
+  .lock { color: var(--marigold); font-style: italic; }
+  .pair .thumb.locked .side.back { filter: saturate(0.6) brightness(0.8); }
+
+  /* Owner's numbers */
+  .owner-desk { display: grid; gap: 16px; }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .tile { background: var(--table); padding: 18px 20px; display: grid; gap: 4px; min-width: 0; }
+  .tile b { font-family: var(--display); font-weight: 500; font-size: 38px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .tile b.small { font-size: 20px; line-height: 1.3; }
+  .tile .sub, .note-small { font-size: 15px; color: var(--muted); }
+  @media (max-width: 600px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* Toasts */
+  .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 60; background: var(--ivory); color: var(--table); font-family: var(--body); font-size: 17px; padding: 12px 18px; border-radius: 3px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8); max-width: calc(100vw - 32px); }
+
+  /* Get the deck */
+  .product { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .panel { background: var(--table); padding: 28px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .panel h2, .pairings h2 { font-size: 32px; }
+  .panel form { display: grid; gap: 14px; }
+  .field { display: grid; gap: 6px; font-family: var(--label); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  input { font: inherit; font-family: var(--body); font-size: 18px; text-transform: none; letter-spacing: 0; color: var(--ivory); background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: 8px 2px; min-width: 0; width: 100%; }
+  input:focus-visible { outline: none; border-bottom-color: var(--marigold); }
+  input::placeholder { color: var(--muted); opacity: 0.7; }
+  .count { display: flex; align-items: center; gap: 12px; }
+  .count output { font-family: var(--display); font-size: 26px; min-width: 2ch; text-align: center; color: var(--ivory); letter-spacing: 0; }
+  .owner { font-size: 16px; color: var(--marigold); }
+
+  /* Your turn */
+  .pairings { display: grid; gap: 16px; }
+  .pp-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 14px; align-items: end; }
+  .pp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .pp-list li { background: var(--table); padding: 14px 18px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; }
+  .pp-pair { font-family: var(--display); font-size: 21px; }
+  .pp-pair .x { color: var(--vermilion); padding: 0 6px; }
+  .pp-meta { font-size: 15px; color: var(--muted); font-style: italic; grid-column: 1; }
+  .pp-vote { grid-column: 2; grid-row: 1 / span 2; text-transform: none; letter-spacing: 0; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+  .pp-vote[aria-pressed="true"] { background: var(--vermilion); border-color: var(--vermilion); color: var(--ivory); }
+  .pp-empty { background: var(--table); padding: 18px; color: var(--muted); font-style: italic; }
+  @media (max-width: 860px) {
+    .product { grid-template-columns: minmax(0, 1fr); }
+    .pp-form { grid-template-columns: minmax(0, 1fr); }
+    .clock b { font-size: 22px; }
+  }
   @media (pointer: coarse) {
     button { min-height: 44px; }
     .controls { gap: 8px; }
@@ -185,25 +254,44 @@
     <span class="label" id="count">52 cards, 2 Jokers, one very long flight</span>
     <h1>A Tale of <em>Two</em> Cities</h1>
     <p class="thesis">For anyone whose phone shows two clocks.</p>
+    <div class="strip">
+      <div class="clocks" aria-label="Local time in both cities">
+        <span class="clock"><span class="label">Bengaluru</span><b id="clk-blr">--:--</b></span>
+        <span class="clock"><span class="label">New York</span><b id="clk-nyc">--:--</b></span>
+      </div>
+      <div class="seg" role="group" aria-label="Which city are you in?">
+        <span class="label">I'm in</span>
+        <button type="button" id="city-blr" aria-pressed="true">Bengaluru</button>
+        <button type="button" id="city-nyc" aria-pressed="false">New York</button>
+      </div>
+      <div class="progress">
+        <span class="label" id="prog-label">0 / 52 turned</span>
+        <span class="bar" aria-hidden="true"><i id="prog-bar"></i></span>
+        <span id="cat-badge" hidden title="You found all three cats"><svg viewBox="0 0 24 24" aria-label="Cat badge"><path d="M5,20 C4,14 6,10 9,9 L8,4 L11,7 H13 L16,4 L15,9 C18,10 20,14 19,20 Z" fill="#f2b330"/><circle cx="10" cy="13" r="1" fill="#12151f"/><circle cx="14" cy="13" r="1" fill="#12151f"/></svg></span>
+        <button type="button" class="linkish" id="b-reset">Start over</button>
+      </div>
+    </div>
   </header>
 
   <section class="stage" aria-label="Featured card">
     <div class="card-hold">
-      <div class="card" id="feature"></div>
+      <div class="tilt" id="tilt"><div class="card" id="feature"></div><span class="glint" id="glint" aria-hidden="true"></span></div>
       <div class="stepper">
         <button type="button" class="nav prev" id="b-prev" aria-label="Previous card"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M11.5,3 L5.5,9 L11.5,15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <span class="pos" id="pos" aria-live="polite"></span>
         <button type="button" class="nav next" id="b-next" aria-label="Next card"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M6.5,3 L12.5,9 L6.5,15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
+      <p class="caption" id="caption" aria-live="polite" hidden></p>
     </div>
     <div class="info">
       <span class="label" id="f-rank">Eight of Clubs · 6 PM</span>
       <h2 id="f-title">The Ride Home</h2>
       <div class="pairing"><span id="f-a">Auto-rickshaw</span><span class="x" aria-hidden="true">×</span><span id="f-b">Yellow cab</span></div>
       <div class="sentence">
-        <span class="label">On the seam</span>
+        <div class="sentence-head"><span class="label">On the seam</span><button type="button" class="chip" id="b-kn" aria-pressed="false" lang="kn" aria-label="Show the line in Kannada">ಕನ್ನಡ</button></div>
         <span class="half" id="f-s1"></span>
         <span class="half b" id="f-s2"></span>
+        <span class="kn" id="f-kn" lang="kn" hidden></span>
         <span class="note" id="f-note"></span>
       </div>
       <dl>
@@ -216,8 +304,13 @@
         <button type="button" id="b-sound" aria-pressed="false">Sound on</button>
         <button type="button" id="b-turn" aria-pressed="false">Turn card</button>
         <button type="button" id="b-play" aria-pressed="false">Pause</button>
+      </div>
+      <div class="controls">
+        <button type="button" id="b-link">Copy link</button>
+        <button type="button" id="b-story">Story image</button>
         <button type="button" id="b-print" aria-pressed="false">Print frame</button>
         <button type="button" id="b-copy">Copy SVG</button>
+        <button type="button" id="b-flag">Spot something off?</button>
       </div>
       <div class="controls" id="print-row" hidden>
         <button type="button" id="b-pdf-card">Save this card as PDF</button>
@@ -262,10 +355,79 @@
       <span class="label">No mirror</span>
       <h2>The Departure and The Return</h2>
       <blockquote>Funny how you can miss two places at once.</blockquote>
+      <p class="lock" id="joker-lock" role="status"></p>
       <p>Every other card works upside down. These two can't, because coffee only pours one way.</p>
       <p>A darshini pours coffee back and forth between tumbler and davara until it's just right. Turns out people get made the same way.</p>
       <p>Side by side, the two streams make one arch. It's the only picture in the deck that needs both cards.</p>
     </div>
+  </section>
+
+  <section class="product" aria-label="Get the deck">
+    <div class="panel">
+      <span class="label">First print run</span>
+      <h2>Want it in your hand?</h2>
+      <p>We're printing a small first run. Tell us where it should land.</p>
+      <form id="wl-form">
+        <div class="seg" role="group" aria-label="Ship to" id="wl-city">
+          <span class="label">Ship to</span>
+          <button type="button" data-v="blr" aria-pressed="true">Bengaluru</button>
+          <button type="button" data-v="nyc" aria-pressed="false">New York</button>
+          <button type="button" data-v="both" aria-pressed="false">Both, it's complicated</button>
+        </div>
+        <div class="field">Decks
+          <span class="count"><button type="button" id="wl-minus" aria-label="One fewer deck">−</button><output id="wl-n" aria-live="polite">1</output><button type="button" id="wl-plus" aria-label="One more deck">+</button></span>
+        </div>
+        <label class="field" for="wl-note">Who's it for?
+          <input id="wl-note" maxlength="120" placeholder="Me, obviously. Or my cousin in Jersey City.">
+        </label>
+        <div><button type="submit" id="wl-go">Put me on the list</button></div>
+        <p class="status" id="wl-status" role="status"></p>
+        <p class="owner" id="wl-owner" hidden></p>
+      </form>
+    </div>
+    <div class="panel">
+      <span class="label">No patience?</span>
+      <h2>Print it at home</h2>
+      <p>Nine cards to a page with crop marks, plus a page of backs if your printer does double-sided. Card stock, sharp scissors, steady hands.</p>
+      <div class="controls">
+        <button type="button" id="b-home-letter">US Letter PDF</button>
+        <button type="button" id="b-home-a4">A4 PDF</button>
+        <button type="button" id="b-pro">Print shop PDF</button>
+      </div>
+      <p class="status" id="home-status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="pairings" aria-label="Your pairings">
+    <div class="reel-head">
+      <h2>Your turn</h2>
+      <span class="label">The best ones go in the expansion pack</span>
+    </div>
+    <p>Know a Bangalore thing with a New York twin we missed? Add it, then vote for the ones that make you snort.</p>
+    <form id="pp-form" class="pp-form">
+      <input id="pp-blr" required maxlength="60" placeholder="The Bangalore thing" aria-label="The Bangalore thing">
+      <input id="pp-nyc" required maxlength="60" placeholder="Its New York twin" aria-label="Its New York twin">
+      <input id="pp-line" maxlength="90" placeholder="The hidden line, if you've got one" aria-label="The hidden line">
+      <button type="submit" id="pp-go">Add it</button>
+    </form>
+    <p class="status" id="pp-status" role="status"></p>
+    <ol class="pp-list" id="pp-list"><li class="pp-empty">Nothing here yet. Silk Board × the BQE is taken, sorry.</li></ol>
+  </section>
+
+  <section class="owner-desk" id="owner-desk" aria-label="Owner's numbers" hidden>
+    <div class="reel-head">
+      <h2>Your numbers</h2>
+      <span class="label">Only you can see this</span>
+    </div>
+    <div class="tiles">
+      <div class="tile"><span class="label">Here right now</span><b id="st-live">1</b></div>
+      <div class="tile"><span class="label">Visitors</span><b id="st-people">0</b></div>
+      <div class="tile"><span class="label">Visits</span><b id="st-visits">0</b></div>
+      <div class="tile"><span class="label">On the waitlist</span><b id="st-wl">0</b><span class="sub" id="st-wl-sub">0 decks</span></div>
+      <div class="tile"><span class="label">Deck finished</span><b id="st-done">0</b><span class="sub">people who turned all 52</span></div>
+      <div class="tile"><span class="label">Top pairing</span><b class="small" id="st-top">None yet</b></div>
+    </div>
+    <p class="note-small">Here right now counts everyone with the page open. Visitors and visits count people you've shared it with as Contributor or above, because only they can save data.</p>
   </section>
 
 </div>
@@ -330,8 +492,37 @@
     function setFeature(id, animate) {
       state.id = id;
       const item = all.find((x) => x.id === id);
-      flipStage(render(id, { static: state.still }), animate);
+      const locked = item.kind === 'joker' && !jokersOpen() && !state.linked;
+      // Your city reads upright: New York turns every mirrored card around.
+      state.turned = item.kind === 'card' && state.city === 'nyc';
+      $('feature').classList.toggle('turned', state.turned);
+      $('b-turn').setAttribute('aria-pressed', String(state.turned));
+      flipStage(render(locked ? 'back' : id, { static: state.still || locked }), animate);
       if (state.paused) pauseAll(true);
+      sweepGlint();
+      if (locked) {
+        $('f-rank').textContent = 'Joker · locked';
+        $('f-a').textContent = 'Turn all 52';
+        $('f-b').textContent = 'then come back';
+        $('f-s1').textContent = 'Not yet.';
+        $('f-s2').textContent = `${52 - turnedCount()} cards to go.`;
+        $('f-note').textContent = 'The Jokers are the last two cards for a reason.';
+        $('f-mech').textContent = 'Face down until you have seen the whole deck.';
+        $('f-why').textContent = 'Every story needs an ending you have to earn.';
+        $('f-sound').textContent = 'Silence, for now.';
+        $('f-title').textContent = item.title;
+        $('f-kn').hidden = true;
+        $('pos').textContent = `${all.indexOf(item) + 1} / ${all.length}`;
+        $('caption').hidden = true;
+        document.querySelectorAll('.thumb').forEach((b) => b.setAttribute('aria-current', String(b.dataset.id === id)));
+        $('status').textContent = '';
+        follow();
+        return;
+      }
+      $('f-kn').textContent = T.KANNADA[id] || '';
+      $('f-kn').hidden = !state.kn;
+      $('caption').hidden = !Snd.enabled;
+      $('caption').textContent = Snd.enabled ? `Listening to: ${(item.kind === 'card' ? item.sound : jokerInfo[id].sound).replace(/\.$/, '')}` : '';
       if (item.kind === 'card') {
         $('f-rank').textContent = `${item.rankName} of ${T.SUIT_NAME[item.suit]}${T.HOURS[item.rank] ? ' · ' + T.HOURS[item.rank] : ''}`;
         $('f-a').textContent = item.pair[0];
@@ -373,6 +564,11 @@
     function label(item) { return item.kind === 'card' ? `${item.rankName} of ${T.SUIT_NAME[item.suit]}, ${item.title}` : `Joker, ${item.title}`; }
     const revealed = new Set();
     function reveal(id) {
+      if (!isJoker(id) && !turned.has(id)) {
+        turned.add(id);
+        saveTurned();
+        updateProgress(true);
+      }
       revealed.add(id);
       const b = thumbs[id];
       if (!b || b.classList.contains('revealed')) return;
@@ -423,6 +619,11 @@
       b.querySelector('.back').innerHTML = render('back', { static: true });
       b.addEventListener('click', () => {
         if (b.classList.contains('revealed')) return;
+        if (!jokersOpen()) {
+          $('joker-lock').textContent = `Locked. Turn all 52 cards first. ${52 - turnedCount()} to go.`;
+          b.animate && !reduce && b.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(0)' }], { duration: 300 });
+          return;
+        }
         b.querySelector('.front').innerHTML = render(id, { static: reduce });
         b.classList.add('revealed');
         b.setAttribute('aria-label', `Joker, ${id === 'departure' ? 'The Departure' : 'The Return'}`);
@@ -477,8 +678,6 @@
       $('status').textContent = state.still ? 'The still that goes to the printer. Trim 2.5 × 3.5 in, bleed 0.125 in.' : '';
     });
     // Print-ready PDFs are published next to the page in print/.
-    let dl = null;
-    window.claude && window.claude.use && window.claude.use('downloads').then((d) => { dl = d; }).catch(() => {});
     async function savePdf(file, name) {
       if (!dl) { $('status').textContent = 'Saving files is off in this view. The PDFs are in the repo under prototype/print.'; return; }
       try {
@@ -512,8 +711,10 @@
     // Opening: a riffle shuffle, twice, then the top card lands on the stage.
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     async function shuffle() {
-      const pick = all.filter((x) => x.kind === 'card')[Math.floor(Math.random() * T.CARDS.length)].id;
-      if (reduce || !document.body.animate) { setFeature(pick, false); return; }
+      const linked = linkedCard();
+      const pick = linked || dealNow();
+      state.linked = !!linked;
+      if (reduce || !document.body.animate) { setFeature(pick, false); dealtNote(pick, linked); return; }
       const ov = document.createElement('div');
       ov.className = 'intro';
       ov.innerHTML = `<button type="button" class="skip">Skip</button><div class="deck"></div><div class="cap"><b>A Tale of Two Cities</b><span class="label">Shuffling</span></div>`;
@@ -531,6 +732,7 @@
         if (!ov.isConnected) return;
         ov.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 320, easing: 'ease-out' }).onfinish = () => ov.remove();
         setFeature(pick, true);
+        dealtNote(pick, linked);
       };
       ov.querySelector('.skip').addEventListener('click', () => { skipped = true; finish(); });
       const base = (i) => `translate(0, ${-i * 0.8}px) rotate(0deg)`;
@@ -553,6 +755,333 @@
       } catch (e) { /* animation cancelled */ }
       finish();
     }
+
+
+    // ---------- personal: clocks, your city, the card for right now ----------
+    const store = {
+      get(k, d) { try { const v = localStorage.getItem('tale.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+      set(k, v) { try { localStorage.setItem('tale.' + k, JSON.stringify(v)); } catch (e) { /* storage off */ } }
+    };
+    const TZ = { blr: 'Asia/Kolkata', nyc: 'America/New_York' };
+    const CITY_NAME = { blr: 'Bengaluru', nyc: 'New York' };
+    const guessCity = () => { try { return /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) ? 'nyc' : 'blr'; } catch (e) { return 'blr'; } };
+    state.city = store.get('city', guessCity());
+    state.kn = store.get('kn', false);
+    const timeIn = (city) => new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ[city] }).format(new Date());
+    const hourIn = (city) => Number(new Intl.DateTimeFormat('en-US', { hour: 'numeric', hourCycle: 'h23', timeZone: TZ[city] }).format(new Date())) % 24;
+    function tick() { $('clk-blr').textContent = timeIn('blr'); $('clk-nyc').textContent = timeIn('nyc'); }
+    tick(); setInterval(tick, 15000);
+    function setCity(c, announce) {
+      state.city = c; store.set('city', c);
+      $('city-blr').setAttribute('aria-pressed', String(c === 'blr'));
+      $('city-nyc').setAttribute('aria-pressed', String(c === 'nyc'));
+      if (announce && state.id) {
+        setFeature(state.id, true);
+        $('status').textContent = c === 'nyc' ? 'New York side up. Hello from the other side of the seam.' : 'Bengaluru side up. Namaskara.';
+      }
+    }
+    setCity(state.city, false);
+    $('city-blr').addEventListener('click', () => setCity('blr', true));
+    $('city-nyc').addEventListener('click', () => setCity('nyc', true));
+    // Ranks keep time, so the deal follows your clock.
+    function rankForHour(h) {
+      if (h < 5 || h >= 22) return '10';
+      if (h < 6) return 'A';
+      return ['2', '2', '3', '3', '4', '4', '5', '5', '6', '6', '7', '7', '8', '8', '9', '9'][h - 6];
+    }
+    function dealNow() {
+      const rank = rankForHour(hourIn(state.city));
+      const pool = all.filter((x) => x.kind === 'card' && x.rank === rank);
+      return pool[Math.floor(Math.random() * pool.length)].id;
+    }
+    let linkUsed = false;
+    function linkedCard() {
+      if (linkUsed) return null;
+      linkUsed = true;
+      const id = (location.hash || '').slice(1);
+      return all.some((x) => x.id === id) ? id : null;
+    }
+    function dealtNote(id, linked) {
+      if (linked) { $('status').textContent = 'Someone sent you this one.'; return; }
+      $('status').textContent = `Dealt for ${timeIn(state.city)} in ${CITY_NAME[state.city]}.`;
+    }
+
+    // ---------- collection: progress, the locked Jokers, the cat hunt ----------
+    const cardIds = new Set(all.filter((x) => x.kind === 'card').map((x) => x.id));
+    const turned = new Set((store.get('turned', []) || []).filter((id) => cardIds.has(id)));
+    const turnedCount = () => turned.size;
+    const jokersOpen = () => turned.size >= cardIds.size;
+    let celebrated = jokersOpen();
+    function saveTurned() { store.set('turned', [...turned]); logVisit(); }
+    function updateProgress(fresh) {
+      const n = turned.size, total = cardIds.size;
+      $('prog-label').textContent = `${n} / ${total} turned`;
+      $('prog-bar').style.width = `${(n / total) * 100}%`;
+      $('joker-lock').textContent = jokersOpen() ? '' : `Locked until you turn all ${total} cards. ${total - n} to go.`;
+      document.querySelectorAll('.jflip').forEach((b) => b.classList.toggle('locked', !jokersOpen()));
+      const cats = T.CATS.every((id) => turned.has(id));
+      $('cat-badge').hidden = !cats;
+      if (fresh && cats && !store.get('cats', false)) { store.set('cats', true); toast('Three cats found. The bodega union thanks you for your service.'); }
+      if (fresh && jokersOpen() && !celebrated) {
+        celebrated = true;
+        toast('All 52 turned. The Jokers are waiting at the bottom of the page.');
+      }
+    }
+    updateProgress(false);
+    $('b-reset').addEventListener('click', () => {
+      turned.clear(); saveTurned(); store.set('cats', false); celebrated = false;
+      document.querySelectorAll('.thumb.revealed').forEach((b) => b.classList.remove('revealed'));
+      revealed.clear();
+      updateProgress(false);
+      toast('Fresh deck. Every card is face down again.');
+    });
+    let toastTimer = null;
+    function toast(msg) {
+      let t = document.querySelector('.toast');
+      if (!t) { t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+      t.textContent = msg; t.hidden = false;
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 4200);
+    }
+    // Two words that mean something to locals.
+    let typed = '';
+    document.addEventListener('keydown', (e) => {
+      if (e.target.closest && e.target.closest('input, textarea')) return;
+      if (e.key.length !== 1) return;
+      typed = (typed + e.key.toLowerCase()).slice(-8);
+      if (typed.endsWith('macha')) toast('Enna macha, all good? Have a filter coffee on us.');
+      if (typed.endsWith('bodega')) toast('Chopped cheese is on the house. It isn\'t, but the cat says hi.');
+    });
+
+    // ---------- Kannada line ----------
+    function setKn(on) {
+      state.kn = on; store.set('kn', on);
+      $('b-kn').setAttribute('aria-pressed', String(on));
+      $('f-kn').hidden = !on || !$('f-kn').textContent;
+    }
+    setKn(state.kn);
+    $('b-kn').addEventListener('click', () => setKn(!state.kn));
+
+    // ---------- physical: tilt, glint, press and hold to peek ----------
+    const tilt = $('tilt');
+    function sweepGlint() {
+      if (reduce || !tilt.animate) return;
+      $('glint').animate([{ backgroundPosition: '120% 0' }, { backgroundPosition: '-20% 0' }], { duration: 900, easing: 'ease-out' });
+    }
+    tilt.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse' || reduce) return;
+      const r = tilt.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      tilt.style.setProperty('--ry', `${(x * 12).toFixed(2)}deg`);
+      tilt.style.setProperty('--rx', `${(-y * 10).toFixed(2)}deg`);
+      tilt.style.setProperty('--gx', `${(50 - x * 120).toFixed(1)}%`);
+    });
+    tilt.addEventListener('pointerleave', () => { tilt.style.setProperty('--rx', '0deg'); tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--gx', '120%'); });
+    let peekTimer = null, peeked = false;
+    $('feature').addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'touch') return;
+      peeked = false;
+      peekTimer = setTimeout(() => { peeked = true; $('feature').classList.add('peek'); }, 420);
+    });
+    const endPeek = () => { clearTimeout(peekTimer); $('feature').classList.remove('peek'); };
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => $('feature').addEventListener(ev, endPeek));
+    $('feature').addEventListener('contextmenu', (e) => { if (peeked) e.preventDefault(); });
+
+    // ---------- shareable: a link per card, a story image ----------
+    const ARTIFACT = 'https://claude.ai/artifact/UQW9ejggK1W4hsSihkDiDQ';
+    const slug = (t) => t.replace(/[^A-Za-z0-9 ]/g, '').trim().replace(/ +/g, '-').toLowerCase();
+    function copyText(text, ok, el) {
+      const fail = () => {
+        const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); let done = false; try { done = document.execCommand('copy'); } catch (e) { done = false; } ta.remove();
+        $(el).textContent = done ? ok : `Copy this: ${text}`;
+      };
+      try { navigator.clipboard.writeText(text).then(() => { $(el).textContent = ok; }, fail); } catch (e) { fail(); }
+    }
+    $('b-link').addEventListener('click', () => copyText(`${ARTIFACT}#${state.id}`, 'Link copied. It opens straight on this card for anyone you have shared the deck with.', 'status'));
+    let dl = null;
+    async function storyImage() {
+      const item = all.find((x) => x.id === state.id);
+      if (!dl) { $('status').textContent = 'Saving files is off in this view.'; return; }
+      $('status').textContent = 'Making your story image.';
+      const svg = T.render(state.id, { standalone: true, static: true, uid: '-story' });
+      const img = new Image();
+      const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = url; });
+      const c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
+      const g = c.getContext('2d');
+      g.fillStyle = '#12151f'; g.fillRect(0, 0, 1080, 1920);
+      g.strokeStyle = 'rgba(244,236,220,0.25)'; g.lineWidth = 2; g.strokeRect(40, 40, 1000, 1840);
+      g.fillStyle = '#a8a294'; g.font = '700 30px "Archivo Narrow", sans-serif'; g.textAlign = 'center';
+      g.fillText('A  TALE  OF  TWO  CITIES', 540, 140);
+      g.save(); g.shadowColor = 'rgba(0,0,0,0.6)'; g.shadowBlur = 50; g.shadowOffsetY = 24;
+      g.drawImage(img, 165, 220, 750, 1050); g.restore();
+      g.fillStyle = '#f4ecdc'; g.font = '500 76px "Bodoni Moda", serif'; g.fillText(item.title, 540, 1420);
+      const line = item.kind === 'card' ? item.sentence : ['Funny how you can miss', 'two places at once.'];
+      g.font = 'italic 500 50px "Bodoni Moda", serif'; g.fillStyle = '#f4ecdc'; g.fillText(line[0], 540, 1530);
+      g.fillStyle = '#f2b330'; g.fillText(line[1], 540, 1600);
+      g.fillStyle = '#a8a294'; g.font = 'italic 500 36px "Cormorant Garamond", serif'; g.fillText('For anyone whose phone shows two clocks.', 540, 1780);
+      URL.revokeObjectURL(url);
+      const blob = await new Promise((r) => c.toBlob(r, 'image/png'));
+      try { await dl.save({ filename: `${slug(item.title)}-story.png`, data: blob }); $('status').textContent = 'Saved. Go make your group chat jealous.'; }
+      catch (e) { $('status').textContent = e && e.code === 'declined' ? 'No problem.' : 'That did not save. Try again in a moment.'; }
+    }
+    $('b-story').addEventListener('click', () => { storyImage().catch(() => { $('status').textContent = 'The image did not come out. Try again in a moment.'; }); });
+
+    // ---------- polish: local check through comments ----------
+    let comments = null;
+    $('b-flag').addEventListener('click', async () => {
+      if (!comments) { $('status').textContent = 'Comments are off in this view.'; return; }
+      const r = await comments.openComposer({ element: $('feature') }).catch(() => ({ opened: false }));
+      $('status').textContent = r.opened ? 'Tell us what a local would say. The comment sticks to this card.' : 'Click the card once, then try again.';
+    });
+
+    // ---------- product, voting and numbers (shared data) ----------
+    let db = null, me = null, user = null, canWrite = null;
+    const wl = { city: 'blr', n: 1 };
+    document.querySelectorAll('#wl-city button').forEach((b) => b.addEventListener('click', () => {
+      wl.city = b.dataset.v;
+      document.querySelectorAll('#wl-city button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    }));
+    $('wl-minus').addEventListener('click', () => { wl.n = Math.max(1, wl.n - 1); $('wl-n').textContent = wl.n; });
+    $('wl-plus').addEventListener('click', () => { wl.n = Math.min(10, wl.n + 1); $('wl-n').textContent = wl.n; });
+    const noWrite = 'Only people with Contributor access can save here. Ask whoever sent you the link.';
+    $('wl-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!db || !me) { $('wl-status').textContent = 'Sign in to claude.ai to join the list.'; return; }
+      if (canWrite === false) { $('wl-status').textContent = noWrite; return; }
+      try {
+        await db.doc(`waitlist/${me}`).set({ city: wl.city, decks: wl.n, note: $('wl-note').value.slice(0, 120), at: new Date().toISOString() });
+        $('wl-status').textContent = `You're on the list for ${wl.n} ${wl.n > 1 ? 'decks' : 'deck'}. We'll be in touch before the ink dries.`;
+      } catch (err) { $('wl-status').textContent = err && err.code === 'invalid_argument' ? noWrite : 'That did not save. Try again in a moment.'; }
+    });
+    async function savePdfTo(file, name, el) {
+      if (!dl) { $(el).textContent = 'Saving files is off in this view. The PDFs are in the repo under prototype/print.'; return; }
+      try {
+        $(el).textContent = 'Getting the PDF ready.';
+        const blob = await (await fetch('print/' + file)).blob();
+        await dl.save({ filename: name, data: blob });
+        $(el).textContent = 'Saved. Print on the heaviest card stock you can find.';
+      } catch (err) { $(el).textContent = err && err.code === 'declined' ? 'No problem. It is here whenever you want it.' : 'That did not save. Try again in a moment.'; }
+    }
+    $('b-home-letter').addEventListener('click', () => savePdfTo('home-print-letter.pdf', 'a-tale-of-two-cities-home-print-letter.pdf', 'home-status'));
+    $('b-home-a4').addEventListener('click', () => savePdfTo('home-print-a4.pdf', 'a-tale-of-two-cities-home-print-a4.pdf', 'home-status'));
+    $('b-pro').addEventListener('click', () => savePdfTo('a-tale-of-two-cities-deck.pdf', 'a-tale-of-two-cities-deck.pdf', 'home-status'));
+
+    // Your turn: each person's pairings live in one document; votes in another.
+    let pairings = [], votes = {};
+    function renderPairings() {
+      const tally = {};
+      Object.values(votes).forEach((picks) => Object.keys(picks || {}).forEach((k) => { if (picks[k]) tally[k] = (tally[k] || 0) + 1; }));
+      const mine = (me && votes[me]) || {};
+      const rows = pairings.map((p) => ({ ...p, n: tally[p.key] || 0 })).sort((a, b) => b.n - a.n || (b.at || '').localeCompare(a.at || ''));
+      const list = $('pp-list');
+      if (!rows.length) { list.innerHTML = '<li class="pp-empty">Nothing here yet. Silk Board × the BQE is taken, sorry.</li>'; return rows; }
+      list.innerHTML = '';
+      const ids = [...new Set(rows.map((r) => r.by))];
+      const fill = (names) => rows.forEach((r) => {
+        const li = document.createElement('li');
+        const pair = document.createElement('span'); pair.className = 'pp-pair';
+        const a = document.createElement('span'); a.textContent = r.blr;
+        const x = document.createElement('span'); x.className = 'x'; x.textContent = '×';
+        const b = document.createElement('span'); b.textContent = r.nyc;
+        pair.append(a, x, b);
+        const meta = document.createElement('span'); meta.className = 'pp-meta';
+        meta.textContent = `${r.line ? `“${r.line}” · ` : ''}from ${(names[r.by] && names[r.by].name) || 'someone with taste'}`;
+        const v = document.createElement('button'); v.type = 'button'; v.className = 'pp-vote';
+        v.setAttribute('aria-pressed', String(!!mine[r.key]));
+        v.setAttribute('aria-label', `Vote for ${r.blr} and ${r.nyc}, ${r.n} votes`);
+        v.textContent = `${mine[r.key] ? 'Voted' : 'Vote'} · ${r.n}`;
+        v.addEventListener('click', () => vote(r.key));
+        li.append(pair, meta, v);
+        list.appendChild(li);
+      });
+      if (user) user.profiles(ids).then(fill, () => fill({})); else fill({});
+      return rows;
+    }
+    async function vote(key) {
+      if (!db || !me) { $('pp-status').textContent = 'Sign in to claude.ai to vote.'; return; }
+      if (canWrite === false) { $('pp-status').textContent = noWrite; return; }
+      const picks = { ...((votes[me]) || {}) };
+      picks[key] = !picks[key];
+      try { await db.doc(`votes/${me}`).set({ picks }); } catch (err) { $('pp-status').textContent = err && err.code === 'invalid_argument' ? noWrite : 'That vote did not stick. Try again.'; }
+    }
+    $('pp-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!db || !me) { $('pp-status').textContent = 'Sign in to claude.ai to add a pairing.'; return; }
+      if (canWrite === false) { $('pp-status').textContent = noWrite; return; }
+      const mineDoc = pairings.filter((p) => p.by === me).map(({ blr, nyc, line, at }) => ({ blr, nyc, line, at }));
+      if (mineDoc.length >= 3) { $('pp-status').textContent = 'Three each, so everyone gets a turn. Vote for someone else\'s.'; return; }
+      const item = { blr: $('pp-blr').value.trim().slice(0, 60), nyc: $('pp-nyc').value.trim().slice(0, 60), line: $('pp-line').value.trim().slice(0, 90), at: new Date().toISOString() };
+      if (!item.blr || !item.nyc) return;
+      try {
+        await db.doc(`pairings/${me}`).set({ items: [...mineDoc, item] });
+        $('pp-form').reset();
+        $('pp-status').textContent = 'Added. May the votes be kind.';
+      } catch (err) { $('pp-status').textContent = err && err.code === 'invalid_argument' ? noWrite : 'That did not save. Try again in a moment.'; }
+    });
+
+    // Visits: one document per person, written once per visit and when the deck moves forward.
+    let visitLogged = false, visitTimer = null;
+    function logVisit() {
+      if (!db || !me || canWrite === false) return;
+      clearTimeout(visitTimer);
+      visitTimer = setTimeout(async () => {
+        const ref = db.doc(`visits/${me}`);
+        try {
+          const snap = await ref.get();
+          const prev = snap.exists ? snap.data() : {};
+          await ref.set({ first: prev.first || new Date().toISOString(), last: new Date().toISOString(), visits: (prev.visits || 0) + (visitLogged ? 0 : 1), turned: turned.size, city: state.city });
+          visitLogged = true;
+        } catch (err) { /* reads stay quiet */ }
+      }, 1500);
+    }
+
+    (async () => {
+      if (!window.claude || !window.claude.use) return;
+      window.claude.use('downloads').then((d) => { dl = d; }, () => {});
+      window.claude.use('comments').then((c) => { comments = c; }, () => {});
+      [db, user] = await Promise.all([window.claude.use('db').catch(() => null), window.claude.use('user').catch(() => null)]);
+      if (user) { me = await user.id().catch(() => null); canWrite = await user.can('data.write').catch(() => null); }
+      if (!db) return;
+      logVisit();
+      db.collection('pairings').onSnapshot((snap) => {
+        pairings = [];
+        snap.docs.forEach((d) => ((d.data() || {}).items || []).forEach((it, i) => pairings.push({ ...it, by: d.id, key: `${d.id}:${i}` })));
+        updateDesk(renderPairings());
+      }, () => {});
+      db.collection('votes').onSnapshot((snap) => {
+        votes = {}; snap.docs.forEach((d) => { votes[d.id] = (d.data() || {}).picks || {}; });
+        updateDesk(renderPairings());
+      }, () => {});
+      const owner = user ? await user.isOwner().catch(() => false) : false;
+      if (owner) {
+        $('owner-desk').hidden = false;
+        db.collection('visits').onSnapshot((snap) => {
+          let v = 0, done = 0;
+          snap.docs.forEach((d) => { const x = d.data() || {}; v += x.visits || 0; if ((x.turned || 0) >= cardIds.size) done++; });
+          $('st-people').textContent = snap.size; $('st-visits').textContent = v; $('st-done').textContent = done;
+        }, () => {});
+        db.collection('waitlist').onSnapshot((snap) => {
+          let decks = 0; const by = { blr: 0, nyc: 0, both: 0 };
+          snap.docs.forEach((d) => { const x = d.data() || {}; decks += x.decks || 0; by[x.city] = (by[x.city] || 0) + 1; });
+          $('st-wl').textContent = snap.size;
+          $('st-wl-sub').textContent = `${decks} decks · BLR ${by.blr} · NYC ${by.nyc} · both ${by.both}`;
+          $('wl-owner').hidden = false;
+          $('wl-owner').textContent = `So far: ${snap.size} people, ${decks} decks.`;
+        }, () => {});
+      }
+    })();
+    function updateDesk(rows) {
+      if (!rows || $('owner-desk').hidden) return;
+      $('st-top').textContent = rows.length ? `${rows[0].blr} × ${rows[0].nyc} (${rows[0].n})` : 'None yet';
+    }
+    // Here right now: presence counts everyone with the page open.
+    (async () => {
+      if (!window.claude || !window.claude.use) return;
+      const room = await window.claude.use('room').catch(() => null);
+      if (!room) return;
+      try { room.presence({ here: true }); room.onPeers((peers) => { $('st-live').textContent = Math.max(1, (peers || []).length); }); } catch (e) { /* presence off */ }
+    })();
 
     if (reduce) { $('b-print').setAttribute('aria-pressed', 'true'); $('print-row').hidden = false; }
     $('feature').innerHTML = render('back', { static: true });
@@ -579,13 +1108,12 @@
     $('feature').addEventListener('pointercancel', () => { swipe = null; });
     $('feature').addEventListener('pointerup', (e) => {
       if (!swipe) return;
+      if (peeked) { swipe = null; peeked = false; return; }
       const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y; swipe = null;
       if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
     });
 
     $('b-shuffle').addEventListener('click', () => {
-      revealed.clear();
-      document.querySelectorAll('.thumb.revealed').forEach((b) => { if (!b.classList.contains('jflip')) b.classList.remove('revealed'); });
       $('b-all').setAttribute('aria-pressed', 'false');
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
       $('feature').innerHTML = render('back', { static: true });

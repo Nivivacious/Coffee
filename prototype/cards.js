@@ -323,7 +323,7 @@
     const fonts = opts.standalone
       ? `<style>@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&amp;family=Cormorant+Garamond:wght@500;600;700&amp;family=Archivo+Narrow:wght@500;700&amp;family=Noto+Sans+Kannada:wght@500;700&amp;display=swap');</style>`
       : '';
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}"${size} role="img" aria-labelledby="${p}-t" data-card="${p}">${fonts}<title id="${p}-t">${esc(opts.title || '')}</title>${bleed ? `<rect x="${-bleed}" y="${-bleed}" width="${W + 2 * bleed}" height="${H + 2 * bleed}" fill="${INK.paper}"/>` : ''}`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}"${size} role="img" aria-labelledby="${p}-t${opts.desc ? ` ${p}-d` : ''}" data-card="${p}">${fonts}<title id="${p}-t">${esc(opts.title || '')}</title>${opts.desc ? `<desc id="${p}-d">${esc(opts.desc)}</desc>` : ''}${bleed ? `<rect x="${-bleed}" y="${-bleed}" width="${W + 2 * bleed}" height="${H + 2 * bleed}" fill="${INK.paper}"/>` : ''}`;
   }
 
   function mirroredCard(def, opts) {
@@ -331,7 +331,7 @@
     const p = def.id + (opts.uid || '');
     const ctx = makeCtx(p, opts);
     const art = def.draw(ctx);
-    return svgOpen(p, Object.assign({ title: `${def.rankName} of ${SUIT_NAME[def.suit]}: ${def.title}` }, opts)) +
+    return svgOpen(p, Object.assign({ title: `${def.rankName} of ${SUIT_NAME[def.suit]}: ${def.title}`, desc: `${def.pair[0]} in Bengaluru and ${def.pair[1]} in New York. ${def.mechanism || ''} Hidden line: ${def.sentence.join(' ')}` }, opts)) +
       defs(p) + frame() +
       `<g>${half(ctx, def, art.top)}</g>` +
       `<g transform="rotate(180 ${CX} ${CY})">${half(ctx, def, art.bottom)}</g>` +
@@ -851,7 +851,7 @@
     }
     const startAnim = dep ? loop('startOffset', '-130;200', '8s') : loop('startOffset', '200;-130', '8s');
 
-    return svgOpen(p, Object.assign({ title: `Joker: ${title[0] + title.slice(1).toLowerCase()}` }, opts)) + defs(p) + frame() +
+    return svgOpen(p, Object.assign({ title: `Joker: ${title[0] + title.slice(1).toLowerCase()}`, desc: dep ? 'A steel tumbler pours coffee down into a New York paper cup. The line Funny how you can miss two places at once runs inside the stream.' : 'A New York paper cup pours coffee back into a steel davara that already holds a little. The same line runs upstream.' }, opts)) + defs(p) + frame() +
       `<rect x="${WIN.x}" y="${WIN.y}" width="${WIN.r - WIN.x}" height="${H - 2 * WIN.y}" rx="6" fill="${INK.yellow}" opacity="0.1"/>
       <g clip-path="url(#${p}-full)">
         <g transform="translate(${mx(140)} 170)"><g stroke="${INK.yellow}" stroke-width="0.6" opacity="0.55">${ctx.a(spin(dep ? '0;5' : '0;-5', '8s', ' accumulate="sum"'))}${rays}</g></g>
