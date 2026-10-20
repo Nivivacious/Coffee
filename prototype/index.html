@@ -252,7 +252,7 @@
 
 <div class="wrap">
   <header>
-    <span class="label" id="count">52 cards, 2 Jokers, one very long flight<span id="visitors" hidden> · <b id="vcount">0</b> visitors so far</span></span>
+    <span class="label" id="count">52 cards, 2 Jokers, one very long flight<span id="visitors" hidden> · <b id="vcount">0</b> <span id="vword">visitors</span> so far</span></span>
     <h1>A Tale of <em>Two</em> Cities</h1>
     <p class="thesis">For anyone whose phone shows two clocks.</p>
     <p class="tips"><b>Tap the card</b> to turn it. <b>Swipe</b> or use the arrows to flip through. Turn <b>all 52</b> to unlock the two Jokers. Read any line <b>in Kannada</b>. There are a few cats to find.</p>
@@ -984,6 +984,7 @@
       // One public number: how many people have visited.
       db.collection('visits').onSnapshot((snap) => {
         $('vcount').textContent = snap.size.toLocaleString('en-IN');
+        $('vword').textContent = snap.size === 1 ? 'visitor' : 'visitors';
         $('visitors').hidden = snap.size < 1;
       }, () => {});
     })();

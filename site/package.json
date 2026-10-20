@@ -1,0 +1,6 @@
+{
+  "name": "a-tale-of-two-cities",
+  "private": true,
+  "description": "52 playing cards about Bangalore and New York.",
+  "engines": { "node": ">=18" }
+}
