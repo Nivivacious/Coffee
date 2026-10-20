@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const T = require('./cards.js');
-for (const f of fs.readdirSync(path.join(__dirname, 'deck')).filter((n) => n.endsWith('.js')).sort()) require(path.join(__dirname, 'deck', f));
+for (const f of fs.readdirSync(path.join(__dirname, 'deck')).filter((n) => n.endsWith('.js') && n !== 'render.js').sort()) require(path.join(__dirname, 'deck', f));
 
 const out = path.join(__dirname, 'svg');
 fs.mkdirSync(out, { recursive: true });

@@ -288,7 +288,7 @@
       flipStage(render(id, { static: state.still }), animate);
       if (state.paused) pauseAll(true);
       if (item.kind === 'card') {
-        $('f-rank').textContent = `${item.rankName} of ${T.SUIT_NAME[item.suit]} · ${T.HOURS[item.rank]}`;
+        $('f-rank').textContent = `${item.rankName} of ${T.SUIT_NAME[item.suit]}${T.HOURS[item.rank] ? ' · ' + T.HOURS[item.rank] : ''}`;
         $('f-a').textContent = item.pair[0];
         $('f-b').textContent = item.pair[1];
         $('f-s1').textContent = item.sentence[0];

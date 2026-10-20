@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12.5 -12.5 275 375" width="2.75in" height="3.75in" role="img" aria-labelledby="s-k-t" data-card="s-k"><style>@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&amp;family=Cormorant+Garamond:wght@500;600;700&amp;family=Archivo+Narrow:wght@500;700&amp;family=Noto+Sans+Kannada:wght@500;700&amp;display=swap');</style><title id="s-k-t">King of Spades: Better Before</title><rect x="-12.5" y="-12.5" width="275" height="375" fill="#F4ECDC"/><defs>
+      <clipPath id="s-k-win"><path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167 Z"/></clipPath>
+      <clipPath id="s-k-full"><rect x="38" y="20" width="174" height="310" rx="6"/></clipPath>
+      <pattern id="s-k-hatch" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0,0 V2.2" stroke="#1E2233" stroke-width="0.35"/></pattern>
+      <pattern id="s-k-hatch-paper" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><path d="M0,0 V2" stroke="#F4ECDC" stroke-width="0.3"/></pattern>
+      <pattern id="s-k-leaf" width="5" height="4" patternUnits="userSpaceOnUse"><path d="M0.5,3 q1.5,-2.2 3,0" fill="none" stroke="#1E2233" stroke-width="0.3" opacity="0.55"/></pattern>
+      <pattern id="s-k-brick" width="6" height="3.2" patternUnits="userSpaceOnUse"><path d="M0,3.2 H6 M3,0 V1.6 M0,1.6 H6 M0,1.6 V3.2" stroke="#1E2233" stroke-width="0.25" opacity="0.5"/></pattern>
+    </defs><rect width="250" height="350" rx="12" fill="#F4ECDC"/>
+      <rect x="8.5" y="8.5" width="233" height="333" rx="7" fill="none" stroke="#1E2233" stroke-width="0.7"/>
+      <rect x="11" y="11" width="228" height="328" rx="5" fill="none" stroke="#1E2233" stroke-width="0.22"/>
+      <path d="M11,8.8 L11.6,10.4 L13.2,11 L11.6,11.6 L11,13.2 L10.4,11.6 L8.8,11 L10.4,10.4 Z" fill="#D9412B"/><path d="M239,8.8 L239.6,10.4 L241.2,11 L239.6,11.6 L239,13.2 L238.4,11.6 L236.8,11 L238.4,10.4 Z" fill="#D9412B"/><path d="M11,336.8 L11.6,338.4 L13.2,339 L11.6,339.6 L11,341.2 L10.4,339.6 L8.8,339 L10.4,338.4 Z" fill="#D9412B"/><path d="M239,336.8 L239.6,338.4 L241.2,339 L239.6,339.6 L239,341.2 L238.4,339.6 L236.8,339 L238.4,338.4 Z" fill="#D9412B"/><g>
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#1E2233">K</text>
+      <path d="M0,-6.2 C1,-4 6,-1.6 6,1.6 C6,4.1 3,5 0.9,3.3 L1.9,6.2 L-1.9,6.2 L-0.9,3.3 C-3,5 -6,4.1 -6,1.6 C-6,-1.6 -1,-4 0,-6.2 Z" transform="translate(25 51) scale(0.85)" fill="#1E2233"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">BLR</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">BENGALURU · 12°58′N · 77°35′E</text>
+      <g clip-path="url(#s-k-win)">
+        <rect width="250" height="350" fill="#3B6EA8" opacity="0.16"/>
+        <g>
+        <rect x="140" y="58" width="56" height="109" fill="#3B6EA8" fill-opacity="0.35" stroke="#1E2233" stroke-width="0.6"/>
+        <path d="M140,66 H196 M140,74 H196 M140,82 H196 M140,90 H196 M140,98 H196 M140,106 H196 M140,114 H196 M140,122 H196 M140,130 H196 M140,138 H196 M140,146 H196 M140,154 H196 M140,162 H196 M149,58 V167 M158,58 V167 M167,58 V167 M176,58 V167 M185,58 V167 M194,58 V167" stroke="#1E2233" stroke-width="0.3" opacity="0.6"/>
+        <g clip-path="url(#s-k-win)"><path d="M140,88 L196,64 L196,76 L140,100 Z" fill="#F4ECDC" opacity="0.4"></path></g>
+      </g>
+        <g transform="translate(168 58)">
+        <path d="M-2,0 V-24 M2,0 V-24 M-2,-4 L2,-8 M-2,-12 L2,-16 M-2,-20 L2,-24" stroke="#F2B330" stroke-width="0.8"/>
+        <g transform="translate(0 -24)"><g>
+          <path d="M-14,0 H36 M-14,-3 H36 M0,-3 L-14,0 M0,-3 L36,0" stroke="#F2B330" stroke-width="0.8" fill="none"/>
+          <path d="M0,-3 V-9 L-14,-1 M0,-9 L36,-1" stroke="#1E2233" stroke-width="0.3"/>
+          <rect x="-16" y="0" width="5" height="4" fill="#1E2233"/>
+          <path d="M28,0 V14" stroke="#1E2233" stroke-width="0.3"></path>
+        </g></g></g>
+        <path d="M38,106 L74,82 H118 L150,106 Z" fill="#D9412B" opacity="0.85" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M44,102 H144 M48,98.4 H140 M52,94.8 H136 M56,91.2 H132 M60,87.6 H128 M64,84 H124" stroke="#1E2233" stroke-width="0.3" opacity="0.6"/>
+        <rect x="44" y="106" width="100" height="48" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M40,106 H148" stroke="#1E2233" stroke-width="1.2"/>
+        <rect x="48" y="108" width="4" height="40" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.45"/><rect x="68" y="108" width="4" height="40" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.45"/><rect x="116" y="108" width="4" height="40" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.45"/><rect x="136" y="108" width="4" height="40" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.45"/>
+        <rect x="56" y="116" width="10" height="20" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.4"/><rect x="122" y="116" width="10" height="20" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.4"/>
+        <path d="M80,148 V122 Q94,112 108,122 V148 Z" fill="#7A4528" fill-opacity="0.7" stroke="#1E2233" stroke-width="0.4"/>
+        <path d="M44,148 H144 V154 H44 Z" fill="#1E2233" opacity="0.2"/>
+        <g transform="translate(196 167)"><path d="M0,0 C-1,-20 2,-30 0,-44" stroke="#1E2233" stroke-width="2.4" fill="none"/><path d="M16,-54 Q18.07,-49.36 12.94,-46.95 Q11.17,-41.86 4.94,-42.59 Q0,-39 -4.94,-42.59 Q-11.17,-41.86 -12.94,-46.95 Q-18.07,-49.36 -16,-54 Q-18.07,-58.64 -12.94,-61.05 Q-11.17,-66.14 -4.94,-65.41 Q0,-69 4.94,-65.41 Q11.17,-66.14 12.94,-61.05 Q18.07,-58.64 16,-54 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.45"/><path d="M16,-54 Q18.07,-49.36 12.94,-46.95 Q11.17,-41.86 4.94,-42.59 Q0,-39 -4.94,-42.59 Q-11.17,-41.86 -12.94,-46.95 Q-18.07,-49.36 -16,-54 Q-18.07,-58.64 -12.94,-61.05 Q-11.17,-66.14 -4.94,-65.41 Q0,-69 4.94,-65.41 Q11.17,-66.14 12.94,-61.05 Q18.07,-58.64 16,-54 Z" fill="url(#s-k-leaf)"/></g>
+        <path d="M38,154 H212 V167 H38 Z" fill="#1E2233" opacity="0.12"/>
+        <path d="M38,154 H212" stroke="#1E2233" stroke-width="0.4"/>
+        <g transform="translate(125 167)">
+          <path d="M-26,-10 H26 M-26,-13 H26" stroke="#1E2233" stroke-width="1.2"/><path d="M-22,0 V-12 M22,0 V-12" stroke="#1E2233" stroke-width="1"/>
+        </g>
+        <g transform="translate(116 155)"><g transform="rotate(4)">
+      <path d="M-1,-1 L7,-1 L8,10" fill="none" stroke="#F4ECDC" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M-4,-1 L-4.6,-13 Q-4.6,-15.2 -2.4,-15.4 L2.4,-15.4 Q4.4,-15.2 4.4,-13 L3.8,-1 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.45"/>
+      <path d="M3,-12 L7,-5 L9,-5" fill="none" stroke="#F4ECDC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(9 -5)"><path d="M0,-2 V15" stroke="#7A4528" stroke-width="1"/><path d="M0,-2 q-2.4,0 -2.4,2" fill="none" stroke="#7A4528" stroke-width="1"/></g>
+      <circle cx="0.4" cy="-19" r="3.5" fill="#1E2233"/><path d="M-3.6,-21 Q0.4,-24.6 4.4,-21 Z" fill="#1E2233"/></g></g>
+        <g transform="translate(150 128)"><g>
+        <path d="M-18,-12 Q-18,-20 -10,-20 H10 Q18,-20 18,-12 V-2 Q18,6 10,6 H-2 L-10,13 L-8,6 H-10 Q-18,6 -18,-2 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.6"/>
+        <g transform="translate(0 -7)"><path d="M0,9 V2" stroke="#1E2233" stroke-width="1"/><path d="M9,-2 Q10.34,0.39 6.89,1.21 Q5.5,4.06 1.56,2.92 Q-1.91,4.89 -4.5,2.33 Q-8.43,2.5 -8.46,-0.29 Q-11,-2 -8.46,-3.71 Q-8.43,-6.5 -4.5,-6.33 Q-1.91,-8.89 1.56,-6.92 Q5.5,-8.06 6.89,-5.21 Q10.34,-4.39 9,-2 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.35"/><path d="M-12,9 H12" stroke="#1E2233" stroke-width="0.4"/></g></g></g>
+        <g transform="translate(64 154)"><g><path d="M-3.4,0 Q-3,-3.6 0.6,-3.4 Q2.4,-5.4 3.6,-3.6 L4.8,-3.2 L3.4,-2.6 Q3,0 0,0.4 Z" fill="#1E2233" opacity="0.75"/></g></g></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-18.34" y="-4.6" width="36.68" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">MG ROAD</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="101.25" lengthAdjust="spacingAndGlyphs" fill="#1E2233">EVERYONE SAYS IT WAS BETTER</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="148.25" cy="171.6" r="0.42"/><circle cx="151.45" cy="171.6" r="0.42"/><circle cx="154.65" cy="171.6" r="0.42"/><circle cx="157.85" cy="171.6" r="0.42"/><circle cx="161.05" cy="171.6" r="0.42"/><circle cx="164.25" cy="171.6" r="0.42"/><circle cx="167.45" cy="171.6" r="0.42"/><circle cx="170.65" cy="171.6" r="0.42"/><circle cx="173.85" cy="171.6" r="0.42"/><circle cx="177.05" cy="171.6" r="0.42"/><circle cx="180.25" cy="171.6" r="0.42"/><circle cx="183.45" cy="171.6" r="0.42"/><circle cx="186.65" cy="171.6" r="0.42"/><circle cx="189.85" cy="171.6" r="0.42"/><circle cx="193.05" cy="171.6" r="0.42"/><circle cx="196.25" cy="171.6" r="0.42"/><circle cx="199.45" cy="171.6" r="0.42"/><circle cx="202.65" cy="171.6" r="0.42"/><circle cx="205.85" cy="171.6" r="0.42"/></g></g><g transform="rotate(180 125 175)">
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#1E2233">K</text>
+      <path d="M0,-6.2 C1,-4 6,-1.6 6,1.6 C6,4.1 3,5 0.9,3.3 L1.9,6.2 L-1.9,6.2 L-0.9,3.3 C-3,5 -6,4.1 -6,1.6 C-6,-1.6 -1,-4 0,-6.2 Z" transform="translate(25 51) scale(0.85)" fill="#1E2233"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">NYC</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">NEW YORK · 40°42′N · 74°00′W</text>
+      <g clip-path="url(#s-k-win)">
+        <rect width="250" height="350" fill="#3B6EA8" opacity="0.14"/>
+        <g>
+        <rect x="150" y="52" width="62" height="115" fill="#3B6EA8" fill-opacity="0.35" stroke="#1E2233" stroke-width="0.6"/>
+        <path d="M150,60 H212 M150,68 H212 M150,76 H212 M150,84 H212 M150,92 H212 M150,100 H212 M150,108 H212 M150,116 H212 M150,124 H212 M150,132 H212 M150,140 H212 M150,148 H212 M150,156 H212 M150,164 H212 M159,52 V167 M168,52 V167 M177,52 V167 M186,52 V167 M195,52 V167 M204,52 V167" stroke="#1E2233" stroke-width="0.3" opacity="0.6"/>
+        <g clip-path="url(#s-k-win)"><path d="M150,82 L212,58 L212,70 L150,94 Z" fill="#F4ECDC" opacity="0.4"></path></g>
+      </g>
+        <g transform="translate(186 52)">
+        <path d="M-2,0 V-24 M2,0 V-24 M-2,-4 L2,-8 M-2,-12 L2,-16 M-2,-20 L2,-24" stroke="#F2B330" stroke-width="0.8"/>
+        <g transform="translate(0 -24)"><g>
+          <path d="M-14,0 H36 M-14,-3 H36 M0,-3 L-14,0 M0,-3 L36,0" stroke="#F2B330" stroke-width="0.8" fill="none"/>
+          <path d="M0,-3 V-9 L-14,-1 M0,-9 L36,-1" stroke="#1E2233" stroke-width="0.3"/>
+          <rect x="-16" y="0" width="5" height="4" fill="#1E2233"/>
+          <path d="M28,0 V14" stroke="#1E2233" stroke-width="0.3"></path>
+        </g></g></g>
+        <rect x="38" y="50" width="106" height="98" fill="#D9412B" opacity="0.3"/>
+        <rect x="38" y="50" width="106" height="98" fill="url(#s-k-brick)"/>
+        <path d="M38,50 H144 V148" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+        <path d="M36,50 H146 V46 H36 Z" fill="#1E2233" opacity="0.6"/>
+        <g transform="translate(70 46)"><path d="M-6,0 L-5,-8 M6,0 L5,-8 M0,0 V-8" stroke="#1E2233" stroke-width="0.5"/><rect x="-7" y="-18" width="14" height="10" fill="#7A4528" fill-opacity="0.75" stroke="#1E2233" stroke-width="0.5"/><path d="M-8,-18 L0,-24 L8,-18 Z" fill="#1E2233"/></g>
+        <g fill="#F4ECDC" stroke="#1E2233" stroke-width="0.4"><rect x="48" y="60" width="10" height="14"/><rect x="66" y="60" width="10" height="14"/><rect x="118" y="60" width="10" height="14"/><rect x="48" y="84" width="10" height="14"/><rect x="66" y="84" width="10" height="14"/><rect x="118" y="84" width="10" height="14"/><rect x="48" y="128" width="10" height="14"/><rect x="66" y="128" width="10" height="14"/><rect x="118" y="128" width="10" height="14"/></g>
+        <g stroke="#1E2233" stroke-width="0.6" fill="none"><path d="M44,78 H80 M44,102 H80 M44,78 V74 M80,78 V74 M44,102 V98 M80,102 V98 M50,78 L74,102"/></g>
+        <path d="M100,148 V118 H138 V148" fill="#1E2233" opacity="0.7"/>
+        <rect x="108" y="122" width="22" height="26" fill="#7A4528" stroke="#F4ECDC" stroke-width="0.3"/>
+        <g fill="#F4ECDC" stroke="#1E2233" stroke-width="0.45">
+          <rect x="102" y="148" width="40" height="5"/><rect x="98" y="153" width="48" height="7"/><rect x="94" y="160" width="56" height="7"/>
+        </g>
+        <path d="M94,167 C94,154 98,148 102,146 M150,167 C150,154 146,148 142,146" fill="none" stroke="#1E2233" stroke-width="0.9"/>
+        <path d="M38,148 H94 M150,148 H212" stroke="#1E2233" stroke-width="0.4"/>
+        <path d="M38,148 H94 V167 H38 Z M150,148 H212 V167 H150 Z" fill="#1E2233" opacity="0.12"/>
+        <g transform="translate(116 160)"><g transform="rotate(4)">
+      <path d="M-1,-1 L7,-1 L8,10" fill="none" stroke="#3B6EA8" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M-4,-1 L-4.6,-13 Q-4.6,-15.2 -2.4,-15.4 L2.4,-15.4 Q4.4,-15.2 4.4,-13 L3.8,-1 Z" fill="#7A4528" stroke="#1E2233" stroke-width="0.45"/>
+      <path d="M3,-12 L7,-5 L9,-5" fill="none" stroke="#7A4528" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(9 -5)"><path d="M0,-2 V15" stroke="#7A4528" stroke-width="1"/><path d="M0,-2 q-2.4,0 -2.4,2" fill="none" stroke="#7A4528" stroke-width="1"/></g>
+      <circle cx="0.4" cy="-19" r="3.5" fill="#1E2233"/><path d="M-3.8,-20.4 Q0.4,-25 4.6,-20.4 L7,-20 Z" fill="#D9412B"/></g></g>
+        <g transform="translate(160 126)"><g>
+        <path d="M-18,-12 Q-18,-20 -10,-20 H10 Q18,-20 18,-12 V-2 Q18,6 10,6 H-2 L-10,13 L-8,6 H-10 Q-18,6 -18,-2 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.6"/>
+        <g transform="translate(0 -6)"><rect x="-6" y="-6" width="12" height="15" fill="#D9412B" opacity="0.6" stroke="#1E2233" stroke-width="0.35"/><path d="M-3,-2 h2 M1,-2 h2 M-3,3 h2 M1,3 h2" stroke="#1E2233" stroke-width="0.8"/><rect x="-2.6" y="-11" width="5.2" height="4" fill="#7A4528" stroke="#1E2233" stroke-width="0.3"/><path d="M-3,-11 L0,-13.4 L3,-11 Z" fill="#1E2233"/><path d="M-12,9 H12" stroke="#1E2233" stroke-width="0.4"/></g></g></g>
+        <g transform="translate(190 148)"><g><path d="M-3.4,0 Q-3,-3.6 0.6,-3.4 Q2.4,-5.4 3.6,-3.6 L4.8,-3.2 L3.4,-2.6 Q3,0 0,0.4 Z" fill="#1E2233" opacity="0.75"/></g></g></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-26.44" y="-4.6" width="52.88" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">EAST VILLAGE</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="82.5" lengthAdjust="spacingAndGlyphs" fill="#1E2233">THE YEAR THEY ARRIVED.</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="129.5" cy="171.6" r="0.42"/><circle cx="132.7" cy="171.6" r="0.42"/><circle cx="135.9" cy="171.6" r="0.42"/><circle cx="139.1" cy="171.6" r="0.42"/><circle cx="142.3" cy="171.6" r="0.42"/><circle cx="145.5" cy="171.6" r="0.42"/><circle cx="148.7" cy="171.6" r="0.42"/><circle cx="151.9" cy="171.6" r="0.42"/><circle cx="155.1" cy="171.6" r="0.42"/><circle cx="158.3" cy="171.6" r="0.42"/><circle cx="161.5" cy="171.6" r="0.42"/><circle cx="164.7" cy="171.6" r="0.42"/><circle cx="167.9" cy="171.6" r="0.42"/><circle cx="171.1" cy="171.6" r="0.42"/><circle cx="174.3" cy="171.6" r="0.42"/><circle cx="177.5" cy="171.6" r="0.42"/><circle cx="180.7" cy="171.6" r="0.42"/><circle cx="183.9" cy="171.6" r="0.42"/><circle cx="187.1" cy="171.6" r="0.42"/><circle cx="190.3" cy="171.6" r="0.42"/><circle cx="193.5" cy="171.6" r="0.42"/><circle cx="196.7" cy="171.6" r="0.42"/><circle cx="199.9" cy="171.6" r="0.42"/><circle cx="203.1" cy="171.6" r="0.42"/><circle cx="206.3" cy="171.6" r="0.42"/></g></g><path d="M38,175 H212" stroke="#D9412B" stroke-width="0.6"/>
+      <path d="M38,167 H212 M38,183 H212" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M35.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z M209.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z" fill="#D9412B"/></svg>

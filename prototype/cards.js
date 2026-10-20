@@ -472,7 +472,7 @@
         <path d="M70,98 Q125,112 180,98" fill="none" stroke="${k}" stroke-width="0.4" opacity="0.6"/>
       </g>
       ${fallingLeaf(ctx, 92, 106, 58, INK.green, '8s', '0s')}${fallingLeaf(ctx, 150, 108, 56, INK.yellow, '8s', '-3s')}${fallingLeaf(ctx, 172, 102, 62, INK.green, '8s', '-6s')}
-      ${flock(`<g transform="translate(0 0)">${bird(ctx, k, '0.4s', 1)}</g><g transform="translate(9 5)">${bird(ctx, k, '0.36s', 0.85)}</g>`, '12s', '-2s', 46)}
+      ${flock(`<g transform="translate(0 0)">${bird(ctx, k, '0.4s', 1)}</g><g transform="translate(9 5)">${bird(ctx, k, '0.4s', 0.85)}</g>`, '12s', '-2s', 46)}
       ${walk(figure(ctx, { color: k }), '24s', '-12s')}`;
 
     const bottom = `

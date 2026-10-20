@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12.5 -12.5 275 375" width="2.75in" height="3.75in" role="img" aria-labelledby="c-3-t" data-card="c-3"><style>@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&amp;family=Cormorant+Garamond:wght@500;600;700&amp;family=Archivo+Narrow:wght@500;700&amp;family=Noto+Sans+Kannada:wght@500;700&amp;display=swap');</style><title id="c-3-t">Three of Clubs: School Run</title><rect x="-12.5" y="-12.5" width="275" height="375" fill="#F4ECDC"/><defs>
+      <clipPath id="c-3-win"><path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167 Z"/></clipPath>
+      <clipPath id="c-3-full"><rect x="38" y="20" width="174" height="310" rx="6"/></clipPath>
+      <pattern id="c-3-hatch" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0,0 V2.2" stroke="#1E2233" stroke-width="0.35"/></pattern>
+      <pattern id="c-3-hatch-paper" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><path d="M0,0 V2" stroke="#F4ECDC" stroke-width="0.3"/></pattern>
+      <pattern id="c-3-leaf" width="5" height="4" patternUnits="userSpaceOnUse"><path d="M0.5,3 q1.5,-2.2 3,0" fill="none" stroke="#1E2233" stroke-width="0.3" opacity="0.55"/></pattern>
+      <pattern id="c-3-brick" width="6" height="3.2" patternUnits="userSpaceOnUse"><path d="M0,3.2 H6 M3,0 V1.6 M0,1.6 H6 M0,1.6 V3.2" stroke="#1E2233" stroke-width="0.25" opacity="0.5"/></pattern>
+    </defs><rect width="250" height="350" rx="12" fill="#F4ECDC"/>
+      <rect x="8.5" y="8.5" width="233" height="333" rx="7" fill="none" stroke="#1E2233" stroke-width="0.7"/>
+      <rect x="11" y="11" width="228" height="328" rx="5" fill="none" stroke="#1E2233" stroke-width="0.22"/>
+      <path d="M11,8.8 L11.6,10.4 L13.2,11 L11.6,11.6 L11,13.2 L10.4,11.6 L8.8,11 L10.4,10.4 Z" fill="#D9412B"/><path d="M239,8.8 L239.6,10.4 L241.2,11 L239.6,11.6 L239,13.2 L238.4,11.6 L236.8,11 L238.4,10.4 Z" fill="#D9412B"/><path d="M11,336.8 L11.6,338.4 L13.2,339 L11.6,339.6 L11,341.2 L10.4,339.6 L8.8,339 L10.4,338.4 Z" fill="#D9412B"/><path d="M239,336.8 L239.6,338.4 L241.2,339 L239.6,339.6 L239,341.2 L238.4,339.6 L236.8,339 L238.4,338.4 Z" fill="#D9412B"/><g>
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#1E2233">3</text>
+      <path d="M0,-6 A2.7,2.7 0 1 1 0.01,-6 Z M-3,-0.6 A2.7,2.7 0 1 1 -2.99,-0.6 Z M3,-0.6 A2.7,2.7 0 1 1 3.01,-0.6 Z M-0.8,0.6 L-1.9,6.2 L1.9,6.2 L0.8,0.6 Z" transform="translate(25 51) scale(0.85)" fill="#1E2233"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">BLR</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">BENGALURU · 12°58′N · 77°35′E</text>
+      <g clip-path="url(#c-3-win)">
+        <rect width="250" height="350" fill="#F2B330" opacity="0.16"/>
+        <path d="M106,54 Q109.87,59.12 102.04,61.81 Q101.18,68.34 90.94,68.07 Q85.52,74.72 74.9,71.55 Q66,77 57.1,71.55 Q46.48,74.72 41.06,68.07 Q30.82,68.34 29.96,61.81 Q22.13,59.12 26,54 Q22.13,48.88 29.96,46.19 Q30.82,39.66 41.06,39.93 Q46.48,33.28 57.1,36.45 Q66,31 74.9,36.45 Q85.52,33.28 90.94,39.93 Q101.18,39.66 102.04,46.19 Q109.87,48.88 106,54 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M106,54 Q109.87,59.12 102.04,61.81 Q101.18,68.34 90.94,68.07 Q85.52,74.72 74.9,71.55 Q66,77 57.1,71.55 Q46.48,74.72 41.06,68.07 Q30.82,68.34 29.96,61.81 Q22.13,59.12 26,54 Q22.13,48.88 29.96,46.19 Q30.82,39.66 41.06,39.93 Q46.48,33.28 57.1,36.45 Q66,31 74.9,36.45 Q85.52,33.28 90.94,39.93 Q101.18,39.66 102.04,46.19 Q109.87,48.88 106,54 Z" fill="url(#c-3-leaf)"/>
+        <path d="M64,120 C64,90 62,76 58,66 M63,84 C70,74 80,70 90,66" fill="none" stroke="#1E2233" stroke-width="2.4" stroke-linecap="round"/>
+        <g transform="translate(176 60)"><path d="M-22,0 H22 V14 H-22 Z" fill="#3B6EA8" stroke="#1E2233" stroke-width="0.5"/>
+          <text y="9.4" text-anchor="middle" font-family="'Archivo Narrow', 'Arial Narrow', sans-serif" font-size="5.6" font-weight="700" letter-spacing="0.8" fill="#F4ECDC">HIGH SCHOOL</text>
+          <path d="M-16,14 V60 M16,14 V60" stroke="#1E2233" stroke-width="1.2"/></g>
+        <rect x="38" y="118" width="174" height="49" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/>
+        <rect x="38" y="118" width="174" height="5" fill="#D9412B"/>
+        <rect x="38" y="152" width="174" height="15" fill="#F2B330" opacity="0.5"/>
+        <g font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="9" fill="#3B6EA8" opacity="0.6">
+          <text x="44" y="140">A</text><text x="56" y="142">B</text><text x="68" y="139">C</text></g>
+        <path d="M38,152 H212" stroke="#1E2233" stroke-width="0.5"/>
+        <g transform="translate(125 167) scale(1.32)"><g>
+      <path d="M37,-22 L91,-31 L91,-9 Z" fill="#F2B330" opacity="0"></path>
+      <ellipse cx="2" cy="0.4" rx="40" ry="1.5" fill="#1E2233" opacity="0.25"/>
+      <g>
+      <path d="M-38,-14 C-40,-38 -32,-54 -12,-54 L12,-54 Q21,-54 24,-47 L31,-28 L-38,-14 Z" fill="#F2B330" stroke="#1E2233" stroke-width="0.7" stroke-linejoin="round"/>
+      <path d="M-24,-51 C-30,-44 -33,-34 -33.5,-22 M-6,-53.6 V-46" fill="none" stroke="#1E2233" stroke-width="0.35"/>
+      <path d="M-29,-20 C-30,-35 -25,-46.5 -12,-46.5 L7,-46.5 L7,-20 Z" fill="#1E2233"/>
+      <circle cx="-11" cy="-35.5" r="3.3" fill="none" stroke="#F4ECDC" stroke-width="0.6"/>
+      <path d="M-16.5,-20 Q-16,-30.5 -11,-30.5 Q-6,-30.5 -5.5,-20" fill="none" stroke="#F4ECDC" stroke-width="0.6"/>
+      <path d="M10.5,-46.5 L18.5,-46.5 Q20.3,-46.5 21.1,-44.6 L26.5,-29.5 L10.5,-29.5 Z" fill="#3B6EA8" fill-opacity="0.45" stroke="#1E2233" stroke-width="0.5"/>
+      <circle cx="15" cy="-37.5" r="3.1" fill="#1E2233"/>
+      <path d="M11.5,-29.5 Q15,-34 19,-29.5 Z" fill="#1E2233"/>
+      <path d="M-39,-20 L7,-20 L9,-29.5 L31,-29.5 Q36,-29.5 36.5,-24 L37.5,-12 Q37.5,-6 32,-6 L-35,-6 Q-39.5,-6 -39.5,-11 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.7" stroke-linejoin="round"/>
+      <path d="M-37.5,-14 L7,-14 M9,-17 L36.5,-17" stroke="#F4ECDC" stroke-width="0.6" opacity="0.8"/>
+      <path d="M17,-6.4 A10,10 0 0 1 37,-6.4" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.6"/>
+      <circle cx="36.6" cy="-22" r="2" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/></g>
+      <g transform="translate(-24 -6.6)"><circle r="6.6" fill="#1E2233"/><circle r="2.8" fill="#F4ECDC"/><g><path d="M-2.8,0 H2.8 M0,-2.8 V2.8" stroke="#1E2233" stroke-width="0.55"/></g><circle r="0.9" fill="#1E2233"/></g><g transform="translate(27 -6.6)"><circle r="6.6" fill="#1E2233"/><circle r="2.8" fill="#F4ECDC"/><g><path d="M-2.8,0 H2.8 M0,-2.8 V2.8" stroke="#1E2233" stroke-width="0.55"/></g><circle r="0.9" fill="#1E2233"/></g>
+    </g><circle cx="-24" cy="-28" r="2.6" fill="#7A4528" stroke="#F4ECDC" stroke-width="0.35"/><path d="M-27,-25.6 q3,-1.6 6,0 v3 h-6 Z" fill="#D9412B"/><circle cx="-17" cy="-31" r="2.6" fill="#7A4528" stroke="#F4ECDC" stroke-width="0.35"/><path d="M-20,-28.6 q3,-1.6 6,0 v3 h-6 Z" fill="#3B6EA8"/><circle cx="-10" cy="-28" r="2.6" fill="#7A4528" stroke="#F4ECDC" stroke-width="0.35"/><path d="M-13,-25.6 q3,-1.6 6,0 v3 h-6 Z" fill="#2E7D5B"/><circle cx="-3" cy="-31" r="2.6" fill="#7A4528" stroke="#F4ECDC" stroke-width="0.35"/><path d="M-6,-28.6 q3,-1.6 6,0 v3 h-6 Z" fill="#E58A9B"/><circle cx="-20" cy="-22" r="2.6" fill="#7A4528" stroke="#F4ECDC" stroke-width="0.35"/><path d="M-23,-19.6 q3,-1.6 6,0 v3 h-6 Z" fill="#F2B330"/>
+        <path d="M-31,-36 h-8" stroke="#1E2233" stroke-width="0.8"/>
+        <g transform="translate(-38 -44)"><g>
+          <path d="M-2,0 V3 M2,0 V3" stroke="#1E2233" stroke-width="0.6"/><rect x="-4" y="3" width="8" height="10" rx="1.6" fill="#D9412B" stroke="#1E2233" stroke-width="0.5"/><rect x="-2.6" y="8" width="5.2" height="3.6" rx="0.8" fill="none" stroke="#1E2233" stroke-width="0.4"/></g></g><g transform="translate(-31 -45)"><g>
+          <path d="M-2,0 V3 M2,0 V3" stroke="#1E2233" stroke-width="0.6"/><rect x="-4" y="3" width="8" height="10" rx="1.6" fill="#3B6EA8" stroke="#1E2233" stroke-width="0.5"/><rect x="-2.6" y="8" width="5.2" height="3.6" rx="0.8" fill="none" stroke="#1E2233" stroke-width="0.4"/></g></g><g transform="translate(-44 -38)"><g>
+          <path d="M-2,0 V3 M2,0 V3" stroke="#1E2233" stroke-width="0.6"/><rect x="-4" y="3" width="8" height="10" rx="1.6" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.5"/><rect x="-2.6" y="8" width="5.2" height="3.6" rx="0.8" fill="none" stroke="#1E2233" stroke-width="0.4"/></g></g>
+        <g transform="translate(-6 -28)"><g><path d="M0,0 L5,-9" stroke="#7A4528" stroke-width="1.4" stroke-linecap="round"/><circle cx="5.2" cy="-9.6" r="1.2" fill="#7A4528"/></g></g></g>
+        <path d="M180,132 l5,-4 M181,133.5 l6,0 M180,135 l5,4" stroke="#1E2233" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="1"></path>
+        <g fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round"><path d="M186.59,126.87 A9,9 0 0 1 186.59,139.13" opacity="0.8"></path><path d="M189.51,124.14 A13,13 0 0 1 189.51,141.86" opacity="0.8"></path><path d="M192.44,121.41 A17,17 0 0 1 192.44,144.59" opacity="0.8"></path></g></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-32.92" y="-4.6" width="65.84" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">JAYANAGAR · 8 AM</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="123.75" lengthAdjust="spacingAndGlyphs" fill="#1E2233">THE LOUDEST VEHICLE ON THE STREET</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="170.75" cy="171.6" r="0.42"/><circle cx="173.95" cy="171.6" r="0.42"/><circle cx="177.15" cy="171.6" r="0.42"/><circle cx="180.35" cy="171.6" r="0.42"/><circle cx="183.55" cy="171.6" r="0.42"/><circle cx="186.75" cy="171.6" r="0.42"/><circle cx="189.95" cy="171.6" r="0.42"/><circle cx="193.15" cy="171.6" r="0.42"/><circle cx="196.35" cy="171.6" r="0.42"/><circle cx="199.55" cy="171.6" r="0.42"/><circle cx="202.75" cy="171.6" r="0.42"/><circle cx="205.95" cy="171.6" r="0.42"/></g></g><g transform="rotate(180 125 175)">
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#1E2233">3</text>
+      <path d="M0,-6 A2.7,2.7 0 1 1 0.01,-6 Z M-3,-0.6 A2.7,2.7 0 1 1 -2.99,-0.6 Z M3,-0.6 A2.7,2.7 0 1 1 3.01,-0.6 Z M-0.8,0.6 L-1.9,6.2 L1.9,6.2 L0.8,0.6 Z" transform="translate(25 51) scale(0.85)" fill="#1E2233"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">NYC</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">NEW YORK · 40°42′N · 74°00′W</text>
+      <g clip-path="url(#c-3-win)">
+        <rect width="250" height="350" fill="#3B6EA8" opacity="0.12"/>
+        <rect x="132" y="98" width="74" height="32" fill="#D9412B" opacity="0.3"/>
+        <rect x="132" y="98" width="74" height="32" fill="url(#c-3-brick)"/>
+        <rect x="132" y="74" width="74" height="24" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M132,74 H206 V130 H132 Z" fill="none" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M140,74 V98 M154,74 V98 M184,74 V98 M198,74 V98 M140,86 L154,74 M140,86 L154,98 M184,74 L198,86 L184,98" fill="none" stroke="#7A4528" stroke-width="1.6"/>
+        <path d="M128,76 L140,62 H198 L210,76 Z" fill="#7A4528" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M152,98 L169,48 L186,98 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M169,52 V98 M161,74 H177 M161,74 L169,86 L177,74" fill="none" stroke="#7A4528" stroke-width="1.6"/>
+        <path d="M147,98 L169,40 L191,98 L187,98 L169,49 L151,98 Z" fill="#7A4528" stroke="#1E2233" stroke-width="0.5"/>
+        <g fill="#F2B330" stroke="#1E2233" stroke-width="0.4"><rect x="138" y="106" width="10" height="14"/><rect x="190" y="106" width="10" height="14"/><rect x="164" y="104" width="10" height="26" fill="#7A4528"/></g>
+        <path d="M143,106 V120 M195,106 V120 M138,113 H148 M190,113 H200" stroke="#1E2233" stroke-width="0.35"/>
+        <path d="M104,70 Q108.02,76.9 100.63,81.28 Q100.49,89.33 91.2,90.33 Q86.92,97.93 77.57,95.35 Q70,101 62.43,95.35 Q53.08,97.93 48.8,90.33 Q39.51,89.33 39.37,81.28 Q31.98,76.9 36,70 Q31.98,63.1 39.37,58.72 Q39.51,50.67 48.8,49.67 Q53.08,42.07 62.43,44.65 Q70,39 77.57,44.65 Q86.92,42.07 91.2,49.67 Q100.49,50.67 100.63,58.72 Q108.02,63.1 104,70 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M104,70 Q108.02,76.9 100.63,81.28 Q100.49,89.33 91.2,90.33 Q86.92,97.93 77.57,95.35 Q70,101 62.43,95.35 Q53.08,97.93 48.8,90.33 Q39.51,89.33 39.37,81.28 Q31.98,76.9 36,70 Q31.98,63.1 39.37,58.72 Q39.51,50.67 48.8,49.67 Q53.08,42.07 62.43,44.65 Q70,39 77.57,44.65 Q86.92,42.07 91.2,49.67 Q100.49,50.67 100.63,58.72 Q108.02,63.1 104,70 Z" fill="url(#c-3-hatch)" opacity="0.4"/>
+        <path d="M70,130 V90 M70,100 L60,88 M70,96 L82,86" stroke="#1E2233" stroke-width="2" fill="none"/>
+        <rect x="38" y="130" width="174" height="37" fill="#1E2233" opacity="0.1"/>
+        <path d="M38,130 H212" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M38,146 H212" stroke="#F4ECDC" stroke-width="1" stroke-dasharray="6 5" opacity="0.8"/>
+        <g transform="translate(122 167)"><g>
+        <ellipse cx="0" cy="0.4" rx="64" ry="1.6" fill="#1E2233" opacity="0.25"/>
+        <path d="M-62,-8 L-62,-52 Q-62,-55 -59,-55 L36,-55 Q40,-55 40,-51 L40,-30 L56,-28 Q62,-27 62,-20 L62,-8 Q62,-6 59,-6 L-60,-6 Q-62,-6 -62,-8 Z" fill="#F2B330" stroke="#1E2233" stroke-width="0.7" stroke-linejoin="round"/>
+        <rect x="-60" y="-54" width="98" height="5" fill="#1E2233" opacity="0.9"/>
+        <text x="-11" y="-50.2" text-anchor="middle" font-family="'Archivo Narrow', 'Arial Narrow', sans-serif" font-size="4" font-weight="700" letter-spacing="1.4" fill="#F2B330">SCHOOL BUS</text>
+        <g fill="#3B6EA8" fill-opacity="0.35" stroke="#1E2233" stroke-width="0.5"><rect x="-50" y="-47" width="10" height="11"/><rect x="-38" y="-47" width="10" height="11"/><rect x="-26" y="-47" width="10" height="11"/><rect x="-14" y="-47" width="10" height="11"/><rect x="-2" y="-47" width="10" height="11"/><rect x="10" y="-47" width="10" height="11"/></g>
+        <circle cx="-45" cy="-40" r="2.4" fill="#7A4528"/><path d="M-48,-36 q3,-2 6,0" fill="#D9412B"/><circle cx="-33" cy="-40" r="2.4" fill="#1E2233"/><path d="M-36,-36 q3,-2 6,0" fill="#3B6EA8"/><circle cx="-21" cy="-40" r="2.4" fill="#7A4528"/><path d="M-24,-36 q3,-2 6,0" fill="#2E7D5B"/><circle cx="-9" cy="-40" r="2.4" fill="#D9412B"/><path d="M-12,-36 q3,-2 6,0" fill="#E58A9B"/><circle cx="3" cy="-40" r="2.4" fill="#1E2233"/><path d="M0,-36 q3,-2 6,0" fill="#F2B330"/><circle cx="15" cy="-40" r="2.4" fill="#7A4528"/><path d="M12,-36 q3,-2 6,0" fill="#3B6EA8"/>
+        <rect x="24" y="-47" width="13" height="38" fill="#3B6EA8" fill-opacity="0.3" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M30.5,-47 V-9 M24,-28 H37" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M-62,-31 H24 M-62,-23 H24 M-62,-15 H24 M37,-23 H62 M37,-15 H62" stroke="#1E2233" stroke-width="0.9"/>
+        <path d="M54,-24 h6" stroke="#F4ECDC" stroke-width="1.4"/>
+        <rect x="58" y="-21" width="4" height="5" fill="#1E2233" opacity="0.7"/>
+        <circle cx="-57" cy="-55.6" r="1.8" fill="#D9412B" stroke="#1E2233" stroke-width="0.4"/><circle cx="-57" cy="-55.6" r="4" fill="#D9412B" opacity="0.4"></circle><circle cx="33" cy="-55.6" r="1.8" fill="#D9412B" stroke="#1E2233" stroke-width="0.4"/><circle cx="33" cy="-55.6" r="4" fill="#D9412B" opacity="0.4"></circle>
+        <g transform="translate(20 -27)"><path d="M0,0 H-4" stroke="#1E2233" stroke-width="1"/>
+          <path d="M-7.3,-5 L-12.7,-5 L-16,-1.7 L-16,1.7 L-12.7,5 L-7.3,5 L-4,1.7 L-4,-1.7 Z" fill="#D9412B" stroke="#F4ECDC" stroke-width="0.6"/>
+          <text x="-10" y="1.3" text-anchor="middle" font-family="'Archivo Narrow', 'Arial Narrow', sans-serif" font-size="3.4" font-weight="700" fill="#F4ECDC">STOP</text>
+          <circle cx="-10" cy="-5" r="1" fill="#D9412B" stroke="#1E2233" stroke-width="0.3"/></g>
+        <g transform="translate(-42 -6.6)"><circle r="6.6" fill="#1E2233"/><circle r="2.8" fill="#F4ECDC"/><g><path d="M-2.8,0 H2.8 M0,-2.8 V2.8" stroke="#1E2233" stroke-width="0.55"/></g><circle r="0.9" fill="#1E2233"/></g><g transform="translate(44 -6.6)"><circle r="6.6" fill="#1E2233"/><circle r="2.8" fill="#F4ECDC"/><g><path d="M-2.8,0 H2.8 M0,-2.8 V2.8" stroke="#1E2233" stroke-width="0.55"/></g><circle r="0.9" fill="#1E2233"/></g>
+      </g></g>
+        <path d="M188,136 l5,-4 M189,137.5 l6,0 M188,139 l5,4" stroke="#1E2233" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="1"></path></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-37.78" y="-4.6" width="75.56" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">FOREST HILLS · 8 AM</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="123.75" lengthAdjust="spacingAndGlyphs" fill="#1E2233">IS THE ONE TAKING KIDS TO SCHOOL.</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="170.75" cy="171.6" r="0.42"/><circle cx="173.95" cy="171.6" r="0.42"/><circle cx="177.15" cy="171.6" r="0.42"/><circle cx="180.35" cy="171.6" r="0.42"/><circle cx="183.55" cy="171.6" r="0.42"/><circle cx="186.75" cy="171.6" r="0.42"/><circle cx="189.95" cy="171.6" r="0.42"/><circle cx="193.15" cy="171.6" r="0.42"/><circle cx="196.35" cy="171.6" r="0.42"/><circle cx="199.55" cy="171.6" r="0.42"/><circle cx="202.75" cy="171.6" r="0.42"/><circle cx="205.95" cy="171.6" r="0.42"/></g></g><path d="M38,175 H212" stroke="#D9412B" stroke-width="0.6"/>
+      <path d="M38,167 H212 M38,183 H212" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M35.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z M209.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z" fill="#D9412B"/></svg>

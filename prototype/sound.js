@@ -338,15 +338,15 @@
   // morning yard for Hearts, an office hum for Diamonds, traffic for Clubs,
   // weather for Spades. A small cue lands once per loop.
   function cityScene(S, suit) {
-    S.bed('brown', [['lowpass', 240]], 0.05, 0.2);
-    S.bed('pink', [['bandpass', 700, 1.2]], suit === 'club' ? 0.03 : 0.015, -0.2);
-    if (suit === 'spade') S.bed('pink', [['highpass', 500], ['lowpass', 6000]], 0.07, -0.1);
-    if (suit === 'diamond') S.osc('sine', 120, S.gain(0.008, S.pan(0.2)));
+    S.bed('brown', [['lowpass', 240]], 0.14, 0.2);
+    S.bed('pink', [['bandpass', 700, 1.2]], suit === 'club' ? 0.08 : 0.045, -0.2);
+    if (suit === 'spade') S.bed('pink', [['highpass', 500], ['lowpass', 6000]], 0.16, -0.1);
+    if (suit === 'diamond') S.osc('sine', 120, S.gain(0.02, S.pan(0.2)));
     const cue = {
-      heart: (at) => [0, 0.16, 0.3].forEach((o, i) => S.tone({ at: at + o, f: 2400 + i * 300, f2: 2900 + i * 200, decay: 0.08, gain: 0.03, pan: -0.3, verb: 0.3 })),
-      diamond: (at) => [0, 0.09, 0.2, 0.27, 0.4].forEach((o) => S.burst({ at: at + o, kind: 'white', type: 'bandpass', freq: 3000, q: 2, decay: 0.02, gain: 0.03, pan: 0.2 })),
-      club: (at) => S.tone({ at, type: 'square', f: 470, decay: 0.12, gain: 0.03, lp: 1800, pan: 0.3 }),
-      spade: (at) => S.burst({ at, kind: 'pink', type: 'bandpass', freq: 500, q: 1.5, attack: 0.8, decay: 1.4, gain: 0.05, pan: 0.3 })
+      heart: (at) => [0, 0.16, 0.3].forEach((o, i) => S.tone({ at: at + o, f: 2400 + i * 300, f2: 2900 + i * 200, decay: 0.08, gain: 0.07, pan: -0.3, verb: 0.3 })),
+      diamond: (at) => [0, 0.09, 0.2, 0.27, 0.4].forEach((o) => S.burst({ at: at + o, kind: 'white', type: 'bandpass', freq: 3000, q: 2, decay: 0.02, gain: 0.07, pan: 0.2 })),
+      club: (at) => S.tone({ at, type: 'square', f: 470, decay: 0.12, gain: 0.07, lp: 1800, pan: 0.3 }),
+      spade: (at) => S.burst({ at, kind: 'pink', type: 'bandpass', freq: 500, q: 1.5, attack: 0.8, decay: 1.4, gain: 0.12, pan: 0.3 })
     }[suit] || (() => {});
     return { cycle: 12, update() {}, events: [[2.0, cue], [8.0, cue]] };
   }

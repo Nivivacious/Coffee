@@ -80,7 +80,7 @@
     pair: ['Jagali katte', 'Brooklyn stoop'],
     sentence: ['Every house needs a step', 'that belongs to the street.'],
     why: 'Before the coffee is poured, before the paper lands, somebody is already on the step.',
-    mechanism: 'Two front steps meet at the seam. A stone katte flanks one door, a stoop climbs to the other.',
+    mechanism: 'Two steps meet at the seam. A stone katte flanks one door. A stoop climbs to the other.',
     sound: 'Crows at dawn, a newspaper slap, pigeons, the first tumbler set down.',
     draw(ctx) {
       const p = ctx.id;
@@ -185,7 +185,7 @@
     sentence: ['Nobody queues for food.', 'Everybody queues for Sunday.'],
     why: 'Nobody waits forty minutes for breakfast. Except on Sunday, when waiting is the point.',
     mechanism: 'Two queues shuffle toward the seam. Biryani handi on one counter, a basket of bagels on the other.',
-    sound: 'Shuffling feet, a ladle on copper, a bagel slicer, someone saving a spot.',
+    sound: 'Shuffling feet, a ladle on copper, a bagel slicer, saved spots.',
     draw(ctx) {
       const p = ctx.id;
       const clip = (id) => `<clipPath id="${id}"><rect x="0" y="0" width="95" height="${H}"/></clipPath>`;
@@ -307,7 +307,7 @@
         ${garland(158, 36, INK.paper, '-0.5s')}${garland(168, 26, INK.red, '-1.5s')}${garland(178, 32, INK.paper, '-2.5s')}
         ${scale}
         <circle cx="125" cy="113.6" r="4" fill="${k}"/>
-        <path d="M121.6,112 Q125,108.6 128.6,112" fill="none" stroke="${INK.paper}" stroke-width="0.9" stroke-dasharray="0.9 0.6"/>
+        <circle cx="125" cy="117.4" r="2.2" fill="${k}"/><path d="M122.6,118.6 Q125,121.4 127.4,118.6" fill="none" stroke="${INK.paper}" stroke-width="1" stroke-dasharray="0.9 0.5"/>
         <path d="M117,123 Q125,119 133,123 L138,150 H112 Z" fill="${INK.green}" stroke="${k}" stroke-width="0.5"/>
         <path d="M120,121 L134,150" stroke="${INK.red}" stroke-width="2.2"/>
         <path d="M119,123 L114,134 L118,136" fill="none" stroke="${INK.kaapi}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -329,7 +329,7 @@
           : [[-3, -15], [0, -17], [3, -15]].map(([hx, hy]) => kind === 'tulip'
             ? `<path d="M${hx - 1.6},${hy} q0,-3.4 1.6,-3.6 q1.6,0.2 1.6,3.6 q-1.6,1.4 -3.2,0 Z" fill="${col}" stroke="${k}" stroke-width="0.25"/>`
             : `<circle cx="${hx}" cy="${hy - 1}" r="2" fill="${col}" stroke="${k}" stroke-width="0.25"/>`).join('');
-        return `<g transform="translate(${x} ${y})"><g>${ctx.a(easeSpin('0 0 0;3 0 0;0 0 0;-2 0 0;0 0 0', '4s', ` begin="${b}"`))}
+        return `<g transform="translate(${x} ${y}) scale(1.45)"><g>${ctx.a(easeSpin('0 0 0;3 0 0;0 0 0;-2 0 0;0 0 0', '4s', ` begin="${b}"`))}
           <path d="M-2.4,-2 L-4,-13 M0,-2 V-14 M2.4,-2 L4,-13" stroke="${INK.green}" stroke-width="0.6"/>${heads}
           <path d="M-5.4,-1 L-7,-11 L0,-6 L7,-11 L5.4,-1 Z" fill="${INK.kaapi}" fill-opacity="0.55" stroke="${k}" stroke-width="0.3"/></g></g>`;
       };
@@ -347,7 +347,7 @@
         <g stroke="${k}" stroke-width="0.35">${[88, 102, 116].map((y) => `<path d="M46,${y} H104 M146,${y} H204"/>`).join('')}</g>
         <g>${[50, 58, 66, 74, 82, 90, 98].map((x, i) => `<rect x="${x}" y="${80 + (i % 2)}" width="5" height="7" fill="${[INK.red, INK.yellow, INK.green, INK.blue][i % 4]}" opacity="0.7"/>`).join('')}${[150, 158, 166, 174, 182, 190, 198].map((x, i) => `<rect x="${x}" y="${94 + (i % 2)}" width="5" height="7" fill="${[INK.yellow, INK.blue, INK.red, INK.green][i % 4]}" opacity="0.7"/>`).join('')}</g>
         <text x="175" y="124" text-anchor="middle" font-family="${FONT.sans}" font-size="8" font-weight="700" letter-spacing="1" fill="none" stroke="${INK.pink}" stroke-width="0.8">OPEN 24 HRS${ctx.a(loop('opacity', '1;1;0.2;1;1', '12s', ' keyTimes="0;0.4;0.41;0.43;1"'))}</text>
-        <rect x="108" y="74" width="34" height="76" fill="${k}" fill-opacity="0.55" stroke="${k}" stroke-width="0.5"/>
+        <rect x="108" y="74" width="34" height="76" fill="${k}" fill-opacity="0.25" stroke="${k}" stroke-width="0.5"/>
         <rect x="88" y="136" width="74" height="6" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.45"/>
         <path d="M90,142 V167 M160,142 V167" stroke="${k}" stroke-width="1"/>
         ${bouquet(112, 127, INK.red, 'tulip', '0s')}${bouquet(125, 127, INK.yellow, 'sun', '-1s')}${bouquet(138, 127, INK.pink, 'rose', '-2s')}
@@ -587,13 +587,13 @@
     sentence: ['Every building has a roof', 'where the evening goes.'],
     why: 'Six o\'clock. Clothes come down off the line, everybody else goes up.',
     mechanism: 'A black water tank and a wooden water tower share the seam. Crows go home, pigeons go round.',
-    sound: 'Crows heading home, a pressure cooker, pigeon wings, a radio two roofs over.',
+    sound: 'Crows heading home, a pressure cooker, pigeon wings, a far radio.',
     draw(ctx) {
       const p = ctx.id;
       const lineY = (x) => { const t = (x - 50) / 154; return (1 - t) * (1 - t) * 92 + 2 * t * (1 - t) * 106 + t * t * 92; };
       const cloth = (x, w, h, col, b, extra) => { const y = f(lineY(x)); return `<g>${ctx.a(easeSpin(`0 ${x} ${y};5 ${x} ${y};0 ${x} ${y};-4 ${x} ${y};0 ${x} ${y}`, '4s', ` begin="${b}"`))}<rect x="${f(x - w / 2)}" y="${y}" width="${w}" height="${h}" fill="${col}" stroke="${k}" stroke-width="0.4"/>${extra || ''}<path d="M${f(x - w / 2 + 1)},${y} v-1.4 M${f(x + w / 2 - 1)},${y} v-1.4" stroke="${k}" stroke-width="0.5"/></g>`; };
       const crows = ctx.still ? `<g transform="translate(150 52)">${bird(ctx, k, '0.4s', 1)}<g transform="translate(9 4)">${bird(ctx, k, '0.4s', 0.8)}</g><g transform="translate(-8 6)">${bird(ctx, k, '0.4s', 0.9)}</g></g>`
-        : `<g transform="translate(0 52)">${move('260 0;-20 -8', '12s', ' begin="-4s"')}${bird(ctx, k, '0.4s', 1)}<g transform="translate(9 4)">${bird(ctx, k, '0.36s', 0.8)}</g><g transform="translate(-8 6)">${bird(ctx, k, '0.44s', 0.9)}</g></g>`;
+        : `<g transform="translate(0 52)">${move('260 0;-20 -8', '12s', ' begin="-4s"')}${bird(ctx, k, '0.4s', 1)}<g transform="translate(9 4)">${bird(ctx, k, '0.4s', 0.8)}</g><g transform="translate(-8 6)">${bird(ctx, k, '0.5s', 0.9)}</g></g>`;
       const parapet = (fill, pat) => `<rect x="38" y="140" width="174" height="27" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
         <rect x="38" y="140" width="174" height="27" fill="${fill}" opacity="0.4"/>${pat ? `<rect x="38" y="140" width="174" height="27" fill="url(#${p}-${pat})"/>` : ''}
         <rect x="35" y="136.6" width="180" height="4" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>`;
@@ -635,7 +635,7 @@
 
       const flock = ctx.still
         ? [[60, 58], [72, 52], [84, 60], [176, 50], [188, 56]].map(([x, y]) => `<g transform="translate(${x} ${y})">${bird(ctx, k, '0.3s', 1)}</g>`).join('')
-        : `<g transform="translate(125 58)">${move('-56 6;0 14;56 6;0 -6;-56 6', '6s')}${[[0, 0], [7, -4], [-6, 3], [4, 5], [-3, -5]].map(([x, y], i) => `<g transform="translate(${x} ${y})">${bird(ctx, i % 2 ? INK.ink : INK.paper, (0.3 + i * 0.04) + 's', 1)}</g>`).join('')}</g>`;
+        : `<g transform="translate(125 58)">${move('-56 6;0 14;56 6;0 -6;-56 6', '6s')}${[[0, 0], [7, -4], [-6, 3], [4, 5], [-3, -5]].map(([x, y], i) => `<g transform="translate(${x} ${y})">${bird(ctx, i % 2 ? INK.ink : INK.paper, i % 2 ? '0.4s' : '0.5s', 1)}</g>`).join('')}</g>`;
       const flag = ctx.a(easeLoop('d', 'M0,0 Q5,-2 10,0 L10,7 Q5,5 0,7 Z;M0,0 Q5,2 10,0 L10,7 Q5,9 0,7 Z;M0,0 Q5,-2 10,0 L10,7 Q5,5 0,7 Z', '1.2s'));
       const bottom = `
         ${bg(INK.blue, 0.18)}
@@ -784,7 +784,7 @@
     pair: ['Paying-guest room', 'Railroad apartment'],
     sentence: ['Too many people, one bathroom,', 'best years of your life.'],
     why: 'Three cots, one bathroom, no privacy. You would move back in tomorrow.',
-    mechanism: 'One bathroom door sits on the seam, with a queue on each side. The light under it never goes out.',
+    mechanism: 'One bathroom door on the seam, a queue on each side. The light under it never goes out.',
     sound: 'A tube light humming, a knock, running water, someone singing badly.',
     draw(ctx) {
       const p = ctx.id;
@@ -959,7 +959,7 @@
     pair: ['The lane\'s street dog', 'The bodega cat'],
     sentence: ['Owned by no one.', 'Answers to everyone.'],
     why: 'Twelve households feed her. She has four names. She answers to all of them.',
-    mechanism: 'A dog sits up on the street, a cat sleeps on the bread. Both on duty at the seam.',
+    mechanism: 'A dog sits up outside, a cat sleeps on the bread. Both on duty at the seam.',
     sound: 'A tail thumping, a biscuit packet, a purr, the bodega door bell.',
     draw(ctx) {
       const p = ctx.id;

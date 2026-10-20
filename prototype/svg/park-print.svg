@@ -50,7 +50,7 @@
       <g transform="translate(125 167)"><g><g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="#1E2233" stroke-width="1.5" stroke-linecap="round"/></g><g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="#1E2233" stroke-width="1.5" stroke-linecap="round"/></g><path d="M0,-6.5 L0,-12.6" stroke="#1E2233" stroke-width="2.4000000000000004" stroke-linecap="round"/><g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="#1E2233" stroke-width="1.2000000000000002" stroke-linecap="round"/></g><g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="#1E2233" stroke-width="1.2000000000000002" stroke-linecap="round"/></g><circle cx="0" cy="-15" r="2.1" fill="#1E2233"/></g></g></g>
       <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
       <g transform="translate(125 27.5)">
-        <rect x="-28.25" y="-4.6" width="56.5" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <rect x="-36.160000000000004" y="-4.6" width="72.32000000000001" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
         <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">CUBBON PARK · 6 AM</text>
       </g>
       <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="56.25" lengthAdjust="spacingAndGlyphs" fill="#1E2233">EVERY LOUD CITY</text>
@@ -94,7 +94,7 @@
       <g transform="translate(125 167)"><g transform="rotate(8)"><g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="#1E2233" stroke-width="1.5" stroke-linecap="round"/></g><g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="#1E2233" stroke-width="1.5" stroke-linecap="round"/></g><path d="M0,-6.5 L0,-12.6" stroke="#1E2233" stroke-width="2.4000000000000004" stroke-linecap="round"/><g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="#1E2233" stroke-width="1.2000000000000002" stroke-linecap="round"/></g><g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="#1E2233" stroke-width="1.2000000000000002" stroke-linecap="round"/></g><circle cx="0" cy="-15" r="2.1" fill="#1E2233"/></g></g></g>
       <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
       <g transform="translate(125 27.5)">
-        <rect x="-30" y="-4.6" width="60" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <rect x="-37.78" y="-4.6" width="75.56" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
         <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">CENTRAL PARK · 6 AM</text>
       </g>
       <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="101.25" lengthAdjust="spacingAndGlyphs" fill="#1E2233">NEEDS SOMEWHERE TO WHISPER.</text>

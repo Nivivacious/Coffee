@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12.5 -12.5 275 375" width="2.75in" height="3.75in" role="img" aria-labelledby="d-4-t" data-card="d-4"><style>@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&amp;family=Cormorant+Garamond:wght@500;600;700&amp;family=Archivo+Narrow:wght@500;700&amp;family=Noto+Sans+Kannada:wght@500;700&amp;display=swap');</style><title id="d-4-t">Four of Diamonds: Pitch Deck</title><rect x="-12.5" y="-12.5" width="275" height="375" fill="#F4ECDC"/><defs>
+      <clipPath id="d-4-win"><path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167 Z"/></clipPath>
+      <clipPath id="d-4-full"><rect x="38" y="20" width="174" height="310" rx="6"/></clipPath>
+      <pattern id="d-4-hatch" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0,0 V2.2" stroke="#1E2233" stroke-width="0.35"/></pattern>
+      <pattern id="d-4-hatch-paper" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><path d="M0,0 V2" stroke="#F4ECDC" stroke-width="0.3"/></pattern>
+      <pattern id="d-4-leaf" width="5" height="4" patternUnits="userSpaceOnUse"><path d="M0.5,3 q1.5,-2.2 3,0" fill="none" stroke="#1E2233" stroke-width="0.3" opacity="0.55"/></pattern>
+      <pattern id="d-4-brick" width="6" height="3.2" patternUnits="userSpaceOnUse"><path d="M0,3.2 H6 M3,0 V1.6 M0,1.6 H6 M0,1.6 V3.2" stroke="#1E2233" stroke-width="0.25" opacity="0.5"/></pattern>
+    </defs><rect width="250" height="350" rx="12" fill="#F4ECDC"/>
+      <rect x="8.5" y="8.5" width="233" height="333" rx="7" fill="none" stroke="#1E2233" stroke-width="0.7"/>
+      <rect x="11" y="11" width="228" height="328" rx="5" fill="none" stroke="#1E2233" stroke-width="0.22"/>
+      <path d="M11,8.8 L11.6,10.4 L13.2,11 L11.6,11.6 L11,13.2 L10.4,11.6 L8.8,11 L10.4,10.4 Z" fill="#D9412B"/><path d="M239,8.8 L239.6,10.4 L241.2,11 L239.6,11.6 L239,13.2 L238.4,11.6 L236.8,11 L238.4,10.4 Z" fill="#D9412B"/><path d="M11,336.8 L11.6,338.4 L13.2,339 L11.6,339.6 L11,341.2 L10.4,339.6 L8.8,339 L10.4,338.4 Z" fill="#D9412B"/><path d="M239,336.8 L239.6,338.4 L241.2,339 L239.6,339.6 L239,341.2 L238.4,339.6 L236.8,339 L238.4,338.4 Z" fill="#D9412B"/><g>
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#D9412B">4</text>
+      <path d="M0,-6.2 L4.3,0 L0,6.2 L-4.3,0 Z" transform="translate(25 51) scale(0.85)" fill="#D9412B"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">BLR</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">BENGALURU · 12°58′N · 77°35′E</text>
+      <g clip-path="url(#d-4-win)">
+        <rect width="250" height="350" fill="#F2B330" opacity="0.14"/>
+        <rect x="38" y="150" width="174" height="17" fill="#7A4528" opacity="0.28"/>
+        <path d="M38,150 H212" stroke="#1E2233" stroke-width="0.5"/>
+        <rect x="46" y="40" width="44" height="52" fill="#1E2233" stroke="#7A4528" stroke-width="1.6"/>
+        <text x="68" y="55" text-anchor="middle" font-family="'Noto Sans Kannada', Tunga, sans-serif" font-size="8.5" font-weight="700" fill="#F4ECDC">ಕಾಫಿ</text>
+        <g font-family="'Archivo Narrow', 'Arial Narrow', sans-serif" font-size="3.6" font-weight="700" fill="#F4ECDC" letter-spacing="0.4">
+          <text x="51" y="66">FILTER</text><text x="80" y="66" text-anchor="end">60</text>
+          <text x="51" y="74">COLD BREW</text><text x="85" y="74" text-anchor="end">180</text>
+          <text x="51" y="82">WAFFLE</text><text x="85" y="82" text-anchor="end">220</text>
+        </g>
+        <rect x="140" y="40" width="64" height="46" fill="#1E2233" rx="1"/>
+      <rect x="143" y="43" width="58" height="40" fill="#F4ECDC"/>
+      <text x="146" y="49.6" font-family="'Archivo Narrow', 'Arial Narrow', sans-serif" font-size="4" font-weight="700" letter-spacing="0.4" fill="#1E2233">TRACTION</text>
+      <rect x="150" y="72" width="8" height="8" fill="#D9412B"></rect><rect x="162" y="66" width="8" height="14" fill="#D9412B"></rect><rect x="174" y="58" width="8" height="22" fill="#D9412B"></rect><rect x="186" y="48" width="8" height="32" fill="#2E7D5B"></rect>
+      <path d="M146,80 H200" stroke="#1E2233" stroke-width="0.4"/>
+      <path d="M150,70 L190,46 M185,46 H190 V51" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M172,86 V92 M164,92 H180" stroke="#1E2233" stroke-width="0.8"/>
+        <g transform="translate(52 167)">
+          <path d="M-7,0 L-8,-12 H8 L7,0 Z" fill="#7A4528" stroke="#1E2233" stroke-width="0.5"/>
+          <g>
+            <path d="M0,-12 C-2,-30 -10,-40 -14,-44 M0,-12 C2,-28 8,-40 14,-46 M0,-12 V-50" stroke="#2E7D5B" stroke-width="0.8" fill="none"/>
+            <path d="M-14,-44 q-6,-6 -2,-12 q8,2 2,12 Z M14,-46 q6,-8 0,-12 q-6,4 0,12 Z M0,-50 q-5,-6 0,-12 q5,6 0,12 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.4"/>
+          </g>
+        </g>
+        <g>
+      <circle cx="116" cy="49" r="18" fill="#F2B330" opacity="0.25"></circle>
+      <path d="M116,30 V46" stroke="#1E2233" stroke-width="0.5"/>
+      <rect x="114.6" y="45" width="2.8" height="2.4" fill="#1E2233"/>
+      <circle cx="116" cy="49.2" r="2.6" fill="#F2B330" stroke="#1E2233" stroke-width="0.35"/></g>
+        
+      <g transform="translate(70 148) scale(1.25 1.25)"><path d="M-4,0 L-4.6,-14 Q-4.6,-16.4 -2.2,-16.4 H2 Q4.4,-16.4 4.4,-14 L4,-3 Z" fill="#1E2233"/><path d="M-4,-4.4 H9 Q11.4,-4.4 11.4,-2 V0 H-4 Z M8.2,-1 H11.4 V11 H8.2 Z" fill="#1E2233"/><g><circle cx="0.6" cy="-20" r="3.4" fill="#1E2233"/></g><g><path d="M3,-14 L12,-10" stroke="#1E2233" stroke-width="2.2" stroke-linecap="round"/></g></g>
+      <g transform="translate(180 148) scale(-1.25 1.25)"><path d="M-4,0 L-4.6,-14 Q-4.6,-16.4 -2.2,-16.4 H2 Q4.4,-16.4 4.4,-14 L4,-3 Z" fill="#7A4528"/><path d="M-4,-4.4 H9 Q11.4,-4.4 11.4,-2 V0 H-4 Z M8.2,-1 H11.4 V11 H8.2 Z" fill="#7A4528"/><g><circle cx="0.6" cy="-20" r="3.4" fill="#7A4528"/></g><path d="M3,-13 L12,-9" stroke="#7A4528" stroke-width="2.2" stroke-linecap="round"/></g>
+      <rect x="80" y="137" width="90" height="4" fill="#7A4528" stroke="#1E2233" stroke-width="0.5"/>
+      <path d="M90,141 V167 M160,141 V167" stroke="#1E2233" stroke-width="1.6"/>
+      <path d="M106,137 L109,113 H141 L144,137 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M106,137 L109,113 H141 L144,137 Z" fill="#1E2233" opacity="0.12"/>
+      <circle cx="117" cy="121" r="3" fill="#D9412B"/><rect x="128" y="118" width="7" height="4" fill="#2E7D5B" transform="rotate(-10 131 120)"/><path d="M124,129 l3,-2 l3,2 v3 l-3,2 l-3,-2 Z" fill="#F2B330"/>
+      <path d="M102,137.4 H148" stroke="#1E2233" stroke-width="1.2"/>
+      <path d="M90.5,130 h7 l-0.6,7 h-5.8 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/><path d="M97.3,131.5 q2.6,0 2.2,2.4 q-0.4,1.8 -2.5,1.6" fill="none" stroke="#1E2233" stroke-width="0.5"/><path d="M92,128 c-3,-4 3,-7.2 0,-11.2 s3,-3.2 0,-4.8" fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round" opacity="0.45"></path><path d="M94,128 c-3,-4 3,-7.2 0,-11.2 s3,-3.2 0,-4.8" fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round" opacity="0.45"></path><path d="M96,128 c-3,-4 3,-7.2 0,-11.2 s3,-3.2 0,-4.8" fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round" opacity="0.45"></path><path d="M152.5,130 h7 l-0.6,7 h-5.8 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.5"/><path d="M159.3,131.5 q2.6,0 2.2,2.4 q-0.4,1.8 -2.5,1.6" fill="none" stroke="#1E2233" stroke-width="0.5"/></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-37.78" y="-4.6" width="75.56" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">KORAMANGALA · 10 AM</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="93.75" lengthAdjust="spacingAndGlyphs" fill="#1E2233">EVERY TABLE IS A STARTUP.</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="140.75" cy="171.6" r="0.42"/><circle cx="143.95" cy="171.6" r="0.42"/><circle cx="147.15" cy="171.6" r="0.42"/><circle cx="150.35" cy="171.6" r="0.42"/><circle cx="153.55" cy="171.6" r="0.42"/><circle cx="156.75" cy="171.6" r="0.42"/><circle cx="159.95" cy="171.6" r="0.42"/><circle cx="163.15" cy="171.6" r="0.42"/><circle cx="166.35" cy="171.6" r="0.42"/><circle cx="169.55" cy="171.6" r="0.42"/><circle cx="172.75" cy="171.6" r="0.42"/><circle cx="175.95" cy="171.6" r="0.42"/><circle cx="179.15" cy="171.6" r="0.42"/><circle cx="182.35" cy="171.6" r="0.42"/><circle cx="185.55" cy="171.6" r="0.42"/><circle cx="188.75" cy="171.6" r="0.42"/><circle cx="191.95" cy="171.6" r="0.42"/><circle cx="195.15" cy="171.6" r="0.42"/><circle cx="198.35" cy="171.6" r="0.42"/><circle cx="201.55" cy="171.6" r="0.42"/><circle cx="204.75" cy="171.6" r="0.42"/><circle cx="207.95" cy="171.6" r="0.42"/></g></g><g transform="rotate(180 125 175)">
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#D9412B">4</text>
+      <path d="M0,-6.2 L4.3,0 L0,6.2 L-4.3,0 Z" transform="translate(25 51) scale(0.85)" fill="#D9412B"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">NYC</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">NEW YORK · 40°42′N · 74°00′W</text>
+      <g clip-path="url(#d-4-win)">
+        <rect width="250" height="350" fill="#D9412B" opacity="0.18"/>
+        <rect x="38" y="20" width="174" height="130" fill="url(#d-4-brick)" opacity="0.7"/>
+        <rect x="38" y="150" width="174" height="17" fill="#1E2233" opacity="0.16"/>
+        <path d="M38,150 H212" stroke="#1E2233" stroke-width="0.5"/>
+        <rect x="44" y="36" width="76" height="82" fill="#3B6EA8" fill-opacity="0.22"/>
+        <rect x="44" y="100" width="76" height="18" fill="#3B6EA8" fill-opacity="0.35"/>
+        <g stroke="#1E2233" stroke-width="0.4" fill="none">
+          <path d="M71,60 Q58,88 44,92 M93,60 Q106,88 120,92"/>
+          <path d="M71,62 L48,96 M71,62 L56,96 M71,62 L63,96 M93,62 L116,96 M93,62 L108,96 M93,62 L101,96"/>
+          <path d="M50,96 V90 M56,96 V86.4 M62,96 V81 M114,96 V90 M108,96 V86.4 M102,96 V81" stroke-width="0.3"/>
+        </g>
+        <path d="M44,96 H120 V99 H44 Z" fill="#1E2233"/>
+        <path d="M70,118 V60 L72,55 H92 L94,60 V118 Z" fill="#7A4528" fill-opacity="0.35" stroke="#1E2233" stroke-width="0.5"/>
+        <path d="M70,118 V60 L72,55 H92 L94,60 V118 Z" fill="url(#d-4-hatch)" opacity="0.25"/>
+        <path d="M73.6,97 V76 Q73.6,68 77.6,65 Q81.6,68 81.6,76 V97 Z M82.4,97 V76 Q82.4,68 86.4,65 Q90.4,68 90.4,76 V97 Z" fill="#3B6EA8" fill-opacity="0.3" stroke="#1E2233" stroke-width="0.4"/>
+        <path d="M70,60 H94 M70,104 H94" stroke="#1E2233" stroke-width="0.4"/>
+        <g stroke="#1E2233" stroke-width="1.4" fill="none"><rect x="44" y="36" width="76" height="82"/></g><path d="M60,36 V118 M104,36 V118 M44,52 H120 M44,108 H120" stroke="#1E2233" stroke-width="0.8"/>
+        <rect x="140" y="40" width="64" height="46" fill="#1E2233" rx="1"/>
+      <rect x="143" y="43" width="58" height="40" fill="#F4ECDC"/>
+      <text x="146" y="49.6" font-family="'Archivo Narrow', 'Arial Narrow', sans-serif" font-size="4" font-weight="700" letter-spacing="0.4" fill="#1E2233">SERIES A</text>
+      <rect x="150" y="72" width="8" height="8" fill="#D9412B"></rect><rect x="162" y="66" width="8" height="14" fill="#D9412B"></rect><rect x="174" y="58" width="8" height="22" fill="#D9412B"></rect><rect x="186" y="48" width="8" height="32" fill="#2E7D5B"></rect>
+      <path d="M146,80 H200" stroke="#1E2233" stroke-width="0.4"/>
+      <path d="M150,70 L190,46 M185,46 H190 V51" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M172,86 V92 M164,92 H180" stroke="#1E2233" stroke-width="0.8"/>
+        <g transform="translate(200 167)"><path d="M-6,0 V-26 H6 V0 Z" fill="#1E2233" opacity="0.7"/><path d="M-6,-20 H6 M-6,-13 H6 M-6,-6 H6" stroke="#F4ECDC" stroke-width="0.4"/></g>
+        <g>
+      <circle cx="130" cy="49" r="16" fill="#F2B330" opacity="0.26"></circle>
+      <path d="M130,30 V46" stroke="#1E2233" stroke-width="0.5"/>
+      <rect x="128.6" y="45" width="2.8" height="2.4" fill="#1E2233"/>
+      <circle cx="130" cy="49.2" r="2.6" fill="#F2B330" stroke="#1E2233" stroke-width="0.35"/></g>
+        
+      <g transform="translate(70 148) scale(1.25 1.25)"><path d="M-4,0 L-4.6,-14 Q-4.6,-16.4 -2.2,-16.4 H2 Q4.4,-16.4 4.4,-14 L4,-3 Z" fill="#1E2233"/><path d="M-4,-4.4 H9 Q11.4,-4.4 11.4,-2 V0 H-4 Z M8.2,-1 H11.4 V11 H8.2 Z" fill="#1E2233"/><g><circle cx="0.6" cy="-20" r="3.4" fill="#1E2233"/></g><g><path d="M3,-14 L12,-10" stroke="#1E2233" stroke-width="2.2" stroke-linecap="round"/></g></g>
+      <g transform="translate(180 148) scale(-1.25 1.25)"><path d="M-4,0 L-4.6,-14 Q-4.6,-16.4 -2.2,-16.4 H2 Q4.4,-16.4 4.4,-14 L4,-3 Z" fill="#7A4528"/><path d="M-4,-4.4 H9 Q11.4,-4.4 11.4,-2 V0 H-4 Z M8.2,-1 H11.4 V11 H8.2 Z" fill="#7A4528"/><g><circle cx="0.6" cy="-20" r="3.4" fill="#7A4528"/></g><path d="M3,-13 L12,-9" stroke="#7A4528" stroke-width="2.2" stroke-linecap="round"/></g>
+      <rect x="80" y="137" width="90" height="4" fill="#7A4528" stroke="#1E2233" stroke-width="0.5"/>
+      <path d="M90,141 V167 M160,141 V167" stroke="#1E2233" stroke-width="1.6"/>
+      <path d="M106,137 L109,113 H141 L144,137 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M106,137 L109,113 H141 L144,137 Z" fill="#1E2233" opacity="0.12"/>
+      <rect x="114" y="118" width="9" height="5" fill="#F2B330" transform="rotate(8 118 120)"/><circle cx="134" cy="122" r="3.2" fill="#3B6EA8"/><path d="M118,128 h8 v4 h-8 Z" fill="#E58A9B"/>
+      <path d="M102,137.4 H148" stroke="#1E2233" stroke-width="1.2"/>
+      <g transform="translate(94 132.5) rotate(0) scale(0.19)">
+      <path d="M-18,-24 L18,-24 L13,24 L-13,24 Z" fill="#3B6EA8" stroke="#1E2233" stroke-width="0.7"/>
+      <path d="M-17.4,-18 H17.4 M-16.6,-4 H16.6" stroke="#F4ECDC" stroke-width="0.7"/>
+      <path d="M-16,-6 v-4 h3.6 v2.4 h-1.6M-10.6,-6 v-4 h3.6 v2.4 h-1.6M-5.2,-6 v-4 h3.6 v2.4 h-1.6M0.2,-6 v-4 h3.6 v2.4 h-1.6M5.6,-6 v-4 h3.6 v2.4 h-1.6M11,-6 v-4 h3.6 v2.4 h-1.6" fill="none" stroke="#F4ECDC" stroke-width="0.7" transform="translate(0 -3)"/>
+      <path d="M0,0 c-4,0 -5,3 -4,6 c-3,2 -3,8 1,12 h6 c4,-4 4,-10 1,-12 c1,-3 0,-6 -4,-6 Z" fill="#F4ECDC" transform="translate(0 0.5) scale(0.9)"/>
+      <path d="M-4,4 q-3,0 -3,3 M4,4 q3,0 3,3" fill="none" stroke="#F4ECDC" stroke-width="0.6"/>
+      <path d="M-14.6,14 H14.6 M-14,17 H14" stroke="#F4ECDC" stroke-width="0.5"/>
+      <path d="M-19,-24 H19" stroke="#1E2233" stroke-width="1.6" stroke-linecap="round"/>
+    </g><path d="M92,127 c-3,-4 3,-7.2 0,-11.2 s3,-3.2 0,-4.8" fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round" opacity="0.45"></path><path d="M94,127 c-3,-4 3,-7.2 0,-11.2 s3,-3.2 0,-4.8" fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round" opacity="0.45"></path><path d="M96,127 c-3,-4 3,-7.2 0,-11.2 s3,-3.2 0,-4.8" fill="none" stroke="#1E2233" stroke-width="0.6" stroke-linecap="round" opacity="0.45"></path><g transform="translate(156 132.5) rotate(0) scale(0.19)">
+      <path d="M-18,-24 L18,-24 L13,24 L-13,24 Z" fill="#3B6EA8" stroke="#1E2233" stroke-width="0.7"/>
+      <path d="M-17.4,-18 H17.4 M-16.6,-4 H16.6" stroke="#F4ECDC" stroke-width="0.7"/>
+      <path d="M-16,-6 v-4 h3.6 v2.4 h-1.6M-10.6,-6 v-4 h3.6 v2.4 h-1.6M-5.2,-6 v-4 h3.6 v2.4 h-1.6M0.2,-6 v-4 h3.6 v2.4 h-1.6M5.6,-6 v-4 h3.6 v2.4 h-1.6M11,-6 v-4 h3.6 v2.4 h-1.6" fill="none" stroke="#F4ECDC" stroke-width="0.7" transform="translate(0 -3)"/>
+      <path d="M0,0 c-4,0 -5,3 -4,6 c-3,2 -3,8 1,12 h6 c4,-4 4,-10 1,-12 c1,-3 0,-6 -4,-6 Z" fill="#F4ECDC" transform="translate(0 0.5) scale(0.9)"/>
+      <path d="M-4,4 q-3,0 -3,3 M4,4 q3,0 3,3" fill="none" stroke="#F4ECDC" stroke-width="0.6"/>
+      <path d="M-14.6,14 H14.6 M-14,17 H14" stroke="#F4ECDC" stroke-width="0.5"/>
+      <path d="M-19,-24 H19" stroke="#1E2233" stroke-width="1.6" stroke-linecap="round"/>
+    </g></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-28.060000000000002" y="-4.6" width="56.120000000000005" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">DUMBO · 10 AM</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="120" lengthAdjust="spacingAndGlyphs" fill="#1E2233">EVERY STARTUP NEEDS MORE COFFEE.</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="167" cy="171.6" r="0.42"/><circle cx="170.2" cy="171.6" r="0.42"/><circle cx="173.4" cy="171.6" r="0.42"/><circle cx="176.6" cy="171.6" r="0.42"/><circle cx="179.8" cy="171.6" r="0.42"/><circle cx="183" cy="171.6" r="0.42"/><circle cx="186.2" cy="171.6" r="0.42"/><circle cx="189.4" cy="171.6" r="0.42"/><circle cx="192.6" cy="171.6" r="0.42"/><circle cx="195.8" cy="171.6" r="0.42"/><circle cx="199" cy="171.6" r="0.42"/><circle cx="202.2" cy="171.6" r="0.42"/><circle cx="205.4" cy="171.6" r="0.42"/></g></g><path d="M38,175 H212" stroke="#D9412B" stroke-width="0.6"/>
+      <path d="M38,167 H212 M38,183 H212" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M35.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z M209.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z" fill="#D9412B"/></svg>

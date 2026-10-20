@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12.5 -12.5 275 375" width="2.75in" height="3.75in" role="img" aria-labelledby="d-a-t" data-card="d-a"><style>@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&amp;family=Cormorant+Garamond:wght@500;600;700&amp;family=Archivo+Narrow:wght@500;700&amp;family=Noto+Sans+Kannada:wght@500;700&amp;display=swap');</style><title id="d-a-t">Ace of Diamonds: Where It Ends</title><rect x="-12.5" y="-12.5" width="275" height="375" fill="#F4ECDC"/><defs>
+      <clipPath id="d-a-win"><path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167 Z"/></clipPath>
+      <clipPath id="d-a-full"><rect x="38" y="20" width="174" height="310" rx="6"/></clipPath>
+      <pattern id="d-a-hatch" width="2.2" height="2.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0,0 V2.2" stroke="#1E2233" stroke-width="0.35"/></pattern>
+      <pattern id="d-a-hatch-paper" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><path d="M0,0 V2" stroke="#F4ECDC" stroke-width="0.3"/></pattern>
+      <pattern id="d-a-leaf" width="5" height="4" patternUnits="userSpaceOnUse"><path d="M0.5,3 q1.5,-2.2 3,0" fill="none" stroke="#1E2233" stroke-width="0.3" opacity="0.55"/></pattern>
+      <pattern id="d-a-brick" width="6" height="3.2" patternUnits="userSpaceOnUse"><path d="M0,3.2 H6 M3,0 V1.6 M0,1.6 H6 M0,1.6 V3.2" stroke="#1E2233" stroke-width="0.25" opacity="0.5"/></pattern>
+    </defs><rect width="250" height="350" rx="12" fill="#F4ECDC"/>
+      <rect x="8.5" y="8.5" width="233" height="333" rx="7" fill="none" stroke="#1E2233" stroke-width="0.7"/>
+      <rect x="11" y="11" width="228" height="328" rx="5" fill="none" stroke="#1E2233" stroke-width="0.22"/>
+      <path d="M11,8.8 L11.6,10.4 L13.2,11 L11.6,11.6 L11,13.2 L10.4,11.6 L8.8,11 L10.4,10.4 Z" fill="#D9412B"/><path d="M239,8.8 L239.6,10.4 L241.2,11 L239.6,11.6 L239,13.2 L238.4,11.6 L236.8,11 L238.4,10.4 Z" fill="#D9412B"/><path d="M11,336.8 L11.6,338.4 L13.2,339 L11.6,339.6 L11,341.2 L10.4,339.6 L8.8,339 L10.4,338.4 Z" fill="#D9412B"/><path d="M239,336.8 L239.6,338.4 L241.2,339 L239.6,339.6 L239,341.2 L238.4,339.6 L236.8,339 L238.4,338.4 Z" fill="#D9412B"/><g>
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#D9412B">A</text>
+      <path d="M0,-6.2 L4.3,0 L0,6.2 L-4.3,0 Z" transform="translate(25 51) scale(0.85)" fill="#D9412B"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">BLR</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">BENGALURU · 12°58′N · 77°35′E</text>
+      <g clip-path="url(#d-a-win)">
+        <rect width="250" height="350" fill="#F2B330" opacity="0.2"/>
+        <rect x="0" y="104" width="250" height="70" fill="#E58A9B" opacity="0.16"/>
+        <g><path d="M86,66 Q87,68.45 81.31,68.83 Q77.04,71.91 70,70 Q62.96,71.91 58.69,68.83 Q53,68.45 54,66 Q53,63.55 58.69,63.17 Q62.96,60.09 70,62 Q77.04,60.09 81.31,63.17 Q87,63.55 86,66 Z" fill="#F4ECDC" opacity="0.9"/><path d="M208,52 Q208.61,54.17 203.48,54.35 Q199.12,56.87 193.33,54.92 Q187.27,55.91 185.19,53.3 Q182,52 185.19,50.7 Q187.27,48.09 193.33,49.08 Q199.12,47.13 203.48,49.65 Q208.61,49.83 208,52 Z" fill="#F4ECDC" opacity="0.9"/></g>
+        <g transform="translate(176 104)"><g stroke="#F2B330" stroke-width="0.8"><path d="M15,0 L26,0"/><path d="M13.86,5.74 L19.4,8.04"/><path d="M10.61,10.61 L18.38,18.38"/><path d="M5.74,13.86 L8.04,19.4"/><path d="M0,15 L0,26"/><path d="M-5.74,13.86 L-8.04,19.4"/><path d="M-10.61,10.61 L-18.38,18.38"/><path d="M-13.86,5.74 L-19.4,8.04"/><path d="M-15,0 L-26,0"/><path d="M-13.86,-5.74 L-19.4,-8.04"/><path d="M-10.61,-10.61 L-18.38,-18.38"/><path d="M-5.74,-13.86 L-8.04,-19.4"/><path d="M0,-15 L0,-26"/><path d="M5.74,-13.86 L8.04,-19.4"/><path d="M10.61,-10.61 L18.38,-18.38"/><path d="M13.86,-5.74 L19.4,-8.04"/></g><circle r="12" fill="#F2B330"/></g>
+        <g fill="#3B6EA8" fill-opacity="0.2" stroke="#1E2233" stroke-width="0.4">
+          <path d="M44,152 V134 H58 V128 Q58,114 70,111 Q82,114 82,128 V134 H96 V152 Z"/>
+        </g>
+        <path d="M63,128 V152 M70,111 V152 M77,128 V152 M58,134 H82 M44,142 H96 M51,134 V152 M89,134 V152 M58,121 Q70,116 82,121" stroke="#1E2233" stroke-width="0.3" fill="none"/>
+        <g>
+          <path d="M226,126 Q229.15,130.9 223.03,133.81 Q222.58,139.72 214.7,140.07 Q210.75,145.82 202.68,143.55 Q196,148 189.32,143.55 Q181.25,145.82 177.3,140.07 Q169.42,139.72 168.97,133.81 Q162.85,130.9 166,126 Q162.85,121.1 168.97,118.19 Q169.42,112.28 177.3,111.93 Q181.25,106.18 189.32,108.45 Q196,104 202.68,108.45 Q210.75,106.18 214.7,111.93 Q222.58,112.28 223.03,118.19 Q229.15,121.1 226,126 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.5"/>
+          <path d="M226,126 Q229.15,130.9 223.03,133.81 Q222.58,139.72 214.7,140.07 Q210.75,145.82 202.68,143.55 Q196,148 189.32,143.55 Q181.25,145.82 177.3,140.07 Q169.42,139.72 168.97,133.81 Q162.85,130.9 166,126 Q162.85,121.1 168.97,118.19 Q169.42,112.28 177.3,111.93 Q181.25,106.18 189.32,108.45 Q196,104 202.68,108.45 Q210.75,106.18 214.7,111.93 Q222.58,112.28 223.03,118.19 Q229.15,121.1 226,126 Z" fill="url(#d-a-leaf)"/>
+        </g>
+        <path d="M196,167 C197,152 196,144 192,136 M196,150 C200,142 206,138 212,136" fill="none" stroke="#1E2233" stroke-width="2" stroke-linecap="round"/>
+        <path d="M96,160 Q97.88,162.85 91.98,164 Q89.33,167.78 81,166.93 Q74.54,170.63 66,168 Q57.46,170.63 51,166.93 Q42.67,167.78 40.02,164 Q34.12,162.85 36,160 Q34.12,157.15 40.02,156 Q42.67,152.22 51,153.07 Q57.46,149.37 66,152 Q74.54,149.37 81,153.07 Q89.33,152.22 91.98,156 Q97.88,157.15 96,160 Z" fill="#2E7D5B" stroke="#1E2233" stroke-width="0.45"/>
+        <path d="M44,167 C62,152 84,138 106,131.5 Q125,127 144,131.5 C166,138 188,152 206,167 Z" fill="#1E2233" fill-opacity="0.2" stroke="#1E2233" stroke-width="0.6"/>
+        <path d="M44,167 C62,152 84,138 106,131.5 Q125,127 144,131.5 C166,138 188,152 206,167 Z" fill="url(#d-a-hatch)" opacity="0.3"/>
+        <path d="M84,150 q8,-3 14,1 M152,146 q8,2 12,8 M110,140 q6,-2 10,0" fill="none" stroke="#1E2233" stroke-width="0.4"/>
+        <g stroke="#1E2233" stroke-width="0.6" stroke-linejoin="round">
+          <rect x="104" y="124" width="42" height="7" fill="#F4ECDC"/>
+          <rect x="108" y="119" width="34" height="5" fill="#F4ECDC"/>
+          <rect x="110" y="100" width="30" height="19" fill="#1E2233"/>
+          <g fill="#F4ECDC"><rect x="110" y="100" width="4" height="19"/><rect x="118.6" y="100" width="4" height="19"/><rect x="127.4" y="100" width="4" height="19"/><rect x="136" y="100" width="4" height="19"/></g>
+          <path d="M103,100 L147,100 L142,94.5 L108,94.5 Z" fill="#F4ECDC"/>
+          <rect x="112" y="87" width="26" height="7.5" fill="#F4ECDC"/>
+          <rect x="116" y="80" width="18" height="7" fill="#F4ECDC"/>
+          <path d="M116.5,80 Q116.5,68 125,64 Q133.5,68 133.5,80 Z" fill="#F4ECDC"/>
+          <path d="M123.2,64 L126.8,64 L125.9,59.4 L125,57.6 L124.1,59.4 Z" fill="#F2B330" stroke-width="0.4"/>
+        </g>
+        <path d="M130,100 H140 V119 M136,94.5 L142,94.5 L147,100 M130,87 H138 V94.5 M129,80 H134 V87 M128.5,66 Q133.5,68 133.5,80 H129 Z" fill="url(#d-a-hatch)" opacity="0.7"/>
+        <path d="M112,90.6 H138 M116,83.4 H134" stroke="#1E2233" stroke-width="0.3"/>
+        <path d="M108,97.4 h34" stroke="#1E2233" stroke-width="0.3"/>
+        <path d="M125,46 Q129.5,44.4 134,47 L134,52.5 Q129.5,49.9 125,51.5 Z" fill="#D9412B" stroke="#1E2233" stroke-width="0.25"></path><path d="M125,45 V65.5" stroke="#1E2233" stroke-width="0.7"/>
+        <g transform="translate(130 58)"><path d="M-3.2,0 Q-1.6,-2.6 0,0 Q1.6,-2.6 3.2,0" transform="scale(1.5)" fill="none" stroke="#1E2233" stroke-width="0.7" stroke-linecap="round"></path></g><g transform="translate(182 64)"><path d="M-3.2,0 Q-1.6,-2.6 0,0 Q1.6,-2.6 3.2,0" transform="scale(1.5)" fill="none" stroke="#1E2233" stroke-width="0.7" stroke-linecap="round"></path></g>
+        <g transform="translate(125 167)"><g><g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="#1E2233" stroke-width="1.5" stroke-linecap="round"/></g><g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="#1E2233" stroke-width="1.5" stroke-linecap="round"/></g><path d="M0,-6.5 L0,-12.6" stroke="#1E2233" stroke-width="2.4000000000000004" stroke-linecap="round"/><g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="#1E2233" stroke-width="1.2000000000000002" stroke-linecap="round"/></g><g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="#1E2233" stroke-width="1.2000000000000002" stroke-linecap="round"/></g><circle cx="0" cy="-15" r="2.1" fill="#1E2233"/></g></g></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-29.68" y="-4.6" width="59.36" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">LALBAGH · DAWN</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="63.75" lengthAdjust="spacingAndGlyphs" fill="#1E2233">EVERY CITY BEGINS</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="110.75" cy="171.6" r="0.42"/><circle cx="113.95" cy="171.6" r="0.42"/><circle cx="117.15" cy="171.6" r="0.42"/><circle cx="120.35" cy="171.6" r="0.42"/><circle cx="123.55" cy="171.6" r="0.42"/><circle cx="126.75" cy="171.6" r="0.42"/><circle cx="129.95" cy="171.6" r="0.42"/><circle cx="133.15" cy="171.6" r="0.42"/><circle cx="136.35" cy="171.6" r="0.42"/><circle cx="139.55" cy="171.6" r="0.42"/><circle cx="142.75" cy="171.6" r="0.42"/><circle cx="145.95" cy="171.6" r="0.42"/><circle cx="149.15" cy="171.6" r="0.42"/><circle cx="152.35" cy="171.6" r="0.42"/><circle cx="155.55" cy="171.6" r="0.42"/><circle cx="158.75" cy="171.6" r="0.42"/><circle cx="161.95" cy="171.6" r="0.42"/><circle cx="165.15" cy="171.6" r="0.42"/><circle cx="168.35" cy="171.6" r="0.42"/><circle cx="171.55" cy="171.6" r="0.42"/><circle cx="174.75" cy="171.6" r="0.42"/><circle cx="177.95" cy="171.6" r="0.42"/><circle cx="181.15" cy="171.6" r="0.42"/><circle cx="184.35" cy="171.6" r="0.42"/><circle cx="187.55" cy="171.6" r="0.42"/><circle cx="190.75" cy="171.6" r="0.42"/><circle cx="193.95" cy="171.6" r="0.42"/><circle cx="197.15" cy="171.6" r="0.42"/><circle cx="200.35" cy="171.6" r="0.42"/><circle cx="203.55" cy="171.6" r="0.42"/><circle cx="206.75" cy="171.6" r="0.42"/></g></g><g transform="rotate(180 125 175)">
+      <text x="25" y="41" text-anchor="middle" font-family="'Bodoni Moda', 'Bodoni 72', Didot, serif" font-size="19" font-weight="500" fill="#D9412B">A</text>
+      <path d="M0,-6.2 L4.3,0 L0,6.2 L-4.3,0 Z" transform="translate(25 51) scale(0.85)" fill="#D9412B"/>
+      <text x="25" y="63" text-anchor="middle" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.4" font-weight="700" letter-spacing="0.9" fill="#1E2233">NYC</text>
+      <text transform="translate(225 24) rotate(90)" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.1" font-weight="600" letter-spacing="0.75" fill="#1E2233" opacity="0.72">NEW YORK · 40°42′N · 74°00′W</text>
+      <g clip-path="url(#d-a-win)">
+        <rect width="250" height="350" fill="#3B6EA8" opacity="0.14"/>
+        <rect x="0" y="100" width="250" height="70" fill="#E58A9B" opacity="0.22"/>
+        <circle cx="168" cy="108" r="11" fill="#F2B330" opacity="0.85"/>
+        <g><path d="M128,52 Q129.17,54.19 123.79,54.57 Q120.2,57.54 113.13,55.94 Q106.46,58.3 101,55.46 Q94.37,56.11 93.09,53.37 Q89.6,52 93.09,50.63 Q94.37,47.89 101,48.54 Q106.46,45.7 113.13,48.06 Q120.2,46.46 123.79,49.43 Q129.17,49.81 128,52 Z" fill="#F4ECDC" opacity="0.9"/><path d="M199,70 Q199.51,72.17 194.11,72.35 Q189.34,74.87 183.11,72.92 Q176.65,73.91 174.29,71.3 Q171,70 174.29,68.7 Q176.65,66.09 183.11,67.08 Q189.34,65.13 194.11,67.65 Q199.51,67.83 199,70 Z" fill="#F4ECDC" opacity="0.9"/></g>
+        <g transform="translate(0 0)">
+          <path d="M57,150 L61,108 L71,108 L75,150 Z" fill="#7A4528" fill-opacity="0.75" stroke="#1E2233" stroke-width="0.5"/>
+          <path d="M58.5,108 Q66,98 73.5,108 Z" fill="#1E2233"/>
+          <rect x="63.5" y="128" width="5" height="8" fill="#1E2233"/>
+          <g transform="translate(66 105)"><g transform="rotate(20)"><path d="M0,0 V-27" stroke="#1E2233" stroke-width="0.9"/><rect x="0.8" y="-26" width="5" height="19" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.4"/><rect x="0.8" y="-26" width="5" height="19" fill="url(#d-a-hatch)" opacity="0.6"/></g><g transform="rotate(110)"><path d="M0,0 V-27" stroke="#1E2233" stroke-width="0.9"/><rect x="0.8" y="-26" width="5" height="19" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.4"/><rect x="0.8" y="-26" width="5" height="19" fill="url(#d-a-hatch)" opacity="0.6"/></g><g transform="rotate(200)"><path d="M0,0 V-27" stroke="#1E2233" stroke-width="0.9"/><rect x="0.8" y="-26" width="5" height="19" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.4"/><rect x="0.8" y="-26" width="5" height="19" fill="url(#d-a-hatch)" opacity="0.6"/></g><g transform="rotate(290)"><path d="M0,0 V-27" stroke="#1E2233" stroke-width="0.9"/><rect x="0.8" y="-26" width="5" height="19" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.4"/><rect x="0.8" y="-26" width="5" height="19" fill="url(#d-a-hatch)" opacity="0.6"/></g></g>
+          <circle cx="66" cy="105" r="1.4" fill="#1E2233"/>
+        </g>
+        <g stroke="#1E2233" stroke-width="0.5">
+          <path d="M158,152 V110 H162 V104 H166 V98 H170 V92 H182 V98 H186 V104 H190 V110 H194 V152 Z" fill="#D9412B" fill-opacity="0.55"/>
+          <path d="M194,152 V118 H198 V112 H202 V106 H212 V152 Z" fill="#7A4528" fill-opacity="0.5"/>
+        </g>
+        <path d="M158,152 V110 H162 V104 H166 V98 H170 V92 H182 V98 H186 V104 H190 V110 H194 V152 Z" fill="url(#d-a-brick)"/>
+        <g fill="#F2B330" stroke="#1E2233" stroke-width="0.4"><rect x="171" y="98" width="10" height="9"/><rect x="164" y="114" width="8" height="10"/><rect x="180" y="114" width="8" height="10"/></g>
+        <rect x="185" y="84" width="4" height="9" fill="#1E2233"/>
+        <path d="M185,82 c-3,-5.5 3,-9.9 0,-15.4 s3,-4.4 0,-6.6" fill="none" stroke="#1E2233" stroke-width="0.5" stroke-linecap="round" opacity="0.45"></path><path d="M187,82 c-3,-5.5 3,-9.9 0,-15.4 s3,-4.4 0,-6.6" fill="none" stroke="#1E2233" stroke-width="0.5" stroke-linecap="round" opacity="0.45"></path><path d="M189,82 c-3,-5.5 3,-9.9 0,-15.4 s3,-4.4 0,-6.6" fill="none" stroke="#1E2233" stroke-width="0.5" stroke-linecap="round" opacity="0.45"></path>
+        <rect x="38" y="158" width="174" height="9" fill="#7A4528" opacity="0.3"/>
+        <g fill="#7A4528" stroke="#1E2233" stroke-width="0.4"><path d="M34,167 V125.13 L37.5,120.13 L41,125.13 V167 Z"/><path d="M41,167 V123.21 L44.5,118.21 L48,123.21 V167 Z"/><path d="M48,167 V126.48 L51.5,121.48 L55,126.48 V167 Z"/><path d="M55,167 V125.43 L58.5,120.43 L62,125.43 V167 Z"/><path d="M62,167 V123.58 L65.5,118.58 L69,123.58 V167 Z"/><path d="M69,167 V127.13 L72.5,122.13 L76,127.13 V167 Z"/><path d="M76,167 V127.42 L79.5,122.42 L83,127.42 V167 Z"/><path d="M83,167 V126.92 L86.5,121.92 L90,126.92 V167 Z"/><path d="M90,167 V123.28 L93.5,118.28 L97,123.28 V167 Z"/><path d="M97,167 V123.9 L100.5,118.9 L104,123.9 V167 Z"/><path d="M146,167 V127.55 L149.5,122.55 L153,127.55 V167 Z"/><path d="M153,167 V125.92 L156.5,120.92 L160,125.92 V167 Z"/><path d="M160,167 V125.48 L163.5,120.48 L167,125.48 V167 Z"/><path d="M167,167 V126.45 L170.5,121.45 L174,126.45 V167 Z"/><path d="M174,167 V125.11 L177.5,120.11 L181,125.11 V167 Z"/><path d="M181,167 V123.27 L184.5,118.27 L188,123.27 V167 Z"/><path d="M188,167 V123.65 L191.5,118.65 L195,123.65 V167 Z"/><path d="M195,167 V123.37 L198.5,118.37 L202,123.37 V167 Z"/><path d="M202,167 V125.08 L205.5,120.08 L209,125.08 V167 Z"/><path d="M209,167 V125.53 L212.5,120.53 L216,125.53 V167 Z"/></g>
+        <path d="M34,140 H104 M146,140 H216" stroke="#1E2233" stroke-width="1.6"/>
+        <path d="M34,150 H104 M146,150 H216" stroke="#1E2233" stroke-width="0.5" opacity="0.6"/>
+        <g stroke="#1E2233" stroke-width="0.6" stroke-linejoin="round">
+          <rect x="106" y="102" width="7" height="65" fill="#7A4528"/>
+          <rect x="137" y="102" width="7" height="65" fill="#7A4528"/>
+          <rect x="113" y="114" width="24" height="53" fill="#7A4528" fill-opacity="0.75"/>
+          <path d="M117,114 V167 M121,114 V167 M125,114 V167 M129,114 V167 M133,114 V167" stroke-width="0.3"/>
+          <path d="M114,120 H136 L114,150 H136" fill="none" stroke-width="1.1"/>
+          <path d="M102,102 H148 V107 H102 Z" fill="#1E2233"/>
+          <path d="M104,102 L125,83 L146,102 Z" fill="#7A4528"/>
+        </g>
+        <path d="M125,83 L146,102 H134 Z" fill="url(#d-a-hatch)" opacity="0.7"/>
+        <circle cx="132" cy="130" r="1" fill="#1E2233"/>
+        <path d="M125,66 Q131,64.4 137,67 L137,69.5 Q131,66.9 125,68.5 Z" fill="#D9412B" stroke="#1E2233" stroke-width="0.25"></path><path d="M125,68.5 Q131,66.9 137,69.5 L137,72 Q131,69.4 125,71 Z" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.25"></path><path d="M125,71 Q131,69.4 137,72 L137,74.5 Q131,71.9 125,73.5 Z" fill="#3B6EA8" stroke="#1E2233" stroke-width="0.25"></path><path d="M125,65 V87.5" stroke="#1E2233" stroke-width="0.7"/>
+        <g transform="translate(92 66)"><path d="M-3.2,0 Q-1.6,-2.6 0,0 Q1.6,-2.6 3.2,0" transform="scale(1.4)" fill="none" stroke="#F4ECDC" stroke-width="0.7" stroke-linecap="round"></path></g></g>
+      <path d="M38,167 V26 Q38,20 44,20 H206 Q212,20 212,26 V167" fill="none" stroke="#1E2233" stroke-width="0.6"/>
+      <g transform="translate(125 27.5)">
+        <rect x="-36.160000000000004" y="-4.6" width="72.32000000000001" height="7.6" rx="1" fill="#F4ECDC" stroke="#1E2233" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="#1E2233">WALL STREET · DAWN</text>
+      </g>
+      <text x="42" y="173.3" font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-size="5" font-weight="600" letter-spacing="0.4" textLength="97.5" lengthAdjust="spacingAndGlyphs" fill="#1E2233">BY DECIDING WHERE IT ENDS.</text>
+      <g fill="#1E2233" opacity="0.7"><circle cx="144.5" cy="171.6" r="0.42"/><circle cx="147.7" cy="171.6" r="0.42"/><circle cx="150.9" cy="171.6" r="0.42"/><circle cx="154.1" cy="171.6" r="0.42"/><circle cx="157.3" cy="171.6" r="0.42"/><circle cx="160.5" cy="171.6" r="0.42"/><circle cx="163.7" cy="171.6" r="0.42"/><circle cx="166.9" cy="171.6" r="0.42"/><circle cx="170.1" cy="171.6" r="0.42"/><circle cx="173.3" cy="171.6" r="0.42"/><circle cx="176.5" cy="171.6" r="0.42"/><circle cx="179.7" cy="171.6" r="0.42"/><circle cx="182.9" cy="171.6" r="0.42"/><circle cx="186.1" cy="171.6" r="0.42"/><circle cx="189.3" cy="171.6" r="0.42"/><circle cx="192.5" cy="171.6" r="0.42"/><circle cx="195.7" cy="171.6" r="0.42"/><circle cx="198.9" cy="171.6" r="0.42"/><circle cx="202.1" cy="171.6" r="0.42"/><circle cx="205.3" cy="171.6" r="0.42"/></g></g><path d="M38,175 H212" stroke="#D9412B" stroke-width="0.6"/>
+      <path d="M38,167 H212 M38,183 H212" stroke="#1E2233" stroke-width="0.6"/>
+      <path d="M35.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z M209.4,175 l2.6,-2 l2.6,2 l-2.6,2 Z" fill="#D9412B"/></svg>
