@@ -1,5 +1,5 @@
 /*
- * A Tale of Two Homes: sound for the moving cards.
+ * A Tale of Two Cities: sound for the moving cards.
  *
  * Everything is synthesised with the Web Audio API, so there are no sound
  * files. Each card has a scene that reads the featured SVG's clock and
@@ -334,6 +334,23 @@
     return(S) { return jokerScene(S, true); }
   };
 
+  // Cards without their own score get a city bed that suits the suit: a
+  // morning yard for Hearts, an office hum for Diamonds, traffic for Clubs,
+  // weather for Spades. A small cue lands once per loop.
+  function cityScene(S, suit) {
+    S.bed('brown', [['lowpass', 240]], 0.05, 0.2);
+    S.bed('pink', [['bandpass', 700, 1.2]], suit === 'club' ? 0.03 : 0.015, -0.2);
+    if (suit === 'spade') S.bed('pink', [['highpass', 500], ['lowpass', 6000]], 0.07, -0.1);
+    if (suit === 'diamond') S.osc('sine', 120, S.gain(0.008, S.pan(0.2)));
+    const cue = {
+      heart: (at) => [0, 0.16, 0.3].forEach((o, i) => S.tone({ at: at + o, f: 2400 + i * 300, f2: 2900 + i * 200, decay: 0.08, gain: 0.03, pan: -0.3, verb: 0.3 })),
+      diamond: (at) => [0, 0.09, 0.2, 0.27, 0.4].forEach((o) => S.burst({ at: at + o, kind: 'white', type: 'bandpass', freq: 3000, q: 2, decay: 0.02, gain: 0.03, pan: 0.2 })),
+      club: (at) => S.tone({ at, type: 'square', f: 470, decay: 0.12, gain: 0.03, lp: 1800, pan: 0.3 }),
+      spade: (at) => S.burst({ at, kind: 'pink', type: 'bandpass', freq: 500, q: 1.5, attack: 0.8, decay: 1.4, gain: 0.05, pan: 0.3 })
+    }[suit] || (() => {});
+    return { cycle: 12, update() {}, events: [[2.0, cue], [8.0, cue]] };
+  }
+
   function jokerScene(S, back) {
     const pour = S.bed('pink', [['bandpass', 1100, 0.9]], 0.08, back ? 0.15 : -0.15);
     S.lfo(pour.gain, 9, 0.03);
@@ -365,10 +382,11 @@
 
   function startScene(id, clock) {
     stopCurrent();
-    if (!SCENES[id]) return;
     const bus = ac.createGain(); bus.gain.value = 0; bus.connect(master);
     const nodes = [];
-    const scene = SCENES[id](kit(bus, nodes));
+    const S = kit(bus, nodes);
+    const suit = { h: 'heart', d: 'diamond', c: 'club', s: 'spade' }[id[0]];
+    const scene = SCENES[id] ? SCENES[id](S) : cityScene(S, suit);
     current = { id, clock, bus, nodes, scene, last: null, prevP: null, idle: 0 };
   }
 
@@ -424,6 +442,19 @@
       const d = new Float32Array(analyser.fftSize); analyser.getFloatTimeDomainData(d);
       let sum = 0; for (let i = 0; i < d.length; i++) sum += d[i] * d[i];
       return Math.sqrt(sum / d.length);
+    },
+    // A riffle for the shuffle and a flick for turning a card over.
+    riffle() {
+      if (!ac || !enabled) return;
+      const S = kit(master, []);
+      const t = ac.currentTime + 0.02;
+      for (let i = 0; i < 26; i++) S.burst({ at: t + 0.25 + i * 0.022 + Math.random() * 0.006, kind: 'white', type: 'bandpass', freq: 2600 + Math.random() * 1600, q: 1.2, decay: 0.018, gain: 0.05 });
+      S.burst({ at: t + 0.85, kind: 'pink', freq: 900, decay: 0.08, gain: 0.08 });
+    },
+    flick() {
+      if (!ac || !enabled) return;
+      const S = kit(master, []);
+      S.burst({ kind: 'white', type: 'bandpass', freq: 2200, q: 0.9, decay: 0.05, gain: 0.07 });
     },
     // Hold the sound while the still print frame is showing.
     mute(m) { muted = !!m; }

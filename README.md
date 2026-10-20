@@ -1,8 +1,8 @@
-# A Tale of Two Homes
+# A Tale of Two Cities
 
 A collectible playing-card deck about Bangalore and New York.
 
-*Different cities. Familiar feelings.*
+*For anyone whose phone shows two clocks.*
 
 ## Working documents
 

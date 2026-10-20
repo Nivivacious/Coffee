@@ -1,6 +1,6 @@
 # Phases 2 to 4. Deck system, hero cards and prototype
 
-**A Tale of Two Homes** · decisions taken after Phase 1 review
+**A Tale of Two Cities** · decisions taken after Phase 1 review
 
 | Decision | Choice |
 |---|---|
@@ -131,33 +131,63 @@ The seam band or the whole art window can be printed lenticular. Tilt the card i
 
 ---
 
-## The pairings so far, 22 cards toward the full deck
+## The full deck, 52 cards and two Jokers
 
 Hero cards are marked ★.
 
 | Card | Bangalore | New York | Hidden sentence |
 |---|---|---|---|
-| A♥ | Jagali katte, the raised doorstep seat of old Basavanagudi houses | The Brooklyn stoop | *Every house needs a step / that belongs to the street.* |
+| A♥ | Jagali katte, the stone seat by an old Basavanagudi door | Brooklyn stoop | *Every house needs a step / that belongs to the street.* |
 | ★ 2♥ | Cubbon Park, 6 AM | Central Park, 6 AM | *Every loud city / needs somewhere to whisper.* |
 | ★ 3♥ | Darshini, Jayanagar | Diner, Astoria | *You don't order anymore. / You just nod.* |
+| 4♥ | The Sunday donne biryani queue | The Sunday bagel line | *Nobody queues for food. / Everybody queues for Sunday.* |
 | 5♥ | Mallige strings sold by the arm's length | Bucket flowers outside the deli | *Somebody is buying flowers / for no particular reason.* |
+| 6♥ | A stacked steel tiffin carrier | A brown paper lunch bag | *Packed by someone / who worried you'd skip lunch.* |
+| 7♥ | The apartment association WhatsApp group | The co-op building group chat | *Forty neighbours, / one missing parcel.* |
+| 8♥ | A terrace with a clothesline and tulsi | A tar-beach rooftop | *Every building has a roof / where the evening goes.* |
+| 9♥ | A kalyana mantapa wedding | A City Hall wedding | *Nine hundred guests or two witnesses, / somebody's mother cries.* |
+| 10♥ | A paying-guest room | A railroad apartment | *Too many people, one bathroom, / best years of your life.* |
+| J♥ | The istriwala's ironing cart | The wash-and-fold laundromat | *Knows every shirt / on the street.* |
 | Q♥ | The street dog the whole lane feeds and names | The bodega cat | *Owned by no one. / Answers to everyone.* |
-| K♥ | The aunty who knows the whole street | The super who knows the whole building | *Knows your business / better than your mother does.* |
-| A♦ | Kempegowda's boundary towers, 1537 | The 1653 wall that named Wall Street | *Every city begins / by deciding where it ends.* |
-| 2♦ | KR Market flower stalls before dawn | The 28th Street flower district before dawn | *The prettiest hour / belongs to the people working it.* |
-| J♦ | Food delivery rider in the rain | Deliverista on an e-bike | *Everyone's dinner / is somebody's shift.* |
+| K♥ | The aunty on the balcony | The building super | *Knows your business / better than your mother does.* |
+| A♦ | Kempegowda's boundary tower, 1537 | The 1653 wall that named Wall Street | *Every city begins / by deciding where it ends.* |
+| 2♦ | KR Market flowers before dawn | The 28th Street flower district before dawn | *The prettiest hour / belongs to the people working it.* |
+| 3♦ | The company shuttle to Electronic City | Metro-North into Grand Central | *Same seat every morning. / Same nap.* |
+| 4♦ | A Koramangala café full of pitches | A DUMBO coworking space | *Every table is a startup. / Every startup needs more coffee.* |
+| 5♦ | The tech park food court queue | The Midtown salad line | *Forty-five minutes for lunch. / Forty of them in the queue.* |
+| 6♦ | Bargaining on Commercial Street | Bargaining on Canal Street | *Everything has a price. / Nothing has a price tag.* |
+| 7♦ | A Chickpet gold shop | A 47th Street diamond counter | *Gold by the gram. / Trust by the decade.* |
+| 8♦ | A band in a Church Street pub | An open mic in the Village | *Day job till six. / Rock star till close.* |
+| 9♦ | The 8 PM night shift on Outer Ring Road | The 10:30 AM office in Midtown | *Your morning / is my night shift.* |
+| 10♦ | The late-night tea stall outside a tech park | The Midtown halal cart | *Dinner at midnight, / from a cart, standing up.* |
+| J♦ | The delivery rider in the rain | The deliverista on an e-bike | *Everyone's dinner / is somebody's shift.* |
+| Q♦ | A TO-LET board on a gate | A FOR RENT sign on a railing | *Every party gets there eventually. / So, what's your rent?* |
 | K♦ | Silk Board junction | The Cross Bronx Expressway | *Everyone is going somewhere. / Nobody is moving.* |
-| 4♣ | "Swalpa adjust maadi" on a packed BMTC bus | "Step all the way in" on a packed train | *There's always room / if everyone's a little uncomfortable.* |
+| A♣ | A shutter going up over a fresh kolam | A bodega gate going up | *Every street starts / with a shutter going up.* |
+| 2♣ | Nandini milk packets on the step | Bread crates outside the bodega | *Somebody's up before you, / making sure you're fed.* |
+| 3♣ | The school auto packed with kids | The yellow school bus | *The loudest vehicle on the street / is the one taking kids to school.* |
+| 4♣ | "Swalpa adjust maadi" on a packed BMTC bus | A packed subway car | *There's always room / if everyone's a little uncomfortable.* |
 | 5♣ | Black Sintex tanks on every roof | Wooden water towers on every roof | *Every house keeps a little worry / upstairs, just in case.* |
-| 6♣ | The greens cart's call: "soppu!" | The Mister Softee jingle | *You never hear them coming. / Only leaving.* |
+| 6♣ | The greens cart calling "soppu!" | The ice cream truck jingle | *You never hear them coming. / Only leaving.* |
+| 7♣ | The pani puri cart | The hot dog and pretzel cart | *Four o'clock / is a street-food time zone.* |
 | ★ 8♣ | Auto-rickshaw, 6 PM | Yellow cab, 6 PM | *The minute it rains, / everyone is going the other way.* |
+| 9♣ | Honking at a fresh green light | Honking in gridlock | *The light turned green / a full second ago.* |
 | ★ 10♣ | St. Mark's Road, 11 PM | St. Marks Place, 11 PM | *Same saint. / Very different evenings.* |
+| J♣ | The BMTC conductor's whistle | The subway conductor's chime | *One whistle, one chime, / then nobody waits.* |
 | Q♣ | The Iyengar bakery | The bodega | *Open before you're up. / Still open when you're not okay.* |
 | K♣ | That pothole | That pothole | *Nobody fixes it. / Everybody knows exactly where it is.* |
 | A♠ | Majestic bus station | Port Authority Bus Terminal | *The ugliest building in town / is where everyone's story starts.* |
+| 2♠ | A monkey cap at 15° in December | Shorts at 15° in April | *Fifteen degrees. / Monkey cap or shorts, depending.* |
 | 3♠ | Pink tabebuia in February | Cherry blossom in April | *Once a year the pavement / forgets it's grey.* |
+| 4♠ | Mango season | Greenmarket peaches | *One fruit, one month. / We wait all year.* |
+| 5♠ | A Namma Metro token in a drawer | A MetroCard in a drawer | *You kept one in a drawer / long after it stopped working.* |
+| 6♠ | A summer power cut and a slowing fan | A dripping window AC | *Everyone's fan is on. / Nobody's fan is enough.* |
 | ★ 7♠ | The April 4 PM storm | The first snow at dusk | *Nobody leaves early / in weather like this.* |
+| 8♠ | Deepavali diyas on a balcony | Dyker Heights Christmas lights | *One night a year, / every window shows off.* |
+| 9♠ | Departures at Kempegowda Airport | Arrivals at JFK Terminal 4 | *Everyone waves / until the glass gets in the way.* |
+| 10♠ | New Year's Eve on Brigade Road | New Year's Eve in Times Square | *Midnight again. / Same resolutions.* |
 | J♠ | Gully cricket | Stickball | *The game ends / when someone's mother calls.* |
+| Q♠ | Bangalore in November | New York in October | *Two perfect weeks / we talk about all year.* |
 | K♠ | "Bangalore was better before" | "New York was better before" | *Everyone says it was better / the year they arrived.* |
 | Joker I | The Departure | | *Funny how you can miss two places at once.* |
 | Joker II | The Return | | *Funny how you can miss two places at once.* |
@@ -237,7 +267,7 @@ Both cards have a single index (a vertical JOKER), engraved rays behind the pour
 
 ## Next
 
-1. Verify the open fact (Namma Metro tokens), then lock the 22 pairings.
+1. Verify the open fact (Namma Metro tokens), then lock the deck.
 2. Design the card back, a pulli kolam dot grid woven into a Greek-key meander, rotationally symmetric.
 3. Draw the court figures. Jacks, Queens and Kings need people, so they get their own drawing pass.
 4. Get printer quotes for lenticular seam bands versus full-art lenticular.

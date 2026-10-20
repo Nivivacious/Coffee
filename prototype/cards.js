@@ -1,5 +1,5 @@
 /*
- * A Tale of Two Homes · card artwork.
+ * A Tale of Two Cities · card artwork.
  *
  * Every card is generated as SVG on a 250 x 350 grid (1 unit = 0.01 in, so
  * the card is exactly 2.5 x 3.5 in). A mirrored card is drawn as one "half"
@@ -290,7 +290,7 @@
   function half(ctx, def, side) {
     const p = ctx.id, k = INK.ink;
     const city = CITY[side.city];
-    const hour = HOURS[def.rank] || '';
+    const hour = side.hour || HOURS[def.rank] || '';
     const clauseLen = side.clause.length * 3.75;
     let dots = '';
     for (let x = 42 + clauseLen + 5; x < WIN.r - 4; x += 3.2) dots += `<circle cx="${f(x)}" cy="171.6" r="0.42"/>`;
@@ -914,7 +914,71 @@
     { id: 'departure', title: 'The Departure', variant: 'departure' },
     { id: 'return', title: 'The Return', variant: 'return' }
   ];
+  // ---------- the back ----------
+  // Pulli kolam lattice on kumkum, a chain border, and a small medallion
+  // whose seam carries BLR one way up and NYC the other.
+  function cardBack(opts) {
+    opts = opts || {};
+    const p = 'back' + (opts.uid || '');
+    const k = INK.ink, pa = INK.paper, red = INK.red;
+    let dots = '';
+    for (let y = 36; y <= 314; y += 14) {
+      for (let x = 34; x <= 216; x += 14) {
+        const odd = ((x - 34) / 14 + (y - 36) / 14) % 2;
+        dots += odd ? `<circle cx="${x}" cy="${y}" r="0.9" fill="${pa}"/>` : `<rect x="${x - 3.4}" y="${y - 3.4}" width="6.8" height="6.8" rx="2.2" transform="rotate(45 ${x} ${y})" fill="none" stroke="${pa}" stroke-width="0.55"/>`;
+      }
+    }
+    const cx = CX, cy = CY;
+    return svgOpen(p, Object.assign({ title: 'A Tale of Two Cities: card back' }, opts)) +
+      `<defs>
+        <pattern id="${p}-lat" width="14" height="14" patternUnits="userSpaceOnUse" x="34" y="36">
+          <path d="M0,7 L7,0 L14,7 L7,14 Z" fill="none" stroke="${pa}" stroke-width="0.3" opacity="0.6"/>
+        </pattern>
+        <pattern id="${p}-chain" width="8" height="8" patternUnits="userSpaceOnUse">
+          <circle cx="4" cy="4" r="2.4" fill="none" stroke="${pa}" stroke-width="0.5"/><circle cx="0" cy="0" r="0.7" fill="${pa}"/><circle cx="8" cy="8" r="0.7" fill="${pa}"/><circle cx="0" cy="8" r="0.7" fill="${pa}"/><circle cx="8" cy="0" r="0.7" fill="${pa}"/>
+        </pattern>
+      </defs>
+      ${frame()}
+      <rect x="16" y="16" width="${W - 32}" height="${H - 32}" rx="5" fill="${red}"/>
+      <path fill-rule="evenodd" d="M16,21 Q16,16 21,16 H${W - 21} Q${W - 16},16 ${W - 16},21 V${H - 21} Q${W - 16},${H - 16} ${W - 21},${H - 16} H21 Q16,${H - 16} 16,${H - 21} Z M26,26 H${W - 26} V${H - 26} H26 Z" fill="url(#${p}-chain)"/>
+      <rect x="26" y="26" width="${W - 52}" height="${H - 52}" fill="none" stroke="${pa}" stroke-width="0.6"/>
+      <rect x="28.5" y="28.5" width="${W - 57}" height="${H - 57}" fill="none" stroke="${pa}" stroke-width="0.25"/>
+      <rect x="29" y="29" width="${W - 58}" height="${H - 58}" fill="url(#${p}-lat)"/>
+      ${dots}
+      <circle cx="${cx}" cy="${cy}" r="34" fill="${red}" stroke="${pa}" stroke-width="0.6"/>
+      <circle cx="${cx}" cy="${cy}" r="30" fill="${pa}"/>
+      <circle cx="${cx}" cy="${cy}" r="27.5" fill="none" stroke="${k}" stroke-width="0.3"/>
+      <path d="M${cx - 27},${cy} H${cx + 27}" stroke="${red}" stroke-width="0.7"/>
+      <path d="M${cx - 2.6},${cy} l2.6,-2 l2.6,2 l-2.6,2 Z" fill="${red}"/>
+      <g font-family="${FONT.display}" font-size="11" font-weight="500" fill="${k}" text-anchor="middle" letter-spacing="1.5">
+        <text x="${cx}" y="${cy - 6}">BLR</text>
+        <text x="${cx}" y="${cy - 6}" transform="rotate(180 ${cx} ${cy})">NYC</text>
+      </g>
+      <g font-family="${FONT.micro}" font-size="4" font-weight="700" fill="${k}" text-anchor="middle" letter-spacing="1.2" opacity="0.75">
+        <text x="${cx}" y="${cy - 19}">A TALE OF</text>
+        <text x="${cx}" y="${cy - 19}" transform="rotate(180 ${cx} ${cy})">TWO CITIES</text>
+      </g>
+      </svg>`;
+  }
+
+  // Suit files in deck/ add their cards through register(). Cards stay in
+  // deck order: suit, then rank.
+  const SUIT_ORDER = ['heart', 'diamond', 'club', 'spade'];
+  const RANK_ORDER = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  const RANK_NAME = { A: 'Ace', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine', 10: 'Ten', J: 'Jack', Q: 'Queen', K: 'King' };
+  const sortKey = (c) => SUIT_ORDER.indexOf(c.suit) * 100 + RANK_ORDER.indexOf(c.rank);
+  function register(def) {
+    if (!def.rankName) def.rankName = RANK_NAME[def.rank];
+    const i = CARDS.findIndex((c) => c.id === def.id);
+    if (i >= 0) CARDS.splice(i, 1);
+    CARDS.push(def);
+    CARDS.sort((a, b) => sortKey(a) - sortKey(b));
+    CYCLE[def.id] = def.cycle || 12;
+  }
+  CARDS.sort((a, b) => sortKey(a) - sortKey(b));
+
   function render(id, opts) {
+    if (id === 'back') return cardBack(opts);
     const j = JOKERS.find((x) => x.id === id);
     if (j) return joker(j.variant, opts);
     const def = CARDS.find((x) => x.id === id);
@@ -922,7 +986,14 @@
     return mirroredCard(def, opts);
   }
 
-  const api = { INK, FONT, HOURS, CARDS, JOKERS, SUIT_NAME, CYCLE, render, size: { w: W, h: H } };
+  // Drawing kit for the suit files.
+  const kit = {
+    W, H, CX, CY, WIN, f, rng, esc, scallop, loop, move, spin, eased, easeLoop, easeMove, easeSpin,
+    precip, figure, bird, wisps, fallingLeaf, splashes, squirrel, wheel, beam,
+    autoRickshaw, yellowCab, nightCar, tumbler, paperCup, davara
+  };
+
+  const api = { INK, FONT, HOURS, CARDS, JOKERS, SUIT_NAME, SUIT_ORDER, RANK_ORDER, CYCLE, render, register, kit, size: { w: W, h: H } };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.TaleCards = api;
 })(typeof window !== 'undefined' ? window : globalThis);

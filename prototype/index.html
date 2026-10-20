@@ -1,4 +1,4 @@
-<title>A Tale of Two Homes</title>
+<title>A Tale of Two Cities</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,25 +79,38 @@
   button[aria-pressed="true"] { background: var(--ivory); color: var(--table); border-color: var(--ivory); }
   .status { font-size: 15px; color: var(--muted); min-height: 1.5em; }
 
-  /* Reel */
-  .reel-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 20px; }
+  /* Deck: face-down rows, one per suit */
+  .reel-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 24px; }
   .reel-head h2 { font-size: 32px; }
-  .reel { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; }
-  .thumb {
-    padding: 0; border: 0; background: none; display: grid; gap: 8px; text-align: left;
-    text-transform: none; letter-spacing: 0; font-family: var(--body); font-weight: 500; font-size: 15px; color: var(--muted);
-  }
-  .thumb .mini { aspect-ratio: 5 / 7; border-radius: 6px; overflow: hidden; outline: 1px solid transparent; transition: transform 0.3s, outline-color 0.3s; }
-  .thumb .mini svg { display: block; width: 100%; height: 100%; }
-  .thumb:hover .mini { transform: translateY(-4px); }
-  .thumb[aria-current="true"] { color: var(--ivory); }
-  .thumb[aria-current="true"] .mini { outline: 2px solid var(--marigold); outline-offset: 3px; }
-  .thumb .idx { font-family: var(--label); font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .reel-head .controls { gap: 8px; }
+  .suit-row { display: grid; gap: 10px; margin-bottom: 26px; }
+  .suit-row h3 { font-family: var(--display); font-weight: 500; font-size: 20px; display: flex; gap: 10px; align-items: baseline; }
+  .suit-row h3 svg { width: 13px; height: 13px; flex: none; }
+  .suit-row h3 .label { font-size: 11px; }
+  .reel { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 8px; }
+  .thumb { padding: 0; border: 0; background: none; cursor: pointer; perspective: 700px; }
+  .flip { position: relative; display: block; aspect-ratio: 5 / 7; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.6, 0, 0.2, 1), translate 0.25s; }
+  .thumb:hover .flip { translate: 0 -4px; }
+  .thumb.revealed .flip { transform: rotateY(180deg); }
+  .side { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6% / 4.3%; overflow: hidden; box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.75); }
+  .side svg { display: block; width: 100%; height: 100%; }
+  .side.front { transform: rotateY(180deg); }
+  .thumb[aria-current="true"] .side.front { outline: 2px solid var(--marigold); outline-offset: 2px; }
+
+  /* Opening shuffle */
+  .intro { position: fixed; inset: 0; z-index: 50; background: var(--table); display: grid; place-items: center; overflow: hidden; }
+  .intro .deck { position: relative; width: min(210px, 44vw); aspect-ratio: 5 / 7; }
+  .intro .c { position: absolute; inset: 0; border-radius: 6% / 4.3%; overflow: hidden; box-shadow: 0 12px 26px -12px rgba(0, 0, 0, 0.85); will-change: transform; }
+  .intro .c svg { display: block; width: 100%; height: 100%; }
+  .intro .cap { position: absolute; left: 0; right: 0; bottom: calc(48px + env(safe-area-inset-bottom, 0px)); text-align: center; display: grid; gap: 6px; }
+  .intro .cap b { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 4vw, 36px); }
+  .intro .skip { position: absolute; top: calc(16px + env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
 
   /* Jokers */
   .jokers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .pair .card { transition: none; }
+  .pair .thumb { perspective: 1200px; }
+  .pair .side { border-radius: 4.8% / 3.4%; box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.75); }
   .jokers-text { display: grid; gap: 18px; min-width: 0; }
   .jokers-text h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.05; }
   .jokers-text blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: 26px; color: var(--marigold); line-height: 1.25; }
@@ -120,25 +133,25 @@
   @media (max-width: 860px) {
     .stage, .jokers { grid-template-columns: minmax(0, 1fr); }
     .card-hold { max-width: 380px; width: 100%; margin: 0 auto; }
-    .reel { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .reel { grid-template-columns: repeat(13, 62px); overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x proximity; }
+    .thumb { scroll-snap-align: start; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .specs { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 480px) {
-    .reel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .grid { grid-template-columns: minmax(0, 1fr); }
   }
   @media (prefers-reduced-motion: reduce) {
     .card { transition: none; }
-    .thumb .mini { transition: none; }
+    .flip { transition: none; }
   }
 </style>
 
 <div class="wrap">
   <header>
-    <span class="label">Prototype · 5 cards, 2 Jokers</span>
-    <h1>A Tale of <em>Two</em> Homes</h1>
-    <p class="thesis">Different cities. Familiar feelings. For anyone whose phone shows two clocks.</p>
+    <span class="label" id="count">Prototype deck</span>
+    <h1>A Tale of <em>Two</em> Cities</h1>
+    <p class="thesis">For anyone whose phone shows two clocks.</p>
   </header>
 
   <section class="stage" aria-label="Featured card">
@@ -169,18 +182,22 @@
     </div>
   </section>
 
-  <section aria-label="The collection">
+  <section aria-label="The deck">
     <div class="reel-head">
-      <h2>The collection</h2>
-      <span class="label">Tap one to watch it up close</span>
+      <h2>The deck</h2>
+      <div class="controls">
+        <button type="button" id="b-shuffle">Shuffle again</button>
+        <button type="button" id="b-all" aria-pressed="false">Turn all over</button>
+      </div>
     </div>
-    <div class="reel" id="reel"></div>
+    <p class="status" style="margin-bottom:18px">Face down, like a proper deck. Tap one to turn it over.</p>
+    <div id="rows"></div>
   </section>
 
   <section class="jokers" aria-label="The Jokers">
     <div class="pair">
-      <div class="card" id="j-dep"></div>
-      <div class="card" id="j-ret"></div>
+      <button type="button" class="thumb jflip" id="j-dep" data-id="departure" aria-label="Face-down Joker"><span class="flip"><span class="side back"></span><span class="side front"></span></span></button>
+      <button type="button" class="thumb jflip" id="j-ret" data-id="return" aria-label="Face-down Joker"><span class="flip"><span class="side back"></span><span class="side front"></span></span></button>
     </div>
     <div class="jokers-text">
       <span class="label">No mirror</span>
@@ -210,6 +227,10 @@
 </div>
 
 <script src="cards.js"></script>
+<script src="deck/hearts.js"></script>
+<script src="deck/diamonds.js"></script>
+<script src="deck/clubs.js"></script>
+<script src="deck/spades.js"></script>
 <script src="sound.js"></script>
 <script>
   (function () {
@@ -248,10 +269,23 @@
       Snd.mute(state.still);
     }
 
-    function setFeature(id) {
+    // Stage card turns over: edge-on, swap the face, back to flat.
+    function flipStage(html, animate) {
+      const el = $('feature');
+      if (!animate || reduce || !el.animate) { el.innerHTML = html; return; }
+      const a = el.animate([{ transform: `${state.turned ? 'rotate(180deg) ' : ''}rotateY(0deg)` }, { transform: `${state.turned ? 'rotate(180deg) ' : ''}rotateY(90deg)` }], { duration: 220, easing: 'ease-in' });
+      a.onfinish = () => {
+        el.innerHTML = html;
+        if (state.paused) pauseAll(true);
+        follow();
+        el.animate([{ transform: `${state.turned ? 'rotate(180deg) ' : ''}rotateY(-90deg)` }, { transform: `${state.turned ? 'rotate(180deg) ' : ''}rotateY(0deg)` }], { duration: 320, easing: 'cubic-bezier(0.2, 0.7, 0.3, 1)' });
+      };
+    }
+
+    function setFeature(id, animate) {
       state.id = id;
       const item = all.find((x) => x.id === id);
-      $('feature').innerHTML = render(id, { static: state.still });
+      flipStage(render(id, { static: state.still }), animate);
       if (state.paused) pauseAll(true);
       if (item.kind === 'card') {
         $('f-rank').textContent = `${item.rankName} of ${T.SUIT_NAME[item.suit]} · ${T.HOURS[item.rank]}`;
@@ -273,6 +307,7 @@
         $('f-mech').textContent = j.mech; $('f-why').textContent = j.why; $('f-sound').textContent = j.sound;
       }
       $('f-title').textContent = item.title;
+      reveal(id);
       document.querySelectorAll('.thumb').forEach((b) => b.setAttribute('aria-current', String(b.dataset.id === id)));
       $('status').textContent = '';
       follow();
@@ -285,19 +320,63 @@
       });
     }
 
-    // Reel: still frames, so the stage is the only film running at full size.
-    const reel = $('reel');
-    all.forEach((item) => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.className = 'thumb'; b.dataset.id = item.id;
-      const idx = item.kind === 'card' ? `${item.rank} ${T.SUIT_NAME[item.suit]}` : 'Joker';
-      b.innerHTML = `<div class="mini">${render(item.id, { static: true })}</div><span class="idx">${idx}</span><span>${item.title}</span>`;
-      b.addEventListener('click', () => { setFeature(item.id); if (window.innerWidth < 860) $('feature').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); });
-      reel.appendChild(b);
-    });
+    // The deck: every card face down, one row per suit, Jokers last.
+    const pip = (suit, fill) => `<svg viewBox="-7 -7 14 14" aria-hidden="true"><path d="${pipPath[suit]}" fill="${fill}"/></svg>`;
+    const suitTheme = { heart: 'Belonging', diamond: 'Ambition', club: 'Streets', spade: 'Weather and time' };
+    const thumbs = {};
+    function label(item) { return item.kind === 'card' ? `${item.rankName} of ${T.SUIT_NAME[item.suit]}, ${item.title}` : `Joker, ${item.title}`; }
+    function reveal(id) {
+      const b = thumbs[id];
+      if (!b || b.classList.contains('revealed')) return;
+      b.querySelector('.front').innerHTML = render(id, { static: true });
+      b.classList.add('revealed');
+      b.setAttribute('aria-label', label(all.find((x) => x.id === id)));
+    }
+    function buildRows() {
+      const groups = T.SUIT_ORDER.map((suit) => ({ suit, items: all.filter((x) => x.suit === suit) })).filter((g) => g.items.length);
+      groups.push({ suit: null, items: all.filter((x) => x.kind === 'joker') });
+      $('rows').innerHTML = '';
+      groups.forEach((g) => {
+        const row = document.createElement('div');
+        row.className = 'suit-row';
+        row.innerHTML = g.suit
+          ? `<h3>${pip(g.suit, g.suit === 'heart' || g.suit === 'diamond' ? 'var(--vermilion)' : 'var(--ivory)')}${T.SUIT_NAME[g.suit]} <span class="label">${suitTheme[g.suit]}</span></h3>`
+          : '<h3>Jokers <span class="label">No mirror</span></h3>';
+        const grid = document.createElement('div');
+        grid.className = 'reel';
+        g.items.forEach((item) => {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'thumb'; b.dataset.id = item.id;
+          b.setAttribute('aria-label', 'Face-down card');
+          b.innerHTML = `<span class="flip"><span class="side back">${render('back', { static: true })}</span><span class="side front"></span></span>`;
+          b.addEventListener('click', () => {
+            const fresh = !b.classList.contains('revealed');
+            reveal(item.id);
+            if (fresh) Snd.flick && Snd.flick();
+            setFeature(item.id, true);
+            if (window.innerWidth < 860) $('feature').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+          });
+          thumbs[item.id] = b;
+          grid.appendChild(b);
+        });
+        row.appendChild(grid);
+        $('rows').appendChild(row);
+      });
+      $('count').textContent = `Prototype deck · ${T.CARDS.length} cards and 2 Jokers`;
+    }
 
-    $('j-dep').innerHTML = render('departure', { static: reduce });
-    $('j-ret').innerHTML = render('return', { static: reduce });
+    // The Jokers wait face down too. Turned over, they play.
+    ['j-dep', 'j-ret'].forEach((el) => {
+      const b = $(el), id = b.dataset.id;
+      b.querySelector('.back').innerHTML = render('back', { static: true });
+      b.addEventListener('click', () => {
+        if (b.classList.contains('revealed')) return;
+        b.querySelector('.front').innerHTML = render(id, { static: reduce });
+        b.classList.add('revealed');
+        b.setAttribute('aria-label', `Joker, ${id === 'departure' ? 'The Departure' : 'The Return'}`);
+        Snd.flick && Snd.flick();
+      });
+    });
 
     const suits = [
       { s: 'heart', name: 'Hearts', theme: 'Belonging', d: 'Regulars, rituals, people who know your order.', ex: 'Cubbon Park × Central Park · Darshini × diner' },
@@ -357,7 +436,70 @@
       try { navigator.clipboard.writeText(svg).then(done, fallback); } catch (e) { fallback(); }
     });
 
+    // Opening: a riffle shuffle, twice, then the top card lands on the stage.
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    async function shuffle() {
+      const pick = all.filter((x) => x.kind === 'card')[Math.floor(Math.random() * T.CARDS.length)].id;
+      if (reduce || !document.body.animate) { setFeature(pick, false); return; }
+      const ov = document.createElement('div');
+      ov.className = 'intro';
+      ov.innerHTML = `<button type="button" class="skip">Skip</button><div class="deck"></div><div class="cap"><b>A Tale of Two Cities</b><span class="label">Shuffling</span></div>`;
+      document.body.appendChild(ov);
+      const deck = ov.querySelector('.deck');
+      const N = 14, cards = [];
+      for (let i = 0; i < N; i++) {
+        const c = document.createElement('div');
+        c.className = 'c'; c.innerHTML = render('back', { static: true });
+        c.style.transform = `translate(0, ${-i * 0.8}px)`;
+        deck.appendChild(c); cards.push(c);
+      }
+      let skipped = false;
+      const finish = () => {
+        if (!ov.isConnected) return;
+        ov.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 320, easing: 'ease-out' }).onfinish = () => ov.remove();
+        setFeature(pick, true);
+      };
+      ov.querySelector('.skip').addEventListener('click', () => { skipped = true; finish(); });
+      const base = (i) => `translate(0, ${-i * 0.8}px) rotate(0deg)`;
+      const split = (i) => `translate(${i % 2 ? 58 : -58}%, ${-i * 0.8 + 6}px) rotate(${i % 2 ? 8 : -8}deg)`;
+      const go = (fn, opt) => Promise.all(cards.map((c, i) => c.animate(fn(i), Object.assign({ fill: 'forwards' }, typeof opt === 'function' ? opt(i) : opt)).finished));
+      try {
+        await sleep(250);
+        for (let r = 0; r < 2 && !skipped; r++) {
+          Snd.riffle && Snd.riffle();
+          await go((i) => [{ transform: base(i) }, { transform: split(i) }], { duration: 380, easing: 'cubic-bezier(0.5, 0, 0.2, 1)' });
+          if (skipped) break;
+          await go((i) => [{ transform: split(i) }, { transform: base(i) }], (i) => ({ duration: 300, delay: (i % 2 ? i : N - i) * 22, easing: 'cubic-bezier(0.3, 0, 0.2, 1)' }));
+          await sleep(120);
+        }
+        if (skipped) return;
+        const top = cards[N - 1], from = deck.getBoundingClientRect(), to = $('feature').getBoundingClientRect();
+        const dx = to.left + to.width / 2 - (from.left + from.width / 2), dy = to.top + to.height / 2 - (from.top + from.height / 2);
+        ov.querySelector('.cap').animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' });
+        await top.animate([{ transform: base(N - 1) }, { transform: `translate(${dx}px, ${dy}px) scale(${to.width / from.width}) rotate(0deg)` }], { duration: 650, easing: 'cubic-bezier(0.5, 0, 0.1, 1)', fill: 'forwards' }).finished;
+      } catch (e) { /* animation cancelled */ }
+      finish();
+    }
+
     if (reduce) $('b-print').setAttribute('aria-pressed', 'true');
-    setFeature('ride');
+    buildRows();
+    $('feature').innerHTML = render('back', { static: true });
+    shuffle();
+
+    $('b-shuffle').addEventListener('click', () => {
+      document.querySelectorAll('.thumb.revealed').forEach((b) => b.classList.remove('revealed'));
+      $('b-all').setAttribute('aria-pressed', 'false');
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      $('feature').innerHTML = render('back', { static: true });
+      shuffle();
+    });
+    $('b-all').addEventListener('click', () => {
+      const on = $('b-all').getAttribute('aria-pressed') !== 'true';
+      $('b-all').setAttribute('aria-pressed', String(on));
+      Object.keys(thumbs).forEach((id, i) => {
+        if (on) setTimeout(() => reveal(id), reduce ? 0 : i * 18);
+        else if (id !== state.id) thumbs[id].classList.remove('revealed');
+      });
+    });
   })();
 </script>

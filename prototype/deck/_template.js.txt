@@ -1,0 +1,27 @@
+// Template for a suit file. Copy to deck/<suit>.js (hearts.js, diamonds.js,
+// clubs.js or spades.js). Works in the browser and in Node.
+(function (root) {
+  'use strict';
+  const T = root.TaleCards || require('../cards.js');
+  const { INK, FONT } = T;
+  const { W, H, CX, WIN, f, rng, scallop, loop, move, spin, easeLoop, easeMove, easeSpin,
+    precip, figure, bird, wisps, fallingLeaf, splashes, squirrel } = T.kit;
+
+  T.register({
+    id: 'h-a', rank: 'A', suit: 'heart', title: 'The Step',
+    pair: ['Jagali katte', 'Brooklyn stoop'],
+    sentence: ['Every house needs a step', 'that belongs to the street.'],
+    why: '...', mechanism: '...', sound: '...',
+    draw(ctx) {
+      const k = INK.ink;
+      // Art for each half is drawn in that half's own upright frame:
+      // window x 38..212, y 20..167, ground line at y = 167.
+      const top = `<rect width="${W}" height="${H}" fill="${INK.yellow}" opacity="0.14"/> ...`;
+      const bottom = `...`;
+      return {
+        top: { city: 'blr', caption: 'BASAVANAGUDI', clause: 'Every house needs a step', art: top },
+        bottom: { city: 'nyc', caption: 'BED-STUY', clause: 'that belongs to the street.', art: bottom }
+      };
+    }
+  });
+})(typeof window !== 'undefined' ? window : globalThis);

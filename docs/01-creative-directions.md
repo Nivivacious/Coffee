@@ -1,6 +1,6 @@
 # Phase 1. Creative directions
 
-**A Tale of Two Homes** · a playing-card deck about Bangalore and New York
+**A Tale of Two Cities** · a playing-card deck about Bangalore and New York
 
 > Different cities. Familiar feelings.
 
