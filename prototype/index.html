@@ -1,0 +1,353 @@
+<title>A Tale of Two Homes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Archivo+Narrow:wght@500;700&family=Noto+Sans+Kannada:wght@500;700&display=swap">
+<style>
+  /* Layout: a darkened screening room. One card on the stage, the reel below, the Jokers as the closing scene. */
+  :root {
+    --table: #12151f;
+    --panel: #1a1e2b;
+    --ivory: #f4ecdc;
+    --muted: #a8a294;
+    --vermilion: #e2553c;
+    --marigold: #f2b330;
+    --rule: rgba(244, 236, 220, 0.14);
+    --display: 'Bodoni Moda', 'Bodoni 72', Didot, serif;
+    --body: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
+    --label: 'Archivo Narrow', 'Arial Narrow', sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--table);
+    color: var(--ivory);
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0 64px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 72px; }
+  .label {
+    font-family: var(--label); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  }
+  h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+
+  header { padding-top: 48px; display: grid; gap: 14px; }
+  header h1 { font-size: clamp(42px, 7vw, 84px); line-height: 1; letter-spacing: -0.01em; }
+  header h1 em { font-style: italic; color: var(--marigold); }
+  header .thesis { font-size: 24px; font-style: italic; color: var(--muted); max-width: 40ch; }
+
+  /* Stage */
+  .stage { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 48px; align-items: start; }
+  .card-hold { perspective: 1400px; }
+  .card {
+    max-width: 100%; aspect-ratio: 5 / 7;
+    border-radius: 4.8% / 3.4%;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.3);
+    transition: transform 1.4s cubic-bezier(0.6, 0, 0.2, 1);
+  }
+  .card svg { display: block; width: 100%; height: 100%; }
+  .card.turned { transform: rotate(180deg); }
+  .info { display: grid; gap: 22px; min-width: 0; }
+  .info h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.05; }
+  .pairing { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; font-size: 22px; }
+  .pairing .x { color: var(--vermilion); font-family: var(--display); font-size: 30px; line-height: 0.8; }
+  .sentence {
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding-block: 18px; display: grid; gap: 4px;
+  }
+  .sentence .half { font-family: var(--display); font-style: italic; font-size: 24px; line-height: 1.25; }
+  .sentence .half.b { color: var(--marigold); }
+  .sentence .note { font-size: 16px; color: var(--muted); margin-top: 6px; }
+  .info dl { display: grid; gap: 14px; margin: 0; }
+  .info dt { margin-bottom: 2px; }
+  .info dd { margin: 0; max-width: 60ch; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; }
+  button {
+    font-family: var(--label); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ivory); background: transparent; border: 1px solid var(--rule); border-radius: 2px;
+    padding: 10px 14px; cursor: pointer;
+  }
+  button:hover { border-color: var(--ivory); }
+  button:focus-visible { outline: 2px solid var(--marigold); outline-offset: 2px; }
+  button[aria-pressed="true"] { background: var(--ivory); color: var(--table); border-color: var(--ivory); }
+  .status { font-size: 15px; color: var(--muted); min-height: 1.5em; }
+
+  /* Reel */
+  .reel-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 20px; }
+  .reel-head h2 { font-size: 32px; }
+  .reel { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; }
+  .thumb {
+    padding: 0; border: 0; background: none; display: grid; gap: 8px; text-align: left;
+    text-transform: none; letter-spacing: 0; font-family: var(--body); font-weight: 500; font-size: 15px; color: var(--muted);
+  }
+  .thumb .mini { aspect-ratio: 5 / 7; border-radius: 6px; overflow: hidden; outline: 1px solid transparent; transition: transform 0.3s, outline-color 0.3s; }
+  .thumb .mini svg { display: block; width: 100%; height: 100%; }
+  .thumb:hover .mini { transform: translateY(-4px); }
+  .thumb[aria-current="true"] { color: var(--ivory); }
+  .thumb[aria-current="true"] .mini { outline: 2px solid var(--marigold); outline-offset: 3px; }
+  .thumb .idx { font-family: var(--label); font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* Jokers */
+  .jokers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .pair .card { transition: none; }
+  .jokers-text { display: grid; gap: 18px; min-width: 0; }
+  .jokers-text h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.05; }
+  .jokers-text blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: 26px; color: var(--marigold); line-height: 1.25; }
+  .jokers-text p { max-width: 60ch; }
+
+  /* System */
+  .system h2 { font-size: 32px; margin-bottom: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .grid > div { background: var(--table); padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .grid h3 { font-size: 24px; display: flex; gap: 10px; align-items: baseline; }
+  .grid h3 svg { width: 16px; height: 16px; flex: none; }
+  .grid p { font-size: 17px; }
+  .grid .ex { font-size: 15px; color: var(--muted); font-style: italic; }
+  .specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 40px; }
+  .specs > div { display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .specs p { font-size: 17px; }
+  .inks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .ink { display: grid; gap: 4px; font-family: var(--label); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+  .ink i { display: block; width: 44px; height: 30px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25); }
+  .hours { font-variant-numeric: tabular-nums; font-family: var(--label); font-size: 13px; letter-spacing: 0.04em; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .hours b { color: var(--ivory); font-weight: 700; }
+
+  @media (max-width: 860px) {
+    .stage, .jokers { grid-template-columns: minmax(0, 1fr); }
+    .card-hold { max-width: 380px; width: 100%; margin: 0 auto; }
+    .reel { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .specs { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .reel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+    .thumb .mini { transition: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="label">Prototype deck · five hero cards and two Jokers</span>
+    <h1>A Tale of <em>Two</em> Homes</h1>
+    <p class="thesis">Different cities. Familiar feelings. A deck of playing cards about Bangalore and New York.</p>
+  </header>
+
+  <section class="stage" aria-label="Featured card">
+    <div class="card-hold"><div class="card" id="feature"></div></div>
+    <div class="info">
+      <span class="label" id="f-rank">Eight of Clubs · 6 PM</span>
+      <h2 id="f-title">The Ride Home</h2>
+      <div class="pairing"><span id="f-a">Auto-rickshaw</span><span class="x">×</span><span id="f-b">Yellow cab</span></div>
+      <div class="sentence">
+        <span class="label">Hidden on the seam</span>
+        <span class="half" id="f-s1"></span>
+        <span class="half b" id="f-s2"></span>
+        <span class="note" id="f-note">The first half reads from Bangalore's side. Turn the card to read the rest.</span>
+      </div>
+      <dl>
+        <div><dt class="label">At the centre</dt><dd id="f-mech"></dd></div>
+        <div><dt class="label">Why it pairs</dt><dd id="f-why"></dd></div>
+      </dl>
+      <div class="controls">
+        <button type="button" id="b-turn" aria-pressed="false">Turn card</button>
+        <button type="button" id="b-play" aria-pressed="false">Pause</button>
+        <button type="button" id="b-print" aria-pressed="false">Print frame</button>
+        <button type="button" id="b-copy">Copy SVG</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section aria-label="The collection">
+    <div class="reel-head">
+      <h2>The collection</h2>
+      <span class="label">Select a card to put it on the stage</span>
+    </div>
+    <div class="reel" id="reel"></div>
+  </section>
+
+  <section class="jokers" aria-label="The Jokers">
+    <div class="pair">
+      <div class="card" id="j-dep"></div>
+      <div class="card" id="j-ret"></div>
+    </div>
+    <div class="jokers-text">
+      <span class="label">The only two cards without a mirror</span>
+      <h2>The Departure and The Return</h2>
+      <blockquote>Funny how you can miss two places at once.</blockquote>
+      <p>Every other card turns. These two can't, because a pour only goes down. Each Joker pulls coffee from one vessel to the other the way a darshini cools and froths it. The person who lives between the two cities is the stream, and the travel is what makes it right.</p>
+      <p>On The Departure the sentence flows downstream, from the steel tumbler into a New York paper cup. On The Return it runs upstream, from a davara that someone kept a little coffee in. The Return's stream is paler. You come back with more milk in you.</p>
+      <p>The other 51 cards share rotational symmetry: the same either way up. The Jokers are mirror images of each other, so they only make a whole shape side by side.</p>
+    </div>
+  </section>
+
+  <section class="system" aria-label="Deck system">
+    <h2>How the deck works</h2>
+    <div class="grid" id="suits"></div>
+    <div class="specs">
+      <div>
+        <span class="label">Ranks keep time</span>
+        <p>Laid out from 2 to 10, each suit is one day, and every card's caption gives the hour. Aces are origins. Jacks are the people who keep the city moving, Queens are what the city loves, and Kings are what it complains about and never fixes.</p>
+        <div class="hours" id="hours"></div>
+      </div>
+      <div>
+        <span class="label">Inks</span>
+        <p>Seven spot colours on warm ivory stock, printed like a screen print. Marigold is shared: the same ink makes the auto's hood and the cab.</p>
+        <div class="inks" id="inks"></div>
+      </div>
+      <div>
+        <span class="label">Print and motion</span>
+        <p>Every card is vector SVG on an exact 2.5 × 3.5 in grid, with a 0.125 in bleed version for the printer. The animation lives in the file. For the printed deck, the seam band can be lenticular, so tilting the card in your hand plays the motion.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="cards.js"></script>
+<script>
+  (function () {
+    const T = window.TaleCards;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const all = [...T.CARDS.map((c) => ({ ...c, kind: 'card' })), ...T.JOKERS.map((j) => ({ ...j, kind: 'joker' }))];
+    const state = { id: 'ride', still: reduce, turned: false, paused: false };
+    let uid = 0;
+    const $ = (id) => document.getElementById(id);
+
+    const jokerInfo = {
+      departure: {
+        rank: 'Joker · I', a: 'Steel tumbler', b: 'New York paper cup',
+        s1: 'Funny how you can miss', s2: 'two places at once.',
+        note: 'The whole sentence travels inside the stream, downstream with the pour.',
+        mech: 'The only diagonal in the deck. The stream crosses the seam instead of meeting at it, and the vermilion seam line breaks where it passes. A single index, top left.',
+        why: 'The deck spends 51 cards arguing that two cities are alike. The Joker admits it was about the person who had to call both of them home.'
+      },
+      return: {
+        rank: 'Joker · II', a: 'New York paper cup', b: 'Steel davara',
+        s1: 'Funny how you can miss', s2: 'two places at once.',
+        note: 'Here the sentence runs upstream, back toward the cup. Going back is the point.',
+        mech: 'The Departure mirrored left to right. The davara already holds a little coffee, and the stream is paler. Side by side, the two streams form one arch.',
+        why: 'Every card but these two turns. A person, unlike a city, isn\'t reversible.'
+      }
+    };
+
+    function render(id, opts) { return T.render(id, Object.assign({ uid: '-' + (uid++) }, opts)); }
+
+    function setFeature(id) {
+      state.id = id;
+      const item = all.find((x) => x.id === id);
+      $('feature').innerHTML = render(id, { static: state.still });
+      if (state.paused) pauseAll(true);
+      if (item.kind === 'card') {
+        $('f-rank').textContent = `${item.rankName} of ${T.SUIT_NAME[item.suit]} · ${T.HOURS[item.rank]}`;
+        $('f-a').textContent = item.pair[0];
+        $('f-b').textContent = item.pair[1];
+        $('f-s1').textContent = item.sentence[0];
+        $('f-s2').textContent = item.sentence[1];
+        $('f-note').textContent = 'The first half reads from Bangalore\'s side. Turn the card to read the rest.';
+        $('f-mech').textContent = item.mechanism;
+        $('f-why').textContent = item.why;
+        $('b-turn').disabled = false;
+      } else {
+        const j = jokerInfo[id];
+        $('f-rank').textContent = j.rank;
+        $('f-a').textContent = j.a; $('f-b').textContent = j.b;
+        $('f-s1').textContent = j.s1; $('f-s2').textContent = j.s2;
+        $('f-note').textContent = j.note;
+        $('f-mech').textContent = j.mech; $('f-why').textContent = j.why;
+        $('b-turn').disabled = false;
+      }
+      $('f-title').textContent = item.title;
+      document.querySelectorAll('.thumb').forEach((b) => b.setAttribute('aria-current', String(b.dataset.id === id)));
+      $('status').textContent = '';
+    }
+
+    function pauseAll(p) {
+      document.querySelectorAll('svg[data-card]').forEach((s) => {
+        if (typeof s.pauseAnimations !== 'function') return;
+        p ? s.pauseAnimations() : s.unpauseAnimations();
+      });
+    }
+
+    // Reel
+    const reel = $('reel');
+    all.forEach((item) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'thumb'; b.dataset.id = item.id;
+      const idx = item.kind === 'card' ? `${item.rank} ${T.SUIT_NAME[item.suit]}` : 'Joker';
+      b.innerHTML = `<div class="mini">${render(item.id, { static: reduce })}</div><span class="idx">${idx}</span><span>${item.title}</span>`;
+      b.addEventListener('click', () => { setFeature(item.id); if (window.innerWidth < 860) $('feature').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); });
+      reel.appendChild(b);
+    });
+
+    // Jokers
+    $('j-dep').innerHTML = render('departure', { static: reduce });
+    $('j-ret').innerHTML = render('return', { static: reduce });
+
+    // Suits
+    const suits = [
+      { s: 'heart', name: 'Hearts', theme: 'Belonging', d: 'Rituals, regulars, the people who know your order.', ex: 'Cubbon Park × Central Park · Darshini × diner' },
+      { s: 'diamond', name: 'Diamonds', theme: 'Ambition', d: 'Work, money, early starts, getting somewhere.', ex: 'KR Market at dawn × the 28th Street flower district' },
+      { s: 'club', name: 'Clubs', theme: 'Streets', d: 'Commutes, corners, food, small daily annoyances.', ex: 'Auto × cab · St. Mark\'s Road × St. Marks Place' },
+      { s: 'spade', name: 'Spades', theme: 'Weather and time', d: 'Seasons, arrivals, leaving, growing up.', ex: 'The April storm × the first snow' }
+    ];
+    const pipPath = {
+      heart: 'M0,5.6 C-1.2,4 -6,1.2 -6,-2 C-6,-5 -2.4,-6.4 0,-3.5 C2.4,-6.4 6,-5 6,-2 C6,1.2 1.2,4 0,5.6 Z',
+      diamond: 'M0,-6.2 L4.3,0 L0,6.2 L-4.3,0 Z',
+      club: 'M0,-6 A2.7,2.7 0 1 1 0.01,-6 Z M-3,-0.6 A2.7,2.7 0 1 1 -2.99,-0.6 Z M3,-0.6 A2.7,2.7 0 1 1 3.01,-0.6 Z M-0.8,0.6 L-1.9,6.2 L1.9,6.2 L0.8,0.6 Z',
+      spade: 'M0,-6.2 C1,-4 6,-1.6 6,1.6 C6,4.1 3,5 0.9,3.3 L1.9,6.2 L-1.9,6.2 L-0.9,3.3 C-3,5 -6,4.1 -6,1.6 C-6,-1.6 -1,-4 0,-6.2 Z'
+    };
+    $('suits').innerHTML = suits.map((x) => `<div><span class="label">${x.name}</span><h3><svg viewBox="-7 -7 14 14" aria-hidden="true"><path d="${pipPath[x.s]}" fill="${x.s === 'heart' || x.s === 'diamond' ? 'var(--vermilion)' : 'var(--ivory)'}"/></svg>${x.theme}</h3><p>${x.d}</p><p class="ex">${x.ex}</p></div>`).join('');
+    $('hours').innerHTML = ['2', '3', '4', '5', '6', '7', '8', '9', '10'].map((r) => `<span><b>${r}</b> ${T.HOURS[r]}</span>`).join('');
+    const inkNames = { paper: 'Ivory stock', ink: 'Indigo black', red: 'Kumkum', yellow: 'Marigold', green: 'Canopy', blue: 'Monsoon', pink: 'Neon', kaapi: 'Kaapi' };
+    $('inks').innerHTML = Object.entries(T.INK).map(([k, v]) => `<span class="ink"><i style="background:${v}"></i>${inkNames[k]}</span>`).join('');
+
+    // Controls
+    $('b-turn').addEventListener('click', () => {
+      state.turned = !state.turned;
+      $('feature').classList.toggle('turned', state.turned);
+      $('b-turn').setAttribute('aria-pressed', String(state.turned));
+      $('status').textContent = state.turned
+        ? (state.id === 'departure' || state.id === 'return' ? 'Upside down, the coffee pours into the sky. The Jokers are the only cards with an up.' : 'New York is upright now. Read the second half along the seam.')
+        : '';
+    });
+    $('b-play').addEventListener('click', () => {
+      state.paused = !state.paused;
+      pauseAll(state.paused);
+      $('b-play').setAttribute('aria-pressed', String(state.paused));
+      $('b-play').textContent = state.paused ? 'Play' : 'Pause';
+    });
+    $('b-print').addEventListener('click', () => {
+      state.still = !state.still;
+      $('b-print').setAttribute('aria-pressed', String(state.still));
+      setFeature(state.id);
+      $('status').textContent = state.still ? 'Showing the print frame: the still pose used for the printed card.' : '';
+    });
+    $('b-copy').addEventListener('click', () => {
+      const svg = T.render(state.id, { standalone: true, static: state.still, size: { w: '2.5in', h: '3.5in' } });
+      const done = () => { $('status').textContent = 'Copied the SVG. Paste it into a .svg file to open it in a browser or Illustrator.'; };
+      const fallback = () => {
+        const ta = document.createElement('textarea');
+        ta.value = svg; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        let ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        ta.remove();
+        $('status').textContent = ok ? 'Copied the SVG.' : 'Copy is blocked here. The SVG files are in the repository under prototype/svg.';
+      };
+      try { navigator.clipboard.writeText(svg).then(done, fallback); } catch (e) { fallback(); }
+    });
+
+    if (reduce) { $('b-print').setAttribute('aria-pressed', 'true'); }
+    setFeature('ride');
+  })();
+</script>
