@@ -205,8 +205,8 @@
     id: 'c-2', rank: '2', suit: 'club', title: 'First Delivery',
     pair: ['Nandini milk packets', 'Bread crates'],
     sentence: ["Somebody's up before you,", "making sure you're fed."],
-    why: 'You have never met the person who brings your milk. They know your gate better than you do.',
-    mechanism: 'The milk bag hangs on the gate, the bread waits on the sidewalk. Both dead centre, both already there.',
+    why: 'You\'ve never met whoever brings your milk. They know your gate better than you do.',
+    mechanism: 'Milk bag on the gate, bread on the sidewalk. Both dead centre, both already there.',
     sound: 'A cycle bell, a gate clink, the El overhead, a pigeon.',
     draw(ctx) {
       const p = ctx.id;
@@ -298,7 +298,7 @@
     pair: ['School auto', 'School bus'],
     sentence: ['The loudest vehicle on the street', 'is the one taking kids to school.'],
     why: 'Eight kids, eight bags, one horn. Every school run sounds like a small parade.',
-    mechanism: 'Auto and bus on one kerb, back to back. Bags swing out of one, red lights flash on the other.',
+    mechanism: 'Auto and bus back to back. Bags swing off one, red lights flash on the other.',
     sound: 'Kids shrieking, a two-stroke putter, a horn, a bus door hiss.',
     draw(ctx) {
       const p = ctx.id;
@@ -359,7 +359,7 @@
         <path d="M128,76 L140,62 H198 L210,76 Z" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
         <path d="M152,98 L169,48 L186,98 Z" fill="${P}" stroke="${k}" stroke-width="0.5"/>
         <path d="M169,52 V98 M161,74 H177 M161,74 L169,86 L177,74" fill="none" stroke="${INK.kaapi}" stroke-width="1.6"/>
-        <path d="M148,100 L169,42 L190,100" fill="none" stroke="${k}" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M147,98 L169,40 L191,98 L187,98 L169,49 L151,98 Z" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
         <g fill="${INK.yellow}" stroke="${k}" stroke-width="0.4"><rect x="138" y="106" width="10" height="14"/><rect x="190" y="106" width="10" height="14"/><rect x="164" y="104" width="10" height="26" fill="${INK.kaapi}"/></g>
         <path d="M143,106 V120 M195,106 V120 M138,113 H148 M190,113 H200" stroke="${k}" stroke-width="0.35"/>
         <path d="${scallop(70, 70, 34, 26, 14, 5)}" fill="${INK.green}" stroke="${k}" stroke-width="0.5"/>
@@ -394,7 +394,7 @@
       const sway = (inner, x, g, i) => `<g>${ctx.a(easeSpin(`0 ${x} ${g};3 ${x} ${g};0 ${x} ${g};-2 ${x} ${g};0 ${x} ${g}`, '4s', ` begin="-${f(i * 0.06)}s"`))}${inner}</g>`;
       const crowd = (list, rail, g) => list.map(([x, c, hand, hh], i) => sway(person(x, g, { h: hh || 54, c, arms: hand === 0 ? null : [[x + hand, rail + 1], [x + 3, g - 24]] }), x, g, i)).join('');
       const scroll = (id, inner, dur) => `<clipPath id="${id}"><path d="M44,44 H206 V86 H44 Z"/></clipPath><g clip-path="url(#${id})"><g>${inner}${ctx.a(move('0 0;-174 0', dur))}</g></g>`;
-      const pole = `<path d="M125,20 V167" stroke="${k}" stroke-width="2.6"/><path d="M124.4,20 V167" stroke="${P}" stroke-width="0.7" opacity="0.8"/>`;
+      const pole = `<path d="M125,32 V167" stroke="${k}" stroke-width="2.6"/><path d="M124.4,32 V167" stroke="${P}" stroke-width="0.7" opacity="0.8"/>`;
       // Street seen through the windows, two copies wide so the scroll joins.
       let street = '';
       for (const off of [0, 174]) {
@@ -944,9 +944,9 @@
     id: 'c-q', rank: 'Q', suit: 'club', title: 'Still Open',
     pair: ['Iyengar bakery', 'Corner bodega'],
     sentence: ["Open before you're up.", "Still open when you're not okay."],
-    why: 'Bad day, any hour. A lit sign, a warm puff or a bad coffee, and someone who asks nothing.',
-    mechanism: 'Two counters back to back. A jar of rusks on one, a coffee cup on the other. The cat stays.',
-    sound: 'A tube light buzzing, a jar lid, a bell on the door, a cat.',
+    why: 'Bad day, any hour. A lit sign, a warm puff, and nobody asking questions.',
+    mechanism: 'Two counters back to back. Rusks in a jar, coffee in a cup. The cat stays.',
+    sound: 'A buzzing tube light, a jar lid, a door bell, a cat.',
     draw(ctx) {
       const p = ctx.id;
       const jar = (x, w, h, fill) => `<g transform="translate(${x} 128)">

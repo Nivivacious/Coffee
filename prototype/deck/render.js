@@ -4,7 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const { chromium } = require('/opt/node-tools/node_modules/playwright');
 const T = require('../cards.js');
-for (const f of fs.readdirSync(__dirname).filter((n) => n.endsWith('.js') && n !== 'render.js').sort()) require(path.join(__dirname, f));
+for (const f of fs.readdirSync(__dirname).filter((n) => n.endsWith('.js') && n !== 'render.js').sort()) {
+  try { require(path.join(__dirname, f)); } catch (e) { console.log('skipped', f, '-', e.message.split('\n')[0]); }
+}
 const [out, ...ids] = process.argv.slice(2);
 (async () => {
   const cards = ids.map((id) => `<div style="width:500px;height:700px">${T.render(id, { uid: '-r', static: !!process.env.STILL })}</div>`).join('');
