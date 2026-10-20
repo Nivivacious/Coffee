@@ -203,7 +203,7 @@
   .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 60; background: var(--ivory); color: var(--table); font-family: var(--body); font-size: 17px; padding: 12px 18px; border-radius: 3px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8); max-width: calc(100vw - 32px); }
 
   /* Get the deck */
-  .product { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .product { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 640px; border: 1px solid var(--rule); }
   .panel { background: var(--table); padding: 28px; display: grid; gap: 14px; align-content: start; min-width: 0; }
   .panel h2, .pairings h2 { font-size: 32px; }
   .panel form { display: grid; gap: 14px; }
@@ -366,34 +366,20 @@
     <div class="panel">
       <span class="label">First print run</span>
       <h2>Want it in your hand?</h2>
-      <p>We're printing a small first run. Tell us where it should land.</p>
+      <p>We're printing a small first run and delivering within Bengaluru for now. New York, we'll call you.</p>
+      <p class="note-small">The price and delivery cost will be shared with you before you pay a single rupee.</p>
       <form id="wl-form">
-        <div class="seg" role="group" aria-label="Ship to" id="wl-city">
-          <span class="label">Ship to</span>
-          <button type="button" data-v="blr" aria-pressed="true">Bengaluru</button>
-          <button type="button" data-v="nyc" aria-pressed="false">New York</button>
-          <button type="button" data-v="both" aria-pressed="false">Both, it's complicated</button>
-        </div>
         <div class="field">Decks
           <span class="count"><button type="button" id="wl-minus" aria-label="One fewer deck">−</button><output id="wl-n" aria-live="polite">1</output><button type="button" id="wl-plus" aria-label="One more deck">+</button></span>
         </div>
         <label class="field" for="wl-note">Who's it for?
-          <input id="wl-note" maxlength="120" placeholder="Me, obviously. Or my cousin in Jersey City.">
+          <input id="wl-note" maxlength="120" placeholder="Me, obviously. Or my cousin in Whitefield.">
         </label>
         <div><button type="submit" id="wl-go">Put me on the list</button></div>
         <p class="status" id="wl-status" role="status"></p>
         <p class="owner" id="wl-owner" hidden></p>
       </form>
-    </div>
-    <div class="panel">
-      <span class="label">No patience?</span>
-      <h2>Print it at home</h2>
-      <p>Nine cards to a page with crop marks, plus a page of backs if your printer does double-sided. Card stock, sharp scissors, steady hands.</p>
-      <div class="controls">
-        <button type="button" id="b-home-letter">US Letter PDF</button>
-        <button type="button" id="b-home-a4">A4 PDF</button>
-        <button type="button" id="b-pro">Print shop PDF</button>
-      </div>
+      <div><button type="button" class="linkish" id="b-home">Or print it yourself (PDF)</button></div>
       <p class="status" id="home-status" role="status"></p>
     </div>
   </section>
@@ -938,10 +924,6 @@
     // ---------- product, voting and numbers (shared data) ----------
     let db = null, me = null, user = null, canWrite = null;
     const wl = { city: 'blr', n: 1 };
-    document.querySelectorAll('#wl-city button').forEach((b) => b.addEventListener('click', () => {
-      wl.city = b.dataset.v;
-      document.querySelectorAll('#wl-city button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    }));
     $('wl-minus').addEventListener('click', () => { wl.n = Math.max(1, wl.n - 1); $('wl-n').textContent = wl.n; });
     $('wl-plus').addEventListener('click', () => { wl.n = Math.min(10, wl.n + 1); $('wl-n').textContent = wl.n; });
     const noWrite = 'Only people with Contributor access can save here. Ask whoever sent you the link.';
@@ -951,7 +933,7 @@
       if (canWrite === false) { $('wl-status').textContent = noWrite; return; }
       try {
         await db.doc(`waitlist/${me}`).set({ city: wl.city, decks: wl.n, note: $('wl-note').value.slice(0, 120), at: new Date().toISOString() });
-        $('wl-status').textContent = `You're on the list for ${wl.n} ${wl.n > 1 ? 'decks' : 'deck'}. We'll be in touch before the ink dries.`;
+        $('wl-status').textContent = `You're on the list for ${wl.n} ${wl.n > 1 ? 'decks' : 'deck'}. We'll message you the price and delivery cost before anything is charged.`;
       } catch (err) { $('wl-status').textContent = err && err.code === 'invalid_argument' ? noWrite : 'That did not save. Try again in a moment.'; }
     });
     async function savePdfTo(file, name, el) {
@@ -963,9 +945,11 @@
         $(el).textContent = 'Saved. Print on the heaviest card stock you can find.';
       } catch (err) { $(el).textContent = err && err.code === 'declined' ? 'No problem. It is here whenever you want it.' : 'That did not save. Try again in a moment.'; }
     }
-    $('b-home-letter').addEventListener('click', () => savePdfTo('home-print-letter.pdf', 'a-tale-of-two-cities-home-print-letter.pdf', 'home-status'));
-    $('b-home-a4').addEventListener('click', () => savePdfTo('home-print-a4.pdf', 'a-tale-of-two-cities-home-print-a4.pdf', 'home-status'));
-    $('b-pro').addEventListener('click', () => savePdfTo('a-tale-of-two-cities-deck.pdf', 'a-tale-of-two-cities-deck.pdf', 'home-status'));
+    // US Letter for anyone set to New York, A4 for everyone else.
+    $('b-home').addEventListener('click', () => {
+      const fmt = state.city === 'nyc' ? 'letter' : 'a4';
+      savePdfTo(`home-print-${fmt}.pdf`, `a-tale-of-two-cities-home-print-${fmt}.pdf`, 'home-status');
+    });
 
     // Your turn: each person's pairings live in one document; votes in another.
     let pairings = [], votes = {};
@@ -1062,10 +1046,10 @@
           $('st-people').textContent = snap.size; $('st-visits').textContent = v; $('st-done').textContent = done;
         }, () => {});
         db.collection('waitlist').onSnapshot((snap) => {
-          let decks = 0; const by = { blr: 0, nyc: 0, both: 0 };
-          snap.docs.forEach((d) => { const x = d.data() || {}; decks += x.decks || 0; by[x.city] = (by[x.city] || 0) + 1; });
+          let decks = 0;
+          snap.docs.forEach((d) => { decks += (d.data() || {}).decks || 0; });
           $('st-wl').textContent = snap.size;
-          $('st-wl-sub').textContent = `${decks} decks · BLR ${by.blr} · NYC ${by.nyc} · both ${by.both}`;
+          $('st-wl-sub').textContent = `${decks} decks, all for Bengaluru`;
           $('wl-owner').hidden = false;
           $('wl-owner').textContent = `So far: ${snap.size} people, ${decks} decks.`;
         }, () => {});
