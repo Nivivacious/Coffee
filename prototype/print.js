@@ -7,6 +7,7 @@ const { chromium } = require('/opt/node-tools/node_modules/playwright');
 const T = require('./cards.js');
 for (const f of fs.readdirSync(path.join(__dirname, 'deck')).filter((n) => n.endsWith('.js') && n !== 'render.js').sort()) require(path.join(__dirname, 'deck', f));
 
+require('./copy.js');
 const out = path.join(__dirname, 'print');
 fs.mkdirSync(out, { recursive: true });
 const ids = ['back', ...T.CARDS.map((c) => c.id), ...T.JOKERS.map((j) => j.id)];

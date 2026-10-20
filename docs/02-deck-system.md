@@ -196,7 +196,7 @@ Hero cards are marked ★.
 
 ## Phase 3. The five hero cards and two Jokers
 
-### ★ 8♣ The Ride Home (auto-rickshaw × yellow cab)
+### ★ 8♣ No Way, Home (auto-rickshaw × yellow cab)
 
 - **Rank and suit:** 8 of Clubs (Streets), 6 PM.
 - **Composition:**
@@ -207,7 +207,7 @@ Hero cards are marked ★.
 - **Hidden sentence:** *The minute it rains, / everyone is going the other way.*
 - **Why it works:** it passes up the easy resemblance (both are yellow) for something every resident has lived through. The rotation also takes "the other way" literally and builds it into the card's geometry.
 
-### ★ 2♥ Morning Walk (Cubbon Park × Central Park)
+### ★ 2♥ Runner's Hi (Cubbon Park × Central Park)
 
 - **Rank and suit:** 2 of Hearts (Belonging), 6 AM.
 - **Composition:**
@@ -218,7 +218,7 @@ Hero cards are marked ★.
 - **Hidden sentence:** *Every loud city / needs somewhere to whisper.*
 - **Why it works:** the two parks share an hour and a crowd more than a look. The difference in pace is the one contrast the card allows, and it's an affectionate one.
 
-### ★ 3♥ The Usual (darshini × diner)
+### ★ 3♥ Regular, Please (darshini × diner)
 
 - **Rank and suit:** 3 of Hearts, 8 AM.
 - **Composition:**
@@ -229,7 +229,7 @@ Hero cards are marked ★.
 - **Hidden sentence:** *You don't order anymore. / You just nod.*
 - **Why it works:** it's belonging at its smallest scale, and it holds whether you stand at the counter (darshini) or sit for an hour (diner).
 
-### ★ 7♠ Four O'Clock (the April storm × the first snow)
+### ★ 7♠ Weather or Not (the April storm × the first snow)
 
 - **Rank and suit:** 7 of Spades (Weather and time), 4 PM.
 - **Composition:**
@@ -239,7 +239,7 @@ Hero cards are marked ★.
 - **Hidden sentence:** *Nobody leaves early / in weather like this.*
 - **Why it works:** the shoes at the door tell you everything. In both cities they mean someone came over and is staying.
 
-### ★ 10♣ Late on St Mark's (St. Mark's Road × St. Marks Place)
+### ★ 10♣ Saint Elsewhere (St. Mark's Road × St. Marks Place)
 
 - **Rank and suit:** 10 of Clubs, 11 PM. It's the only hero card with a night sky.
 - **Composition:**

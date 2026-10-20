@@ -173,9 +173,29 @@
       'A crane groaning, a walking stick tapping, pigeons, a sigh.']
   };
 
+
+  // Card titles. Puns allowed, groans expected.
+  const TITLES = {
+    'h-a': 'Stoop Talk', park: 'Runner\'s Hi', usual: 'Regular, Please', 'h-4': 'Wait Watchers',
+    'h-5': 'Petal Pushers', 'h-6': 'Dabba Do', 'h-7': 'Parcel Tongue', 'h-8': 'Raise the Roof',
+    'h-9': 'I Do, Boo-Hoo', 'h-10': 'Room for Improvement', 'h-j': 'Pressing Matters',
+    'h-q': 'Paws and Effect', 'h-k': 'Super Vision',
+    'd-a': 'Border Line', 'd-2': 'Rose Early', 'd-3': 'Commuter Snooze', 'd-4': 'Latte-Stage Startup',
+    'd-5': 'Table Stakes', 'd-6': 'Knock-Off Time', 'd-7': 'Carat and Stick', 'd-8': 'Encore Business',
+    'd-9': 'Jet Lag, No Jet', 'd-10': 'Cart Attack', 'd-j': 'Rain Check', 'd-q': 'Rent Free', 'd-k': 'Jam Session',
+    'c-a': 'Roll Call', 'c-2': 'Milk Run', 'c-3': 'Auto Pilot', 'c-4': 'Squeeze the Day',
+    'c-5': 'Tank Top', 'c-6': 'Soppu Opera', 'c-7': 'Chaat Room', ride: 'No Way, Home',
+    'c-9': 'Signal Failure', saint: 'Saint Elsewhere', 'c-j': 'Whistle Stop', 'c-q': 'Rusk Hour', 'c-k': 'Hole of Fame',
+    's-a': 'Terminal Velocity', 's-2': 'Degrees of Separation', 's-3': 'Petal to the Metal', 's-4': 'Pit Stop',
+    's-5': 'Token Gesture', 's-6': 'Fan Fiction', weather: 'Weather or Not', 's-8': 'Wattage Envy',
+    's-9': 'Pane of Parting', 's-10': 'Count Me In', 's-j': 'Called Off', 's-q': 'Fall in Love', 's-k': 'Good Old Daze'
+  };
+
   T.CARDS.forEach((c) => {
     const w = COPY[c.id];
     if (w) [c.why, c.mechanism, c.sound] = w;
+    if (TITLES[c.id]) c.title = TITLES[c.id];
   });
   T.COPY = COPY;
+  T.TITLES = TITLES;
 })(typeof window !== 'undefined' ? window : globalThis);
