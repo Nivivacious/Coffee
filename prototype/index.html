@@ -315,6 +315,7 @@
       <div class="controls" id="print-row" hidden>
         <button type="button" id="b-pdf-card">Save this card as PDF</button>
         <button type="button" id="b-pdf-deck">Save the whole deck as PDF</button>
+        <button type="button" id="b-home">Print at home (9 to a page)</button>
       </div>
       <p class="status" id="status" role="status"></p>
     </div>
@@ -379,8 +380,6 @@
         <p class="status" id="wl-status" role="status"></p>
         <p class="owner" id="wl-owner" hidden></p>
       </form>
-      <div><button type="button" class="linkish" id="b-home">Or print it yourself (PDF)</button></div>
-      <p class="status" id="home-status" role="status"></p>
     </div>
   </section>
 
@@ -948,7 +947,7 @@
     // US Letter for anyone set to New York, A4 for everyone else.
     $('b-home').addEventListener('click', () => {
       const fmt = state.city === 'nyc' ? 'letter' : 'a4';
-      savePdfTo(`home-print-${fmt}.pdf`, `a-tale-of-two-cities-home-print-${fmt}.pdf`, 'home-status');
+      savePdfTo(`home-print-${fmt}.pdf`, `a-tale-of-two-cities-home-print-${fmt}.pdf`, 'status');
     });
 
     // Your turn: each person's pairings live in one document; votes in another.
