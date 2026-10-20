@@ -423,8 +423,8 @@
           <rect x="140" y="70" width="26" height="3" fill="${INK.red}" stroke="${k}" stroke-width="0.35"/>
         </g>`;
       const tiers = [0, 1, 2].map((i) => {
-        const y = 130 - i * 10;
-        return `<rect x="112" y="${y}" width="26" height="10" rx="1.6" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/><rect x="112" y="${y}" width="26" height="10" rx="1.6" fill="${k}" opacity="0.1"/><path d="M111.4,${y + 1.4} H138.6" stroke="${k}" stroke-width="0.9"/>`;
+        const y = 129 - i * 11;
+        return `<rect x="110" y="${y}" width="30" height="11" rx="1.8" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/><rect x="110" y="${y}" width="30" height="11" rx="1.8" fill="${k}" opacity="0.1"/><path d="M109.4,${y + 1.5} H140.6" stroke="${k}" stroke-width="1"/>`;
       }).join('');
 
       const top = `
@@ -438,15 +438,14 @@
         <rect x="38" y="100" width="174" height="6" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
         <g fill="${INK.paper}" stroke="${k}" stroke-width="0.5"><rect x="62" y="106" width="7" height="24"/><rect x="140" y="106" width="7" height="24"/><rect x="196" y="106" width="7" height="24"/></g>
         ${train}
-        <path d="M154,20 V130" stroke="${k}" stroke-width="2"/>
         ${deskScene(ctx, p, INK.kaapi)}
-        <path d="M110,138.6 V108 M140,138.6 V108 M108,138.6 h4.6 M142,138.6 h-4.6" stroke="${k}" stroke-width="0.9"/>
+        <path d="M107.6,138.6 V103 M142.4,138.6 V103 M106,138.6 h5 M144,138.6 h-5" stroke="${k}" stroke-width="1"/>
         ${tiers}
-        <path d="M113,110 Q125,104 137,110 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/>
-        <path d="M110,108 Q110,96 125,96 Q140,96 140,108" fill="none" stroke="${k}" stroke-width="1.4"/>
-        <rect x="122.6" y="104" width="4.8" height="3.4" fill="${k}"/>
-        <path d="M116,113 V138" stroke="${INK.paper}" stroke-width="1.4" opacity="0.8"/>
-        ${wisps(ctx, 125, 102, 18, { dur: 3, count: 3, spread: 3, op: 0.45 })}
+        <path d="M111,107 Q125,100 139,107 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.6"/>
+        <path d="M107.6,103 Q107.6,91 125,91 Q142.4,91 142.4,103" fill="none" stroke="${k}" stroke-width="1.5"/>
+        <rect x="122.4" y="100.4" width="5.2" height="3.6" fill="${k}"/>
+        <path d="M114.6,110 V138" stroke="${INK.paper}" stroke-width="1.5" opacity="0.8"/>
+        ${wisps(ctx, 125, 99, 18, { dur: 3, count: 3, spread: 3, op: 0.45 })}
         ${miniTumbler(103, 140)}`;
 
       const bottom = `
@@ -464,12 +463,11 @@
           <path d="M-8,-19 L0,-26 L8,-19 Z" fill="${k}"/>
         </g>
         <g transform="translate(176 129)">${perch(k, 0.45)}${ctx.a(holdMove('0 0;0 0;-6 0;-6 0;0 0', '6s', '0;0.3;0.45;0.8;1'))}</g>
-        <path d="M154,20 V130" stroke="${k}" stroke-width="2"/>
         ${deskScene(ctx, p, INK.kaapi)}
-        <path d="M113,140 L114.4,112 H135.6 L137,140 Z" fill="${INK.kaapi}" fill-opacity="0.65" stroke="${k}" stroke-width="0.6"/>
-        <path d="M118,112 L118.6,140 M132,112 L131.4,140" stroke="${k}" stroke-width="0.3"/>
-        <rect x="114.4" y="104" width="21.2" height="8" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
-        <path d="M114.4,108 H135.6" stroke="${k}" stroke-width="0.35"/>
+        <path d="M110.6,140 L112.2,106 H137.8 L139.4,140 Z" fill="${INK.kaapi}" fill-opacity="0.65" stroke="${k}" stroke-width="0.6"/>
+        <path d="M116.4,106 L117,140 M133.6,106 L133,140" stroke="${k}" stroke-width="0.3"/>
+        <path d="M112.2,106 l2.56,-1.8 l2.56,1.8 l2.56,-1.8 l2.56,1.8 l2.56,-1.8 l2.56,1.8 l2.56,-1.8 l2.56,1.8 l2.56,-1.8 l2.56,1.8 V97 H112.2 Z" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
+        <path d="M112.2,101 H137.8" stroke="${k}" stroke-width="0.35"/>
         <g transform="rotate(-6 125 126)">
           <rect x="119" y="120" width="12" height="11" fill="${INK.yellow}" stroke="${k}" stroke-width="0.3"/>
           <path d="M0,5.6 C-1.2,4 -6,1.2 -6,-2 C-6,-5 -2.4,-6.4 0,-3.5 C2.4,-6.4 6,-5 6,-2 C6,1.2 1.2,4 0,5.6 Z" transform="translate(125 125.6) scale(0.55)" fill="none" stroke="${INK.red}" stroke-width="1.2"/>
@@ -532,7 +530,7 @@
     sound: 'Pings, more pings, a scooter horn, somebody typing for far too long.',
     draw(ctx) {
       const p = ctx.id;
-      const scooter = `<g transform="translate(64 167)">
+      const scooter = `<g transform="translate(58 167)">
           <path d="M-20,-27 h14 v12 h-14 Z" fill="${INK.kaapi}" fill-opacity="0.75" stroke="${k}" stroke-width="0.45"/><path d="M-13,-27 v12 M-20,-22 h14" stroke="${INK.yellow}" stroke-width="0.9"/>
           <path d="M-18,-7 Q-17,-14 -6,-15 L7,-15 L11,-8 L-2,-7 Z" fill="${INK.red}" stroke="${k}" stroke-width="0.5"/>
           <path d="M8,-14 L13,-25 M10,-25 h7" stroke="${k}" stroke-width="1.2" stroke-linecap="round"/>
@@ -603,9 +601,9 @@
       const top = `
         ${bg(INK.pink, 0.22)}
         <rect width="${W}" height="${H}" fill="${INK.yellow}" opacity="0.14"/>
-        <g transform="translate(68 126)"><circle r="20" fill="${INK.yellow}" opacity="0.3">${ctx.a(easeLoop('r', '19;24;19', '6s'))}</circle><circle r="14" fill="${INK.yellow}"/></g>
+        <g transform="translate(70 104)"><circle r="20" fill="${INK.yellow}" opacity="0.3">${ctx.a(easeLoop('r', '19;24;19', '6s'))}</circle><circle r="14" fill="${INK.yellow}"/></g>
         <path d="M150,70 H214 M160,76 H214" stroke="${INK.paper}" stroke-width="0.9"/>
-        <g fill="${INK.kaapi}" fill-opacity="0.35" stroke="${k}" stroke-width="0.3"><path d="M38,140 V120 H62 V114 H70 V120 H92 V140 Z"/><path d="M156,140 V112 H186 V126 H212 V140 Z"/></g>
+        <g stroke="${k}" stroke-width="0.3">${['M38,140 V120 H62 V114 H70 V120 H92 V140 Z', 'M156,140 V112 H186 V126 H212 V140 Z'].map((d) => `<path d="${d}" fill="${INK.paper}"/><path d="${d}" fill="${INK.kaapi}" fill-opacity="0.35"/>`).join('')}</g>
         <g transform="translate(200 140)" fill="none" stroke="${k}" stroke-width="1.2"><path d="M0,0 C1,-20 -2,-34 -6,-46"/></g>
         <g transform="translate(194 94)" stroke="${INK.green}" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M0,0 q-10,0 -16,8 M0,0 q8,-2 14,6 M0,0 q-6,-6 -12,-4 M0,0 q4,-8 12,-8 M0,0 q0,8 -4,14"/></g>
         ${crows}
@@ -624,9 +622,10 @@
         <ellipse cx="125" cy="89.6" rx="7" ry="2" fill="${k}" stroke="${INK.paper}" stroke-width="0.4"/>
         <path d="M112,98 V122" stroke="${INK.paper}" stroke-width="1" opacity="0.3"/>
         <path d="M142,118 H148 V137" fill="none" stroke="${k}" stroke-width="1.2"/>
-        ${person(84, 160, k, { s: 2.1, dress: INK.green, extra: `<path d="M1,-12 L3.4,-9 L4.6,-11.4" fill="none" stroke="${INK.green}" stroke-width="1.1" stroke-linecap="round"/><path d="M3.8,-13.6 h2 l-0.3,2.4 h-1.4 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.2"/>` })}
+        ${person(88, 151, k, { s: 2.1, dress: INK.green, extra: `<path d="M1,-12 L3.4,-9 L4.6,-11.4" fill="none" stroke="${INK.green}" stroke-width="1.1" stroke-linecap="round"/><path d="M3.8,-13.6 h2 l-0.3,2.4 h-1.4 Z" fill="${INK.paper}" stroke="${k}" stroke-width="0.2"/>` })}
         ${parapet(INK.yellow, null)}
-        <path d="M60,148 h10 M100,154 h14 M160,150 h8" stroke="${k}" stroke-width="0.3" opacity="0.5"/>
+        <g fill="${k}" opacity="0.4">${Array.from({ length: 14 }, (_, i) => `<rect x="${f(44 + i * 12.2)}" y="147" width="5" height="9" rx="2.4"/>`).join('')}</g>
+        <path d="M38,160 H212" stroke="${k}" stroke-width="0.3" opacity="0.5"/>
         <g transform="translate(184 136.6)">
           <path d="M-6,0 L-7,-8 H7 L6,0 Z" fill="${INK.red}" stroke="${k}" stroke-width="0.45"/><path d="M-7.6,-8 H7.6" stroke="${k}" stroke-width="0.9"/>
           <g>${ctx.a(easeSpin('0 0 -8;4 0 -8;0 0 -8;-3 0 -8;0 0 -8', '6s'))}
@@ -794,8 +793,8 @@
         <rect x="${x}" y="${y}" width="${w}" height="5" rx="1" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
         <rect x="${x}" y="${y}" width="${w}" height="5" rx="1" fill="${sheet}" opacity="0.45"/>`;
       const lump = (x, y, w, c) => `<path d="M${x},${y} Q${x + 2},${y - 6} ${x + w * 0.4},${y - 5} Q${x + w * 0.7},${y - 7} ${x + w},${y} Z" fill="${c}" stroke="${k}" stroke-width="0.45">${ctx.a(easeLoop('d', `M${x},${y} Q${x + 2},${y - 6} ${x + w * 0.4},${y - 5} Q${x + w * 0.7},${y - 7} ${x + w},${y} Z;M${x},${y} Q${x + 2},${y - 7} ${x + w * 0.4},${y - 6} Q${x + w * 0.7},${y - 8} ${x + w},${y} Z;M${x},${y} Q${x + 2},${y - 6} ${x + w * 0.4},${y - 5} Q${x + w * 0.7},${y - 7} ${x + w},${y} Z`, '4s'))}</path><circle cx="${x + w - 3}" cy="${y - 3}" r="2.4" fill="${k}"/>`;
-      const tube = `<rect x="56" y="30" width="40" height="3" rx="1.4" fill="${INK.paper}" stroke="${k}" stroke-width="0.4"/>
-        <rect x="50" y="26" width="52" height="12" rx="6" fill="${INK.paper}" opacity="0.2">${ctx.a(loop('opacity', '0.2;0.2;0.02;0.2;0.05;0.2;0.2', '12s', ' keyTimes="0;0.6;0.61;0.62;0.63;0.64;1"'))}</rect>`;
+      const tube = `<rect x="48" y="33" width="36" height="3" rx="1.4" fill="${INK.paper}" stroke="${k}" stroke-width="0.4"/>
+        <rect x="44" y="29" width="44" height="12" rx="6" fill="${INK.paper}" opacity="0.2">${ctx.a(loop('opacity', '0.2;0.2;0.02;0.2;0.05;0.2;0.2', '12s', ' keyTimes="0;0.6;0.61;0.62;0.63;0.64;1"'))}</rect>`;
 
       const top = `
         ${bg(INK.green, 0.24)}
@@ -887,8 +886,8 @@
           <path d="M100,128 V122 H114 V128" fill="none" stroke="${INK.kaapi}" stroke-width="1.8"/>
           <path d="M116,128 l3,-3 l1,2" fill="none" stroke="${k}" stroke-width="0.7"/>
           ${embers}
-          <path d="M120,124 L125,120" stroke="${k}" stroke-width="1.1" stroke-linecap="round"/>
-        </g>`;
+        </g>
+        <path d="M121,127 L109,122.6" fill="none" stroke="${k}" stroke-width="1.8" stroke-linecap="round">${ctx.a(easeLoop('d', 'M121,127 L109,122.6;M121,127 L121,122.6;M121,127 L109,122.6', '2s'))}</path>`;
 
       const top = `
         ${bg(INK.yellow, 0.16)}
@@ -904,9 +903,7 @@
         ${fallingLeaf(ctx, 170, 110, 54, INK.pink, '6s', '0s')}${fallingLeaf(ctx, 196, 120, 44, INK.pink, '6s', '-3s')}
         <path d="M86,140 V84 M166,140 V84" stroke="${INK.kaapi}" stroke-width="1.3"/>
         <path d="M78,82 L174,82 L170,90 Q125,96 82,90 Z" fill="${INK.blue}" stroke="${k}" stroke-width="0.5"/>
-        ${person(108, 167, k, { s: 2.8, shirt: INK.paper, arms: '', extra: `<path d="M-1.4,-12.6 V-6.6 M1.4,-12.6 V-6.6" stroke="${k}" stroke-width="0.2"/>` })}
-        <path d="M108,132 L116,138" stroke="${INK.paper}" stroke-width="3" stroke-linecap="round"/>
-        <path d="M108,132 L116,138" stroke="${k}" stroke-width="0.3"/>
+        ${person(122, 167, k, { s: 3.4, shirt: INK.paper, arms: '', extra: `<path d="M-1.4,-12.6 V-6.6 M1.4,-12.6 V-6.6" stroke="${k}" stroke-width="0.2"/>` })}
         <rect x="82" y="140" width="88" height="4" fill="${INK.kaapi}" stroke="${k}" stroke-width="0.5"/>
         <rect x="88" y="138.6" width="46" height="1.6" fill="${INK.paper}" stroke="${k}" stroke-width="0.3"/>
         <path d="M100,138.4 h18 l2,-1.2 h-22 Z" fill="${INK.blue}" opacity="0.8"/>
@@ -926,7 +923,7 @@
           <g>${ctx.a(spin('0 15 102;360 15 102', '1.5s', ` begin="${b}"`))}<path d="M10,104 q3,-6 8,-4 q-2,4 -8,4 Z" fill="${INK.red}" opacity="0.8"/><path d="M14,96 q4,2 4,6 q-4,-1 -4,-6 Z" fill="${INK.yellow}" opacity="0.8"/><path d="M12,106 q4,2 8,0" stroke="${INK.paper}" stroke-width="1" fill="none"/></g>
           <circle cx="15" cy="102" r="11" fill="none" stroke="${INK.paper}" stroke-width="1"/>
         </g>`;
-      const folding = `<g transform="translate(108 128)"><g>${ctx.a(`<animateTransform attributeName="transform" type="scale" values="1 1;1 0.35;1 1;1 1" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4;0.8;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0 0 1 1"/>`)}
+      const folding = `<g transform="translate(118 138)"><g>${ctx.a(`<animateTransform attributeName="transform" type="scale" values="1 1;1 0.35;1 1;1 1" dur="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.4;0.8;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0 0 1 1"/>`)}
           <path d="M-8,-12 L-3,-14 Q0,-12 3,-14 L8,-12 L10,-7 L6,-6 L6,0 H-6 L-6,-6 L-10,-7 Z" fill="${INK.pink}" stroke="${k}" stroke-width="0.4"/></g></g>`;
       const bottom = `
         ${bg(INK.blue, 0.1)}
@@ -939,7 +936,7 @@
         <rect x="38" y="76" width="174" height="91" fill="${k}" opacity="0.08"/>
         ${washer(40, '0s')}${washer(74, '-0.3s')}${washer(142, '-0.7s')}${washer(176, '-1.1s')}
         <rect x="108" y="78" width="30" height="40" fill="${k}" opacity="0.15"/>
-        ${person(108, 167, k, { s: 2.8, shirt: INK.green, arms: `<path d="M0,-12 L2.4,-10 M0,-12 L-2.4,-10" stroke="${INK.green}" stroke-width="1.1" stroke-linecap="round"/>` })}
+        ${person(118, 167, k, { s: 3.4, shirt: INK.green, arms: `<path d="M0,-12 L2.4,-10 M0,-12 L-2.4,-10" stroke="${INK.green}" stroke-width="1.1" stroke-linecap="round"/>` })}
         ${folding}
         <rect x="82" y="140" width="88" height="3.4" fill="${INK.paper}" stroke="${k}" stroke-width="0.5"/>
         <path d="M86,143 V167 M166,143 V167" stroke="${k}" stroke-width="1.2"/>

@@ -128,7 +128,7 @@
   // A walking or running figure, feet at (0,0), facing right. ~15 units tall.
   function figure(ctx, o) {
     const c = o.color || INK.ink, sw = 1.5;
-    const stride = o.run ? 34 : 20, beat = o.run ? '0.5s' : '0.9s';
+    const stride = o.run ? 34 : 20, beat = o.run ? '0.5s' : '1s';
     const leg = (dir) => `<g transform="translate(0 -6.5)"><path d="M0,0 L0,6.5" stroke="${c}" stroke-width="${sw}" stroke-linecap="round"/>${ctx.a(spin(dir > 0 ? `${stride};${-stride};${stride}` : `${-stride};${stride};${-stride}`, beat))}</g>`;
     const arm = (dir) => `<g transform="translate(0 -12)"><path d="M0,0 L0,5" stroke="${c}" stroke-width="${sw * 0.8}" stroke-linecap="round"/>${ctx.a(spin(dir > 0 ? `${stride};${-stride};${stride}` : `${-stride};${stride};${-stride}`, beat))}</g>`;
     const lean = o.run ? ' transform="rotate(8)"' : '';
@@ -291,6 +291,7 @@
     const p = ctx.id, k = INK.ink;
     const city = CITY[side.city];
     const hour = side.hour || HOURS[def.rank] || '';
+    const capText = side.caption + (hour ? ' · ' + hour : '');
     const clauseLen = side.clause.length * 3.75;
     let dots = '';
     for (let x = 42 + clauseLen + 5; x < WIN.r - 4; x += 3.2) dots += `<circle cx="${f(x)}" cy="171.6" r="0.42"/>`;
@@ -302,8 +303,8 @@
       <g clip-path="url(#${p}-win)">${side.art}</g>
       <path d="M${WIN.x},${WIN.b} V${WIN.y + 6} Q${WIN.x},${WIN.y} ${WIN.x + 6},${WIN.y} H${WIN.r - 6} Q${WIN.r},${WIN.y} ${WIN.r},${WIN.y + 6} V${WIN.b}" fill="none" stroke="${k}" stroke-width="0.6"/>
       <g transform="translate(${CX} ${WIN.y + 7.5})">
-        <rect x="${-(side.caption.length * 1.75 + 9)}" y="-4.6" width="${side.caption.length * 3.5 + 18}" height="7.6" rx="1" fill="${INK.paper}" stroke="${k}" stroke-width="0.35"/>
-        <text text-anchor="middle" y="1.1" font-family="${FONT.micro}" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="${k}">${esc(side.caption)}${hour ? ' · ' + hour : ''}</text>
+        <rect x="${-(capText.length * 1.62 + 7)}" y="-4.6" width="${capText.length * 3.24 + 14}" height="7.6" rx="1" fill="${INK.paper}" stroke="${k}" stroke-width="0.35"/>
+        <text text-anchor="middle" y="1.1" font-family="${FONT.micro}" font-size="4.3" font-weight="700" letter-spacing="0.75" fill="${k}">${esc(capText)}</text>
       </g>
       <text x="42" y="173.3" font-family="${FONT.micro}" font-size="5" font-weight="600" letter-spacing="0.4" textLength="${f(clauseLen)}" lengthAdjust="spacingAndGlyphs" fill="${k}">${esc(side.clause.toUpperCase())}</text>
       <g fill="${k}" opacity="0.7">${dots}</g>`;
