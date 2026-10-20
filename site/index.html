@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>A Tale of Two Cities</title>
-<meta name="description" content="52 playing cards about Bangalore and New York, and two Jokers about the people who live in both. For anyone whose phone shows two clocks.">
+<meta name="description" content="52 playing cards about Bangalore and New York. For anyone whose phone shows two clocks.">
 <meta name="theme-color" content="#12151f">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -278,7 +278,7 @@
     <span class="label" id="count">52 cards, 2 Jokers, one very long flight<span id="visitors" hidden> · <b id="vcount">0</b> <span id="vword">visitors</span> so far</span></span>
     <h1>A Tale of <em>Two</em> Cities</h1>
     <p class="thesis">For anyone whose phone shows two clocks.</p>
-    <p class="tips"><b>Tap the card</b> to turn it. <b>Swipe</b> or use the arrows to flip through. Turn <b>all 52</b> to unlock the two Jokers. Read any line <b>in Kannada</b>. There are a few cats to find.</p>
+    <p class="tips"><b>Tap</b> to turn, <b>swipe</b> for the next one. Turn <b>all 52</b> to unlock the Jokers. Three cats are hiding.</p>
     <div class="strip">
       <div class="where" role="group" aria-label="Which city are you in?">
         <span class="label">I'm in</span>
@@ -316,9 +316,7 @@
         <span class="note" id="f-note"></span>
       </div>
       <dl>
-        <div><dt class="label">The trick</dt><dd id="f-mech"></dd></div>
         <div><dt class="label">Why</dt><dd id="f-why"></dd></div>
-        <div><dt class="label">Listen</dt><dd id="f-sound"></dd></div>
       </dl>
       <div class="controls">
         <button type="button" id="b-shuffle">Shuffle</button>
@@ -357,12 +355,12 @@
     <div class="specs">
       <div>
         <span class="label">Ranks tell time</span>
-        <p>Lay out a suit from 2 to 10 and you get a day, first coffee to last auto. Aces start things. Jacks hustle, Queens charm, Kings complain.</p>
+        <p>Lay out a suit from 2 to 10 and you get a day, first coffee to last auto. Jacks hustle, Queens charm, Kings complain.</p>
         <div class="hours" id="hours"></div>
       </div>
       <div>
-        <span class="label">Print, motion, sound</span>
-        <p>Vector art at exactly 2.5 × 3.5 in. Press Print frame for a print-ready PDF with 0.125 in bleed, one card or the whole deck. Every card has its own soundtrack, made live in time with the picture. In print, the seam could go lenticular. Tilt to play.</p>
+        <span class="label">Print it</span>
+        <p>Every card is 2.5 × 3.5 in. Print frame gets you a PDF a print shop will take.</p>
       </div>
     </div>
   </section>
@@ -378,8 +376,6 @@
       <blockquote>Funny how you can miss two places at once.</blockquote>
       <p class="lock" id="joker-lock" role="status"></p>
       <p>Every other card works upside down. These two can't, because coffee only pours one way.</p>
-      <p>A darshini pours coffee back and forth between tumbler and davara until it's just right. Turns out people get made the same way.</p>
-      <p>Side by side, the two streams make one arch. It's the only picture in the deck that needs both cards.</p>
     </div>
   </section>
 
@@ -406,7 +402,7 @@
     <form id="fb-form" class="fb">
       <span class="label">Local check</span>
       <h2 id="fb-h">What's off on <span id="fb-card"></span>?</h2>
-      <p>A wrong bus colour, a street that doesn't exist, a joke only a tourist would make. Tell us. It goes straight to the person who made the deck and nowhere else.</p>
+      <p>Wrong bus colour? A joke only a tourist would make? Only the person who made the deck sees this.</p>
       <label class="field" for="fb-text">Your note<textarea id="fb-text" required minlength="3" maxlength="1000" rows="4" placeholder="Macha, BMTC buses haven't looked like that since 2009."></textarea></label>
       <label class="field" for="fb-contact">How to reach you (optional)<input id="fb-contact" maxlength="120" placeholder="Email, Instagram, carrier pigeon"></label>
       <div class="controls"><button type="submit" id="fb-send">Send it</button><button type="button" id="fb-cancel">Never mind</button></div>
@@ -440,14 +436,14 @@
         rank: 'Joker · I', a: 'Steel tumbler', b: 'New York paper cup',
         note: 'The line rides the coffee downhill.',
         mech: 'The only diagonal in the deck. The stream crosses the seam and snaps it.',
-        why: 'Fifty-one cards say the cities match. This one admits it was always about you.',
+        why: 'Leaving one home for the other. Pack the filter powder.',
         sound: 'A pour, a clink, a low hum.'
       },
       return: {
         rank: 'Joker · II', a: 'New York paper cup', b: 'Steel davara',
         note: 'This time the line swims back upstream.',
         mech: 'The Departure, flipped. Paler coffee. Someone saved you some.',
-        why: 'Turn any other card and it still works. Turn this one and the coffee hits the ceiling.',
+        why: 'Going back. Someone saved you some coffee.',
         sound: 'Same pour, heading home, plus one extra note.'
       }
     };
@@ -489,10 +485,8 @@
         $('f-b').textContent = 'then come back';
         $('f-s1').textContent = 'Not yet.';
         $('f-s2').textContent = `${52 - turnedCount()} cards to go.`;
-        $('f-note').textContent = 'The Jokers are the last two cards for a reason.';
-        $('f-mech').textContent = 'Face down until you have seen the whole deck.';
-        $('f-why').textContent = 'Every story needs an ending you have to earn.';
-        $('f-sound').textContent = 'Silence, for now.';
+        $('f-note').textContent = '';
+        $('f-why').textContent = 'No peeking.';
         $('f-title').textContent = item.title;
         $('f-kn').hidden = true;
         $('pos').textContent = `${all.indexOf(item) + 1} / ${all.length}`;
@@ -513,9 +507,7 @@
         $('f-s1').textContent = item.sentence[0];
         $('f-s2').textContent = item.sentence[1];
         $('f-note').textContent = NOTE;
-        $('f-mech').textContent = item.mechanism;
         $('f-why').textContent = item.why;
-        $('f-sound').textContent = item.sound;
       } else {
         const j = jokerInfo[id];
         $('f-rank').textContent = j.rank;
@@ -523,7 +515,7 @@
         $('f-s1').textContent = 'Funny how you can miss';
         $('f-s2').textContent = 'two places at once.';
         $('f-note').textContent = j.note;
-        $('f-mech').textContent = j.mech; $('f-why').textContent = j.why; $('f-sound').textContent = j.sound;
+        $('f-why').textContent = j.why;
       }
       $('f-title').textContent = item.title;
       $('pos').textContent = `${all.indexOf(item) + 1} / ${all.length}`;
@@ -672,7 +664,7 @@
         $('status').textContent = 'Getting the PDF ready.';
         const blob = await (await fetch('print/' + file)).blob();
         await dl.save({ filename: name, data: blob });
-        $('status').textContent = 'Saved. Send it to the printer with love.';
+        $('status').textContent = 'Saved.';
       } catch (e) {
         $('status').textContent = e && e.code === 'declined' ? 'No problem. It is here whenever you want it.' : 'That did not save. The PDFs are also in the repo under prototype/print.';
       }
@@ -963,7 +955,7 @@
         $(el).textContent = 'Getting the PDF ready.';
         const blob = await (await fetch('print/' + file)).blob();
         await dl.save({ filename: name, data: blob });
-        $(el).textContent = 'Saved. Print on the heaviest card stock you can find.';
+        $(el).textContent = 'Saved. Use the thickest card stock you can find.';
       } catch (err) { $(el).textContent = err && err.code === 'declined' ? 'No problem. It is here whenever you want it.' : 'That did not save. Try again in a moment.'; }
     }
     // US Letter for anyone set to New York, A4 for everyone else.

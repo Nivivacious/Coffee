@@ -63,7 +63,7 @@ swap('</div>\n\n<script src="cards.js"></script>', `  <dialog id="fb" aria-label
     <form id="fb-form" class="fb">
       <span class="label">Local check</span>
       <h2 id="fb-h">What's off on <span id="fb-card"></span>?</h2>
-      <p>A wrong bus colour, a street that doesn't exist, a joke only a tourist would make. Tell us. It goes straight to the person who made the deck and nowhere else.</p>
+      <p>Wrong bus colour? A joke only a tourist would make? Only the person who made the deck sees this.</p>
       <label class="field" for="fb-text">Your note<textarea id="fb-text" required minlength="3" maxlength="1000" rows="4" placeholder="Macha, BMTC buses haven't looked like that since 2009."></textarea></label>
       <label class="field" for="fb-contact">How to reach you (optional)<input id="fb-contact" maxlength="120" placeholder="Email, Instagram, carrier pigeon"></label>
       <div class="controls"><button type="submit" id="fb-send">Send it</button><button type="button" id="fb-cancel">Never mind</button></div>
@@ -191,7 +191,7 @@ const head = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>A Tale of Two Cities</title>
-<meta name="description" content="52 playing cards about Bangalore and New York, and two Jokers about the people who live in both. For anyone whose phone shows two clocks.">
+<meta name="description" content="52 playing cards about Bangalore and New York. For anyone whose phone shows two clocks.">
 <meta name="theme-color" content="#12151f">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
