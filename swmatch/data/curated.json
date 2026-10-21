@@ -1,0 +1,1339 @@
+{
+ "note": "Hand-compiled shades for international and prestige ranges that Purplle doesn't carry. Hex values are approximations taken from brand and reviewer swatches; prices are approximate Indian MRP (Nykaa, Sephora India, Tira) as of 2026 and change often. Each row: [shade, hex, undertone, payoff 1-5, finish override].",
+ "products": [
+  {
+   "brand": "MAC",
+   "line": "Matte Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 2050,
+   "size": "3 g",
+   "shades": [
+    [
+     "Ruby Woo",
+     "#9C1F2E",
+     "cool",
+     5
+    ],
+    [
+     "Russian Red",
+     "#A31B2D",
+     "cool",
+     5
+    ],
+    [
+     "Velvet Teddy",
+     "#9E6656",
+     "warm",
+     4
+    ],
+    [
+     "Mehr",
+     "#A6646C",
+     "cool",
+     4
+    ],
+    [
+     "Taupe",
+     "#8A5545",
+     "warm",
+     4
+    ],
+    [
+     "Chili",
+     "#A63C2C",
+     "warm",
+     5
+    ],
+    [
+     "Whirl",
+     "#8F5D57",
+     "neutral",
+     4
+    ],
+    [
+     "Marrakesh",
+     "#9C5848",
+     "warm",
+     4
+    ],
+    [
+     "Diva",
+     "#6B1E2A",
+     "cool",
+     5
+    ],
+    [
+     "Lady Danger",
+     "#D63A2C",
+     "warm",
+     5
+    ],
+    [
+     "Honey Love",
+     "#BF8C7E",
+     "warm",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "Charlotte Tilbury",
+   "line": "Matte Revolution Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "soft-matte",
+   "payoff": 4,
+   "price": 3150,
+   "size": "3.5 g",
+   "shades": [
+    [
+     "Pillow Talk",
+     "#B9776F",
+     "neutral",
+     4
+    ],
+    [
+     "Pillow Talk Medium",
+     "#A5625E",
+     "neutral",
+     4
+    ],
+    [
+     "Pillow Talk Intense",
+     "#8E4F4D",
+     "neutral",
+     4
+    ],
+    [
+     "Walk of No Shame",
+     "#9F3E3F",
+     "warm",
+     4
+    ],
+    [
+     "Very Victoria",
+     "#976050",
+     "warm",
+     4
+    ],
+    [
+     "Red Carpet Red",
+     "#B2242B",
+     "neutral",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "NARS",
+   "line": "Velvet Matte Lip Pencil",
+   "cat": "lipstick",
+   "formula": "crayon",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 2550,
+   "size": "2.4 g",
+   "shades": [
+    [
+     "Dolce Vita",
+     "#A65A62",
+     "cool",
+     4
+    ],
+    [
+     "Cruella",
+     "#A31B2D",
+     "cool",
+     5
+    ],
+    [
+     "Bahama",
+     "#B68275",
+     "warm",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Huda Beauty",
+   "line": "Power Bullet Matte Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 2200,
+   "size": "3 g",
+   "shades": [
+    [
+     "Third Date",
+     "#9D5E50",
+     "warm",
+     5
+    ],
+    [
+     "El Cinco De Mayo",
+     "#B5222C",
+     "warm",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Kay Beauty",
+   "line": "Matte Drama Long Stay Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 999,
+   "size": "4.2 g",
+   "origin": "IN",
+   "shades": [
+    [
+     "Muse",
+     "#A26A60",
+     "neutral",
+     4
+    ],
+    [
+     "Cameo",
+     "#B27770",
+     "warm",
+     4
+    ],
+    [
+     "Debut",
+     "#B98173",
+     "warm",
+     4
+    ],
+    [
+     "Red Carpet",
+     "#A8222C",
+     "neutral",
+     5
+    ],
+    [
+     "Dream Girl",
+     "#B0566A",
+     "cool",
+     4
+    ],
+    [
+     "Rolling Deep",
+     "#6B2B33",
+     "cool",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Rare Beauty",
+   "line": "Soft Pinch Liquid Blush",
+   "cat": "blush",
+   "formula": "liquid",
+   "finish": "dewy",
+   "payoff": 5,
+   "price": 2700,
+   "size": "7.5 ml",
+   "shades": [
+    [
+     "Hope",
+     "#C27A73",
+     "neutral",
+     5
+    ],
+    [
+     "Joy",
+     "#E7837A",
+     "warm",
+     5
+    ],
+    [
+     "Happy",
+     "#E5728C",
+     "cool",
+     5
+    ],
+    [
+     "Bliss",
+     "#E2908C",
+     "neutral",
+     5
+    ],
+    [
+     "Encourage",
+     "#D9928D",
+     "neutral",
+     5,
+     "matte"
+    ],
+    [
+     "Believe",
+     "#B9677A",
+     "cool",
+     5,
+     "matte"
+    ],
+    [
+     "Faith",
+     "#A84458",
+     "cool",
+     5,
+     "matte"
+    ]
+   ]
+  },
+  {
+   "brand": "NARS",
+   "line": "Blush",
+   "cat": "blush",
+   "formula": "powder",
+   "finish": "shimmer",
+   "payoff": 4,
+   "price": 3050,
+   "size": "4.8 g",
+   "shades": [
+    [
+     "Orgasm",
+     "#E59A8A",
+     "warm",
+     4
+    ],
+    [
+     "Deep Throat",
+     "#EBA39A",
+     "neutral",
+     3
+    ],
+    [
+     "Torrid",
+     "#E5847A",
+     "warm",
+     4
+    ],
+    [
+     "Taj Mahal",
+     "#D07A4E",
+     "warm",
+     5
+    ],
+    [
+     "Behave",
+     "#C7888B",
+     "cool",
+     4,
+     "matte"
+    ],
+    [
+     "Sex Appeal",
+     "#DC9A86",
+     "warm",
+     3,
+     "matte"
+    ],
+    [
+     "Dolce Vita",
+     "#B9727A",
+     "cool",
+     4,
+     "satin"
+    ]
+   ]
+  },
+  {
+   "brand": "Charlotte Tilbury",
+   "line": "Matte Beauty Blush Wand",
+   "cat": "blush",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 4050,
+   "size": "12 ml",
+   "shades": [
+    [
+     "Pillow Talk",
+     "#D48A86",
+     "neutral",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Huda Beauty",
+   "line": "Blush Filter Liquid Blush",
+   "cat": "blush",
+   "formula": "liquid",
+   "finish": "dewy",
+   "payoff": 4,
+   "price": 2350,
+   "size": "4.5 ml",
+   "shades": [
+    [
+     "Watermelon Pop",
+     "#E46B76",
+     "cool",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Benefit",
+   "line": "Dandelion Brightening Blush",
+   "cat": "blush",
+   "formula": "powder",
+   "finish": "satin",
+   "payoff": 3,
+   "price": 2900,
+   "size": "6 g",
+   "shades": [
+    [
+     "Dandelion",
+     "#E7A7A3",
+     "cool",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "Milani",
+   "line": "Baked Blush",
+   "cat": "blush",
+   "formula": "baked",
+   "finish": "radiant",
+   "payoff": 4,
+   "price": 1350,
+   "size": "3.5 g",
+   "shades": [
+    [
+     "Luminoso",
+     "#E19A82",
+     "warm",
+     4
+    ],
+    [
+     "Dolce Pink",
+     "#E7A0A3",
+     "cool",
+     4
+    ],
+    [
+     "Berry Amore",
+     "#BB6676",
+     "cool",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Fenty Beauty",
+   "line": "Cheeks Out Freestyle Cream Blush",
+   "cat": "blush",
+   "formula": "cream",
+   "finish": "natural",
+   "payoff": 4,
+   "price": 2600,
+   "size": "3 g",
+   "shades": [
+    [
+     "Cool Berry",
+     "#AB4A63",
+     "cool",
+     4
+    ],
+    [
+     "Strawberry Drip",
+     "#E25E73",
+     "cool",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Kay Beauty",
+   "line": "Matte Blush",
+   "cat": "blush",
+   "formula": "powder",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 899,
+   "size": "9 g",
+   "origin": "IN",
+   "shades": [
+    [
+     "Tickled Pink",
+     "#E58BA0",
+     "cool",
+     4
+    ],
+    [
+     "Deep Plum",
+     "#8E4558",
+     "cool",
+     4
+    ],
+    [
+     "Coral Charm",
+     "#EC8070",
+     "warm",
+     4
+    ],
+    [
+     "Dusty Rose",
+     "#C98284",
+     "neutral",
+     4
+    ],
+    [
+     "Mild Berry",
+     "#B45C6F",
+     "cool",
+     4
+    ],
+    [
+     "Soft Nude",
+     "#D59A88",
+     "warm",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "A'PIEU",
+   "line": "Juicy-Pang Water Blusher",
+   "cat": "blush",
+   "formula": "liquid",
+   "finish": "dewy",
+   "payoff": 3,
+   "price": 950,
+   "size": "9 g",
+   "shades": [
+    [
+     "Guava",
+     "#E1897C",
+     "warm",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "Estée Lauder",
+   "line": "Double Wear Stay-in-Place Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 4350,
+   "size": "30 ml",
+   "shades": [
+    [
+     "1W1 Bone",
+     "#EFD2B8",
+     "warm",
+     4
+    ],
+    [
+     "1N1 Ivory Nude",
+     "#EDCFB6",
+     "neutral",
+     4
+    ],
+    [
+     "2C2 Pale Almond",
+     "#E6C2A6",
+     "cool",
+     4
+    ],
+    [
+     "2W1 Dawn",
+     "#DFB592",
+     "warm",
+     4
+    ],
+    [
+     "1W2 Sand",
+     "#E3BC98",
+     "warm",
+     4
+    ],
+    [
+     "3W1 Tawny",
+     "#CF9F74",
+     "warm",
+     4
+    ],
+    [
+     "3W2 Cashew",
+     "#C9966E",
+     "warm",
+     4
+    ],
+    [
+     "4N1 Shell Beige",
+     "#C08C66",
+     "neutral",
+     4
+    ],
+    [
+     "4W1 Honey Bronze",
+     "#B9805A",
+     "warm",
+     4
+    ],
+    [
+     "5W1 Bronze",
+     "#A66D46",
+     "warm",
+     4
+    ],
+    [
+     "6W1 Sandalwood",
+     "#8E5A3A",
+     "warm",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "MAC",
+   "line": "Studio Fix Fluid SPF 15",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 3300,
+   "size": "30 ml",
+   "shades": [
+    [
+     "NC15",
+     "#EDCCAA",
+     "warm",
+     4
+    ],
+    [
+     "NC20",
+     "#E6C29F",
+     "warm",
+     4
+    ],
+    [
+     "NC25",
+     "#DDB48E",
+     "warm",
+     4
+    ],
+    [
+     "NC30",
+     "#D7AB83",
+     "warm",
+     4
+    ],
+    [
+     "NC35",
+     "#CF9E73",
+     "warm",
+     4
+    ],
+    [
+     "NC37",
+     "#C9976A",
+     "warm",
+     4
+    ],
+    [
+     "NC40",
+     "#C08B60",
+     "warm",
+     4
+    ],
+    [
+     "NC42",
+     "#B98257",
+     "warm",
+     4
+    ],
+    [
+     "NC44",
+     "#AE7750",
+     "warm",
+     4
+    ],
+    [
+     "NC45",
+     "#A87048",
+     "warm",
+     4
+    ],
+    [
+     "NC50",
+     "#93603E",
+     "warm",
+     4
+    ],
+    [
+     "NW20",
+     "#E2BD9E",
+     "cool",
+     4
+    ],
+    [
+     "NW25",
+     "#D9AF92",
+     "neutral",
+     4
+    ],
+    [
+     "NW35",
+     "#C49373",
+     "neutral",
+     4
+    ],
+    [
+     "NW45",
+     "#8F5F44",
+     "neutral",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Fenty Beauty",
+   "line": "Pro Filt'r Soft Matte Longwear Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "soft-matte",
+   "payoff": 4,
+   "price": 3700,
+   "size": "32 ml",
+   "shades": [
+    [
+     "150",
+     "#E3BC9A",
+     "warm",
+     4
+    ],
+    [
+     "185",
+     "#D6A983",
+     "neutral",
+     4
+    ],
+    [
+     "220",
+     "#CD9F7B",
+     "neutral",
+     4
+    ],
+    [
+     "240",
+     "#C59169",
+     "warm",
+     4
+    ],
+    [
+     "290",
+     "#B47D57",
+     "warm",
+     4
+    ],
+    [
+     "310",
+     "#A6714E",
+     "warm",
+     4
+    ],
+    [
+     "330",
+     "#9A6646",
+     "warm",
+     4
+    ],
+    [
+     "385",
+     "#7A4D33",
+     "warm",
+     4
+    ],
+    [
+     "420",
+     "#6A412C",
+     "neutral",
+     4
+    ],
+    [
+     "445",
+     "#4F3022",
+     "cool",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Fenty Beauty",
+   "line": "Killawatt Freestyle Highlighter",
+   "cat": "highlighter",
+   "formula": "powder",
+   "finish": "metallic",
+   "payoff": 5,
+   "price": 3200,
+   "size": "3.5 g",
+   "shades": [
+    [
+     "Trophy Wife",
+     "#E2C068",
+     "warm",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "MAC",
+   "line": "Mineralize Skinfinish",
+   "cat": "highlighter",
+   "formula": "baked",
+   "finish": "shimmer",
+   "payoff": 4,
+   "price": 3200,
+   "size": "10 g",
+   "shades": [
+    [
+     "Soft & Gentle",
+     "#E7C9AE",
+     "neutral",
+     4
+    ],
+    [
+     "Lightscapade",
+     "#EEDCD5",
+     "cool",
+     3
+    ],
+    [
+     "Global Glow",
+     "#E3BE8C",
+     "warm",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Charlotte Tilbury",
+   "line": "Hollywood Flawless Filter",
+   "cat": "highlighter",
+   "formula": "liquid",
+   "finish": "radiant",
+   "payoff": 2,
+   "price": 4350,
+   "size": "30 ml",
+   "shades": [
+    [
+     "3 Light/Medium",
+     "#E3C2A2",
+     "neutral",
+     2
+    ],
+    [
+     "4 Medium",
+     "#D7AE87",
+     "warm",
+     2
+    ],
+    [
+     "5.5 Medium/Deep",
+     "#B98962",
+     "warm",
+     2
+    ]
+   ]
+  },
+  {
+   "brand": "e.l.f.",
+   "line": "Halo Glow Liquid Filter",
+   "cat": "highlighter",
+   "formula": "liquid",
+   "finish": "radiant",
+   "payoff": 2,
+   "price": 1300,
+   "size": "31.5 ml",
+   "shades": [
+    [
+     "3 Light",
+     "#E5C4A6",
+     "neutral",
+     2
+    ],
+    [
+     "4 Medium",
+     "#D9B089",
+     "warm",
+     2
+    ],
+    [
+     "5 Medium/Tan",
+     "#BF9068",
+     "warm",
+     2
+    ]
+   ]
+  },
+  {
+   "brand": "Rare Beauty",
+   "line": "Positive Light Liquid Luminizer",
+   "cat": "highlighter",
+   "formula": "liquid",
+   "finish": "radiant",
+   "payoff": 3,
+   "price": 2700,
+   "size": "15 ml",
+   "shades": [
+    [
+     "Enlighten",
+     "#F1D3C8",
+     "cool",
+     3
+    ],
+    [
+     "Mesmerize",
+     "#E9C397",
+     "warm",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "Maybelline New York",
+   "line": "Master Chrome Metallic Highlighter",
+   "cat": "highlighter",
+   "formula": "powder",
+   "finish": "metallic",
+   "payoff": 5,
+   "price": 649,
+   "size": "8 g",
+   "shades": [
+    [
+     "Molten Gold",
+     "#E0BC7A",
+     "warm",
+     5
+    ],
+    [
+     "Molten Rose Gold",
+     "#E8B8A2",
+     "neutral",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Lakmé",
+   "line": "Absolute Liquid Highlighter",
+   "cat": "highlighter",
+   "formula": "liquid",
+   "finish": "shimmer",
+   "payoff": 4,
+   "price": 750,
+   "size": "15 ml",
+   "origin": "IN",
+   "shades": [
+    [
+     "Ivory",
+     "#F0DCC6",
+     "neutral",
+     4
+    ],
+    [
+     "Rose Gold",
+     "#E7B9A3",
+     "neutral",
+     4
+    ],
+    [
+     "Bronze",
+     "#C99367",
+     "warm",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Maybelline New York",
+   "line": "SuperStay Ink Crayon",
+   "cat": "lipstick",
+   "formula": "crayon",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 699,
+   "size": "1.2 g",
+   "fallback": true,
+   "shades": [
+    [
+     "Lead The Way",
+     "#A9665F",
+     "neutral",
+     4
+    ],
+    [
+     "Trust Your Gut",
+     "#A86B58",
+     "warm",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Maybelline New York",
+   "line": "SuperStay Matte Ink Liquid Lipstick",
+   "cat": "lipstick",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 699,
+   "size": "5 ml",
+   "fallback": true,
+   "shades": [
+    [
+     "Lover",
+     "#A35E66",
+     "cool",
+     5
+    ],
+    [
+     "Seductress",
+     "#B87C70",
+     "warm",
+     5
+    ],
+    [
+     "Pioneer",
+     "#A41E2C",
+     "cool",
+     5
+    ],
+    [
+     "Amazonian",
+     "#85493D",
+     "warm",
+     5
+    ],
+    [
+     "Voyager",
+     "#9C5D58",
+     "neutral",
+     5
+    ],
+    [
+     "Poet",
+     "#A06A63",
+     "neutral",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Lakmé",
+   "line": "9to5 Primer + Matte Lip Color",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 550,
+   "size": "3.6 g",
+   "origin": "IN",
+   "fallback": true,
+   "shades": [
+    [
+     "Red Coat",
+     "#A11D2C",
+     "cool",
+     4
+    ],
+    [
+     "Maroon Mix",
+     "#6E2430",
+     "cool",
+     4
+    ],
+    [
+     "Brick Blush",
+     "#9C4535",
+     "warm",
+     4
+    ],
+    [
+     "Blush Nude",
+     "#B57E74",
+     "neutral",
+     3
+    ],
+    [
+     "Plum Pick",
+     "#7C3446",
+     "cool",
+     4
+    ],
+    [
+     "Cherry Chic",
+     "#9E1E37",
+     "cool",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "SUGAR",
+   "line": "Matte As Hell Crayon Lipstick",
+   "cat": "lipstick",
+   "formula": "crayon",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 799,
+   "size": "2.8 g",
+   "origin": "IN",
+   "fallback": true,
+   "shades": [
+    [
+     "Scarlett O'Hara",
+     "#B2232C",
+     "warm",
+     5
+    ],
+    [
+     "Poison Ivy",
+     "#6E2735",
+     "cool",
+     5
+    ],
+    [
+     "Holly Golightly",
+     "#B1786A",
+     "warm",
+     4
+    ],
+    [
+     "Rose Dawson",
+     "#B85D6E",
+     "cool",
+     4
+    ],
+    [
+     "Viola",
+     "#A0676A",
+     "neutral",
+     4
+    ],
+    [
+     "Elle Woods",
+     "#9A6551",
+     "warm",
+     4
+    ],
+    [
+     "Cherry Ames",
+     "#9F1D33",
+     "cool",
+     5
+    ],
+    [
+     "Veronica Mars",
+     "#A54A33",
+     "warm",
+     5
+    ],
+    [
+     "Murphy Brown",
+     "#5E2A2B",
+     "neutral",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Maybelline New York",
+   "line": "Color Sensational Creamy Matte Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "soft-matte",
+   "payoff": 4,
+   "price": 499,
+   "size": "3.9 g",
+   "fallback": true,
+   "shades": [
+    [
+     "Touch of Spice",
+     "#95605A",
+     "neutral",
+     4
+    ],
+    [
+     "Clay Crush",
+     "#A3634E",
+     "warm",
+     4
+    ],
+    [
+     "Daringly Nude",
+     "#B88378",
+     "warm",
+     4
+    ],
+    [
+     "Rich Ruby",
+     "#93212E",
+     "cool",
+     5
+    ],
+    [
+     "Divine Wine",
+     "#702530",
+     "cool",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Maybelline New York",
+   "line": "Fit Me Matte + Poreless Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 3,
+   "price": 599,
+   "size": "30 ml",
+   "fallback": true,
+   "shades": [
+    [
+     "115 Ivory",
+     "#EBCBAE",
+     "neutral",
+     3
+    ],
+    [
+     "128 Warm Nude",
+     "#E0B98F",
+     "warm",
+     3
+    ],
+    [
+     "220 Natural Beige",
+     "#D8AE87",
+     "neutral",
+     3
+    ],
+    [
+     "230 Natural Buff",
+     "#D3A47B",
+     "warm",
+     3
+    ],
+    [
+     "310 Sun Beige",
+     "#C79668",
+     "warm",
+     3
+    ],
+    [
+     "330 Toffee",
+     "#B37E54",
+     "warm",
+     3
+    ],
+    [
+     "355 Pecan",
+     "#9B6643",
+     "warm",
+     3
+    ]
+   ]
+  }
+ ],
+ "community": [
+  {
+   "a": [
+    "Rare Beauty",
+    "Hope"
+   ],
+   "b": [
+    "A'PIEU",
+    "Guava"
+   ],
+   "source": "Beautymone swatch comparison",
+   "url": "https://beautymone.com/rare-beauty-liquid-blush-dupe/"
+  },
+  {
+   "a": [
+    "Rare Beauty",
+    "Hope"
+   ],
+   "b": [
+    "Huda Beauty",
+    "Watermelon Pop"
+   ],
+   "source": "Skinsort's dupe list",
+   "url": "https://skinsort.com/products/rare-beauty/soft-pinch-liquid-blush/hope/dupes"
+  },
+  {
+   "a": [
+    "Rare Beauty",
+    "Hope"
+   ],
+   "b": [
+    "Charlotte Tilbury",
+    "Pillow Talk",
+    "blush"
+   ],
+   "source": "Skinsort's dupe list",
+   "url": "https://skinsort.com/products/rare-beauty/soft-pinch-liquid-blush/hope/dupes"
+  },
+  {
+   "a": [
+    "Charlotte Tilbury",
+    "Pillow Talk",
+    "lipstick"
+   ],
+   "b": [
+    "Maybelline New York",
+    "Lead The Way"
+   ],
+   "source": "Elle India",
+   "url": "https://elle.in/?p=193560"
+  },
+  {
+   "a": [
+    "MAC",
+    "Ruby Woo"
+   ],
+   "b": [
+    "Lakmé",
+    "Red Coat"
+   ],
+   "source": "Urban Company's red lipstick guide",
+   "url": "https://www.urbancompany.com/blog/the-best-red-lipstick-shades-in-lakme-9-to-5-range"
+  },
+  {
+   "a": [
+    "NARS",
+    "Orgasm"
+   ],
+   "b": [
+    "Milani",
+    "Luminoso"
+   ],
+   "source": "many dupe roundups"
+  },
+  {
+   "a": [
+    "Charlotte Tilbury",
+    "Hollywood Flawless Filter"
+   ],
+   "b": [
+    "e.l.f.",
+    "Halo Glow Liquid Filter"
+   ],
+   "source": "many dupe roundups",
+   "line": true
+  }
+ ]
+}

@@ -14,3 +14,7 @@ A collectible playing-card deck about Bangalore and New York.
 | 4 · Visual execution | [prototype/index.html](prototype/index.html) · [prototype/svg/](prototype/svg/) | Animated prototype with sound |
 
 Regenerate the card files with `node prototype/export.js`.
+
+## Also in this repo
+
+[swmatch/](swmatch/README.md) is an India-first makeup dupe finder for lipstick, blush, foundation and highlighter.

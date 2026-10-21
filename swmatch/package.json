@@ -1,0 +1,13 @@
+{
+  "name": "swmatch",
+  "private": true,
+  "description": "swmatch: an India-first makeup dupe finder for lipstick, blush, foundation and highlighter.",
+  "scripts": {
+    "fetch": "python3 scripts/fetch_purplle.py",
+    "build": "node scripts/build-catalog.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.137.0"
+  }
+}
