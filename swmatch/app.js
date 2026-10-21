@@ -31,6 +31,9 @@
       byId.set(row.id, row);
     }
   }
+  // You pick the shade you love from international brands; dupes come from everyone.
+  const sources = shades.filter((s) => s.origin !== 'IN');
+
   const citedShade = new Map();
   const citedLine = new Map();
   for (const c of CAT.community || []) {
@@ -64,24 +67,21 @@
   // ---- library ----
   function renderTabs() {
     const counts = {};
-    for (const s of shades) counts[s.cat] = (counts[s.cat] || 0) + 1;
+    for (const s of sources) counts[s.cat] = (counts[s.cat] || 0) + 1;
     $('#tabs').innerHTML = CATS.map((c) => `<button type="button" data-cat="${c.key}" aria-pressed="${state.cat === c.key}">${c.label}<small>${counts[c.key] || 0} shades</small></button>`).join('');
   }
 
   function brandsFor(cat) {
-    const m = new Map();
-    for (const p of CAT.products) if (p.cat === cat && !m.has(p.brand)) m.set(p.brand, p.origin);
-    return [...m.entries()].map(([brand, origin]) => ({ brand, origin })).sort((a, b) => a.brand.localeCompare(b.brand));
+    const m = new Set();
+    for (const p of CAT.products) if (p.cat === cat && p.origin !== 'IN') m.add(p.brand);
+    return [...m].sort((a, b) => a.localeCompare(b));
   }
 
   function renderBrands() {
     const list = brandsFor(state.cat);
-    if (state.brand && !list.some((b) => b.brand === state.brand)) state.brand = null;
-    const opt = (b) => `<option value="${esc(b.brand)}" ${state.brand === b.brand ? 'selected' : ''}>${esc(b.brand)}</option>`;
-    const IN = list.filter((b) => b.origin === 'IN'), INTL = list.filter((b) => b.origin !== 'IN');
+    if (state.brand && !list.includes(state.brand)) state.brand = null;
     $('#brand').innerHTML = `<option value="">Choose a brand</option>`
-      + (IN.length ? `<optgroup label="Indian brands">${IN.map(opt).join('')}</optgroup>` : '')
-      + (INTL.length ? `<optgroup label="International brands">${INTL.map(opt).join('')}</optgroup>` : '');
+      + list.map((b) => `<option value="${esc(b)}" ${state.brand === b ? 'selected' : ''}>${esc(b)}</option>`).join('');
   }
 
   function renderLines() {
@@ -90,7 +90,7 @@
       el.innerHTML = '';
       return;
     }
-    const ps = CAT.products.filter((p) => p.cat === state.cat && p.brand === state.brand);
+    const ps = CAT.products.filter((p) => p.cat === state.cat && p.brand === state.brand && p.origin !== 'IN');
     el.innerHTML = ps.map((p) => {
       const price = p.shades.map((s) => s.price).filter(Boolean);
       const lo = Math.min(...price), hi = Math.max(...price);
@@ -232,7 +232,7 @@
   function runAsk(q) {
     const box = $('#askResults');
     if (!q.trim()) { box.innerHTML = ''; return; }
-    const named = S.findNamedShade(q, shades);
+    const named = S.findNamedShade(q, sources);
     const parsed = S.parseQuery(q);
     if (named) {
       if (parsed.maxPrice) { state.maxPrice = parsed.maxPrice; }
@@ -242,7 +242,7 @@
       selectShade(named.id, true);
       return;
     }
-    const r = S.search(q, shades, 12);
+    const r = S.search(q, sources, 12);
     const p = r.parsed;
     const bits = [p.cat, p.colour, p.finish, p.undertone && p.undertone + ' undertone', p.skin && p.skin + ' skin', p.maxPrice && 'under ' + inr(p.maxPrice), p.origin === 'IN' ? 'Indian brands' : p.origin === 'INTL' ? 'international brands' : ''].filter(Boolean);
     box.innerHTML = `<div class="ask-panel">
@@ -330,6 +330,7 @@
   renderExamples();
   renderMethod();
   const fromHash = decodeURIComponent((location.hash || '').slice(1));
-  const start = byId.get(fromHash) || defaultShade();
+  const fromLink = byId.get(fromHash);
+  const start = fromLink && fromLink.origin !== 'IN' ? fromLink : defaultShade();
   if (start) selectShade(start.id, false); else renderAll();
 })();
