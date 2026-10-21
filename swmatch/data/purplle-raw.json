@@ -1,0 +1,4299 @@
+{
+ "source": "purplle.com",
+ "fetchedAt": "2026-10-21",
+ "products": [
+  {
+   "brand": "Faces Canada",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Not So Wine, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Irresistible Pink, 2.8 gm | Long Stay | Smooth Creamy Matte Texture | One Stroke Intense Color | Chamomile & Cocoa Butter Enriched",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Divine Rose, 2.8 gm| Long Stay | Smooth Creamy Matte Texture | One Stroke Intense Color | Chamomile & Cocoa Butter Enriched",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Red Fantasy, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Wrapped Up, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Peach Me, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Make Me Mine, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Evening Star, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Mystic Magic, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Let's Coffee, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Put Me On, 2.8 gm | Long Stay | Smooth Creamy Matte Texture | One Stroke Intense Color | Chamomile & Cocoa Butter Enriched",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Cashmere, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Majestic Rose, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - Brunette, 2.8 gm",
+    "FACES CANADA Ultime Pro Matte Lip Crayon - I Am Your's, 2.8 gm"
+   ],
+   "shades": [
+    {
+     "name": "Not So Wine",
+     "hex": "#7C2F3B",
+     "hexSource": "retailer",
+     "price": 594.0,
+     "mrp": 849.0,
+     "rating": 4.0,
+     "ratingCount": 26,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-not-so-wine-17-2-8-g"
+    },
+    {
+     "name": "Irresistible Pink",
+     "hex": "#FF035B",
+     "hexSource": "retailer",
+     "price": 577.0,
+     "mrp": 849.0,
+     "rating": 4.0,
+     "ratingCount": 41,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-irresistible-pink-10-2-8-g"
+    },
+    {
+     "name": "Divine Rose",
+     "hex": "#BD5F63",
+     "hexSource": "retailer",
+     "price": 577.0,
+     "mrp": 849.0,
+     "rating": 3.7,
+     "ratingCount": 10,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-divine-rose-14-2-8-g"
+    },
+    {
+     "name": "Red Fantasy 2.8g",
+     "hex": "#912430",
+     "hexSource": "retailer",
+     "price": 566.0,
+     "mrp": 849.0,
+     "rating": 4.4,
+     "ratingCount": 30,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-red-fantasy-19-2-8-g"
+    },
+    {
+     "name": "Wrapped Up 2.8g",
+     "hex": "#C77469",
+     "hexSource": "retailer",
+     "price": 575.0,
+     "mrp": 849.0,
+     "rating": 3.5,
+     "ratingCount": 37,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-wrapped-up-09-2-8-g"
+    },
+    {
+     "name": "Peach Me 2.8g",
+     "hex": "#D9898A",
+     "hexSource": "retailer",
+     "price": 575.0,
+     "mrp": 849.0,
+     "rating": 4.1,
+     "ratingCount": 71,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-peach-me-08-2-8-g"
+    },
+    {
+     "name": "Make me mine 37",
+     "hex": "#BC7576",
+     "hexSource": "retailer",
+     "price": 450.0,
+     "mrp": 849.0,
+     "rating": 3.8,
+     "ratingCount": 5,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-make-me-mine-37-2-8-g-1"
+    },
+    {
+     "name": "Evening star 40",
+     "hex": "#95314B",
+     "hexSource": "retailer",
+     "price": 450.0,
+     "mrp": 849.0,
+     "rating": 4.2,
+     "ratingCount": 30,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-evening-star-40-2-8-g-1"
+    },
+    {
+     "name": "Mystic Magic 30",
+     "hex": "#931D27",
+     "hexSource": "retailer",
+     "price": 450.0,
+     "mrp": 849.0,
+     "rating": 4.6,
+     "ratingCount": 18,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-mystic-magic-30-2-8-g"
+    },
+    {
+     "name": "Let's Coffee 35",
+     "hex": "#5E3827",
+     "hexSource": "retailer",
+     "price": 575.0,
+     "mrp": 849.0,
+     "rating": 4.5,
+     "ratingCount": 8,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-let-s-coffee-35-2-8-g-1-24"
+    },
+    {
+     "name": "Put Me On",
+     "hex": "#9E2E3F",
+     "hexSource": "retailer",
+     "price": 675.0,
+     "mrp": 849.0,
+     "rating": 4.0,
+     "ratingCount": 38,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-put-me-on-13-2-8-g-14"
+    },
+    {
+     "name": "Cashmere 23",
+     "hex": "#C2716A",
+     "hexSource": "retailer",
+     "price": 662.0,
+     "mrp": 849.0,
+     "rating": 4.1,
+     "ratingCount": 22,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-cashmere-23-2-8-g"
+    },
+    {
+     "name": "Majestic Rose 26",
+     "hex": "#8C2D2D",
+     "hexSource": "retailer",
+     "price": 675.0,
+     "mrp": 849.0,
+     "rating": 4.3,
+     "ratingCount": 29,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-majestic-rose-26-2-8-g-12"
+    },
+    {
+     "name": "Brunette 2.8g",
+     "hex": "#7C3335",
+     "hexSource": "retailer",
+     "price": 577.0,
+     "mrp": 849.0,
+     "rating": 4.5,
+     "ratingCount": 46,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-brunette-20-2-8-g"
+    },
+    {
+     "name": "I Am Your's 2.8g",
+     "hex": "#92544B",
+     "hexSource": "retailer",
+     "price": 575.0,
+     "mrp": 849.0,
+     "rating": 4.6,
+     "ratingCount": 12,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-ultime-pro-matte-lip-crayon-i-am-your-s-36-2-8-g-1-13"
+    }
+   ]
+  },
+  {
+   "brand": "Faces Canada",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Raging Red 10, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Showstopper Red 09, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Notice Me Pink 06, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Camouflage Mauve 07, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Haute Plum 08, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Sinful Peach 05, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Kiss Ready Nude 03, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Coffee Date Pink 02, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Romantic Maroon 01, 2 gm",
+    "FACES CANADA Long Stay 3-in-1 Matte Lipstick - Bubblegum Pink 04, 2 gm"
+   ],
+   "shades": [
+    {
+     "name": "Raging Red 10",
+     "hex": "#CB4149",
+     "hexSource": "retailer",
+     "price": 317.0,
+     "mrp": 599.0,
+     "rating": 3.9,
+     "ratingCount": 31,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-raging-red-10-2-gm-58"
+    },
+    {
+     "name": "Showstopper Red 09",
+     "hex": "#EF4251",
+     "hexSource": "retailer",
+     "price": 300.0,
+     "mrp": 599.0,
+     "rating": 4.2,
+     "ratingCount": 18,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-showstopper-red-09-2-gm-16-12"
+    },
+    {
+     "name": "Notice Me Pink 06",
+     "hex": "#DC196F",
+     "hexSource": "retailer",
+     "price": 300.0,
+     "mrp": 599.0,
+     "rating": 4.1,
+     "ratingCount": 56,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-notice-me-pink-06-2-gm-17"
+    },
+    {
+     "name": "Camouflage Mauve 07",
+     "hex": "#AE6D63",
+     "hexSource": "retailer",
+     "price": 317.0,
+     "mrp": 599.0,
+     "rating": 3.8,
+     "ratingCount": 31,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-camouflage-mauve-07-2-gm"
+    },
+    {
+     "name": "Haute Plum 08",
+     "hex": "#8C3E6B",
+     "hexSource": "retailer",
+     "price": 317.0,
+     "mrp": 599.0,
+     "rating": 4.0,
+     "ratingCount": 45,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-haute-plum-08-2-gm-21"
+    },
+    {
+     "name": "Sinful Peach 05",
+     "hex": "#CD6A54",
+     "hexSource": "retailer",
+     "price": 317.0,
+     "mrp": 599.0,
+     "rating": 3.8,
+     "ratingCount": 35,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-sinful-peach-05-2-gm-16"
+    },
+    {
+     "name": "Kiss Ready Nude 03",
+     "hex": "#AD655F",
+     "hexSource": "retailer",
+     "price": 317.0,
+     "mrp": 599.0,
+     "rating": 3.3,
+     "ratingCount": 22,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-kiss-ready-nude-03-2-gm"
+    },
+    {
+     "name": "Coffee Date Pink 02",
+     "hex": "#E12E5F",
+     "hexSource": "retailer",
+     "price": 407.0,
+     "mrp": 599.0,
+     "rating": 4.0,
+     "ratingCount": 44,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-coffee-date-pink-02-2-gm"
+    },
+    {
+     "name": "Romantic Maroon 01",
+     "hex": "#B4464B",
+     "hexSource": "retailer",
+     "price": 317.0,
+     "mrp": 599.0,
+     "rating": 4.1,
+     "ratingCount": 18,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-romantic-maroon-01-2gm-37"
+    },
+    {
+     "name": "Bubblegum Pink 04",
+     "hex": "#D74773",
+     "hexSource": "retailer",
+     "price": 407.0,
+     "mrp": 599.0,
+     "rating": 3.9,
+     "ratingCount": 34,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-long-stay-3-in-1-matte-lipstick-bubblegum-pink-04-2-gm"
+    }
+   ]
+  },
+  {
+   "brand": "Iba",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Iba Pure Lips Moisturizing Lipstick Shade A38 A Brown Sugar (4 gm)",
+    "Iba Long Stay Matte Lipstick Shade M11 Ruby Blossom, 4 gm | Intense Colour | Highly Pigmented and Long Lasting Matte Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Long Stay Matte Lipstick Shade M02 Mocha Shot, 4 gm |Vitamin E |Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A10 Plum Pure, 4 gm | Intense Colour | Highly Pigmented and Creamy Long Lasting | Glossy Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A72 Maroon Burst, 4 gm |A Vitamin E |Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A35 Dark Chocolate, 4 gm|A Vitamin E | Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A62 Pure Red, 4 gm |A Intense Colour | Vitamin E | Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A45 Glossy Natural, 4 gm |Vitamin E |A Vegan & Cruelty Free",
+    "Iba Moisture Rich Lipstick - A66 Red Glam - 4 gm",
+    "Iba Moisture Rich Lipstick - A68 Mystery Red - 4 gm",
+    "Iba Pure Lips Moisturizing Lipstick Shade A95 Mauve Touch, 4 gm | Intense Colour | Highly Pigmented and Creamy Long Lasting | Glossy Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A50 Dusky Rose, 4 gm | Intense Colour | Highly Pigmented and Creamy Long Lasting | Glossy Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Long Stay Matte Lipstick M17 Apricot Blush (4 gm)",
+    "Iba Pure Lips Moisturizing Lipstick Shade A65 Ruby Touch, 4 gm | Intense Colour | Highly Pigmented and Creamy Long Lasting | Glossy Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Long Stay Matte Lipstick M03 Toffee Brown (4 gm)",
+    "Iba Pure Lips Moisturizing Lipstick Shade A90 Coral Glow, 4 gm | Intense Colour | Highly Pigmented and Creamy Long Lasting | Glossy Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Long Stay Matte Lipstick Shade M04 Wild Magenta, 4 gm | Intense Colour | Highly Pigmented and Long Lasting Matte Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A80 Pink Blush, 4 gm |Vitamin E |Vegan & Cruelty Free",
+    "Iba Long Stay Matte Lipstick Shade M06 Bold Red, 4 gm | Intense Colour | Highly Pigmented and Long Lasting Matte Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A75 Neon Crush, 4 gm |Vitamin E | Vegan & Cruelty Free",
+    "Iba Pure Lips Long Stay Matte Lipstick M16 Rose Tan (4 gm)",
+    "Iba Long Stay Matte Lipstick Shade M13 Pink Rose, 4 gm | Intense Colour | Highly Pigmented and Long Lasting Matte Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A36 A Caramel Creme (4 gm)",
+    "Iba Moisture Rich Lipstick - A46 Spicy Nude - 4 gm",
+    "Iba Long Stay Matte Lipstick Shade M14 Pink Pop, 4 gm | Vitamin E |Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A40 Berry Blast, 4g | Intense Colour | Highly Pigmented and Creamy Long Lasting | Glossy Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A85 Pink Nectar, 4 gm |A Vitamin E |Vegan & Cruelty Free",
+    "Iba Pure Lips Long Stay Matte Lipstick M15 Cinnamon Chai (4 gm)",
+    "Iba Long Stay Matte Lipstick Shade M08 Burgundy Red, 4 gm | Intense Colour | Highly Pigmented and Long Lasting Matte Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free",
+    "Iba Pure Lips Moisturizing Lipstick Shade A55 Peach Sparkle, 4 gm |Vitamin E |A Vegan & Cruelty Free",
+    "Iba Long Stay Matte Lipstick Shade M09 Berry Punch, 4 gm | Intense Colour | Highly Pigmented and Long Lasting Matte Finish | Enriched with Vitamin E | 100% Natural, Vegan & Cruelty Free"
+   ],
+   "shades": [
+    {
+     "name": "A38 AÂ Brown Sugar",
+     "hex": "#725040",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.3,
+     "ratingCount": 3,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a38-brown-sugar-4-g-13"
+    },
+    {
+     "name": "M11 Ruby Blossom",
+     "hex": "#A52535",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 3.6,
+     "ratingCount": 5,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m11-ruby-blossom-4-g-18"
+    },
+    {
+     "name": "M02 Mocha Shot",
+     "hex": "#771F13",
+     "hexSource": "retailer",
+     "price": 365.0,
+     "mrp": 365.0,
+     "rating": 3.9,
+     "ratingCount": 7,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m02-mocha-shot-4-g-14-20"
+    },
+    {
+     "name": "A10 Plum Pure",
+     "hex": "#84304A",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 2.9,
+     "ratingCount": 8,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a10-plum-pure-4g-intense-colour-highly-pigmented-and-creamy-long-lasting-glossy-finish-enriched-with-vitamin-e-100-percentage-natural-vegan-and-cruelty-free"
+    },
+    {
+     "name": "A72 Maroon Burst",
+     "hex": "#6B1A21",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.6,
+     "ratingCount": 59,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a72-maroon-burst-4g-a-vitamin-e-vegan-and-cruelty-free"
+    },
+    {
+     "name": "A35 Dark Chocolate",
+     "hex": "#593F32",
+     "hexSource": "retailer",
+     "price": 212.0,
+     "mrp": 265.0,
+     "rating": 3.8,
+     "ratingCount": 22,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a35-dark-chocolate-4g-a-vitamin-e-vegan-and-cruelty-free-12"
+    },
+    {
+     "name": "A62 Pure Red",
+     "hex": "#C61E29",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.2,
+     "ratingCount": 13,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a62-pure-red-4g-a-intense-colour-vitamin-e-vegan-and-cruelty-free"
+    },
+    {
+     "name": "A45 Glossy Natural",
+     "hex": "#96605E",
+     "hexSource": "retailer",
+     "price": 200.0,
+     "mrp": 250.0,
+     "rating": 3.9,
+     "ratingCount": 20,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a45-glossy-natural-4g-vitamin-e-a-vegan-and-cruelty-free"
+    },
+    {
+     "name": "A66 Red Glam",
+     "hex": "#921B1D",
+     "hexSource": "retailer",
+     "price": 265.0,
+     "mrp": 265.0,
+     "rating": 4.2,
+     "ratingCount": 6,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-moisture-rich-lipstick-a66-red-glam-68-63-75"
+    },
+    {
+     "name": "A68 Mystery Red",
+     "hex": "#882134",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.4,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-moisture-rich-lipstick-a68-mystery-red-47-20"
+    },
+    {
+     "name": "A95 Mauve Touch",
+     "hex": "#824F4E",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 4.0,
+     "ratingCount": 9,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-pure-lips-moisturizing-lipstick-shade-a95-mauve-touch-4-g-49-51"
+    },
+    {
+     "name": "A50 Dusky Rose",
+     "hex": "#82362F",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 4.1,
+     "ratingCount": 9,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-pure-lips-moisturizing-lipstick-shade-a50-dusky-rose-4-g-20-65"
+    },
+    {
+     "name": "M17 Apricot Blush",
+     "hex": "#B44945",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 4.1,
+     "ratingCount": 23,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-long-stay-matte-lipstick-m17-apricot-blush-4-g"
+    },
+    {
+     "name": "A65 Ruby Touch",
+     "hex": "#910824",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.5,
+     "ratingCount": 23,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a65-ruby-touch-4g-intense-colour-highly-pigmented-and-creamy-long-lasting-glossy-finish-enriched-with-vitamin-e-100-percentage-natural-vegan-and-cruelty-free"
+    },
+    {
+     "name": "M03 Toffee Brown",
+     "hex": "#69392E",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m03-toffee-brown-4-g-38"
+    },
+    {
+     "name": "A90 Coral Glow",
+     "hex": "#994642",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.7,
+     "ratingCount": 323,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a90-coral-glow-4g-intense-colour-highly-pigmented-and-creamy-long-lasting-glossy-finish-enriched-with-vitamin-e-100-percentage-natural-vegan-and-cruelty-free"
+    },
+    {
+     "name": "M04 Wild Magenta",
+     "hex": "#CD416B",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 3.8,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m04-wild-magenta-4-g-12"
+    },
+    {
+     "name": "A80 Pink Blush",
+     "hex": "#D75062",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.1,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a80-pink-blush-4g-vitamin-e-vegan-and-cruelty-free"
+    },
+    {
+     "name": "M06 Bold Red",
+     "hex": "#F13128",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m06-bold-red-4-g-17"
+    },
+    {
+     "name": "A75 Neon Crush",
+     "hex": "#E8007E",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.7,
+     "ratingCount": 323,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a75-neon-crush-4g-vitamin-e-vegan-and-cruelty-free"
+    },
+    {
+     "name": "M16 Rose Tan",
+     "hex": "#943540",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-long-stay-matte-lipstick-m16-rose-tan-4-g"
+    },
+    {
+     "name": "M13 Pink Rose",
+     "hex": "#ED4D6D",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 2.3,
+     "ratingCount": 7,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m13-pink-rose-4-g-13"
+    },
+    {
+     "name": "A36 AÂ Caramel CrÃ¨me",
+     "hex": "#7A5142",
+     "hexSource": "retailer",
+     "price": 212.0,
+     "mrp": 265.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a36-caramel-creme-4-g-17-23"
+    },
+    {
+     "name": "A46 Spicy Nude",
+     "hex": "#784745",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 3.8,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-moisture-rich-lipstick-a46-spicy-nude-12-14"
+    },
+    {
+     "name": "M14 Pink Pop",
+     "hex": "#C25568",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 3.3,
+     "ratingCount": 10,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m14-pink-pop-4-g-12"
+    },
+    {
+     "name": "A40 Berry Blast",
+     "hex": "#853142",
+     "hexSource": "retailer",
+     "price": 239.0,
+     "mrp": 265.0,
+     "rating": 3.7,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a40-berry-blast-4g-intense-colour-highly-pigmented-and-creamy-long-lasting-glossy-finish-enriched-with-vitamin-e-100-percentage-natural-vegan-and-cruelty-free-74"
+    },
+    {
+     "name": "A85 Pink Nectar",
+     "hex": "#A44348",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 4.3,
+     "ratingCount": 37,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a85-pink-nectar-4g-a-vitamin-e-vegan-and-cruelty-free"
+    },
+    {
+     "name": "M15 Cinnamon Chai",
+     "hex": "#A95751",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 3.9,
+     "ratingCount": 35,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-long-stay-matte-lipstick-m15-cinnamon-chai-4-g"
+    },
+    {
+     "name": "M08 Burgundy Red",
+     "hex": "#961A1C",
+     "hexSource": "retailer",
+     "price": 256.0,
+     "mrp": 365.0,
+     "rating": 2.7,
+     "ratingCount": 9,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m08-burgundy-red-4-g-14-94"
+    },
+    {
+     "name": "A55 Peach Sparkle",
+     "hex": "#D45C49",
+     "hexSource": "retailer",
+     "price": 250.0,
+     "mrp": 250.0,
+     "rating": 4.0,
+     "ratingCount": 18,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-pure-lips-moisturizing-lipstick-shade-a55-peach-sparkle-4g-vitamin-e-a-vegan-and-cruelty-free"
+    },
+    {
+     "name": "M09 Berry Punch",
+     "hex": "#AB273A",
+     "hexSource": "retailer",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 4.0,
+     "ratingCount": 6,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/iba-halal-care-purelips-long-stay-matte-lipstick-shade-m09-berry-punch-4-g-58"
+    }
+   ]
+  },
+  {
+   "brand": "Faces Canada",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "FACES CANADA Comfy Silk Liquid Lipstick - Marvelous Mauve, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Soulful Brown 01, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Thriver Pink 02, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Jovial Pink 05, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Spontaneous Plum, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Zealous Red 10, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Mystic Nude 13, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Lunar Brown 11, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Mysterious Pink 12, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Ebony Rose 14, (3 ml) | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Breezy Coral 03, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Vivify Pink 07, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Elegant Maroon 08, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips",
+    "FACES CANADA Comfy Silk Liquid Lipstick - Achiever Red 09, 3 ml | Satin Matte HD Finish | Luxe Comfort | Longlasting | No Dryness | Smooth Texture | Mulberry Oil & Shea Butter For Plump Hydrated Lips"
+   ],
+   "shades": [
+    {
+     "name": "Marvelous Mauve 04",
+     "hex": "#B64D5B",
+     "hexSource": "image",
+     "price": 929.0,
+     "mrp": 999.0,
+     "rating": 4.4,
+     "ratingCount": 16,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-marvelous-mauve-04-3-ml"
+    },
+    {
+     "name": "Soulful Brown 01",
+     "hex": "#B0584E",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 3.5,
+     "ratingCount": 6,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-soulful-brown-01-3-ml"
+    },
+    {
+     "name": "Thriver Pink 02",
+     "hex": "#CB4B64",
+     "hexSource": "image",
+     "price": 749.0,
+     "mrp": 999.0,
+     "rating": 2.6,
+     "ratingCount": 8,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-thriver-pink-02-3-ml"
+    },
+    {
+     "name": "Jovial Pink 05",
+     "hex": "#FA949F",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 3.5,
+     "ratingCount": 34,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-jovial-pink-05-3-ml"
+    },
+    {
+     "name": "Spontaneous Plum 06",
+     "hex": "#741F49",
+     "hexSource": "image",
+     "price": 500.0,
+     "mrp": 999.0,
+     "rating": 4.9,
+     "ratingCount": 21,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-spontaneous-plum-06-3-ml"
+    },
+    {
+     "name": "Zealous Red 10",
+     "hex": "#BC2A34",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 3.6,
+     "ratingCount": 12,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-zealous-red-10-3-ml"
+    },
+    {
+     "name": "Mystic Nude 13",
+     "hex": "#DA817B",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 2.8,
+     "ratingCount": 6,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-liquid-lipstick-mystic-nude-13-3ml-satin-matte-hd-finish-luxe-comfort-longlasting-no-dryness-smooth-texture-mulberry-oil-and-shea-butter-for-plump-hydrated-lips"
+    },
+    {
+     "name": "Lunar Brown 11",
+     "hex": "#A96F63",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-liquid-lipstick-lunar-brown-11-3ml-satin-matte-hd-finish-luxe-comfort-longlasting-no-dryness-smooth-texture-mulberry-oil-and-shea-butter-for-plump-hydrated-lips"
+    },
+    {
+     "name": "Mysterious Pink 12",
+     "hex": "#CE6E6F",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-liquid-lipstick-mysterious-pink-12-3ml-satin-matte-hd-finish-luxe-comfort-longlasting-no-dryness-smooth-texture-mulberry-oil-and-shea-butter-for-plump-hydrated-lips"
+    },
+    {
+     "name": "Ebony Rose 14",
+     "hex": "#B4656A",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-liquid-lipstick-ebony-rose-14-3ml-satin-matte-hd-finish-luxe-comfort-longlasting-no-dryness-smooth-texture-mulberry-oil-and-shea-butter-for-plump-hydrated-lips"
+    },
+    {
+     "name": "Breezy Coral 03",
+     "hex": "#C66C76",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 3.3,
+     "ratingCount": 42,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-breezy-coral-03-3-ml"
+    },
+    {
+     "name": "Vivify Pink 07",
+     "hex": "#D03C76",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 3.8,
+     "ratingCount": 26,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-vivify-pink-07-3-ml"
+    },
+    {
+     "name": "Elegant Maroon 08",
+     "hex": "#8F353F",
+     "hexSource": "image",
+     "price": 528.0,
+     "mrp": 999.0,
+     "rating": 3.8,
+     "ratingCount": 17,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-elegant-maroon-08-3-ml"
+    },
+    {
+     "name": "Achiever Red 09",
+     "hex": "#D14F59",
+     "hexSource": "image",
+     "price": 679.0,
+     "mrp": 999.0,
+     "rating": 3.1,
+     "ratingCount": 41,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-comfy-silk-lip-color-i-satin-matte-hd-finish-liquid-lipstick-i-mulberry-oil-i-luxe-comfort-i-longlasting-i-no-dryness-alcohol-paraben-and-cruelty-free-achiever-red-09-3-ml"
+    }
+   ]
+  },
+  {
+   "brand": "NY Bae",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "NY Bae Super Matte Lipstick - Fushia Fantasy 32 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Nearly Neutral 33 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Passenger Princess 28 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Passionate Pamela 12 (4.2 gm) | Nude Pink | Loaded With Vitamin E | Rich Colour | Long Lasting | Smudgeproof | Vegan",
+    "NY Bae Super Matte Lipstick - Peppy Pearson 1 (4.2 gm) | Nude Brown | Loaded With Vitamin E | Rich Colour | Long lasting | Smudgeproof | Vegan",
+    "NY Bae Super Matte Lipstick - Royale Rebecca 17 (4.2 gm) | Red | Loaded With Vitamin E | Rich Colour | Long lasting | Smudgeproof | Vegan",
+    "NY Bae Super Matte Lipstick - Maverick Madison 8 (4.2 gm) | Purple | Matte Finish | Enriched with Vitamin E | Rich Colour Payoff | Nourishing | Long lasting | Smudgeproof | Vegan | Cruelty & Paraben Free",
+    "NY Bae Super Matte Lipstick - Sugar N Spice 27 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Red Rebel 25 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Wine Flower 31 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Berry Blush 29 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Springtime 26 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Lady In Red 34 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Vivacious Victoria 21 (4.2 gm) | Purple | Loaded With Vitamin E | Rich Colour | Long lasting | Smudgeproof | Vegan",
+    "NY Bae Super Matte Lipstick - Versatile Veronica 18 (4.2 gm) | Purple | Loaded With Vitamin E | Rich Colour | Long lasting | Smudgeproof | Vegan",
+    "NY Bae Super Matte Lipstick - Marvellous Michelle 19 (4.2 gm) | Maroon | Matte Finish | Enriched with Vitamin E | Rich Colour Payoff | Nourishing | Long lasting | Smudgeproof | Vegan | Cruelty & Paraben Free",
+    "NY Bae Super Matte Lipstick - Hot Hazel 23 (4.2 gm) | Red Mauve | Matte Finish | Enriched with Vitamin E | Rich Colour Payoff | Nourishing | Long lasting | Smudgeproof | Vegan | Cruelty & Paraben Free",
+    "NY Bae Super Matte Lipstick - Purple Paradise 30 - 4.2 gm",
+    "NY Bae Super Matte Lipstick - Dynamic Danielle 10 (4.2 gm) | Pink | Loaded With Vitamin E | Rich Colour | Long lasting | Smudgeproof | Vegan",
+    "NY Bae Super Matte Lipstick - Fabulous Fienman 9 (4.2 gm) | Red | Loaded With Vitamin E | Rich Colour | Long lasting | Smudgeproof | Vegan"
+   ],
+   "shades": [
+    {
+     "name": "Fushia Fantasy 32",
+     "hex": "#910211",
+     "hexSource": "image",
+     "price": 127.0,
+     "mrp": 195.0,
+     "rating": 3.3,
+     "ratingCount": 26,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-fushia-fantasy-32-gt"
+    },
+    {
+     "name": "Nearly Neutral 33",
+     "hex": "#533027",
+     "hexSource": "image",
+     "price": 127.0,
+     "mrp": 195.0,
+     "rating": 3.0,
+     "ratingCount": 20,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-nearly-neutral-33-gt"
+    },
+    {
+     "name": "Passenger Princess 28",
+     "hex": "#5B3834",
+     "hexSource": "image",
+     "price": 98.0,
+     "mrp": 195.0,
+     "rating": 2.7,
+     "ratingCount": 14,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-passenger-princess-28-gt"
+    },
+    {
+     "name": "Passionate Pamela 12",
+     "hex": "#B84B4E",
+     "hexSource": "image",
+     "price": 129.0,
+     "mrp": 195.0,
+     "rating": 3.9,
+     "ratingCount": 1945,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-passionate-pamela-12-10-14-10"
+    },
+    {
+     "name": "Peppy Pearson 1",
+     "hex": "#BF4A43",
+     "hexSource": "image",
+     "price": 133.0,
+     "mrp": 195.0,
+     "rating": 4.1,
+     "ratingCount": 5170,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-peppy-pearson-1-13-14"
+    },
+    {
+     "name": "Royale Rebecca 17",
+     "hex": "#A7242C",
+     "hexSource": "image",
+     "price": 131.0,
+     "mrp": 195.0,
+     "rating": 4.0,
+     "ratingCount": 1498,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-red-royale-rebecca-17-4-2-g"
+    },
+    {
+     "name": "Maverick Madison 8",
+     "hex": "#A32459",
+     "hexSource": "image",
+     "price": 127.0,
+     "mrp": 195.0,
+     "rating": 3.9,
+     "ratingCount": 1079,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-purple-maverick-madison-8-4-2-g"
+    },
+    {
+     "name": "Sugar N Spice 27",
+     "hex": "#400904",
+     "hexSource": "image",
+     "price": 98.0,
+     "mrp": 195.0,
+     "rating": 3.4,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-sugar-n-spice-27-gt"
+    },
+    {
+     "name": "Red Rebel 25",
+     "hex": "#720000",
+     "hexSource": "image",
+     "price": 187.0,
+     "mrp": 195.0,
+     "rating": 4.1,
+     "ratingCount": 18,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-red-rebel-25-gt"
+    },
+    {
+     "name": "Wine Flower 31",
+     "hex": "#340704",
+     "hexSource": "image",
+     "price": 98.0,
+     "mrp": 195.0,
+     "rating": 3.7,
+     "ratingCount": 23,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-wine-flower-31-gt"
+    },
+    {
+     "name": "Berry Blush 29",
+     "hex": "#670004",
+     "hexSource": "image",
+     "price": 187.0,
+     "mrp": 195.0,
+     "rating": 3.2,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-berry-blush-29-gt"
+    },
+    {
+     "name": "Springtime 26",
+     "hex": "#DB135D",
+     "hexSource": "image",
+     "price": 131.0,
+     "mrp": 195.0,
+     "rating": 3.1,
+     "ratingCount": 29,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-springtime-26-gt"
+    },
+    {
+     "name": "Lady In Red 34",
+     "hex": "#531717",
+     "hexSource": "image",
+     "price": 98.0,
+     "mrp": 195.0,
+     "rating": 3.7,
+     "ratingCount": 27,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-lady-in-red-24-gt"
+    },
+    {
+     "name": "Vivacious Victoria 21",
+     "hex": "#860C3F",
+     "hexSource": "image",
+     "price": 185.0,
+     "mrp": 195.0,
+     "rating": 3.9,
+     "ratingCount": 960,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-purple-vivaciousa-victoria-21-4-2-g"
+    },
+    {
+     "name": "Versatile Veronica 18",
+     "hex": "#8D1747",
+     "hexSource": "image",
+     "price": 127.0,
+     "mrp": 195.0,
+     "rating": 4.0,
+     "ratingCount": 1272,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-versatile-veronica-18-4-2-g"
+    },
+    {
+     "name": "Marvellous Michelle 19",
+     "hex": "#AA2A37",
+     "hexSource": "image",
+     "price": 137.0,
+     "mrp": 195.0,
+     "rating": 4.0,
+     "ratingCount": 850,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-marvellous-michelle-19-4-2-g"
+    },
+    {
+     "name": "Hot Hazel 23¬†",
+     "hex": "#812125",
+     "hexSource": "image",
+     "price": 148.0,
+     "mrp": 195.0,
+     "rating": 4.0,
+     "ratingCount": 1150,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-red-hot-hazel-23-4-2-g"
+    },
+    {
+     "name": "Purple Paradise 30",
+     "hex": "#560609",
+     "hexSource": "image",
+     "price": 98.0,
+     "mrp": 195.0,
+     "rating": 2.8,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-purple-paradise-30-gt"
+    },
+    {
+     "name": "Dynamic Danielle 10",
+     "hex": "#93092D",
+     "hexSource": "image",
+     "price": 187.0,
+     "mrp": 195.0,
+     "rating": 4.0,
+     "ratingCount": 413,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-dynamic-danielle-10-4-2-g"
+    },
+    {
+     "name": "Fabulous Fienman 9",
+     "hex": "#CA0E1C",
+     "hexSource": "image",
+     "price": 133.0,
+     "mrp": 195.0,
+     "rating": 4.0,
+     "ratingCount": 1342,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-super-matte-lipstick-fabulous-fienman-9-4-2-g"
+    }
+   ]
+  },
+  {
+   "brand": "TNW The Natural Wash",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 07 | Transferproof | Pigmented | Berry Much | Deep Berry 1.2 ml",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 01 | Transferproof | Pigmented | Blush Nude | Nude Pink 1.2 ml",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 06 | Transferproof | Pigmented | Nutty Nude | Nude Brown 1.2 ml",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 02 | Transferproof | Pigmented | Spicy Coral | Coral Nude 1.2 ml",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 08| Transferproof | Pigmented | Pretty Peach | Peachy Nude 1.2 ml",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 05 | Transferproof | Pigmented | Plumberry | Cocoa Plum",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 04 | Transferproof | Pigmented | Pinktastic | Pink 1.2 ml",
+    "TNW The Natural Wash Matte Velvet Longstay Liquid Lipstick Mini with Macadamia Oil and Argan Oil - 03 | Transferproof | Pigmented | Magical Mauve | Mauvey Pink 1.2 ml"
+   ],
+   "shades": [
+    {
+     "name": "Berry much",
+     "hex": "#B5526A",
+     "hexSource": "retailer",
+     "price": 104.0,
+     "mrp": 249.0,
+     "rating": 3.3,
+     "ratingCount": 86,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-07-transferproof-pigmented-berry-much-deep-berry-20-12-12"
+    },
+    {
+     "name": "Blush Nude",
+     "hex": "#9B4446",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 3.3,
+     "ratingCount": 58,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-01-transferproof-pigmented-blush-nude-nude-pink-12-79-11"
+    },
+    {
+     "name": "Nutty nude",
+     "hex": "#B57360",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 3.9,
+     "ratingCount": 79,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-06-transferproof-pigmented-nutty-nude-nude-brown-78-18-59"
+    },
+    {
+     "name": "Spicy Coral",
+     "hex": "#B43C37",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 3.6,
+     "ratingCount": 57,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-02-transferproof-pigmented-spicy-coral-coral-nude-56-32-62"
+    },
+    {
+     "name": "Pretty peach",
+     "hex": "#BD6E68",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 3.3,
+     "ratingCount": 47,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-08-transferproof-pigmented-pretty-peach-peachy-nude-14-67-19"
+    },
+    {
+     "name": "Plumberry",
+     "hex": "#8C6061",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 4.1,
+     "ratingCount": 47,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-05-transferproof-pigmented-plumberry-cocoa-plum-10-20-20"
+    },
+    {
+     "name": "Pinktastic",
+     "hex": "#C57278",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 3.5,
+     "ratingCount": 45,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-04-transferproof-pigmented-pinktastic-pink-22-15-16"
+    },
+    {
+     "name": "Magical mauve",
+     "hex": "#BE6E70",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 249.0,
+     "rating": 4.0,
+     "ratingCount": 48,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/tnw-the-natural-wash-matte-velvet-longstay-liquid-lipstick-mini-with-macadamia-oil-and-argan-oil-03-transferproof-pigmented-magical-mauve-mauvey-pink-27-14-24"
+    }
+   ]
+  },
+  {
+   "brand": "Faces Canada",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "FACES CANADA Comfy Matte Liquid Lipstick - Getting Ready 02, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol",
+    "FACES CANADA Comfy Matte Liquid Lipstick - Just So You Know 10, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol",
+    "FACES CANADA Comfy Matte Liquid Lipstick - Any Day Now 04, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol",
+    "FACES CANADA Comfy Matte Liquid Lipstick - Never Mind 05, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol",
+    "FACES CANADA Comfy Matte Liquid Lipstick - Hope This Helps 06, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol",
+    "FACES CANADA Comfy Matte Liquid Lipstick - Truth Be Told 09, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol",
+    "FACES CANADA Comfy Matte Liquid Lipstick - No Big Deal 12, 1.2 ml | Comfortable 10HR Longstay | Intense Matte Color | Almond Oil & Vitamin E Infused | Super Smooth | No Dryness | No Alcohol"
+   ],
+   "shades": [
+    {
+     "name": "Getting Ready 02",
+     "hex": "#C8102C",
+     "hexSource": "image",
+     "price": 157.0,
+     "mrp": 249.0,
+     "rating": 3.7,
+     "ratingCount": 233,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-getting-ready-02-1-2ml"
+    },
+    {
+     "name": "Just So You Know 10",
+     "hex": "#C1666F",
+     "hexSource": "image",
+     "price": 157.0,
+     "mrp": 249.0,
+     "rating": 2.9,
+     "ratingCount": 271,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-just-so-you-know-10-1-2ml"
+    },
+    {
+     "name": "Any Day Now 04",
+     "hex": "#A4123F",
+     "hexSource": "image",
+     "price": 157.0,
+     "mrp": 249.0,
+     "rating": 3.7,
+     "ratingCount": 241,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-any-day-now-04-1-2ml"
+    },
+    {
+     "name": "Never Mind 05",
+     "hex": "#D22253",
+     "hexSource": "image",
+     "price": 157.0,
+     "mrp": 249.0,
+     "rating": 3.2,
+     "ratingCount": 189,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-never-mind-05-1-2ml"
+    },
+    {
+     "name": "Hope This Helps 06",
+     "hex": "#D00060",
+     "hexSource": "image",
+     "price": 157.0,
+     "mrp": 249.0,
+     "rating": 3.5,
+     "ratingCount": 238,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-hope-this-helps-06-1-2ml"
+    },
+    {
+     "name": "Truth Be Told 09",
+     "hex": "#C16783",
+     "hexSource": "image",
+     "price": 157.0,
+     "mrp": 249.0,
+     "rating": 3.4,
+     "ratingCount": 238,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-truth-be-told-09-1-2ml"
+    },
+    {
+     "name": "No Big Deal 12",
+     "hex": "#DF1511",
+     "hexSource": "image",
+     "price": 249.0,
+     "mrp": 249.0,
+     "rating": 2.5,
+     "ratingCount": 123,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/facescanada-comfy-matte-lip-color-no-big-deal-12-1-2ml"
+    }
+   ]
+  },
+  {
+   "brand": "Swiss Beauty",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Swiss Beauty Select Here To Stay Lip Crayon, 2.5 gm - Mauve Macaron",
+    "Swiss Beauty Select Here To Stay Lip Crayon, 2.5 gm - Choco Crumble",
+    "Swiss Beauty Select Here To Stay Lip Crayon, 2.5 gm - Red Vivid",
+    "Swiss Beauty Select Here To Stay Lip Crayon, 2.5 gm - French Toast"
+   ],
+   "shades": [
+    {
+     "name": "Mauve Macaron",
+     "hex": "#B36B79",
+     "hexSource": "image",
+     "price": 450.0,
+     "mrp": 450.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/swiss-beauty-select-here-to-stay-lip-crayon-2-5-gm-mauve-macaron"
+    },
+    {
+     "name": "Choco Crumble",
+     "hex": "#7E3E3F",
+     "hexSource": "image",
+     "price": 450.0,
+     "mrp": 450.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/swiss-beauty-select-here-to-stay-lip-crayon-2-5-gm-choco-crumble"
+    },
+    {
+     "name": "Red Vivid",
+     "hex": "#B1243A",
+     "hexSource": "image",
+     "price": 450.0,
+     "mrp": 450.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/swiss-beauty-select-here-to-stay-lip-crayon-2-5-gm-red-vivid"
+    },
+    {
+     "name": "French Toast",
+     "hex": "#9B3D3B",
+     "hexSource": "image",
+     "price": 450.0,
+     "mrp": 450.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/swiss-beauty-select-here-to-stay-lip-crayon-2-5-gm-french-toast"
+    }
+   ]
+  },
+  {
+   "brand": "Maybelline",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Maybelline New York Super Stay Matte Ink Liquid Lipstick 120 Artist 5 ml + 115 Founder 5 ml - Combo of 2",
+    "Maybelline New York Super Stay Matte Ink Liquid Lipstick 120 Artist 5 ml + 20 Pioneer 5 ml -Combo of 2",
+    "Maybelline New York Super Stay Matte Ink Liquid Lipstick, 120 Artist, 5 gm + 70 Amazonian 5 gm"
+   ],
+   "shades": [
+    {
+     "name": "120 Artist + 115 Founder",
+     "hex": "#8A2A4C",
+     "hexSource": "image",
+     "price": 914.0,
+     "mrp": 1498.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-matte-ink-liquid-lipstick-120-artist-5g-115-founder-5-g-11"
+    },
+    {
+     "name": "120 Artist + 20 Pioneer",
+     "hex": "#964450",
+     "hexSource": "image",
+     "price": 914.0,
+     "mrp": 1498.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-matte-ink-liquid-lipstick-120-artist-5g-20-pioneer-5-g-12-40"
+    },
+    {
+     "name": "120 Artist + 70 Amazonian",
+     "hex": "#96564C",
+     "hexSource": "image",
+     "price": 853.0,
+     "mrp": 1398.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-matte-ink-liquid-lipstick-120-artist-5g-70-amazonian-5-g"
+    }
+   ]
+  },
+  {
+   "brand": "Blue Heaven",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Blue Heaven Cookie & Souffle Matte Lipstick for Women, Long lasting Liquid lipstick, Enriched with Cocoa Butter & Rosehip Oil, Softening & Nourishing Lip color - Hazelnut Hottie, 3.2 ml",
+    "Blue Heaven Cookie & Souffle Matte Lipstick for Women, Long lasting Liquid lipstick, Enriched with Cocoa Butter & Rosehip Oil, Softening & Nourishing Lip color - Chocolate Martini, 3.2 ml",
+    "Blue Heaven Cookie & Souffle Matte Lipstick for Women, Long lasting Liquid lipstick, Enriched with Cocoa Butter & Rosehip Oil, Softening & Nourishing Lip color - Fudge Fantasy, 3.2 ml",
+    "Blue Heaven Cookie & Souffle Matte Lipstick for Women, Long lasting Liquid lipstick, Enriched with Cocoa Butter & Rosehip Oil, Softening & Nourishing Lip color - Caramel Kiss, 3.2 ml"
+   ],
+   "shades": [
+    {
+     "name": "Hazelnut Hottie",
+     "hex": "#B46952",
+     "hexSource": "image",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 4.4,
+     "ratingCount": 14,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/blue-heaven-cookie-and-souffle-chocolate-flavored-airwhipped-lip-cream-hazelnut-hottie-3-2ml"
+    },
+    {
+     "name": "Chocolate Martini",
+     "hex": "#C06F5A",
+     "hexSource": "image",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 4.8,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-cookie-and-souffle-chocolate-flavored-airwhipped-lip-cream-chocolate-martini-3-2ml"
+    },
+    {
+     "name": "Fudge Fantasy",
+     "hex": "#934538",
+     "hexSource": "image",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 4.2,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-cookie-and-souffle-chocolate-flavored-airwhipped-lip-cream-fudge-fantasy-3-2ml"
+    },
+    {
+     "name": "Caramel Kiss",
+     "hex": "#B26658",
+     "hexSource": "image",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 4.4,
+     "ratingCount": 17,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-cookie-and-souffle-chocolate-flavored-airwhipped-lip-cream-caramel-kiss-3-2ml"
+    }
+   ]
+  },
+  {
+   "brand": "Sugar",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 26 Vianne Rocher",
+    "SUGAR Cosmetics Matte As Hell Crayon Lipstick - 10 Cherry Darling (Cherry Red) With Free Sharpener - 2.8 gms",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8gm - 24 Rachel Berry",
+    "SUGAR Cosmetics - Matte As Hell - Crayon Lipstick - 08 Jackie Brown (Reddish Brown) - 2.8 gms - With Free sharpner",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 22 Donna Pinciotti",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 19 Emma Woodhouse",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 20 Buffy Summers",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 01 Scarlett O'Hara",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 25 Lily Aldrin",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8gm - 13 Murphy Brown",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8gm - 36 Veronica Mars",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 35 Claire Redfield",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 18 Rosalind",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon | 2.8 gm - 07 Viola",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 16 Claire Underwood",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 15 Stephanie Plum",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.5 gm - 05 Rose Dawson",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 32 Miss Rosa",
+    "SUGAR Cosmetics Matte as Hell Crayon Lipsticks for Women | Lasts Up To 8+ Hours | Lip Crayon with Sharpener | 2.8 gm - 23 Jessica Day"
+   ],
+   "shades": [
+    {
+     "name": "26 Vianne Rocher (Deep Chocolate Brown)",
+     "hex": "#674137",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 4.1,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-26-vianne-rocher-deep-chocolate-brown-2-8-g"
+    },
+    {
+     "name": "10 Cherry Darling (Cherry Red)",
+     "hex": "#782324",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 4.1,
+     "ratingCount": 68,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-10-cherry-darling-cherry-red"
+    },
+    {
+     "name": "24 Rachel Berry (Deep Berry)",
+     "hex": "#54030C",
+     "hexSource": "retailer",
+     "price": 949.0,
+     "mrp": 949.0,
+     "rating": 4.0,
+     "ratingCount": 43,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-24-rachel-berry-deep-berry-16-20"
+    },
+    {
+     "name": "08 Jackie Brown (Reddish Brown)",
+     "hex": "#822E2B",
+     "hexSource": "retailer",
+     "price": 849.0,
+     "mrp": 849.0,
+     "rating": 4.0,
+     "ratingCount": 28,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-08-jackie-brown-reddish-brown-16"
+    },
+    {
+     "name": "22 Donna Pinciotti (Magenta Pink)",
+     "hex": "#B61D3C",
+     "hexSource": "retailer",
+     "price": 849.0,
+     "mrp": 849.0,
+     "rating": 3.7,
+     "ratingCount": 35,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-22-donna-pinciotti-magenta-pink-15-20-18"
+    },
+    {
+     "name": "19 Emma Woodhouse (Earthy Brown)",
+     "hex": "#823629",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 3.3,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-19-emma-woodhouse-earthy-brown"
+    },
+    {
+     "name": "20 Buffy Summers (Mid-tone Warm Nude)",
+     "hex": "#8B433E",
+     "hexSource": "retailer",
+     "price": 849.0,
+     "mrp": 849.0,
+     "rating": 3.8,
+     "ratingCount": 10,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-20-buffy-summers-mid-tone-warm-nude-19-88-18"
+    },
+    {
+     "name": "01 Scarlett O'Hara ( Mini )",
+     "hex": "#B2141C",
+     "hexSource": "retailer",
+     "price": 949.0,
+     "mrp": 949.0,
+     "rating": 4.3,
+     "ratingCount": 367,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-mini-crayon-lipstick-01-scarlett-o-hara-2-8-g-97-11"
+    },
+    {
+     "name": "25 Lily Aldrin (Mauve Pink)",
+     "hex": "#8E3C48",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 3.5,
+     "ratingCount": 18,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-25-lily-aldrin-mauve-pink-47"
+    },
+    {
+     "name": "13 Murphy Brown (Chocolate Burgundy)",
+     "hex": "#500007",
+     "hexSource": "retailer",
+     "price": 799.0,
+     "mrp": 799.0,
+     "rating": 4.4,
+     "ratingCount": 35,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-13-murphy-brown-chocolate-burgundy-16-14"
+    },
+    {
+     "name": "36 Veronica Mars (Brown Toned Burnt Orange)",
+     "hex": "#782722",
+     "hexSource": "retailer",
+     "price": 849.0,
+     "mrp": 849.0,
+     "rating": 3.1,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-36-veronica-mars-brown-toned-burnt-orange-2-8-g-11-20"
+    },
+    {
+     "name": "35 Claire Redfield (Pure red)",
+     "hex": "#880B2A",
+     "hexSource": "retailer",
+     "price": 674.0,
+     "mrp": 899.0,
+     "rating": 4.6,
+     "ratingCount": 53,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-35-claire-redfield-pure-red-2-8-g"
+    },
+    {
+     "name": "18 Rosalind (Nude Rose)",
+     "hex": "#B0615A",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 4.1,
+     "ratingCount": 28,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-18-rosalind-nude-rose-13"
+    },
+    {
+     "name": "07 Viola (Mauve Nude)",
+     "hex": "#763235",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 3.7,
+     "ratingCount": 46,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-07-viola-mauve-nude-16"
+    },
+    {
+     "name": "16 Claire Underwood (Burnt Orange)",
+     "hex": "#A3452C",
+     "hexSource": "retailer",
+     "price": 949.0,
+     "mrp": 949.0,
+     "rating": 4.1,
+     "ratingCount": 30,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-16-claire-underwood-burnt-orange-19-21"
+    },
+    {
+     "name": "15 Stephanie Plum (Plum Mauve)",
+     "hex": "#53191B",
+     "hexSource": "retailer",
+     "price": 849.0,
+     "mrp": 849.0,
+     "rating": 4.2,
+     "ratingCount": 31,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-15-stephanie-plum-plum-mauve-15"
+    },
+    {
+     "name": "05 Rose Dawson (Rose Pink)",
+     "hex": "#A43C4A",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 4.3,
+     "ratingCount": 367,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-05-rose-dawson-2-8-g-rose-pink"
+    },
+    {
+     "name": "32 Miss Rosa (Dusky Rose)",
+     "hex": "#773952",
+     "hexSource": "retailer",
+     "price": 899.0,
+     "mrp": 899.0,
+     "rating": 3.9,
+     "ratingCount": 13,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-32-miss-rosa-dusky-rose-2-8-g"
+    },
+    {
+     "name": "23 Jessica Day (Dusty Coral)",
+     "hex": "#9D322F",
+     "hexSource": "retailer",
+     "price": 849.0,
+     "mrp": 849.0,
+     "rating": 3.6,
+     "ratingCount": 17,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-matte-as-hell-crayon-lipstick-23-jessica-day-dusty-coral-12-13"
+    }
+   ]
+  },
+  {
+   "brand": "Lakme",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MR1 Fiery Scarlet - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MP2 Power Pink - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MP3 Dusty Rose - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MR3 Vivid Crimson - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MB3 Strong Espresso - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MR2 Driven Red - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MR4 Deep Maroon - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MM3 Crisp Wine - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MB2 Intense Latte - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MM4 Dynamic Purple - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MM2 Passion Berry - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MB1 Hustling Nude - 4.2 ml",
+    "Lakme 9to5 Primer + Matte Liquid Lip Color MM1 Edgy Mauve - 4.2 ml"
+   ],
+   "shades": [
+    {
+     "name": "MR1 Fiery Scarlet",
+     "hex": "#CE1008",
+     "hexSource": "retailer",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mr1-fiery-scarlet-4-2ml"
+    },
+    {
+     "name": "MP2 Power Pink",
+     "hex": "#B7124F",
+     "hexSource": "retailer",
+     "price": 374.0,
+     "mrp": 499.0,
+     "rating": 2.4,
+     "ratingCount": 23,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mp2-power-pink-4-2ml"
+    },
+    {
+     "name": "MP3 Dusty Rose",
+     "hex": "#981E31",
+     "hexSource": "retailer",
+     "price": 349.0,
+     "mrp": 499.0,
+     "rating": 3.6,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mp3-dusty-rose-4-2ml"
+    },
+    {
+     "name": "MR3 Vivid Crimson",
+     "hex": "#AC0B21",
+     "hexSource": "retailer",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 3.4,
+     "ratingCount": 10,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mr3-vivid-crimson-4-2ml"
+    },
+    {
+     "name": "MB3 Strong Espresso",
+     "hex": "#683B36",
+     "hexSource": "retailer",
+     "price": 349.0,
+     "mrp": 499.0,
+     "rating": 3.6,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mb3-strong-espresso-4-2ml"
+    },
+    {
+     "name": "MR2 Driven Red",
+     "hex": "#B60000",
+     "hexSource": "retailer",
+     "price": 374.0,
+     "mrp": 499.0,
+     "rating": 3.0,
+     "ratingCount": 16,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mr2-driven-red-4-2ml"
+    },
+    {
+     "name": "MR4 Deep Maroon",
+     "hex": "#7B0115",
+     "hexSource": "retailer",
+     "price": 349.0,
+     "mrp": 499.0,
+     "rating": 3.5,
+     "ratingCount": 24,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mr4-deep-maroon-4-2ml"
+    },
+    {
+     "name": "MM3 Crisp Wine",
+     "hex": "#8B0E29",
+     "hexSource": "retailer",
+     "price": 374.0,
+     "mrp": 499.0,
+     "rating": 3.4,
+     "ratingCount": 27,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mm3-crisp-wine-4-2ml"
+    },
+    {
+     "name": "MB2 Intense Latte",
+     "hex": "#9B4542",
+     "hexSource": "retailer",
+     "price": 349.0,
+     "mrp": 499.0,
+     "rating": 2.1,
+     "ratingCount": 20,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mb2-intense-latte-4-2ml"
+    },
+    {
+     "name": "MM4 Dynamic Purple",
+     "hex": "#4D0037",
+     "hexSource": "retailer",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 3.0,
+     "ratingCount": 23,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mm4-dynamic-purple-4-2ml"
+    },
+    {
+     "name": "MM2 Passion Berry",
+     "hex": "#9A0460",
+     "hexSource": "retailer",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 1.8,
+     "ratingCount": 12,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mm2-passion-berry-4-2ml"
+    },
+    {
+     "name": "MB1 Hustling Nude",
+     "hex": "#A04552",
+     "hexSource": "retailer",
+     "price": 374.0,
+     "mrp": 499.0,
+     "rating": 1.7,
+     "ratingCount": 26,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mb1-hustling-nude-4-2ml"
+    },
+    {
+     "name": "MM1 Edgy Mauve",
+     "hex": "#83344A",
+     "hexSource": "retailer",
+     "price": 399.0,
+     "mrp": 499.0,
+     "rating": 2.3,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-9to5-primer-matte-liquid-lip-color-mm1-edgy-mauve-4-2ml"
+    }
+   ]
+  },
+  {
+   "brand": "NY Bae",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "NY Bae Air Kiss Lip Pods - Everyday Affair 02 (2.4 gm)| Creamy Matte Lipstick | Brown & Nude Lipstick | Long Lasting | Lip & Cheek Stain | Moisturising | Airpods Case | Travel Kit",
+    "NY Bae Air Kiss Lip Pods - Peach Sensation 06 (2.4 gm)| Creamy Matte Lipstick | Mauve & Brown Lipstick | Long Lasting | Lip & Cheek Stain | Moisturising | Airpods Case | Travel Kit",
+    "NY Bae Air Kiss Lip Pods - Mauve Move 07 (2.4 gm)| Creamy Matte Lipstick | Mauve & Pink Lipstick | Long Lasting | Lip & Cheek Stain | Moisturising | Airpods Case | Travel Kit",
+    "NY Bae Air Kiss Lip Pods - Cherry 01 (2.4 gm) | Creamy Matte Lipstick | Red & Brown Lipstick | Long Lasting | Lip & Cheek Stain | Moisturising | Airpods Case | Travel Kit",
+    "NY Bae Air Kiss Lip Pods - Timeless Nude 03 (2.4 gm)| Creamy Matte Lipstick | Mauve & Nude Lipstick | Long Lasting | Lip & Cheek Stain | Moisturising | Airpods Case | Travel Kit"
+   ],
+   "shades": [
+    {
+     "name": "Everyday Affair 02",
+     "hex": "#A52E3A",
+     "hexSource": "image",
+     "price": 187.0,
+     "mrp": 349.0,
+     "rating": 4.3,
+     "ratingCount": 86,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-air-kiss-lip-pods-everyday-affair-02"
+    },
+    {
+     "name": "Peach Sensation 06",
+     "hex": "#B23A45",
+     "hexSource": "image",
+     "price": 187.0,
+     "mrp": 349.0,
+     "rating": 4.0,
+     "ratingCount": 81,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-air-kiss-lip-pods-peach-sensation-06"
+    },
+    {
+     "name": "Mauve Move 07",
+     "hex": "#92355B",
+     "hexSource": "image",
+     "price": 190.0,
+     "mrp": 349.0,
+     "rating": 4.4,
+     "ratingCount": 52,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-air-kiss-lip-pods-mauve-move-07"
+    },
+    {
+     "name": "Cherry 01",
+     "hex": "#A5303B",
+     "hexSource": "image",
+     "price": 187.0,
+     "mrp": 349.0,
+     "rating": 4.3,
+     "ratingCount": 53,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-air-kiss-lip-pods-cherry-01"
+    },
+    {
+     "name": "Timeless Nude 03",
+     "hex": "#B63044",
+     "hexSource": "image",
+     "price": 190.0,
+     "mrp": 349.0,
+     "rating": 4.0,
+     "ratingCount": 72,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-air-kiss-lip-pods-timeless-nude-03-2-4-gm-creamy-matte-lipstick-mauve-and-nude-lipstick-long-lasting-lip-and-cheek-stain-moisturising-airpods-case-travel-kit-1"
+    }
+   ]
+  },
+  {
+   "brand": "Maybelline",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Maybelline New York Matte Ink Crayon Lipstick, Smudgeproof, Lasts Up To 8H - 55 Make it Happen, 1.2 gm",
+    "Maybelline New York Matte Ink Crayon Lipstick, Smudgeproof, Lasts Up To 8H - 20 Enjoy the View, 1.2 gm",
+    "Maybelline New York Matte Ink Crayon Lipstick, Smudgeproof, Lasts Up To 8H- 50 Own your Empire, 1.2 gm",
+    "Maybelline New York Lipstick, Matte Finish, Long-lasting, Intense Colour, SuperStay Crayon Lipstick, 15 Lead the way, 1.2 gm",
+    "Maybelline New York Matte Ink Crayon Lipstick, Smudgeproof, Lasts Up To 8H - 85 Change Is Good, 1.2 gm",
+    "Maybelline New York Lipstick, Matte Finish, Long-lasting, Intense Colour, SuperStay Crayon Lipstick, 25 Stay Exceptional, 1.2 gm",
+    "Maybelline New York Super Stay Crayon Lipstick, 40 Laugh Louder, 1.2 gm",
+    "Maybelline New York Super Stay Crayon Lipstick, 45 Hustle in Heels, ( 1.2 gm)"
+   ],
+   "shades": [
+    {
+     "name": "55 Make it Happen",
+     "hex": "#882539",
+     "hexSource": "retailer",
+     "price": 759.0,
+     "mrp": 799.0,
+     "rating": 4.5,
+     "ratingCount": 158,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-55-make-it-happen-1-2g-18"
+    },
+    {
+     "name": "20 Enjoy the view",
+     "hex": "#843F36",
+     "hexSource": "retailer",
+     "price": 719.0,
+     "mrp": 799.0,
+     "rating": 4.2,
+     "ratingCount": 38,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-20-enjoy-the-view-1-2g-15-35"
+    },
+    {
+     "name": "50 Own your Empire",
+     "hex": "#92202F",
+     "hexSource": "retailer",
+     "price": 759.0,
+     "mrp": 799.0,
+     "rating": 4.3,
+     "ratingCount": 68,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-50-own-your-empire-1-2g-33-20"
+    },
+    {
+     "name": "15 Lead the way",
+     "hex": "#BD787B",
+     "hexSource": "retailer",
+     "price": 746.0,
+     "mrp": 829.0,
+     "rating": 4.1,
+     "ratingCount": 11,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-15-lead-the-way-1-2g-89-19-78"
+    },
+    {
+     "name": "85 Change Is Good",
+     "hex": "#DE6673",
+     "hexSource": "retailer",
+     "price": 746.0,
+     "mrp": 829.0,
+     "rating": 4.1,
+     "ratingCount": 29,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-ink-crayon-lipstick-change-is-good-1-2-g-35-15"
+    },
+    {
+     "name": "25 Stay Exceptional",
+     "hex": "#D07488",
+     "hexSource": "retailer",
+     "price": 746.0,
+     "mrp": 829.0,
+     "rating": 4.4,
+     "ratingCount": 66,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-25-stay-exceptional-1-2g-17-16-11-19"
+    },
+    {
+     "name": "40 Laugh Louder",
+     "hex": "#D15349",
+     "hexSource": "retailer",
+     "price": 759.0,
+     "mrp": 799.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-40-laugh-louder-1-2g-15-59"
+    },
+    {
+     "name": "45 Hustle in Heels",
+     "hex": "#D1484B",
+     "hexSource": "retailer",
+     "price": 759.0,
+     "mrp": 799.0,
+     "rating": 3.8,
+     "ratingCount": 6,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-super-stay-crayon-lipstick-45-hustle-in-heels-1-2g-15"
+    }
+   ]
+  },
+  {
+   "brand": "NY Bae",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "NY Bae 5 IN 1 Lipstick - Timeless Hues 03 (6.5 gm) | Creamy Matte | Lip Crayon | Multi-use: Blush, Eyeshadow, Lip Liner, Bronzer | Pink, Red & Nude Shades | Travel Kit",
+    "NY Bae 5 IN 1 Lipstick - Happy Hues 01 (6.5 gm) | Creamy Matte | Lip Crayon | Multi-use: Blush, Eyeshadow, Lip Liner, Bronzer | Pink & Red Shades | Travel Kit",
+    "NY Bae 5 in 1 Lipstick - Nude Moods 02 (6.5 gm) | Creamy Matte | Lip Crayon | Multi-use: Blush, Eyeshadow, Lip Liner, Bronzer | Nude, Pink & Brown Shades | Travel Kit"
+   ],
+   "shades": [
+    {
+     "name": "Timeless Hues 03",
+     "hex": "#D61927",
+     "hexSource": "image",
+     "price": 223.0,
+     "mrp": 399.0,
+     "rating": 3.8,
+     "ratingCount": 383,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-5-in-1-lipstick-timeless-hues-03-6-5g"
+    },
+    {
+     "name": "Happy Hues 01",
+     "hex": "#D50110",
+     "hexSource": "image",
+     "price": 243.0,
+     "mrp": 399.0,
+     "rating": 3.9,
+     "ratingCount": 1746,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-5-in-1-lipstick-happy-hues-01-6-5g"
+    },
+    {
+     "name": "Nude Moods 02",
+     "hex": "#A55255",
+     "hexSource": "image",
+     "price": 247.0,
+     "mrp": 399.0,
+     "rating": 4.0,
+     "ratingCount": 3164,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-5-in-1-lipstick-nude-mood-7-gm-91"
+    }
+   ]
+  },
+  {
+   "brand": "NY Bae",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "NY Bae 4 IN 1 Lip Play Liquid Lipstick - Pretty Pleasure (4 ml) | Matte Lips | Super Pigmented | Multi-Use | Pink & Brown Shades | Travel Kit",
+    "NY Bae 4 IN 1 Lip Play Liquid Lipstick - Nude Tease (4 ml) | Matte Lips | Super Pigmented | Multi-Use | Nude & Brown Shades | Travel Kit",
+    "NY Bae 4 IN 1 Lip Play Liquid Lipstick - Rose Rush (4 ml) | Matte Lips | Super Pigmented | Multi-Use | Maroon & Red Shades | Travel Kit"
+   ],
+   "shades": [
+    {
+     "name": "Pretty Pleasure",
+     "hex": "#923D44",
+     "hexSource": "image",
+     "price": 259.0,
+     "mrp": 399.0,
+     "rating": 4.1,
+     "ratingCount": 1211,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-4-in-1-lip-play-pretty-pleasure-4ml"
+    },
+    {
+     "name": "Nude Tease",
+     "hex": "#8F4B52",
+     "hexSource": "image",
+     "price": 379.0,
+     "mrp": 399.0,
+     "rating": 4.0,
+     "ratingCount": 1052,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-4-in-1-lip-play-nude-tease-4ml"
+    },
+    {
+     "name": "Rose Rush",
+     "hex": "#922056",
+     "hexSource": "image",
+     "price": 227.0,
+     "mrp": 399.0,
+     "rating": 3.8,
+     "ratingCount": 511,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-4-in-1-lip-play-rose-rush-4ml"
+    }
+   ]
+  },
+  {
+   "brand": "Blue Heaven",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Blue Heaven 2 in 1 Festive Lipstick | Dual Shade | Ultra Lightweight Soft Matte Finish | Long Stay Comfort Wear Lipsticks for Women |C9| 4 gm",
+    "Blue Heaven 2 in 1 Festive Lipstick | Dual Shade | Ultra Lightweight Soft Matte Finish | Long Stay Comfort Wear Lipsticks for Women |C1| 4 gm",
+    "Blue Heaven 2 in 1 Festive Lipstick | Dual Shade | Ultra Lightweight Soft Matte Finish | Long Stay Comfort Wear Lipsticks for Women |C2| 4 gm",
+    "Blue Heaven 2 in 1 Festive Lipstick | Dual Shade | Ultra Lightweight Soft Matte Finish | Long Stay Comfort Wear Lipsticks for Women |C7| 4 gm",
+    "Blue Heaven 2 in 1 Festive Lipstick | Dual Shade | Ultra Lightweight Soft Matte Finish | Long Stay Comfort Wear Lipsticks for Women |C11| 4 gm"
+   ],
+   "shades": [
+    {
+     "name": "C9",
+     "hex": "#994344",
+     "hexSource": "image",
+     "price": 224.0,
+     "mrp": 249.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-2-in-1-festive-lipstick-dual-shade-ultra-lightweight-soft-matte-finish-long-stay-comfort-wear-lipsticks-for-women-c9-4gm"
+    },
+    {
+     "name": "C1",
+     "hex": "#964344",
+     "hexSource": "image",
+     "price": 224.0,
+     "mrp": 249.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-2-in-1-festive-lipstick-dual-shade-ultra-lightweight-soft-matte-finish-long-stay-comfort-wear-lipsticks-for-women-c1-4gm"
+    },
+    {
+     "name": "C2",
+     "hex": "#813F35",
+     "hexSource": "image",
+     "price": 224.0,
+     "mrp": 249.0,
+     "rating": 3.3,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-2-in-1-festive-lipstick-dual-shade-ultra-lightweight-soft-matte-finish-long-stay-comfort-wear-lipsticks-for-women-c2-4gm"
+    },
+    {
+     "name": "C7",
+     "hex": "#913B49",
+     "hexSource": "image",
+     "price": 224.0,
+     "mrp": 249.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-2-in-1-festive-lipstick-dual-shade-ultra-lightweight-soft-matte-finish-long-stay-comfort-wear-lipsticks-for-women-c7-4gm"
+    },
+    {
+     "name": "C11",
+     "hex": "#993833",
+     "hexSource": "image",
+     "price": 224.0,
+     "mrp": 249.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-2-in-1-festive-lipstick-dual-shade-ultra-lightweight-soft-matte-finish-long-stay-comfort-wear-lipsticks-for-women-c11-4gm"
+    }
+   ]
+  },
+  {
+   "brand": "Lakme",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Lakme Absolute Sheer Lip Mousse - 202 Pink Veil - 4.6 gm",
+    "Lakme Absolute Sheer Lip Mousse 204 Fuchsia Fantasy, 4.6 gm"
+   ],
+   "shades": [
+    {
+     "name": "202 Pink Veil",
+     "hex": "#C6727A",
+     "hexSource": "retailer",
+     "price": 520.0,
+     "mrp": 650.0,
+     "rating": 3.7,
+     "ratingCount": 3,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-absolute-sheer-lip-mousse-202-pink-veil"
+    },
+    {
+     "name": "204 Fuchsia Fantasy",
+     "hex": "#DA3161",
+     "hexSource": "retailer",
+     "price": 520.0,
+     "mrp": 650.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-absolute-sheer-lip-mousse-204-fuchsia-fantasy"
+    }
+   ]
+  },
+  {
+   "brand": "NY Bae",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "NY Bae 12 In 1 Mini Lip Kit Set (14.4 gm) | Brown & Nude Lipstick | Lip Crayon | Lip & Cheek Tint | Lipstick Pallete| Makeup Kit | Lip Kit | Blush - Nude Takeover 01",
+    "NY Bae 12 In 1 Mini Lip Kit Set (14.4 gm) | Red & Nude Lipstick | Lip Crayon | Lip & Cheek Tint | Lipstick Pallete| Makeup Kit | Lip Kit | Blush - Everyday Empress 02"
+   ],
+   "shades": [
+    {
+     "name": "Nude Takeover 01",
+     "hex": "#862431",
+     "hexSource": "image",
+     "price": 314.0,
+     "mrp": 449.0,
+     "rating": 4.2,
+     "ratingCount": 134,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-12-in-1-mini-lip-kit-nude-takeover"
+    },
+    {
+     "name": "Everyday Empress 02",
+     "hex": "#8A0F38",
+     "hexSource": "image",
+     "price": 225.0,
+     "mrp": 449.0,
+     "rating": 4.0,
+     "ratingCount": 237,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-12-in-1-mini-lip-kit-everyday-empress"
+    }
+   ]
+  },
+  {
+   "brand": "Makeup Revolution",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Makeup Revolution Blush Bomb Cream Blusher Peach Filter 4.6 ML",
+    "Makeup Revolution Blush Bomb Cream Blusher Rose Lust 4.6 ML"
+   ],
+   "shades": [
+    {
+     "name": "Peach Filter",
+     "hex": "#D87056",
+     "hexSource": "image",
+     "price": 675.0,
+     "mrp": 675.0,
+     "rating": 5.0,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-blush-bomb-cream-blusher-peach-filter-18"
+    },
+    {
+     "name": "Rose Lust",
+     "hex": "#843546",
+     "hexSource": "image",
+     "price": 675.0,
+     "mrp": 675.0,
+     "rating": 4.5,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-blush-bomb-cream-blusher-rose-lust-12"
+    }
+   ]
+  },
+  {
+   "brand": "Kaja",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "KAJA Cheeky Stamp | Blendable Liquid Blush | 02 Saucy - Dusty mauve | Cruelty-free, Vegan, Paraben-free, Sulfate-free, Phthalates-free, K-Beauty",
+    "KAJA Cheeky Stamp | Blendable Liquid Blush | 03 Bossy - Soft Coral | Cruelty-free, Vegan, Paraben-free, Sulfate-free, Phthalates-free, K-Beauty",
+    "KAJA Cheeky Stamp | Blendable Liquid Blush | 04 Feisty 5 gm | Cruelty-free, Vegan, Paraben-free, Sulfate-free, Phthalates-free, K-Beauty"
+   ],
+   "shades": [
+    {
+     "name": "02 Saucy",
+     "hex": "#B44455",
+     "hexSource": "retailer",
+     "price": 2090.0,
+     "mrp": 2090.0,
+     "rating": 4.6,
+     "ratingCount": 105,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/kaja-cheeky-stamp-blendable-liquid-blush-02-saucy-dusty-mauve-cruelty-free-vegan-paraben-free-sulfate-free-phthalates-free-k-beauty-14"
+    },
+    {
+     "name": "03 Bossy",
+     "hex": "#C35E52",
+     "hexSource": "retailer",
+     "price": 1925.0,
+     "mrp": 1925.0,
+     "rating": 4.4,
+     "ratingCount": 53,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/kaja-cheeky-stamp-blendable-liquid-blush-03-bossy-soft-coral-cruelty-free-vegan-paraben-free-sulfate-free-phthalates-free-k-beauty"
+    },
+    {
+     "name": "04 Feisty",
+     "hex": "#CA4D75",
+     "hexSource": "retailer",
+     "price": 2090.0,
+     "mrp": 2090.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/kaja-cheeky-stamp-04-feisty-5g"
+    }
+   ]
+  },
+  {
+   "brand": "Mattlook",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Mattlook Beauty Blush Palette, Face Makeup, Blush Baby-1 (20 gm)",
+    "Mattlook Beauty Blush Palette, Face Makeup, Multicolor-2 (20 gm)",
+    "Mattlook Beauty Blush Palette, Face Makeup,Blossom 03A (20 gm)"
+   ],
+   "shades": [
+    {
+     "name": "Multicolor-1",
+     "hex": "#91615F",
+     "hexSource": "image",
+     "price": 449.0,
+     "mrp": 499.0,
+     "rating": 4.6,
+     "ratingCount": 16,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/matt-look-beauty-blush-palette-face-makeup-multicolor-1-20gm-12-56"
+    },
+    {
+     "name": "Multicolor-2",
+     "hex": "#A62A44",
+     "hexSource": "image",
+     "price": 449.0,
+     "mrp": 499.0,
+     "rating": 4.7,
+     "ratingCount": 3,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/matt-look-beauty-blush-palette-face-makeup-multicolor-2-20gm-23-97"
+    },
+    {
+     "name": "Multicolor-3",
+     "hex": "#8C4050",
+     "hexSource": "image",
+     "price": 449.0,
+     "mrp": 499.0,
+     "rating": 3.9,
+     "ratingCount": 40,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/matt-look-beauty-blush-palette-face-makeup-multicolor-3-20gm-17-68-11"
+    }
+   ]
+  },
+  {
+   "brand": "Daily Life Forever52",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Daily Life Forever52 SOFT CHEEK TINT LIQUID BLUSH (JCB005)",
+    "Daily Life Forever52 SOFT CHEEK TINT LIQUID BLUSH JCB001 - 10 ml",
+    "Daily Life Forever52 SOFT CHEEK TINT LIQUID BLUSH (JCB003) - 10 ml",
+    "Daily Life Forever52 SOFT CHEEK TINT LIQUID BLUSH (JCB006) - 10 ml",
+    "Daily Life Forever52 SOFT CHEEK TINT LIQUID BLUSH JCB002",
+    "Daily Life Forever52 SOFT CHEEK TINT LIQUID BLUSH (JCB004)"
+   ],
+   "shades": [
+    {
+     "name": "JCB005 Very Victoria",
+     "hex": "#DD7471",
+     "hexSource": "retailer",
+     "price": 719.0,
+     "mrp": 799.0,
+     "rating": 3.7,
+     "ratingCount": 3,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/daily-life-forever52-soft-cheek-tint-liquid-blush-very-victoria-10-ml-73-19"
+    },
+    {
+     "name": "JCB001 Sugar Plum",
+     "hex": "#FF8B87",
+     "hexSource": "retailer",
+     "price": 584.0,
+     "mrp": 649.0,
+     "rating": 3.7,
+     "ratingCount": 3,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/daily-life-forever52-soft-cheek-tint-liquid-blush-sugar-plum-10-ml"
+    },
+    {
+     "name": "JCB003 Milky Wave",
+     "hex": "#FD8D81",
+     "hexSource": "retailer",
+     "price": 584.0,
+     "mrp": 649.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/daily-life-forever52-soft-cheek-tint-liquid-blush-milky-wave-10-ml"
+    },
+    {
+     "name": "JCB006 Rosewood",
+     "hex": "#A43954",
+     "hexSource": "retailer",
+     "price": 584.0,
+     "mrp": 649.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/daily-life-forever52-soft-cheek-tint-liquid-blush-rosewood-10-ml"
+    },
+    {
+     "name": "Berry Amore",
+     "hex": "#FC546D",
+     "hexSource": "retailer",
+     "price": 719.0,
+     "mrp": 799.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/daily-life-forever52-soft-cheek-tint-liquid-blush-berry-amore-10-ml-34-16-20"
+    },
+    {
+     "name": "JCB004 Wet Peach",
+     "hex": "#E66258",
+     "hexSource": "retailer",
+     "price": 719.0,
+     "mrp": 799.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/daily-life-forever52-soft-cheek-tint-liquid-blush-wet-peach-10-ml-19-16"
+    }
+   ]
+  },
+  {
+   "brand": "Biotique Natural Makeup",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Biotique Natural Makeup Starstruck Matte Blush (Promise In Pink!)(6 gm)",
+    "Biotique Natural Makeup Starstruck Matte Blush (Sun Kissed Tan)(6 gm)",
+    "Biotique Natural Makeup Starstruck Matte Blush (Modesty Blush)(6 gm)",
+    "Biotique Natural Makeup Starstruck Matte Blush (Coral Cache)(6 gm)"
+   ],
+   "shades": [
+    {
+     "name": "Promise In Pink!",
+     "hex": "#E44F63",
+     "hexSource": "retailer",
+     "price": 400.0,
+     "mrp": 400.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-starstruck-matte-blush-promise-in-pink-6-g-14-12"
+    },
+    {
+     "name": "Sun Kissed Tan",
+     "hex": "#D76D61",
+     "hexSource": "retailer",
+     "price": 400.0,
+     "mrp": 400.0,
+     "rating": 4.0,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-starstruck-matte-blush-sun-kissed-tan-6-g-16-18"
+    },
+    {
+     "name": "Modesty Blush",
+     "hex": "#D27172",
+     "hexSource": "retailer",
+     "price": 400.0,
+     "mrp": 400.0,
+     "rating": 5.0,
+     "ratingCount": 3,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-starstruck-matte-blush-modesty-blush-6-g-76-20"
+    },
+    {
+     "name": "Coral Cache",
+     "hex": "#DB635F",
+     "hexSource": "retailer",
+     "price": 400.0,
+     "mrp": 400.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-starstruck-matte-blush-coral-cache-6-g-16-81"
+    }
+   ]
+  },
+  {
+   "brand": "Biotique Natural Makeup",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Biotique Natural Makeup Diva Duo Blush (Rose-N-Radiance)(9 gm)",
+    "Biotique Natural Makeup Diva Duo Blush (Pastel-N-Peach)(9 gm)",
+    "Biotique Natural Makeup Diva Duo Blush (Sassy-N-Spicy)(9 gm)",
+    "Biotique Natural Makeup Diva Duo Blush (Candy-N-Coral)(9 gm)"
+   ],
+   "shades": [
+    {
+     "name": "Rose-N-Radiance",
+     "hex": "#F9A8B1",
+     "hexSource": "image",
+     "price": 645.0,
+     "mrp": 645.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-diva-duo-blush-rose-n-radiance-9-g-29-77"
+    },
+    {
+     "name": "Pastel-N-Peach",
+     "hex": "#F8B69F",
+     "hexSource": "image",
+     "price": 645.0,
+     "mrp": 645.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-diva-duo-blush-peppy-n-peach-9-g-19-33"
+    },
+    {
+     "name": "Sassy-N-Spicy",
+     "hex": "#F99FBE",
+     "hexSource": "image",
+     "price": 645.0,
+     "mrp": 645.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-diva-duo-blush-sassy-n-spicy-9-g-10"
+    },
+    {
+     "name": "Candy-N-Coral",
+     "hex": "#FC939A",
+     "hexSource": "image",
+     "price": 645.0,
+     "mrp": 645.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/biotique-natural-makeup-diva-duo-blush-candy-n-coral-9-g-20-60"
+    }
+   ]
+  },
+  {
+   "brand": "Maybelline",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Maybelline Cloudtopia Cheek & Lip Mousse Blush | Lightweight, Pigmented Mousse in Divine Crimson, 5 gm",
+    "Maybelline Cloudtopia Cheek & Lip Mousse Blush | Lightweight, Pigmented Mousse in Dreamy Dawn, 5 gm",
+    "Maybelline Cloudtopia Cheek & Lip Mousse Blush | Lightweight, Pigmented Mousse in Enchanted Mauve, 5 gm",
+    "Maybelline Cloudtopia Cheek & Lip Mousse Blush | Lightweight, Pigmented Mousse in Coral Illusion, 5 gm",
+    "Maybelline Cloudtopia Cheek & Lip Mousse Blush | Lightweight, Pigmented Mousse in Solar Serenity, 5 gm"
+   ],
+   "shades": [
+    {
+     "name": "Divine Crimson",
+     "hex": "#E71725",
+     "hexSource": "image",
+     "price": 854.0,
+     "mrp": 899.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-cloudtopia-cheek-and-lip-mousse-blush-lightweight-pigmented-mousse-in-divine-crimson-5-gm"
+    },
+    {
+     "name": "Dreamy Dawn",
+     "hex": "#DE6D6F",
+     "hexSource": "image",
+     "price": 854.0,
+     "mrp": 899.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-cloudtopia-cheek-and-lip-mousse-blush-lightweight-pigmented-mousse-in-dreamy-dawn-5-gm"
+    },
+    {
+     "name": "Enchanted Mauve",
+     "hex": "#D35E66",
+     "hexSource": "image",
+     "price": 854.0,
+     "mrp": 899.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-cloudtopia-cheek-and-lip-mousse-blush-lightweight-pigmented-mousse-in-enchanted-mauve-5-gm"
+    },
+    {
+     "name": "Coral Illusion",
+     "hex": "#F15956",
+     "hexSource": "image",
+     "price": 854.0,
+     "mrp": 899.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-cloudtopia-cheek-and-lip-mousse-blush-lightweight-pigmented-mousse-in-coral-illusion-5-gm"
+    },
+    {
+     "name": "Solor Serenity",
+     "hex": "#E16E5B",
+     "hexSource": "image",
+     "price": 854.0,
+     "mrp": 899.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-cloudtopia-cheek-and-lip-mousse-blush-lightweight-pigmented-mousse-in-solor-serenity-5-gm"
+    }
+   ]
+  },
+  {
+   "brand": "Blue Heaven",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Blue Heaven Bounce & Blush Cushion Blush | Dewy Finish Tint with Hyaluronic Acid & Kombucha Extract | Long Stay Lightweight Face Blush | Natural Glow Makeup | Rosy Bounce | (3.2 gm)",
+    "Blue Heaven Bounce & Blush Cushion Blush | Dewy Finish Tint with Hyaluronic Acid & Kombucha Extract | Long Stay Lightweight Face Blush | Natural Glow Makeup | Berry Bounce | (3.2 gm)"
+   ],
+   "shades": [
+    {
+     "name": "Rosy Bounce",
+     "hex": "#BE466C",
+     "hexSource": "image",
+     "price": 349.0,
+     "mrp": 349.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-bounce-and-blush-cushion-blush-dewy-finish-tint-with-hyaluronic-acid-and-kombucha-extract-long-stay-lightweight-face-blush-natural-glow-makeup-rosy-bounce-3-2-gm"
+    },
+    {
+     "name": "Berry Bounce",
+     "hex": "#82101A",
+     "hexSource": "image",
+     "price": 349.0,
+     "mrp": 349.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-bounce-and-blush-cushion-blush-dewy-finish-tint-with-hyaluronic-acid-and-kombucha-extract-long-stay-lightweight-face-blush-natural-glow-makeup-berry-bounce-3-2-gm"
+    }
+   ]
+  },
+  {
+   "brand": "Blue Heaven",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Blue Heaven Kiss & Blush Liquid Blush | Dewy Tint with Hyaluronic Acid & Ceramides | Lightweight Long Lasting Face Blush | Natural Glow Makeup | Rose Syrup | (6 ml)",
+    "Blue Heaven Kiss & Blush Liquid Blush | Dewy Tint with Hyaluronic Acid & Ceramides | Lightweight Long Lasting Face Blush | Natural Glow Makeup | Strawberry Syrup | (6 ml)"
+   ],
+   "shades": [
+    {
+     "name": "Rose Syrup",
+     "hex": "#C05F6A",
+     "hexSource": "image",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-kiss-and-blush-liquid-blush-dewy-tint-with-hyaluronic-acid-and-ceramides-lightweight-long-lasting-face-blush-natural-glow-makeup-rose-syrup-6-ml"
+    },
+    {
+     "name": "Strawberry Syrup",
+     "hex": "#EF90A8",
+     "hexSource": "image",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/blue-heaven-kiss-and-blush-liquid-blush-dewy-tint-with-hyaluronic-acid-and-ceramides-lightweight-long-lasting-face-blush-natural-glow-makeup-strawberry-syrup-6-ml"
+    }
+   ]
+  },
+  {
+   "brand": "INSIGHT",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Insight Cosmetics Blusher - Raspberry Gelato (3.5 gm)",
+    "Insight Cosmetics Blusher - Caramel Eclair (3.5 gm)",
+    "Insight Cosmetics Blusher - Dusty Rose (3.5 gm)",
+    "Insight Cosmetics Blusher - Soft Salmon (3.5 gm)",
+    "Insight Cosmetics Blusher - Strawberry Drip (3.5 gm)",
+    "Insight Cosmetics Blusher - Watermelon Popsicle (3.5 gm)"
+   ],
+   "shades": [
+    {
+     "name": "Raspberry Gelato",
+     "hex": "#BB384E",
+     "hexSource": "retailer",
+     "price": 99.0,
+     "mrp": 105.0,
+     "rating": 4.5,
+     "ratingCount": 834,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/insight-cosmetics-blusher-raspberry-gelato-3-5-g-raspberry-gelato-33-61"
+    },
+    {
+     "name": "Caramel Eclair",
+     "hex": "#A84D4C",
+     "hexSource": "retailer",
+     "price": 101.0,
+     "mrp": 105.0,
+     "rating": 4.2,
+     "ratingCount": 129,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/insight-cosmetics-blusher-caramel-eclair-3-5-g-caramel-eclair-15-71"
+    },
+    {
+     "name": "Dusty Rose",
+     "hex": "#95304E",
+     "hexSource": "retailer",
+     "price": 91.0,
+     "mrp": 105.0,
+     "rating": 4.4,
+     "ratingCount": 148,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/insight-cosmetics-blusher-dusty-rose-3-5-g-dusty-rose-21-18"
+    },
+    {
+     "name": "Soft Salmon",
+     "hex": "#EE6D62",
+     "hexSource": "retailer",
+     "price": 97.0,
+     "mrp": 105.0,
+     "rating": 4.2,
+     "ratingCount": 198,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/insight-cosmetics-blusher-soft-salmon-3-5-g-soft-salmon-16-34"
+    },
+    {
+     "name": "Strawberry Drip",
+     "hex": "#CC2A48",
+     "hexSource": "retailer",
+     "price": 91.0,
+     "mrp": 105.0,
+     "rating": 4.4,
+     "ratingCount": 752,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/insight-cosmetics-blusher-strawberry-drip-3-5-g-strawberry-drip-20-13"
+    },
+    {
+     "name": "Watermelon Popsicle",
+     "hex": "#E73E52",
+     "hexSource": "retailer",
+     "price": 101.0,
+     "mrp": 105.0,
+     "rating": 4.4,
+     "ratingCount": 237,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/insight-cosmetics-blusher-watermelon-popsicle-3-5-g-watermelon-popsicle-63-16"
+    }
+   ]
+  },
+  {
+   "brand": "MARS",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "MARS Liquid Blush Hour | Dewy-Matte Finish | Highly Pigmented | Lightweight & Long-Lasting Formula | Effortless Application (12 ml) (05-DUSK)",
+    "MARS Liquid Blush Hour | Dewy-Matte Finish | Highly Pigmented | Lightweight & Long-Lasting Formula | Effortless Application (12 ml) (04-HORIZON)",
+    "MARS Liquid Blush Hour | Dewy-Matte Finish | Highly Pigmented | Lightweight & Long-Lasting Formula | Effortless Application (12 ml) (06-NIGHT GLOW)",
+    "MARS Liquid Blush Hour | Dewy-Matte Finish | Highly Pigmented | Lightweight & Long-Lasting Formula | Effortless Application (12 ml) (02-TWILIGHT)",
+    "MARS Liquid Blush Hour | Dewy-Matte Finish | Highly Pigmented | Lightweight & Long-Lasting Formula | Effortless Application (12 ml) (01-DAWN)",
+    "MARS Liquid Blush Hour | Dewy-Matte Finish | Highly Pigmented | Lightweight & Long-Lasting Formula | Effortless Application (12 ml) (03-SUNKISSED)"
+   ],
+   "shades": [
+    {
+     "name": "05 Dusk",
+     "hex": "#C36371",
+     "hexSource": "image",
+     "price": 214.0,
+     "mrp": 249.0,
+     "rating": 4.4,
+     "ratingCount": 211,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-liquid-blush-hour-dewy-matte-finish-highly-pigmented-lightweight-and-long-lasting-formula-effortless-application-12-ml-05-dusk"
+    },
+    {
+     "name": "04 Horizon",
+     "hex": "#B26A8C",
+     "hexSource": "image",
+     "price": 249.0,
+     "mrp": 249.0,
+     "rating": 4.5,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-liquid-blush-hour-dewy-matte-finish-highly-pigmented-lightweight-and-long-lasting-formula-effortless-application-12-ml-04-horizon"
+    },
+    {
+     "name": "06 Night Glow",
+     "hex": "#7E414F",
+     "hexSource": "image",
+     "price": 598.0,
+     "mrp": 598.0,
+     "rating": 4.2,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-liquid-blush-hour-dewy-matte-finish-highly-pigmented-lightweight-and-long-lasting-formula-effortless-application-12-ml-06-night-glow-38-10"
+    },
+    {
+     "name": "02 Twilight",
+     "hex": "#B86C6C",
+     "hexSource": "image",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.3,
+     "ratingCount": 43,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-liquid-blush-hour-dewy-matte-finish-highly-pigmented-lightweight-and-long-lasting-formula-effortless-application-12-ml-02-twilight-74"
+    },
+    {
+     "name": "01 Dawn",
+     "hex": "#C17373",
+     "hexSource": "image",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.4,
+     "ratingCount": 36,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-liquid-blush-hour-dewy-matte-finish-highly-pigmented-lightweight-and-long-lasting-formula-effortless-application-12-ml-01-dawn-17"
+    },
+    {
+     "name": "03 Sunkissed",
+     "hex": "#E59CB0",
+     "hexSource": "image",
+     "price": 254.0,
+     "mrp": 299.0,
+     "rating": 4.5,
+     "ratingCount": 64,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-liquid-blush-hour-dewy-matte-finish-highly-pigmented-lightweight-and-long-lasting-formula-effortless-application-12-ml-03-sunkissed-16"
+    }
+   ]
+  },
+  {
+   "brand": "Maybelline",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Maybelline New York New Fit Me Mono Blush, 16 HRs Easy to Use Long-lasting Cheek Blush, Pigmented Creamy Powder Blush Formula, Natural and True to Tone Blush - 60 Passionate|4.5 gm",
+    "Maybelline New York New Fit Me Mono Blush, Up To 16 hours Long-lasting Cheek Blush - 10 Brave|4.5 gm",
+    "Maybelline New York New Fit Me Mono Blush, 16 HR Easy-to-Use Long-lasting Cheek Blush, Pigmented Creamy Powder Blush Formula, Natural and True to Tone Blush - 40 Proud | 4.5 gm",
+    "Maybelline New York Fit Me Mono Blush, Upto 16 Hours Long Lasting and Easy to Use, Cheek Blush - Fierce 30, 4.5 gm",
+    "Maybelline New York New Fit Me Mono Blush, 16 hours Easy to Use Long-lasting Cheek Blush, Natural and True to Tone Blush - 50 Revolutionary | 4.5 gm",
+    "Maybelline NY Blush, Fit Me Blush, The Archies Collection, 20 Hopeful, 4.5 gm"
+   ],
+   "shades": [
+    {
+     "name": "60 Passionate",
+     "hex": "#C36265",
+     "hexSource": "retailer",
+     "price": 467.0,
+     "mrp": 599.0,
+     "rating": 4.1,
+     "ratingCount": 40,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/fit-me-mono-blush-60-passionate-16-hr-long-lasting-wear"
+    },
+    {
+     "name": "10 Brave",
+     "hex": "#ECA793",
+     "hexSource": "retailer",
+     "price": 467.0,
+     "mrp": 599.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/fit-me-mono-blush-10-brave-16-hr-long-lasting-wear-19"
+    },
+    {
+     "name": "40 Proud",
+     "hex": "#DBA2A6",
+     "hexSource": "retailer",
+     "price": 467.0,
+     "mrp": 599.0,
+     "rating": 4.0,
+     "ratingCount": 22,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/fit-me-mono-blush-40-proud-16-hr-long-lasting-wear-83"
+    },
+    {
+     "name": "30 Fierce",
+     "hex": "#E3898E",
+     "hexSource": "retailer",
+     "price": 467.0,
+     "mrp": 599.0,
+     "rating": 3.9,
+     "ratingCount": 87,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-blush-rose-30"
+    },
+    {
+     "name": "50 Revolutionary",
+     "hex": "#BA635C",
+     "hexSource": "retailer",
+     "price": 467.0,
+     "mrp": 599.0,
+     "rating": 4.3,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-blush-wine-50-1"
+    },
+    {
+     "name": "20 Hopeful",
+     "hex": "#E79F97",
+     "hexSource": "retailer",
+     "price": 467.0,
+     "mrp": 599.0,
+     "rating": 3.6,
+     "ratingCount": 10,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-ny-blush-fit-me-blush-the-archies-collection-20-hopeful-4-5-g"
+    }
+   ]
+  },
+  {
+   "brand": "MARS",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-04)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-07)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-02)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-08)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-09)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-12)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-11)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-10)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-03)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-06)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-01)",
+    "MARS Flush of Love Face Blusher | Highly Pigmented & Easy to Blend | Lightweight & Natural Finish (8 gm) (Shade-05)"
+   ],
+   "shades": [
+    {
+     "name": "Shade 04",
+     "hex": "#FB8D9E",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.4,
+     "ratingCount": 74,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-04-17"
+    },
+    {
+     "name": "Shade 07",
+     "hex": "#B05F81",
+     "hexSource": "retailer",
+     "price": 249.0,
+     "mrp": 249.0,
+     "rating": 5.0,
+     "ratingCount": 9,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-face-blusher-07"
+    },
+    {
+     "name": "Shade-02",
+     "hex": "#C47468",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.8,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-02-21-12-29"
+    },
+    {
+     "name": "Shade 08",
+     "hex": "#DB775B",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.6,
+     "ratingCount": 5,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-face-blusher-08-13"
+    },
+    {
+     "name": "Shade 09",
+     "hex": "#A65445",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.6,
+     "ratingCount": 5,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-face-blusher-09-13"
+    },
+    {
+     "name": "Shade 12",
+     "hex": "#F6694D",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.0,
+     "ratingCount": 4,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-face-blusher-12-14"
+    },
+    {
+     "name": "Shade 11",
+     "hex": "#ED5969",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.3,
+     "ratingCount": 12,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-face-blusher-11-14"
+    },
+    {
+     "name": "Shade 10",
+     "hex": "#C85E56",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.1,
+     "ratingCount": 13,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-face-blusher-10-84"
+    },
+    {
+     "name": "Shade 03",
+     "hex": "#BC828D",
+     "hexSource": "retailer",
+     "price": 249.0,
+     "mrp": 249.0,
+     "rating": 4.2,
+     "ratingCount": 6,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-03"
+    },
+    {
+     "name": "Shade 06",
+     "hex": "#F2B4B7",
+     "hexSource": "retailer",
+     "price": 249.0,
+     "mrp": 249.0,
+     "rating": 4.1,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-06"
+    },
+    {
+     "name": "Shade 01",
+     "hex": "#EC8376",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 4.0,
+     "ratingCount": 24,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-01-37"
+    },
+    {
+     "name": "Shade 05",
+     "hex": "#DF93A8",
+     "hexSource": "retailer",
+     "price": 299.0,
+     "mrp": 299.0,
+     "rating": 3.5,
+     "ratingCount": 11,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/mars-flush-of-love-05-12"
+    }
+   ]
+  },
+  {
+   "brand": "Lakme",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Lakme Face It Blush Perfect Plum B3 4 gm",
+    "Lakme Face It Blush Natural Rose B1 4 gm",
+    "Lakme Face It Blush Peppy Peach B4 4 gm",
+    "Lakme Face It Blush Flushed Pink B2 4 gm"
+   ],
+   "shades": [
+    {
+     "name": "B3 Perfect Plum",
+     "hex": "#B74663",
+     "hexSource": "retailer",
+     "price": 234.0,
+     "mrp": 275.0,
+     "rating": 4.6,
+     "ratingCount": 15,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-face-it-blush-perfect-plum-b3-4gm-77-77"
+    },
+    {
+     "name": "B1 Natural Rose",
+     "hex": "#FC485A",
+     "hexSource": "retailer",
+     "price": 234.0,
+     "mrp": 275.0,
+     "rating": 4.2,
+     "ratingCount": 19,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-face-it-blush-natural-rose-b1-4gm-15-57"
+    },
+    {
+     "name": "B4 Peppy Peach",
+     "hex": "#E64E56",
+     "hexSource": "retailer",
+     "price": 234.0,
+     "mrp": 275.0,
+     "rating": 3.7,
+     "ratingCount": 6,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-face-it-blush-peppy-peach-b4-4gm-12-14-14"
+    },
+    {
+     "name": "B2 Flushed Pink",
+     "hex": "#CB4A71",
+     "hexSource": "retailer",
+     "price": 234.0,
+     "mrp": 275.0,
+     "rating": 4.6,
+     "ratingCount": 9,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/lakme-face-it-blush-flushed-pink-b2-4gm-15"
+    }
+   ]
+  },
+  {
+   "brand": "NY Bae",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "NY Bae Dewy Creme Blush – Rustic Red 03 (5.5 ml) | Liquid Blush | Dewy & Bold Finish | Natural Glow | Lightweight Formula | Buildable Pigment | Everyday Makeup | Hydrating Blush | Silky & Weightless | Long-Lasting Wear",
+    "NY Bae Dewy Creme Blush - Sweet Mauve 02 (5.5 ml) | Liquid Blush | Dewy & Bold Finish | Natural Glow | Lightweight Formula | Buildable Pigment | Everyday Makeup | Hydrating Blush | Silky & Weightless | Long-Lasting Wear",
+    "NY Bae Dewy Creme Blush - Sunkissed Pink 01 (5.5 ml) | Liquid Blush | Dewy & Bold Finish | Natural Glow | Lightweight Formula | Buildable Pigment | Everyday Makeup | Hydrating Blush | Silky & Weightless | Long-Lasting Wear",
+    "NY Bae Dewy Creme Blush – Chirpy Peach 04 (5.5 ml) | Liquid Blush | Dewy & Bold Finish | Natural Glow | Lightweight Formula | Buildable Pigment | Everyday Makeup | Hydrating Blush | Silky & Weightless | Long-Lasting Wear",
+    "NY Bae Dewy Creme Blush – Pouty Pink 05 (5.5 ml) | Liquid Blush | Dewy & Bold Finish | Natural Glow | Lightweight Formula | Buildable Pigment | Everyday Makeup | Hydrating Blush | Silky & Weightless | Long-Lasting Wear"
+   ],
+   "shades": [
+    {
+     "name": "Rustic Red 03",
+     "hex": "#A94545",
+     "hexSource": "image",
+     "price": 281.0,
+     "mrp": 299.0,
+     "rating": 4.3,
+     "ratingCount": 12,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-dewy-creme-blush-rustic-red-03-5-5-ml"
+    },
+    {
+     "name": "Sweet Mauve 02",
+     "hex": "#984A5A",
+     "hexSource": "image",
+     "price": 273.0,
+     "mrp": 299.0,
+     "rating": 4.8,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-dewy-creme-blush-sweet-mauve-02-5-5-ml"
+    },
+    {
+     "name": "Sunkissed Pink 01",
+     "hex": "#B4676F",
+     "hexSource": "image",
+     "price": 256.0,
+     "mrp": 299.0,
+     "rating": 4.4,
+     "ratingCount": 14,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-dewy-creme-blush-sunkissed-pink-01-5-5-ml"
+    },
+    {
+     "name": "Chirpy Peach 04",
+     "hex": "#CA6361",
+     "hexSource": "image",
+     "price": 266.0,
+     "mrp": 299.0,
+     "rating": 4.2,
+     "ratingCount": 34,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-matte-creme-blush-chirpy-peach-04-5-5-ml"
+    },
+    {
+     "name": "Pouty Pink 05",
+     "hex": "#E74E83",
+     "hexSource": "image",
+     "price": 267.0,
+     "mrp": 299.0,
+     "rating": 4.5,
+     "ratingCount": 22,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/ny-bae-matte-creme-blush-pouty-pink-05-5-5-ml"
+    }
+   ]
+  },
+  {
+   "brand": "Faces Canada",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "FACES CANADA Ultime Pro BlendFinity Stick Foundation - Ivory, 10 gm",
+    "FACES CANADA Ultime Pro BlendFinity Stick Foundation - Beige, 10 gm",
+    "FACES CANADA Ultime Pro BlendFinity Stick Foundation - Natural, 10 gm"
+   ],
+   "shades": [
+    {
+     "name": "Ivory 01",
+     "hex": "#F3C8AA",
+     "hexSource": "retailer",
+     "price": 423.0,
+     "mrp": 799.0,
+     "rating": 3.8,
+     "ratingCount": 25,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-ultime-pro-blend-finity-stick-foundation-ivory-01-10-g"
+    },
+    {
+     "name": "Beige 03",
+     "hex": "#E7AF82",
+     "hexSource": "retailer",
+     "price": 423.0,
+     "mrp": 799.0,
+     "rating": 4.0,
+     "ratingCount": 18,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-ultime-pro-blend-finity-stick-foundation-beige-03-10-g"
+    },
+    {
+     "name": "Natural 02",
+     "hex": "#F2BD96",
+     "hexSource": "retailer",
+     "price": 423.0,
+     "mrp": 799.0,
+     "rating": 3.5,
+     "ratingCount": 24,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-ultime-pro-blend-finity-stick-foundation-natural-02-10-g"
+    }
+   ]
+  },
+  {
+   "brand": "Faces Canada",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "FACES CANADA Ultime Pro Second Skin Foundation - Ivory 01, 30 ml | Lightweight Anti-Ageing Serum Foundation | 3X Lighter | Natural Matte Finish | Medium To High Coverage | SPF 15 | Non-Oily",
+    "FACES CANADA Ultime Pro Second Skin Foundation - Beige 03, 30 ml | Lightweight Anti-Ageing Serum Foundation | 3X Lighter | Natural Matte Finish | Medium To High Coverage | SPF 15 | Non-Oily",
+    "FACES CANADA Ultime Pro Second Skin Foundation - Natural 02, 30 ml | Lightweight Anti-Ageing Serum Foundation | 3X Lighter | Natural Matte Finish | Medium To High Coverage | SPF 15 | Non-Oily"
+   ],
+   "shades": [
+    {
+     "name": "Ivory",
+     "hex": "#EDC1A4",
+     "hexSource": "image",
+     "price": 794.0,
+     "mrp": 1499.0,
+     "rating": 3.6,
+     "ratingCount": 22,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-ultime-pro-second-skin-foundation-ivory-01-30-ml"
+    },
+    {
+     "name": "Beige",
+     "hex": "#EDB590",
+     "hexSource": "image",
+     "price": 944.0,
+     "mrp": 1499.0,
+     "rating": 4.1,
+     "ratingCount": 12,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-ultime-pro-second-skin-foundation-beige-03-30-ml"
+    },
+    {
+     "name": "Natural",
+     "hex": "#F5C6A4",
+     "hexSource": "image",
+     "price": 794.0,
+     "mrp": 1499.0,
+     "rating": 4.1,
+     "ratingCount": 38,
+     "inStock": false,
+     "url": "https://www.purplle.com/product/faces-ultime-pro-second-skin-foundation-natural-02-30-ml"
+    }
+   ]
+  },
+  {
+   "brand": "Faces Canada",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "FACES CANADA Weightless Matte Finish Foundation - Ivory, 15 ml | Lightweight Natural Finish | Anti-Ageing | Enriched With Olive Seed Oil, Grape Extract, Shea Butter",
+    "FACES CANADA Weightless Matte Finish Foundation - Ivory, 15 ml | Lightweight Natural Finish | Anti-Ageing | Enriched With Olive Seed Oil, Grape Extract, Shea Butter",
+    "FACES CANADA Weightless Matte Finish Foundation - Medium Natural, 15 ml | Lightweight Natural Finish | Anti-Ageing | Enriched With Olive Seed Oil, Grape Extract, Shea Butter"
+   ],
+   "shades": [
+    {
+     "name": "02 Ivory",
+     "hex": "#EACEB3",
+     "hexSource": "retailer",
+     "price": 165.0,
+     "mrp": 225.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-weightless-matte-finish-foundation-ivory-02-15ml-i-anti-ageing-i-non-clog-pores-i-lightweight-i-olive-seed-oil-i-grape-extract-i-shea-butter-i-cruelty-free-i-paraben-free-60-14"
+    },
+    {
+     "name": "02 Ivory",
+     "hex": "#EACEB3",
+     "hexSource": "retailer",
+     "price": 178.0,
+     "mrp": 225.0,
+     "rating": 3.8,
+     "ratingCount": 1516,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-weightless-matte-finish-foundation-ivory-02-15ml-i-anti-ageing-i-non-clog-pores-i-lightweight-i-olive-seed-oil-i-grape-extract-i-shea-butter-i-cruelty-free-i-paraben-free"
+    },
+    {
+     "name": "04 Medium Natural",
+     "hex": "#E0C0A4",
+     "hexSource": "retailer",
+     "price": 169.0,
+     "mrp": 225.0,
+     "rating": 3.9,
+     "ratingCount": 146,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/faces-canada-weightless-matte-finish-foundation-medium-natural-04-15ml-i-anti-ageing-i-non-clog-pores-i-lightweight-i-olive-seed-oil-i-grape-extract-i-shea-butter-i-cruelty-free-i-paraben-free"
+    }
+   ]
+  },
+  {
+   "brand": "Good Vibes",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "Good Vibes HydraGlow Liquid Foundation (30 ml)- 250 Neutral Nude",
+    "Good Vibes HydraGlow Liquid Foundation with Red Orange Extract - 138 Warm Natural | 8+ Hours Hydration | Natural to Buildable Coverage | Lightweight Comfort | Silky Smooth Finish (30 ml)",
+    "Good Vibes HydraGlow Liquid Foundation (30 ml) - 135 Beige Nude",
+    "Good Vibes HydraGlow Liquid Foundation with Red Orange Extract - 125 Cool Ivory | 8+ Hours Hydration | Natural to Buildable Coverage | Lightweight Comfort | Silky Smooth Finish (30 ml)",
+    "Good Vibes HydraGlow Liquid Foundation with Red Orange Extract - 360 Cool Walnut | 8+ Hours Hydration | Natural to Buildable Coverage | Lightweight Comfort | Silky Smooth Finish (30 ml)",
+    "Good Vibes HydraGlow Liquid Foundation with Red Orange Extract - 340 Rose Beige | 8+ Hours Hydration | Natural to Buildable Coverage | Lightweight Comfort | Silky Smooth Finish (30 ml)"
+   ],
+   "shades": [
+    {
+     "name": "250 Neutral Nude",
+     "hex": "#F7BA8D",
+     "hexSource": "image",
+     "price": 432.0,
+     "mrp": 549.0,
+     "rating": 3.9,
+     "ratingCount": 25,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/good-vibes-skin-awakening-liquid-foundation-30ml-250-neutral-nude"
+    },
+    {
+     "name": "138 Warm Natural",
+     "hex": "#E1B392",
+     "hexSource": "image",
+     "price": 432.0,
+     "mrp": 549.0,
+     "rating": 4.1,
+     "ratingCount": 49,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/good-vibes-skin-awakening-liquid-foundation-30ml-138-warm-natural"
+    },
+    {
+     "name": "135 Beige Nude",
+     "hex": "#E9B796",
+     "hexSource": "image",
+     "price": 549.0,
+     "mrp": 549.0,
+     "rating": 3.9,
+     "ratingCount": 8,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/good-vibes-skin-awakening-liquid-foundation-30ml-135-beige-nude"
+    },
+    {
+     "name": "125 Cool Ivory",
+     "hex": "#F5C8A9",
+     "hexSource": "image",
+     "price": 549.0,
+     "mrp": 549.0,
+     "rating": 4.4,
+     "ratingCount": 43,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/good-vibes-skin-awakening-liquid-foundation-30ml-125-cool-ivory"
+    },
+    {
+     "name": "360 Cool Walnut",
+     "hex": "#D79160",
+     "hexSource": "image",
+     "price": 549.0,
+     "mrp": 549.0,
+     "rating": 3.9,
+     "ratingCount": 27,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/good-vibes-skin-awakening-liquid-foundation-30ml-360-cool-walnut"
+    },
+    {
+     "name": "340 Rose Beige",
+     "hex": "#DCA86F",
+     "hexSource": "image",
+     "price": 420.0,
+     "mrp": 549.0,
+     "rating": 3.6,
+     "ratingCount": 8,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/good-vibes-skin-awakening-liquid-foundation-30ml-340-rose-beige"
+    }
+   ]
+  },
+  {
+   "brand": "Maybelline",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "Maybelline New York Fit Me Fresh Tint With SPF 50 & Vitamin C, Shade 05 | Natural Coverage Skin Tint For Daily Use 30 ml",
+    "Maybelline New York Fit Me Fresh Tint With SPF 50 & Vitamin C, Shade o8 | Natural Coverage Skin Tint For Daily Use 30 ml",
+    "Maybelline New York Fit Me Fresh Tint With SPF 50 & Vitamin C, Shade 03 | Natural Coverage Skin Tint For Daily Use 30 ml",
+    "Maybelline New York Fit Me Fresh Tint With SPF 50 & Vitamin C, Shade 06 | Natural Coverage Skin Tint For Daily Use 30 ml",
+    "Maybelline New York Fit Me Fresh Tint With SPF 50 & Vitamin C, Shade 09 | Natural Coverage Skin Tint For Daily Use 30 ml",
+    "Maybelline New York Fit Me Fresh Tint With SPF 50 & Vitamin C, Shade 01 | Natural Coverage Skin Tint For Daily Use 30 ml"
+   ],
+   "shades": [
+    {
+     "name": "Shade 05",
+     "hex": "#DBAF89",
+     "hexSource": "retailer",
+     "price": 339.0,
+     "mrp": 399.0,
+     "rating": 3.4,
+     "ratingCount": 102,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-fresh-tint-with-spf-50-and-vitamin-c-shade-05-natural-coverage-skin-tint-for-daily-use"
+    },
+    {
+     "name": "Shade 08",
+     "hex": "#D4966E",
+     "hexSource": "retailer",
+     "price": 382.0,
+     "mrp": 449.0,
+     "rating": 3.2,
+     "ratingCount": 32,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-fresh-tint-with-spf-50-and-vitamin-c-shade-o8-natural-coverage-skin-tint-for-daily-use-24"
+    },
+    {
+     "name": "Shade 03",
+     "hex": "#E8BFA6",
+     "hexSource": "retailer",
+     "price": 382.0,
+     "mrp": 449.0,
+     "rating": 3.8,
+     "ratingCount": 59,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-fresh-tint-with-spf-50-and-vitamin-c-shade-03-natural-coverage-skin-tint-for-daily-use-12-34"
+    },
+    {
+     "name": "Shade 06",
+     "hex": "#CE9E75",
+     "hexSource": "retailer",
+     "price": 382.0,
+     "mrp": 449.0,
+     "rating": 3.7,
+     "ratingCount": 33,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-fresh-tint-with-spf-50-and-vitamin-c-shade-06-natural-coverage-skin-tint-for-daily-use-58"
+    },
+    {
+     "name": "Shade 09",
+     "hex": "#C59774",
+     "hexSource": "retailer",
+     "price": 339.0,
+     "mrp": 399.0,
+     "rating": 3.2,
+     "ratingCount": 17,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-fresh-tint-with-spf-50-and-vitamin-c-shade-09-natural-coverage-skin-tint-for-daily-use"
+    },
+    {
+     "name": "Shade 01",
+     "hex": "#F3C39A",
+     "hexSource": "retailer",
+     "price": 339.0,
+     "mrp": 399.0,
+     "rating": 3.4,
+     "ratingCount": 100,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-fit-me-fresh-tint-with-spf-50-and-vitamin-c-shade-01-natural-coverage-skin-tint-for-daily-use"
+    }
+   ]
+  },
+  {
+   "brand": "L.A. Girl",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "L.A. Girl pro Coverage HD Foundation-Fair 28 ml",
+    "L.A. Girl pro Coverage HD Foundation-Tan 28 ml",
+    "L.A. Girl pro Coverage HD Foundation-Porcelain 28 ml",
+    "L.A. Girl pro Coverage HD Foundation-Warm Beige 28 ml",
+    "L.A. Girl pro Coverage HD Foundation-Natural 28 ml",
+    "L.A. Girl pro Coverage HD Foundation-Nude Beige 28 ml"
+   ],
+   "shades": [
+    {
+     "name": "Fair",
+     "hex": "#DCAC87",
+     "hexSource": "retailer",
+     "price": 1150.0,
+     "mrp": 1150.0,
+     "rating": 4.2,
+     "ratingCount": 708,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-pro-coverage-hd-foundation-fair-28-ml"
+    },
+    {
+     "name": "Tan",
+     "hex": "#C67B4B",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 4.2,
+     "ratingCount": 61,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-pro-coverage-hd-foundation-tan-28-ml-46-11"
+    },
+    {
+     "name": "Porcelain",
+     "hex": "#F8A987",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 4.6,
+     "ratingCount": 13,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-pro-coverage-hd-foundation-porcelain-28-ml-19"
+    },
+    {
+     "name": "Warm Beige",
+     "hex": "#C98555",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 4.3,
+     "ratingCount": 61,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-pro-coverage-hd-foundation-warm-beige-28-ml-66"
+    },
+    {
+     "name": "Natural",
+     "hex": "#D2AC7F",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 4.1,
+     "ratingCount": 210,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/la-girl-pro-coverage-hd-foundation-natural-28-ml"
+    },
+    {
+     "name": "Nude Beige",
+     "hex": "#D2AC7F",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 4.0,
+     "ratingCount": 184,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/la-girl-pro-coverage-hd-foundation-nude-beige-28-ml"
+    }
+   ]
+  },
+  {
+   "brand": "L.A. Girl",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "L.A. Girl Hd Pro.Matte Foundation-Medium Beige 30 ml",
+    "L.A. Girl Hd Pro.Matte Foundation-Soft Honey 30 ml",
+    "L.A. Girl Hd Pro.Matte Foundation-Warm Sienna 30 ml",
+    "L.A. Girl Hd Pro.Matte Foundation Cappuccino (30 ml)",
+    "L.A. Girl Hd Pro.Matte Foundation Nutmeg (30 ml)",
+    "L.A. Girls Pro Color & Pro Matte Foundation - Nude( 30 ml)"
+   ],
+   "shades": [
+    {
+     "name": "Medium Beige",
+     "hex": "#C4976B",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/la-girl-hd-pro-matte-foundation-medium-beige-30-ml"
+    },
+    {
+     "name": "Soft Honey",
+     "hex": "#E3A96D",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/la-girl-hd-pro-matte-foundation-soft-honey-30-ml"
+    },
+    {
+     "name": "Warm Sienna",
+     "hex": "#AE7A4E",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/la-girl-hd-pro-matte-foundation-warm-sienna-30-ml"
+    },
+    {
+     "name": "Cappuccino",
+     "hex": "#794F2B",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-hd-pro-matte-foundationcappuccino-30-ml"
+    },
+    {
+     "name": "Nutmeg",
+     "hex": "#935F38",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-hd-pro-matte-foundationnutmeg-30-ml"
+    },
+    {
+     "name": "Nude",
+     "hex": "#F5D1A7",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 4.5,
+     "ratingCount": 17,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girls-pro-color-and-pro-matte-foundation-nude-30-ml"
+    }
+   ]
+  },
+  {
+   "brand": "Sugar",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 35 Frappe",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 07 Vanilla Latte",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 17 Raf",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 37 Freddo",
+    "SUGAR Cosmetics - Ace Of Face - Matte Foundation Stick - 10 Latte (Light Foundation with Warm Undertone) - Waterproof, Full Coverage Foundation for Women with Inbuilt Brush - 12 gm",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12gm - 42 Glace",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 27 Vienna",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women| 7 gm - 20 Galao",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 25 Macchiato",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women| 7 gm - 32 Cortado",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 40 Breve",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 15 Cappuccino",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 30 Chococcino",
+    "SUGAR Cosmetics Ace Of Face Foundation Stick with In-Built Brush | Lasts 24hrs | Full Coverage Foundation for Women | 12 gm - 32 Cortado"
+   ],
+   "shades": [
+    {
+     "name": "35 Frappe (Medium)",
+     "hex": "#E9B890",
+     "hexSource": "retailer",
+     "price": 999.0,
+     "mrp": 999.0,
+     "rating": 4.0,
+     "ratingCount": 55,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-ace-of-face-foundation-stick-35-frappe-medium"
+    },
+    {
+     "name": "07 Vanilla Latte",
+     "hex": "#EFD2B5",
+     "hexSource": "retailer",
+     "price": 1099.0,
+     "mrp": 1099.0,
+     "rating": 4.1,
+     "ratingCount": 383,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-07-vanilla-latte-fair-golden-undertone-11"
+    },
+    {
+     "name": "17 Raf",
+     "hex": "#F1D4B0",
+     "hexSource": "retailer",
+     "price": 1099.0,
+     "mrp": 1099.0,
+     "rating": 3.8,
+     "ratingCount": 62,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-17-raf-light-golden-undertone-10"
+    },
+    {
+     "name": "37 Freddo",
+     "hex": "#E9BD98",
+     "hexSource": "retailer",
+     "price": 1149.0,
+     "mrp": 1149.0,
+     "rating": 3.7,
+     "ratingCount": 82,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-37-freddo-medium-beige-golden-peach-undertone-97-41"
+    },
+    {
+     "name": "10 Latte (Light)",
+     "hex": "#DEBC9E",
+     "hexSource": "retailer",
+     "price": 1199.0,
+     "mrp": 1199.0,
+     "rating": 4.0,
+     "ratingCount": 70,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-01-latte-light-19-18-17"
+    },
+    {
+     "name": "42 Glace",
+     "hex": "#DFAF87",
+     "hexSource": "retailer",
+     "price": 1149.0,
+     "mrp": 1149.0,
+     "rating": 3.8,
+     "ratingCount": 10,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-42-glace-medium-beige-golden-undertone-14-67"
+    },
+    {
+     "name": "27 Vienna",
+     "hex": "#EEC4A1",
+     "hexSource": "retailer",
+     "price": 999.0,
+     "mrp": 999.0,
+     "rating": 4.1,
+     "ratingCount": 125,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-27-vienna-light-medium-warm-undertone"
+    },
+    {
+     "name": "20 Galao",
+     "hex": "#F9D8B8",
+     "hexSource": "retailer",
+     "price": 799.0,
+     "mrp": 799.0,
+     "rating": 3.6,
+     "ratingCount": 16,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-20-galao-waterproof-full-coverage-foundation-for-women-with-inbuilt-brush-mini"
+    },
+    {
+     "name": "25 Macchiato (Light Medium)",
+     "hex": "#DAB58D",
+     "hexSource": "retailer",
+     "price": 1099.0,
+     "mrp": 1099.0,
+     "rating": 4.1,
+     "ratingCount": 21,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-ace-of-face-foundation-stick-25-macchiato-light-medium-11"
+    },
+    {
+     "name": "32 Cortado",
+     "hex": "#F3C9A7",
+     "hexSource": "retailer",
+     "price": 799.0,
+     "mrp": 799.0,
+     "rating": 4.1,
+     "ratingCount": 21,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-32-cortado-waterproof-full-coverage-foundation-for-women-with-inbuilt-brush-mini"
+    },
+    {
+     "name": "40 Breve (Medium Beige)",
+     "hex": "#C58D6B",
+     "hexSource": "retailer",
+     "price": 1099.0,
+     "mrp": 1099.0,
+     "rating": 3.9,
+     "ratingCount": 25,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-04-breve-medium-beige-11"
+    },
+    {
+     "name": "15 Cappuccino (Light)",
+     "hex": "#EDC1A7",
+     "hexSource": "retailer",
+     "price": 1099.0,
+     "mrp": 1099.0,
+     "rating": 4.2,
+     "ratingCount": 18,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-ace-of-face-foundation-stick-15-cappuccino-light-37"
+    },
+    {
+     "name": "30 Chococcino (Medium)",
+     "hex": "#E9B38F",
+     "hexSource": "retailer",
+     "price": 1099.0,
+     "mrp": 1099.0,
+     "rating": 3.8,
+     "ratingCount": 84,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-03-chococcino-medium-94"
+    },
+    {
+     "name": "32 Cortado",
+     "hex": "#EBBD96",
+     "hexSource": "retailer",
+     "price": 999.0,
+     "mrp": 999.0,
+     "rating": 4.1,
+     "ratingCount": 21,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/sugar-cosmetics-ace-of-face-foundation-stick-32-cortado-medium-golden-undertone"
+    }
+   ]
+  },
+  {
+   "brand": "Makeup Revolution",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "Makeup Revolution Fast Base Stick Foundation F14 (6.2 gm)",
+    "Makeup Revolution Fast Base Stick Foundation F12 (6.2 gm)"
+   ],
+   "shades": [
+    {
+     "name": "F14",
+     "hex": "#9A482B",
+     "hexSource": "retailer",
+     "price": 850.0,
+     "mrp": 850.0,
+     "rating": 5.0,
+     "ratingCount": 3,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/makeup-revolution-fast-base-stick-foundation-f14-30-g-11"
+    },
+    {
+     "name": "F12",
+     "hex": "#D08A47",
+     "hexSource": "retailer",
+     "price": 595.0,
+     "mrp": 595.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/makeup-revolution-fast-base-stick-foundation-f12-18"
+    }
+   ]
+  },
+  {
+   "brand": "Just Herbs",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "Just Herbs Just Herbs Skin Tint- 1 - Ivory (40 ml)",
+    "Just Herbs Skin Tint - 5 Warm Beige - 40 ml",
+    "Just Herbs Skin Tint - 6 Deep Sand - 40 ml",
+    "Just Herbs Skin Tint - 7 Caramel - 40 ml",
+    "Just Herbs Skin Tint - 8 Almond - 40 ml",
+    "Just Herbs Skin Tint- 9 Coffee - 40 ml",
+    "Just Herbs Skin Tint- 11 Mocha - 40 ml"
+   ],
+   "shades": [
+    {
+     "name": "1 - Ivory",
+     "hex": "#EFC296",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 2.8,
+     "ratingCount": 5,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-just-herbs-skin-tint-1-ivory-40-ml"
+    },
+    {
+     "name": "5 Warm Beige",
+     "hex": "#CC8155",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-skin-tint-5-warm-beige"
+    },
+    {
+     "name": "6 Deep Sand",
+     "hex": "#C78358",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-skin-tint-6-deep-sand"
+    },
+    {
+     "name": "7 Caramel",
+     "hex": "#CD8E62",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-skin-tint-7-caramel"
+    },
+    {
+     "name": "8 Almond",
+     "hex": "#C7845D",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-skin-tint-8-almond"
+    },
+    {
+     "name": "9 Coffee",
+     "hex": "#C1855F",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-skin-tint-9-coffee"
+    },
+    {
+     "name": "11 Mocha",
+     "hex": "#A16C56",
+     "hexSource": "retailer",
+     "price": 971.0,
+     "mrp": 1295.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/just-herbs-skin-tint-11-mocha"
+    }
+   ]
+  },
+  {
+   "brand": "Makeup Revolution",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "Makeup Revolution Relove Super Serum Foundation F11.2 25 ML",
+    "Makeup Revolution Relove Super Serum Foundation F8.5 25 ML",
+    "Makeup Revolution Relove Super Serum Foundation F10.5 25 ml"
+   ],
+   "shades": [
+    {
+     "name": "Revolution Relove Super Serum Foundation F11.2",
+     "hex": "#C28C41",
+     "hexSource": "retailer",
+     "price": 699.0,
+     "mrp": 699.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-super-serum-foundation-f11-2"
+    },
+    {
+     "name": "Revolution Relove Super Serum Foundation F8.5",
+     "hex": "#D2AE81",
+     "hexSource": "retailer",
+     "price": 699.0,
+     "mrp": 699.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-super-serum-foundation-f8-5"
+    },
+    {
+     "name": "Revolution Relove Super Serum Foundation F10.5",
+     "hex": "#E8A76B",
+     "hexSource": "retailer",
+     "price": 699.0,
+     "mrp": 699.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-super-serum-foundation-f10-5"
+    }
+   ]
+  },
+  {
+   "brand": "L.A. Girl",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "L.A. Girl TintedA FoundationA - Beige 30 ml",
+    "L.A. Girl TintedA FoundationA - Rich Honey 30 ml",
+    "L.A. Girl TintedA FoundationA - Golden 30 ml",
+    "L.A. Girl TintedA FoundationA - Porcelain 30 ml",
+    "L.A. Girl TintedA FoundationA - Caramel 30 ml"
+   ],
+   "shades": [
+    {
+     "name": "Beige",
+     "hex": "#EAB98A",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-tinted-foundation-beige"
+    },
+    {
+     "name": "Rich Honey",
+     "hex": "#B68264",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-tinted-foundation-rich-honey"
+    },
+    {
+     "name": "Golden",
+     "hex": "#E8A477",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-tinted-foundation-golden"
+    },
+    {
+     "name": "Porcelain",
+     "hex": "#F0C29F",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-tinted-foundation-porcelain"
+    },
+    {
+     "name": "Caramel",
+     "hex": "#BF9372",
+     "hexSource": "retailer",
+     "price": 1250.0,
+     "mrp": 1250.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/l-a-girl-tinted-foundation-caramel"
+    }
+   ]
+  },
+  {
+   "brand": "Renee",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "RENEE Face Base Liquid Foundation- Cappuccino, Enriched with Hyaluronic Acid & Vitamin E, Provides SPF 8 Protection, Weightless, Long-lasting Matte Finish, 23 ml",
+    "RENEE Face Base Liquid Foundation- Creamy Latte, Enriched with Hyaluronic Acid & Vitamin E, Provides SPF 8 Protection, Weightless, Long-lasting Matte Finish, 23 ml"
+   ],
+   "shades": [
+    {
+     "name": "Cappuccino",
+     "hex": "#F1C4A8",
+     "hexSource": "retailer",
+     "price": 750.0,
+     "mrp": 750.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/renee-face-base-liquid-foundation-cappuccino-23-ml"
+    },
+    {
+     "name": "Creamy Latte",
+     "hex": "#ECC8B6",
+     "hexSource": "retailer",
+     "price": 750.0,
+     "mrp": 750.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/renee-face-base-liquid-foundation-creamy-latte-23-ml"
+    }
+   ]
+  },
+  {
+   "brand": "Renee",
+   "category": "foundation",
+   "purplleCategory": "Foundation",
+   "names": [
+    "RENEE Face Base Foundation Stick Creamy Latte, Enriched with White Clay, Weightless, Long-lasting, Velvet Matte Finish formula Provides Full Coverage, 8 gm",
+    "RENEE Face Base Foundation Stick Cappuccino, Enriched with White Clay, Weightless, Long-lasting, Velvet Matte Finish formula Provides Full Coverage, 8 gm",
+    "RENEE Face Base Foundation Stick Chai Tea, Enriched with White Clay, Weightless, Long-lasting, Velvet Matte Finish formula Provides Full Coverage, 8 gm"
+   ],
+   "shades": [
+    {
+     "name": "Creamy Latte",
+     "hex": "#FFDFD4",
+     "hexSource": "retailer",
+     "price": 750.0,
+     "mrp": 750.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/renee-face-base-foundation-stick-with-applicator-creamy-latte-8-g"
+    },
+    {
+     "name": "Cappuccino",
+     "hex": "#FECCAD",
+     "hexSource": "retailer",
+     "price": 750.0,
+     "mrp": 750.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/renee-face-base-foundation-stick-with-applicator-cappuccino-8-g"
+    },
+    {
+     "name": "Chai Tea",
+     "hex": "#FEDCB8",
+     "hexSource": "retailer",
+     "price": 750.0,
+     "mrp": 750.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/renee-face-base-foundation-stick-with-applicator-chai-tea-8-g"
+    }
+   ]
+  },
+  {
+   "brand": "Makeup Revolution",
+   "category": "blush",
+   "purplleCategory": "Blush",
+   "names": [
+    "Revolution Relove Colour Play Blushed Duo Cute 5.8 GM",
+    "Makeup Revolution Relove Colour Play Blushed Duo Wishful 5.8 GM",
+    "Makeup Revolution Relove Colour Play Blushed Duo Daydream",
+    "Makeup Revolution Relove Colour Play Blushed Duo Queen 5.8 GM",
+    "Makeup Revolution Relove Colour Play Blushed Duo Baby 5.8 GM",
+    "Makeup Revolution Relove Colour Play Blushed Duo Sweet 5.8 GM"
+   ],
+   "shades": [
+    {
+     "name": "Cute",
+     "hex": "#C79C91",
+     "hexSource": "image",
+     "price": 499.0,
+     "mrp": 499.0,
+     "rating": 4.6,
+     "ratingCount": 11,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-colour-play-blushed-duo-cute"
+    },
+    {
+     "name": "Wishful",
+     "hex": "#835738",
+     "hexSource": "image",
+     "price": 499.0,
+     "mrp": 499.0,
+     "rating": 4.3,
+     "ratingCount": 9,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-colour-play-blushed-duo-wishful"
+    },
+    {
+     "name": "Daydream",
+     "hex": "#D2AE8F",
+     "hexSource": "image",
+     "price": 350.0,
+     "mrp": 350.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-colour-play-blushed-duo-daydream-70"
+    },
+    {
+     "name": "Queen",
+     "hex": "#C68A70",
+     "hexSource": "image",
+     "price": 499.0,
+     "mrp": 499.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-colour-play-blushed-duo-queen"
+    },
+    {
+     "name": "Baby",
+     "hex": "#8F5744",
+     "hexSource": "image",
+     "price": 499.0,
+     "mrp": 499.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-colour-play-blushed-duo-baby"
+    },
+    {
+     "name": "Sweet",
+     "hex": "#E6B9A1",
+     "hexSource": "image",
+     "price": 499.0,
+     "mrp": 499.0,
+     "rating": 0.0,
+     "ratingCount": 0,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/revolution-relove-colour-play-blushed-duo-sweet"
+    }
+   ]
+  }
+ ]
+}
