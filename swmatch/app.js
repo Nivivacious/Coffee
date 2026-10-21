@@ -59,7 +59,7 @@
     set(k, v) { try { localStorage.setItem('swmatch:' + k, JSON.stringify(v)); } catch (e) { /* storage blocked */ } },
   };
   const state = {
-    kind: 'all', cat: 'blush', brand: null, showAll: false,
+    kind: 'makeup', cat: 'blush', brand: null, showAll: false,
     shadeId: null, cheaperOnly: false, maxPrice: 0, dupeOrigin: 'all', skin: store.get('skin', ''),
     weights: {},
   };
@@ -94,14 +94,102 @@
     maxPrice: state.maxPrice || 0, origin: state.dupeOrigin, limit: 10, minScore: 50,
   }, extra || {});
 
-  // ---- rendered shots (render.js), tinted with the real shade ----
-  const R = window.SwRender;
-  function shot(s, w, h, extra, seedFrom) {
-    const url = R ? R.image(s, w, h, seedFrom) : null;
-    const alt = esc(`${s.brand || ''} ${s.name || ''}`.trim());
-    return url ? `<img src="${url}" alt="${alt}" width="${w / 2}" height="${h / 2}" ${extra || ''}>` : `<div class="ph" style="background:${R ? R.fallback(s) : '#1b1517'}" role="img" aria-label="${alt}"></div>`;
+  // ---- product drawings, tinted with the real shade ----
+  let gid = 0;
+  const shadeOf = (hex, amt) => {
+    const [r, g, b] = S.hexToRgb(hex).map((c) => Math.max(0, Math.min(255, Math.round(c * amt))));
+    return '#' + [r, g, b].map((c) => c.toString(16).padStart(2, '0')).join('');
+  };
+  const tint = (hex, k) => '#' + S.hexToRgb(hex).map((c) => Math.round(c + (255 - c) * k).toString(16).padStart(2, '0')).join('');
+  // A soft, stable pastel per brand for skincare packaging.
+  const pastel = (str) => {
+    let h = 0; for (const ch of String(str)) h = (h * 31 + ch.charCodeAt(0)) % 997;
+    return `hsl(${(h % 70) + 330} 70% 88%)`;
+  };
+  function art(cat, s) {
+    const id = 'g' + (++gid);
+    const hex = s && s.hex ? s.hex : '#E8B4A8';
+    const dark = shadeOf(hex, 0.72), light = shadeOf(hex, 1.18);
+    const sparkle = s && /shimmer|metallic|radiant/.test(s.finish || '')
+      ? `<g fill="#fff" opacity=".85"><circle cx="24" cy="40" r=".9"/><circle cx="34" cy="46" r=".7"/><circle cx="29" cy="53" r=".8"/><circle cx="38" cy="38" r=".6"/><circle cx="21" cy="50" r=".6"/></g>` : '';
+    const gold = `<linearGradient id="${id}m" x1="0" x2="1"><stop offset="0" stop-color="#8A6A3A"/><stop offset=".45" stop-color="#E9D29A"/><stop offset="1" stop-color="#7A5A2C"/></linearGradient>`;
+    const ink = '#2B1519';
+    const t = pastel(s && s.brand);
+    switch (cat) {
+      case 'lipstick':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><defs>${gold}<linearGradient id="${id}b" x1="0" x2="1"><stop offset="0" stop-color="${dark}"/><stop offset=".35" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></linearGradient></defs><path d="M21 40V17l18-9v32z" fill="url(#${id}b)"/><rect x="18" y="38" width="24" height="12" rx="2" fill="url(#${id}m)"/><rect x="16" y="49" width="28" height="33" rx="4" fill="${ink}"/><rect x="19" y="52" width="3" height="27" rx="1.5" fill="#fff" opacity=".18"/></svg>`;
+      case 'blush':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><defs><radialGradient id="${id}p" cx=".35" cy=".3"><stop offset="0" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></radialGradient></defs><circle cx="30" cy="46" r="27" fill="${ink}"/><circle cx="30" cy="46" r="24" fill="#3A2226"/><circle cx="30" cy="46" r="19" fill="url(#${id}p)"/><path d="M19 40c6-6 16-6 22 0" stroke="#fff" stroke-opacity=".3" stroke-width="2" fill="none"/>${sparkle}</svg>`;
+      case 'foundation':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><defs><linearGradient id="${id}f" x1="0" x2="1"><stop offset="0" stop-color="${dark}"/><stop offset=".4" stop-color="${hex}"/><stop offset="1" stop-color="${dark}"/></linearGradient></defs><rect x="22" y="4" width="16" height="20" rx="3" fill="${ink}"/><rect x="25" y="22" width="10" height="6" fill="#C9B9B2"/><rect x="13" y="27" width="34" height="53" rx="8" fill="#fff" opacity=".55"/><rect x="16" y="34" width="28" height="43" rx="6" fill="url(#${id}f)"/><rect x="19" y="37" width="3" height="36" rx="1.5" fill="#fff" opacity=".35"/></svg>`;
+      case 'highlighter':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><defs><linearGradient id="${id}h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${dark}"/><stop offset=".45" stop-color="${light}"/><stop offset=".55" stop-color="#fff"/><stop offset=".7" stop-color="${hex}"/><stop offset="1" stop-color="${dark}"/></linearGradient></defs><rect x="6" y="20" width="48" height="48" rx="10" fill="${ink}"/><rect x="11" y="25" width="38" height="38" rx="7" fill="url(#${id}h)"/>${sparkle}</svg>`;
+      case 'serum':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><ellipse cx="30" cy="10" rx="7" ry="8" fill="${ink}"/><rect x="24" y="14" width="12" height="12" rx="2" fill="#C9A86A"/><rect x="14" y="26" width="32" height="54" rx="9" fill="#B8743A" opacity=".85"/><rect x="18" y="44" width="24" height="22" rx="3" fill="${t}"/><rect x="21" y="49" width="18" height="2.5" rx="1" fill="${ink}" opacity=".7"/><rect x="21" y="55" width="12" height="2" rx="1" fill="${ink}" opacity=".4"/><rect x="18" y="30" width="3" height="40" rx="1.5" fill="#fff" opacity=".35"/></svg>`;
+      case 'moisturiser':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><rect x="7" y="26" width="46" height="14" rx="6" fill="${ink}"/><rect x="9" y="38" width="42" height="34" rx="9" fill="${t}"/><rect x="15" y="48" width="30" height="3" rx="1.5" fill="${ink}" opacity=".7"/><rect x="15" y="55" width="18" height="2.5" rx="1" fill="${ink}" opacity=".4"/><rect x="12" y="41" width="3" height="26" rx="1.5" fill="#fff" opacity=".5"/></svg>`;
+      case 'sunscreen':
+        return `<svg viewBox="0 0 60 84" aria-hidden="true"><path d="M16 6h28l-3 58H19z" fill="${t}"/><rect x="18" y="62" width="24" height="16" rx="3" fill="${ink}"/><rect x="20" y="20" width="20" height="3" rx="1.5" fill="${ink}" opacity=".7"/><rect x="22" y="27" width="16" height="9" rx="2" fill="#F8F3A6"/><text x="30" y="34" text-anchor="middle" font-size="6" font-weight="900" fill="${ink}" font-family="Nunito, sans-serif">SPF</text><rect x="19" y="8" width="3" height="50" rx="1.5" fill="#fff" opacity=".5"/></svg>`;
+      default: return '';
+    }
   }
-  const short = (x) => (x.length > 26 ? x.slice(0, 24) + '…' : x);
+
+  // ---- photography ----
+  // Grey swatch textures (assets/tex, drawn by scripts/make_textures.py) tinted to
+  // the exact shade, so every swatch shows product texture.
+  // Retailer product photos where the catalog has one; the drawing shows otherwise.
+  const pic = (s, cls) => (s && s.image
+    ? `<div class="pic ${cls || ''}"><img src="${esc(s.image)}" alt="" loading="lazy" data-fallback><div class="art">${art(s.cat, s)}</div></div>`
+    : `<div class="pic nophoto ${cls || ''}"><div class="art">${art(s && s.cat, s)}</div></div>`);
+  const TEX_FOR = { lipstick: 'smear', foundation: 'smear', blush: 'powder', highlighter: 'powder', serum: 'drop', moisturiser: 'cream', sunscreen: 'cream' };
+  const tex = {};
+  for (const k of ['smear', 'powder', 'cream', 'drop']) {
+    const im = new Image();
+    im.onload = () => { tex[k] = im; if (state.shadeId) renderMatch(); };
+    im.src = `assets/tex/${k}.png`;
+  }
+  const tintCache = new Map();
+  // Multiply-and-screen tint: grey 128 maps to the shade, darker greys deepen it,
+  // lighter greys lift it toward a highlight. Alpha comes from the texture.
+  function tinted(s, sheer) {
+    const kind = s.cat === 'blush' && /liquid|cream|stick|mousse|gel/.test(s.formula || '') ? 'smear' : TEX_FOR[s.cat] || 'smear';
+    const hex = s.hex || (s.cat === 'serum' ? '#C98A3E' : '#F4EEE8');
+    const key = kind + hex + (sheer || 1);
+    if (tintCache.has(key)) return tintCache.get(key);
+    const im = tex[kind];
+    if (!im) return null;
+    const c = document.createElement('canvas');
+    c.width = im.naturalWidth; c.height = im.naturalHeight;
+    const g = c.getContext('2d');
+    g.drawImage(im, 0, 0);
+    let data;
+    try { data = g.getImageData(0, 0, c.width, c.height); } catch (e) { return null; }
+    const [R, G, B] = S.hexToRgb(hex);
+    const d = data.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const t = d[i] / 255;
+      const f = (base) => (t < 0.5 ? base * t * 2 : base + (255 - base) * (t - 0.5) * 1.3);
+      d[i] = f(R); d[i + 1] = f(G); d[i + 2] = f(B);
+      d[i + 3] = d[i + 3] * (sheer || 1);
+    }
+    g.putImageData(data, 0, 0);
+    const url = c.toDataURL('image/png');
+    tintCache.set(key, url);
+    return url;
+  }
+  function swatchImg(s, cls, sheer) {
+    const url = tinted(s, sheer);
+    return url ? `<img class="${cls || ''}" src="${url}" alt="">` : `<span class="${cls || ''} blob" style="background:${esc(s.hex || '#eee')}"></span>`;
+  }
+
+  // Photos that fail to load (or aren't shipped) fall back to the drawing underneath.
+  document.addEventListener('error', (e) => {
+    const im = e.target;
+    if (!im || im.tagName !== 'IMG' || !im.hasAttribute('data-fallback')) return;
+    const box = im.parentNode;
+    im.remove();
+    if (!box.querySelector('img')) box.classList.add('nophoto');
+  }, true);
 
   // ---- shelf ----
   const DEFAULTS = {
@@ -112,18 +200,27 @@
   const findShade = (cat, [brand, name]) => { const n = String(name || '').toLowerCase(); return shades.find((s) => s.cat === cat && s.brand === brand && (s.name.toLowerCase() === n || s.name.toLowerCase().endsWith(' ' + n))); };
   const defaultFor = (cat) => findShade(cat, DEFAULTS[cat] || []) || sources.find((s) => s.cat === cat);
 
+  // Three best-reviewed products with photos, one per range, for each category tile.
+  const collage = {};
+  for (const s of [...shades].sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0))) {
+    if (!s.image) continue;
+    const list = collage[s.cat] || (collage[s.cat] = []);
+    if (list.length < 3 && !list.some((x) => x.productId === s.productId)) list.push(s);
+  }
+
   function renderShelf() {
     document.querySelectorAll('#kind button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === state.kind)));
     const counts = {};
     for (const s of shades) counts[s.cat] = (counts[s.cat] || 0) + 1;
     const sel = byId.get(state.shadeId);
-    const list = state.kind === 'all' ? ALL_CATS : CATS[state.kind];
-    $('#shelf').innerHTML = list.map((c) => {
+    $('#shelf').innerHTML = CATS[state.kind].map((c) => {
       const show = sel && sel.cat === c.key ? sel : defaultFor(c.key);
-      const unit = isSkin(c.key) ? 'formulas' : 'shades';
-      return `<button type="button" class="card" data-cat="${c.key}" aria-pressed="${state.cat === c.key}">
-        <div class="shot">${show ? shot(show, 640, 480, 'loading="lazy"') : ''}<em>${isSkin(c.key) ? 'Skincare' : 'Makeup'}</em></div>
-        <div class="meta"><b>${c.label}</b><span>${(counts[c.key] || 0).toLocaleString('en-IN')} ${unit}</span></div></button>`;
+      const unit = isSkin(c.key) ? 'products' : 'shades';
+      return `<button type="button" class="tile" data-cat="${c.key}" aria-pressed="${state.cat === c.key}">
+        ${(collage[c.key] || []).length === 3
+    ? `<div class="photo stack">${collage[c.key].map((x) => `<img src="${esc(x.image)}" alt="" loading="lazy" data-fallback>`).join('')}<div class="art">${art(c.key, show)}</div></div>`
+    : `<div class="photo nophoto"><div class="art">${art(c.key, show)}</div></div>`}
+        <div class="tmeta"><b>${c.label}</b><span>${(counts[c.key] || 0).toLocaleString('en-IN')} ${unit}</span></div></button>`;
     }).join('');
   }
 
@@ -145,7 +242,7 @@
     if (isSkin(state.cat)) {
       el.innerHTML = `<div class="line">${ps.map((p) => {
         const s = p.shades[0];
-        return `<button type="button" class="prod" data-shade="${esc(s.id)}" aria-pressed="${state.shadeId === s.id}">${shot(Object.assign({ brand: p.brand, cat: p.cat }, s), 108, 84)}<span>${esc(p.line)}<small>${inr(s.price)} · ${esc(s.size || '')}</small></span></button>`;
+        return `<button type="button" class="prod" data-shade="${esc(s.id)}" aria-pressed="${state.shadeId === s.id}">${art(p.cat, Object.assign({ brand: p.brand }, s))}<span>${esc(p.line)}<small>${inr(s.price)} · ${esc(s.size || '')}</small></span></button>`;
       }).join('')}</div>`;
       return;
     }
@@ -153,7 +250,7 @@
       const price = p.shades.map((s) => s.price).filter(Boolean);
       const lo = Math.min(...price), hi = Math.max(...price);
       const priceTxt = price.length ? (lo === hi ? inr(lo) : `${inr(lo)}–${inr(hi)}`) : '';
-      return `<div class="line"><h4>${esc(p.line)}<span>${priceTxt}</span></h4><div class="dots">${p.shades.map((s) => `<button type="button" class="dot" data-shade="${esc(s.id)}" title="${esc(s.name)}" aria-label="${esc(s.name)}" aria-pressed="${state.shadeId === s.id}" style="background:${esc(s.hex)}"></button>`).join('')}</div></div>`;
+      return `<div class="line"><h4>${esc(p.line)} <span>${priceTxt}</span></h4><div class="dots">${p.shades.map((s) => `<button type="button" class="dot" data-shade="${esc(s.id)}" title="${esc(s.name)}" aria-label="${esc(s.name)}" aria-pressed="${state.shadeId === s.id}" style="background:${esc(s.hex)}"></button>`).join('')}</div></div>`;
     }).join('');
   }
 
@@ -173,6 +270,23 @@
     return bits.map((b) => `<span class="fact">${esc(b)}</span>`).join('');
   }
 
+  // Indian skin tones for the swatch-on-skin view.
+  const SKINS = [['fair', 'Fair', '#F2D6C2'], ['light', 'Light', '#E6BE9E'], ['wheatish', 'Wheatish', '#D2A07A'], ['tan', 'Medium-tan', '#B98059'], ['dusky', 'Dusky', '#93603F'], ['deep', 'Deep', '#5F3B27']];
+  state.tone = store.get('tone', 'wheatish');
+
+  function onSkin(src, dupes) {
+    if (isSkin(src.cat) || !dupes.length) return '';
+    const tone = SKINS.find((t) => t[0] === state.tone) || SKINS[2];
+    const items = [{ s: src, label: 'Yours' }].concat(dupes.slice(0, 3).map((d, i) => ({ s: d.shade, label: `Dupe ${i + 1}` })));
+    const sheer = (x) => Math.min(1, 0.55 + (x.payoff || 3) * 0.1);
+    return `<div class="onskin">
+      <div class="onskin-head"><b>Swatched on skin</b>
+        <div class="tones" role="group" aria-label="Skin tone">${SKINS.map(([k, label, hex]) => `<button type="button" class="tone" data-tone="${k}" aria-pressed="${k === tone[0]}" title="${label}" aria-label="${label} skin" style="background:${hex}"></button>`).join('')}<span>${tone[1]}</span></div>
+      </div>
+      <div class="arm" style="--skin:${tone[2]}">${items.map((it) => `<figure>${swatchImg(it.s, 'sw', sheer(it.s))}<figcaption><b>${esc(it.label)}</b>${esc(it.s.brand)} ${esc(short(it.s.name))}</figcaption></figure>`).join('')}</div>
+    </div>`;
+  }
+
   function renderMatch() {
     const el = $('#match');
     const src = byId.get(state.shadeId);
@@ -188,12 +302,12 @@
 
     el.innerHTML = `
       <div class="mhero">
-        <div class="shot">${shot(src, 960, 720)}</div>
-        <div class="info">
+        ${pic(src, 'mart')}
+        <div>
           <div class="who">${esc(src.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(src.line)}</div>
           <h2>${esc(src.name)}</h2>
           <div class="facts">${factsHtml(src)}</div>
-          <p class="cost">${inr(src.price)}${src.size ? ` <span>/ ${esc(src.size)}</span>` : ''}</p>
+          <p class="cost">${inr(src.price)}${src.size ? ` <span>${esc(src.size)}</span>` : ''}</p>
         </div>
       </div>
       <div class="filters">
@@ -204,8 +318,8 @@
           <option value="">Your skin tone</option>
           ${['fair', 'light', 'wheatish', 'dusky', 'deep'].map((k) => `<option value="${k}" ${state.skin === k ? 'selected' : ''}>${k[0].toUpperCase() + k.slice(1)} skin</option>`).join('')}
         </select>` : ''}
-        <span class="count">${all.length} match${all.length === 1 ? '' : 'es'}</span>
       </div>
+      ${onSkin(src, all)}
       <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i, bestValue)).join('') : '<div class="empty">Nothing close. Drop a filter.</div>'}</div>
       ${all.length > dupes.length ? `<button type="button" class="more" id="showAll">Show ${all.length - dupes.length} more</button>` : ''}
       <div class="extras">
@@ -235,11 +349,13 @@
     }).join('');
     const where = s.where || [];
     const cite = d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this too.</p>` : '';
-    const visual = `<div class="pair">${shot(src, 440, 340, 'loading="lazy"')}${shot(s, 440, 340, 'loading="lazy"', src)}<span class="tag l">Yours</span><span class="tag r">Dupe</span></div>`;
+    const visual = isSkin(src.cat)
+      ? `<div class="dvis">${pic(s, 'thumb')}</div>`
+      : `<div class="dvis">${s.image ? pic(s, 'thumb') : ''}<div class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></div></div>`;
     const gap = d.deltaE != null ? `Colour gap ΔE ${d.deltaE.toFixed(1)}` : `${d.skin.sharedCount} ingredients in common`;
     return `<article class="dupe ${i === 0 && (v.key === 'twin' || v.key === 'close') ? 'top' : ''}">
       ${visual}
-      <div class="dbody">
+      <div style="min-width:0">
         <div class="head">
           <div style="min-width:0">
             <h4>${esc(s.name)}</h4>
@@ -275,39 +391,27 @@
     const d = S.findDupes(src, shades, { community, cheaperOnly: true, limit: 1, minScore: 60 })[0];
     return d ? { src, dupe: d.shade, score: d.score } : null;
   }).filter(Boolean);
-  let slide = 0, autoplay = !reduced, timer = null, liveA = null, liveB = null;
+  let slide = 0, autoplay = !reduced, timer = null;
+  const sideBg = (s) => (s.hex ? `radial-gradient(circle at 50% 38%, ${tint(s.hex, 0.82)}, ${tint(s.hex, 0.5)} 60%, ${tint(s.hex, 0.25)})` : `radial-gradient(circle at 50% 40%, #fff, ${pastel(s.brand)})`);
+  const short = (x) => (x.length > 26 ? x.slice(0, 24) + '…' : x);
 
-  function buildCompare() {
+  function renderCompare() {
     const box = $('#compare');
     if (!pairs.length) { box.hidden = true; return; }
-    box.innerHTML = `
-      <div class="cmp-stage" id="cmpStage" tabindex="0" role="slider" aria-label="Drag to compare the original with its dupe" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--x:50%">
-        <div class="cmp-side cmp-a"><canvas id="cvA" aria-hidden="true"></canvas><div class="cmp-label" id="lbA"></div></div>
-        <div class="cmp-side cmp-b"><canvas id="cvB" aria-hidden="true"></canvas><div class="cmp-label" id="lbB"></div></div>
-        <div class="cmp-handle"></div><div class="cmp-knob">⟷</div>
-        <div class="cmp-score" id="cmpScore"></div>
-        <div class="cmp-dots">${pairs.map((_, i) => `<button type="button" data-slide="${i}" aria-label="Pair ${i + 1}"></button>`).join('')}</div>
-      </div>`;
-    liveA = R && R.live($('#cvA'));
-    liveB = R && R.live($('#cvB'));
-    renderCompare();
-  }
-  function renderCompare() {
     const p = pairs[slide];
-    if (!p) return;
-    const fill = (cv, live, s, seedFrom) => {
-      if (live) { live.set(s, seedFrom); return; }
-      const url = R && R.image(s, 1200, 520, seedFrom);
-      if (url) cv.replaceWith(Object.assign(new Image(), { src: url, alt: '' }));
-    };
-    fill($('#cvA') || {}, liveA, p.src);
-    fill($('#cvB') || {}, liveB, p.dupe, p.src);
     const save = p.src.price && p.dupe.price ? Math.round((1 - p.dupe.price / p.src.price) * 100) : 0;
-    $('#lbA').innerHTML = `<small>Original</small><b>${esc(p.src.brand)} ${esc(short(p.src.name))}</b><span>${inr(p.src.price)}</span>`;
-    $('#lbB').innerHTML = `<small>Dupe</small><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><span>${inr(p.dupe.price)}</span>`;
-    $('#cmpScore').innerHTML = `${Math.round(p.score)}% match${save > 0 ? ` <em>· ${save}% less</em>` : ''}`;
-    document.querySelectorAll('.cmp-dots button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === slide)));
-    $('#cmpStage').setAttribute('aria-label', `Drag to compare ${p.src.name} with ${p.dupe.name}`);
+    box.innerHTML = `
+      <div class="cmp-stage" id="cmpStage" tabindex="0" role="slider" aria-label="Drag to compare ${esc(p.src.name)} with ${esc(p.dupe.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--x:50%">
+        <div class="cmp-side cmp-a" style="background:${sideBg(p.src)}">${art(p.src.cat, p.src)}<span class="cmp-tag">Original</span></div>
+        <div class="cmp-side cmp-b" style="background:${sideBg(p.dupe)}">${p.dupe.image ? `<img class="cmp-photo" src="${esc(p.dupe.image)}" alt="" data-fallback>` : art(p.dupe.cat, p.dupe)}<span class="cmp-tag">Dupe</span></div>
+        <div class="cmp-handle"></div>
+      </div>
+      <div class="cmp-legend">
+        <div><b>${esc(p.src.brand)} ${esc(short(p.src.name))}</b><span>${inr(p.src.price)}</span></div>
+        <span class="cmp-save">${Math.round(p.score)}% match${save > 0 ? ` · save ${save}%` : ''}</span>
+        <div class="r"><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><span>${inr(p.dupe.price)}</span></div>
+      </div>
+      <div class="cmp-dots">${pairs.map((_, i) => `<button type="button" data-slide="${i}" aria-label="Pair ${i + 1}" aria-pressed="${i === slide}"></button>`).join('')}</div>`;
     if (!reduced) sweep();
   }
   function setX(pct) {
@@ -376,10 +480,31 @@
         if (d) { picks.push({ src, dupe: d.shade }); n++; }
       }
     }
-    const dot = (s) => `<i style="background:${s.hex ? esc(s.hex) : s.cat === 'serum' ? '#C98A3E' : '#EDE6DF'}"></i>`;
-    const item = (p) => `<span class="mq">${dot(p.src)}${esc(p.src.brand)} ${esc(short(p.src.name))} <s>${inr(p.src.price)}</s> → ${dot(p.dupe)}${esc(p.dupe.brand)} ${esc(short(p.dupe.name))} <s>${inr(p.dupe.price)}</s></span>`;
+    const dot = (s) => (s.image ? `<img src="${esc(s.image)}" alt="" loading="lazy">` : `<i style="background:${s.hex ? esc(s.hex) : pastel(s.brand)}"></i>`);
+    const item = (p) => `<span class="tick">${dot(p.src)}${esc(p.src.brand)} ${esc(short(p.src.name))} <s>${inr(p.src.price)}</s> → ${dot(p.dupe)}${esc(p.dupe.brand)} ${esc(short(p.dupe.name))} <em>${inr(p.dupe.price)}</em></span>`;
     const html = picks.map(item).join('');
-    $('#ticker').innerHTML = html + html;
+    const tk = $('#ticker');
+    tk.innerHTML = html + html;
+    requestAnimationFrame(() => { tk.style.animationDuration = Math.max(60, tk.scrollWidth / 2 / 45) + 's'; });
+  }
+
+  // ---- grain ----
+  function grain() {
+    const c = $('#grain');
+    if (!c || !c.getContext) return;
+    c.width = 220; c.height = 220;
+    const ctx = c.getContext('2d');
+    const img = ctx.createImageData(220, 220);
+    for (let i = 0; i < img.data.length; i += 4) { const v = Math.random() * 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+    ctx.putImageData(img, 0, 0);
+    try {
+      const div = document.createElement('div');
+      div.className = 'grain';
+      div.setAttribute('aria-hidden', 'true');
+      div.style.backgroundImage = `url(${c.toDataURL()})`;
+      div.style.backgroundSize = '220px';
+      c.replaceWith(div);
+    } catch (e) { /* keep the stretched canvas */ }
   }
 
   // ---- proof ----
@@ -394,10 +519,10 @@
       return { p, src, dupe, rank: i + 1, pool: list.length, pass: i >= 0 && i + 1 <= allowed && S.verdict(score, 0, p.cat).key !== 'vibe' };
     }).filter(Boolean);
     const found = results.filter((r) => r.pass).length;
-    if (results.length) $('#bignum').textContent = `${found}/${results.length}`;
-    const sw = (s, from) => shot(s, 128, 96, 'loading="lazy"', from);
+    if (results.length) $('#proofTitle').innerHTML = `We found <em>${found} of ${results.length}</em> published dupes on our own.`;
+    const sw = (s) => (s.hex ? `<i style="background:${esc(s.hex)}"></i>` : art(s.cat, s));
     $('#benchList').innerHTML = results.map((r) => `<button type="button" class="bpair ${r.pass ? '' : 'miss'}" data-shade="${esc(r.src.id)}">
-      <span class="sw">${sw(r.src)}${sw(r.dupe, r.src)}</span>
+      <span class="sw">${sw(r.src)}${sw(r.dupe)}</span>
       <span><b>${esc(r.src.brand)} ${esc(short(r.src.name))} → ${esc(r.dupe.brand)} ${esc(short(r.dupe.name))}</b><span>Paired by ${esc(r.p.source)}</span></span>
       <span class="res">#${r.rank} of ${r.pool}<small>${r.pass ? 'Found' : r.p.knownIssue ? 'Missed: chip colour' : 'Missed'}</small></span></button>`).join('');
     const C = [
@@ -412,27 +537,90 @@
       ['Shoppers', 'Up when dupe sites or shoppers agree. Down when shoppers say no.'],
     ];
     $('#crit').innerHTML = C.map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join('');
-    const nSkin = shades.filter((x) => isSkin(x.cat)).length;
-    $('#badgeText').textContent = `${(shades.length - nSkin).toLocaleString('en-IN')} shades · ${nSkin} formulas · priced in ₹`;
     $('#fine').innerHTML = `
       <p>Makeup labels: Dupe 88%+ with near-identical colour, Very similar 80%+, Similar 70%+. Skincare scores run lower, as on Skinsort: Dupe 85%+, Very similar 72%+, Similar 60%+.</p>
       <p>Shades and prices: Purplle. Prestige brands: our own swatch notes. Ingredients: INCIDecoder. Nykaa, Tira and Myntra block catalog reads, so we link to their search. Prices are a guide.</p>
       <p>Screens shift colour. Swatch it on your wrist before you buy.</p>`;
-    $('#foot').textContent = `Catalog updated ${CAT.builtAt || ''}. Prices are a guide.`;
+    $('#foot').textContent = `${shades.length.toLocaleString('en-IN')} shades and products · updated ${CAT.builtAt || ''}`;
   }
+
+  // ---- explore by colour ----
+  // Every shade in the category on one map: hue across, depth down. Hover to
+  // read it, click to match it. Lines run from the picked shade to its dupes.
+  let mapPts = [];
+  function renderMap() {
+    const sec = $('#explore');
+    if (!sec) return;
+    const src = byId.get(state.shadeId);
+    const cat = src ? src.cat : state.cat;
+    if (isSkin(cat)) { sec.hidden = true; return; }
+    sec.hidden = false;
+    $('#mapTitle').textContent = `Every ${ALL_CATS.find((c) => c.key === cat).label.toLowerCase()} shade, by colour`;
+    const cv = $('#map');
+    const w = cv.clientWidth, h = cv.clientHeight, dpr = Math.min(2, devicePixelRatio || 1);
+    if (!w) return;
+    cv.width = w * dpr; cv.height = h * dpr;
+    const g = cv.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    const pool = shades.filter((s) => s.cat === cat && s.hex);
+    const labs = pool.map((s) => S.lab(s.hex));
+    const hues = labs.map((l) => { let x = S.hue(l); return x > 300 ? x - 360 : x; });
+    const hMin = Math.min(...hues), hMax = Math.max(...hues);
+    const Ls = labs.map((l) => l[0]), lMin = Math.min(...Ls), lMax = Math.max(...Ls);
+    const pad = 18;
+    mapPts = pool.map((s, i) => ({ s, x: pad + ((hues[i] - hMin) / (hMax - hMin || 1)) * (w - pad * 2), y: pad + (1 - (Ls[i] - lMin) / (lMax - lMin || 1)) * (h - pad * 2) }));
+    const dupeIds = src ? new Set(S.findDupes(src, shades, dupeOpts({ limit: 5 })).map((d) => d.shade.id)) : new Set();
+    const me = src && mapPts.find((p) => p.s.id === src.id);
+    for (const p of mapPts) {
+      g.beginPath(); g.arc(p.x, p.y, p.s.origin === 'IN' ? 3.2 : 4.2, 0, 7);
+      g.fillStyle = p.s.hex; g.globalAlpha = dupeIds.size && !dupeIds.has(p.s.id) && p !== me ? 0.55 : 1; g.fill();
+    }
+    g.globalAlpha = 1;
+    if (me) {
+      for (const p of mapPts.filter((q) => dupeIds.has(q.s.id))) {
+        g.beginPath(); g.moveTo(me.x, me.y); g.lineTo(p.x, p.y); g.strokeStyle = 'rgba(242,102,113,.7)'; g.lineWidth = 1.5; g.stroke();
+        g.beginPath(); g.arc(p.x, p.y, 7, 0, 7); g.lineWidth = 2; g.strokeStyle = '#2B1519'; g.stroke();
+      }
+      g.beginPath(); g.arc(me.x, me.y, 10, 0, 7); g.lineWidth = 3; g.strokeStyle = '#F8F3A6'; g.stroke();
+      g.beginPath(); g.arc(me.x, me.y, 13, 0, 7); g.lineWidth = 1.5; g.strokeStyle = '#2B1519'; g.stroke();
+    }
+  }
+  function nearest(e) {
+    const cv = $('#map'); const r = cv.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    let best = null, bd = 14 * 14;
+    for (const p of mapPts) { const d = (p.x - x) ** 2 + (p.y - y) ** 2; if (d < bd) { bd = d; best = p; } }
+    return best;
+  }
+  document.addEventListener('pointermove', (e) => {
+    if (!e.target.closest || !e.target.closest('#map')) { const tip = $('#mapTip'); if (tip) tip.hidden = true; return; }
+    const p = nearest(e), tip = $('#mapTip');
+    if (!p) { tip.hidden = true; $('#map').style.cursor = 'default'; return; }
+    tip.hidden = false;
+    tip.style.left = p.x + 'px'; tip.style.top = p.y + 'px';
+    tip.innerHTML = `<i style="background:${esc(p.s.hex)}"></i><b>${esc(p.s.name)}</b><span>${esc(p.s.brand)} · ${inr(p.s.price)}${p.s.origin === 'IN' ? ' · Indian' : ''}</span>`;
+    $('#map').style.cursor = p.s.origin !== 'IN' ? 'pointer' : 'default';
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest || !e.target.closest('#map')) return;
+    const p = nearest(e);
+    if (p && p.s.origin !== 'IN') selectShade(p.s.id, true);
+  });
+  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(renderMap, 150); });
 
   // ---- selection ----
   function selectShade(id, scroll) {
     const s = byId.get(id);
     if (!s) return;
     state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false;
-    if (state.kind !== 'all') state.kind = isSkin(s.cat) ? 'skin' : 'makeup';
+    state.kind = isSkin(s.cat) ? 'skin' : 'makeup';
     renderAll();
     loadVotes(id);
     try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed */ }
-    if (scroll) $('#counter').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    if (scroll) $('#library').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
   }
-  function renderAll() { renderShelf(); renderBrands(); renderLines(); renderMatch(); }
+  function renderAll() { renderShelf(); renderBrands(); renderLines(); renderMatch(); renderMap(); }
 
   // ---- plain-language search ----
   const EXAMPLES = ['MAC Ruby Woo', 'Rare Beauty Hope', 'The Ordinary Niacinamide', 'red lipstick under ₹600'];
@@ -447,7 +635,7 @@
     if (named) { box.innerHTML = ''; selectShade(named.id, true); return; }
     const r = S.search(q, sources, 8);
     box.innerHTML = `<div class="ask-panel"><h3>${r.results.length ? 'Pick one to match' : 'Nothing found. Try a brand or colour.'}</h3>
-      <div class="mini-grid">${r.results.map(({ shade: s }) => `<button type="button" class="mini" data-shade="${esc(s.id)}">${shot(s, 104, 80)}<span class="t"><b>${esc(s.name)}</b><span>${esc(s.brand)} · ${inr(s.price)}</span></span></button>`).join('')}</div></div>`;
+      <div class="mini-grid">${r.results.map(({ shade: s }) => `<button type="button" class="mini" data-shade="${esc(s.id)}">${pic(s)}<span class="t"><b>${esc(s.name)}</b><span>${esc(s.brand)} · ${inr(s.price)}</span></span></button>`).join('')}</div></div>`;
   }
 
   // ---- AI stylist (served by /api/ask on the deployed site) ----
@@ -477,15 +665,42 @@
     } finally { btn.disabled = false; }
   }
 
+  // ---- shade peek: hover a dot to see the swatch and its closest cheaper dupe ----
+  const peek = document.createElement('div');
+  peek.id = 'peek'; peek.hidden = true;
+  document.body.appendChild(peek);
+  const peekCache = new Map();
+  function showPeek(dot) {
+    const s = byId.get(dot.dataset.shade);
+    if (!s) return;
+    if (!peekCache.has(s.id)) peekCache.set(s.id, S.findDupes(s, shades, { community, cheaperOnly: true, limit: 1, minScore: 70 })[0] || null);
+    const d = peekCache.get(s.id);
+    peek.innerHTML = `<div class="pk-sw">${swatchImg(s, 'sw')}</div>
+      <b>${esc(s.name)}</b><span>${esc(s.undertone)} · ${esc(s.finish || '')} · ${inr(s.price)}</span>
+      ${d ? `<div class="pk-d">${d.shade.image ? `<img src="${esc(d.shade.image)}" alt="">` : `<i style="background:${esc(d.shade.hex)}"></i>`}<span><b>${esc(d.shade.brand)} ${esc(short(d.shade.name))}</b>${Math.round(d.score)}% · ${inr(d.shade.price)}</span></div>` : '<div class="pk-d"><span>No cheaper twin yet</span></div>'}`;
+    const r = dot.getBoundingClientRect();
+    peek.hidden = false;
+    const w = peek.offsetWidth;
+    peek.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2)) + 'px';
+    peek.style.top = (r.top + window.scrollY - peek.offsetHeight - 10) + 'px';
+  }
+  document.addEventListener('pointerover', (e) => {
+    const dot = e.target.closest && e.target.closest('.dot');
+    if (dot && e.pointerType === 'mouse') showPeek(dot); else if (!dot) peek.hidden = true;
+  });
+  document.addEventListener('focusin', (e) => { if (e.target.classList && e.target.classList.contains('dot')) showPeek(e.target); else peek.hidden = true; });
+  window.addEventListener('scroll', () => { peek.hidden = true; }, { passive: true });
+
   // ---- events ----
   document.addEventListener('click', (e) => {
     const t = e.target.closest('button, a');
     if (!t) return;
     if (t.dataset.slide) { slide = Number(t.dataset.slide); stopAuto(); renderCompare(); return; }
-    if (t.dataset.kind) { state.kind = t.dataset.kind; renderShelf(); return; }
+    if (t.dataset.kind) { const d = defaultFor(CATS[t.dataset.kind][0].key); if (d) selectShade(d.id, false); return; }
     if (t.dataset.cat) { const cur = byId.get(state.shadeId); const pick = cur && cur.cat === t.dataset.cat ? cur : defaultFor(t.dataset.cat); if (pick) selectShade(pick.id, true); return; }
     if (t.dataset.shade) { selectShade(t.dataset.shade, t.classList.contains('mini') || t.classList.contains('bpair') || window.innerWidth < 960); return; }
     if (t.dataset.q) { $('#askInput').value = t.dataset.q; runAsk(t.dataset.q); return; }
+    if (t.dataset.tone) { state.tone = t.dataset.tone; store.set('tone', state.tone); renderMatch(); return; }
     if (t.id === 'cheaper') { state.cheaperOnly = !state.cheaperOnly; renderMatch(); return; }
     if (t.id === 'indianOnly') { state.dupeOrigin = state.dupeOrigin === 'IN' ? 'all' : 'IN'; renderMatch(); return; }
     if (t.id === 'clearMax') { state.maxPrice = 0; renderMatch(); return; }
@@ -508,7 +723,8 @@
 
   // ---- boot ----
   $('#examples').innerHTML = EXAMPLES.map((q) => `<button type="button" data-q="${esc(q)}">${esc(q)}</button>`).join('');
-  buildCompare(); startAuto();
+  grain();
+  renderCompare(); startAuto();
   renderTicker();
   renderProof();
   const fromHash = byId.get(decodeURIComponent((location.hash || '').slice(1)));

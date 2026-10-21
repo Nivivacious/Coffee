@@ -141,6 +141,7 @@ for (const f of raw.products || []) {
       undertone: stated(name, f.category) || S.inferUndertone(s.hex, f.category), undertoneSource: stated(name, f.category) ? 'brand' : 'swatch',
       price: s.price || null, mrp: s.mrp || null, rating: s.rating || null, ratingCount: s.ratingCount || 0, inStock: s.inStock,
       size: sz ? `${Number(sz[1])} ${/ml/i.test(sz[2]) ? 'ml' : 'g'}` : null,
+      image: s.image || null,
       where: [{ store: 'Purplle', url: s.url }].concat(where(f.brand, line, name).filter((w) => w.store !== 'Purplle')),
     });
   });

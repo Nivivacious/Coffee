@@ -80,6 +80,11 @@ holds within a few degrees. So for lipstick, blush and highlighter the colour sc
   carry (MAC, Charlotte Tilbury, NARS, Rare Beauty, Fenty Beauty, Huda Beauty, Estée Lauder, Benefit,
   Milani, e.l.f. and more), plus a few popular Indian shades. Swatch colours are approximations from brand
   and reviewer swatches; prices are approximate Indian MRP. Edit this file to add ranges or community pairings.
+- **Product photos** (`scripts/fetch_purplle_images.py`): each Purplle shade's own product photo, read
+  from the shade list Purplle's product pages use. The page loads them from Purplle's image CDN and falls
+  back to a drawing when one fails. Prestige ranges have no photo and show a drawing and swatch.
+- **Swatch textures** (`scripts/make_textures.py`): four grey textures (stroke, powder, cream, drop) that
+  the page tints to each shade for the "swatched on skin" strip and the shade preview.
 - **Nykaa, Tira and Myntra** block automated catalog reads (HTTP 403 or dropped connections), so
   swmatch links to their search for every shade instead of pulling their listings.
 
@@ -88,6 +93,7 @@ holds within a few degrees. So for lipstick, blush and highlighter the colour sc
 ```bash
 npm install                                # Anthropic SDK for the AI stylist
 python3 scripts/fetch_purplle.py           # refresh data/purplle-raw.json (needs Pillow for image swatches)
+python3 scripts/fetch_purplle_images.py    # add product photo URLs
 node scripts/build-catalog.js              # merge into data/catalog.js
 npm test                                   # engine tests
 python3 -m http.server                     # then open http://localhost:8000
