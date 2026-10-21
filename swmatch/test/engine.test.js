@@ -126,3 +126,14 @@ test('skincare entries carry ingredient lists', () => {
   assert.ok(skin.length >= 40);
   for (const s of skin) assert.ok(s.ingredients.length >= 5, s.id);
 });
+
+test('a colour search is not mistaken for a shade name', () => {
+  const pool = [{ brand: 'Elle18', name: '02 Pink', cat: 'blush' }, { brand: 'MAC', name: 'Candy Yum-Yum', cat: 'lipstick' }];
+  assert.strictEqual(S.findNamedShade('hot pink lipstick under ₹500', pool), null);
+  assert.strictEqual(S.findNamedShade('candy yum yum', pool).name, 'Candy Yum-Yum');
+});
+
+test('bright lip colours get their own families', () => {
+  assert.strictEqual(S.colourFamily('#E5236F', 'lipstick'), 'fuchsia'); // MAC Candy Yum-Yum
+  assert.strictEqual(S.colourFamily('#5E3586', 'lipstick'), 'purple'); // MAC Heroine
+});

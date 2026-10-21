@@ -200,12 +200,15 @@
   const findShade = (cat, [brand, name]) => { const n = String(name || '').toLowerCase(); return shades.find((s) => s.cat === cat && s.brand === brand && (s.name.toLowerCase() === n || s.name.toLowerCase().endsWith(' ' + n))); };
   const defaultFor = (cat) => findShade(cat, DEFAULTS[cat] || []) || sources.find((s) => s.cat === cat);
 
-  // Three best-reviewed products with photos, one per range, for each category tile.
+  // Three well-reviewed products with photos for each category tile, each from a
+  // different range and, for lip and cheek colour, a different colour family.
   const collage = {};
   for (const s of [...shades].sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0))) {
     if (!s.image) continue;
     const list = collage[s.cat] || (collage[s.cat] = []);
-    if (list.length < 3 && !list.some((x) => x.productId === s.productId)) list.push(s);
+    const fam = s.hex ? S.colourFamily(s.hex, s.cat) : '';
+    const spread = s.cat === 'lipstick' || s.cat === 'blush';
+    if (list.length < 3 && !list.some((x) => x.productId === s.productId || (spread && x.fam === fam))) list.push(Object.assign({ fam }, s));
   }
 
   function renderShelf() {
@@ -235,6 +238,11 @@
     if (state.brand && !list.includes(state.brand)) state.brand = null;
     $('#brand').innerHTML = `<option value="">Pick a brand</option>` + list.map((b) => `<option value="${esc(b)}" ${state.brand === b ? 'selected' : ''}>${esc(b)}</option>`).join('');
   }
+  // Colour families for the picker chips.
+  const FAMILIES = ['Nudes', 'Pinks', 'Fuchsia', 'Reds', 'Corals', 'Berries', 'Purples', 'Browns'];
+  const FAMILY_OF = { nude: 'Nudes', peach: 'Nudes', rose: 'Pinks', pink: 'Pinks', mauve: 'Pinks', fuchsia: 'Fuchsia', red: 'Reds', coral: 'Corals', orange: 'Corals', berry: 'Berries', plum: 'Berries', purple: 'Purples', brown: 'Browns', 'deep brown': 'Browns' };
+  const FAMILY_HEX = { Nudes: '#C08B7C', Pinks: '#D98395', Fuchsia: '#D9286F', Reds: '#B8202D', Corals: '#EC6A48', Berries: '#87304E', Purples: '#6A3586', Browns: '#7E4A3A' };
+
   function renderLines() {
     const el = $('#lines');
     if (!state.brand) { el.innerHTML = ''; return; }
@@ -246,11 +254,18 @@
       }).join('')}</div>`;
       return;
     }
-    el.innerHTML = ps.map((p) => {
+    const famOf = (s) => FAMILY_OF[S.colourFamily(s.hex, s.cat)] || 'Other';
+    const fams = FAMILIES.filter((f) => ps.some((p) => p.shades.some((s) => famOf(s) === f)));
+    if (state.family && !fams.includes(state.family)) state.family = null;
+    const chips = ['lipstick', 'blush'].includes(state.cat) && fams.length > 1
+      ? `<div class="fams" role="group" aria-label="Colour">${['All'].concat(fams).map((f) => `<button type="button" data-family="${f}" aria-pressed="${(state.family || 'All') === f}">${f === 'All' ? 'All' : `<i style="background:${FAMILY_HEX[f]}"></i>${f}`}</button>`).join('')}</div>` : '';
+    el.innerHTML = chips + ps.map((p) => {
+      const list = state.family ? p.shades.filter((s) => famOf(s) === state.family) : p.shades;
+      if (!list.length) return '';
       const price = p.shades.map((s) => s.price).filter(Boolean);
       const lo = Math.min(...price), hi = Math.max(...price);
       const priceTxt = price.length ? (lo === hi ? inr(lo) : `${inr(lo)}–${inr(hi)}`) : '';
-      return `<div class="line"><h4>${esc(p.line)} <span>${priceTxt}</span></h4><div class="dots">${p.shades.map((s) => `<button type="button" class="dot" data-shade="${esc(s.id)}" title="${esc(s.name)}" aria-label="${esc(s.name)}" aria-pressed="${state.shadeId === s.id}" style="background:${esc(s.hex)}"></button>`).join('')}</div></div>`;
+      return `<div class="line"><h4>${esc(p.line)} <span>${priceTxt}</span></h4><div class="dots">${list.map((s) => `<button type="button" class="dot" data-shade="${esc(s.id)}" title="${esc(s.name)}" aria-label="${esc(s.name)}" aria-pressed="${state.shadeId === s.id}" style="background:${esc(s.hex)}"></button>`).join('')}</div></div>`;
     }).join('');
   }
 
@@ -382,7 +397,7 @@
 
   // ---- hero compare slider ----
   const FEATURED = [
-    ['lipstick', ['MAC', 'Ruby Woo']], ['blush', ['Rare Beauty', 'Hope']], ['serum', ['The Ordinary', 'Niacinamide 10% + Zinc 1%']],
+    ['lipstick', ['MAC', 'Ruby Woo']], ['lipstick', ['MAC', 'Candy Yum-Yum']], ['blush', ['Rare Beauty', 'Hope']], ['lipstick', ['MAC', 'Morange']], ['serum', ['The Ordinary', 'Niacinamide 10% + Zinc 1%']],
     ['blush', ['NARS', 'Orgasm']], ['lipstick', ['Charlotte Tilbury', 'Pillow Talk']], ['moisturiser', ['Clinique', 'Moisture Surge 100H Auto-Replenishing Hydrator']],
   ];
   const pairs = FEATURED.map(([cat, key]) => {
@@ -474,8 +489,8 @@
       const list = sources.filter((s) => s.cat === cat && s.price > 1500);
       let n = 0;
       for (const src of list) {
-        if (n >= 3) break;
-        if (picks.some((p) => p.src.productId === src.productId)) continue;
+        if (n >= (cat === 'lipstick' ? 5 : 3)) break;
+        if (picks.some((p) => p.src.productId === src.productId || (src.hex && p.src.hex && p.src.cat === cat && S.colourFamily(p.src.hex, cat) === S.colourFamily(src.hex, cat)))) continue;
         const d = S.findDupes(src, shades, { community, cheaperOnly: true, limit: 1, minScore: isSkin(cat) ? 62 : 84 })[0];
         if (d) { picks.push({ src, dupe: d.shade }); n++; }
       }
@@ -641,7 +656,7 @@
   function renderAll() { renderShelf(); renderBrands(); renderLines(); renderMatch(); renderMap(); }
 
   // ---- plain-language search ----
-  const EXAMPLES = ['MAC Ruby Woo', 'Rare Beauty Hope', 'The Ordinary Niacinamide', 'red lipstick under ₹600'];
+  const EXAMPLES = ['MAC Candy Yum-Yum', 'Rare Beauty Hope', 'hot pink lipstick under ₹500', 'orange lipstick', 'The Ordinary Niacinamide'];
   function runAsk(q) {
     const box = $('#askResults');
     if (!q.trim()) { box.innerHTML = ''; return; }
@@ -651,7 +666,9 @@
     if (parsed.skin) state.skin = parsed.skin;
     const named = S.findNamedShade(q, sources);
     if (named) { box.innerHTML = ''; selectShade(named.id, true); return; }
-    const r = S.search(q, sources, 8);
+    // A colour or price search ("hot pink lipstick under ₹500") looks at every brand;
+    // a name search sticks to the international shades you'd want a dupe for.
+    const r = S.search(q, parsed.colour || parsed.maxPrice ? shades : sources, 8);
     box.innerHTML = `<div class="ask-panel"><h3>${r.results.length ? 'Pick one to match' : 'Nothing found. Try a brand or colour.'}</h3>
       <div class="mini-grid">${r.results.map(({ shade: s }) => `<button type="button" class="mini" data-shade="${esc(s.id)}">${pic(s)}<span class="t"><b>${esc(s.name)}</b><span>${esc(s.brand)} · ${inr(s.price)}</span></span></button>`).join('')}</div></div>`;
   }
@@ -725,6 +742,7 @@
     const t = e.target.closest('button, a');
     if (!t) return;
     if (t.dataset.view) { setView(t.dataset.view); return; }
+    if (t.dataset.family) { state.family = t.dataset.family === 'All' ? null : t.dataset.family; renderLines(); return; }
     if (t.dataset.mapcat) { state.mapCat = t.dataset.mapcat; renderMap(); return; }
     if (t.dataset.goto) { setView('find'); selectShade(t.dataset.goto, true); return; }
     if (t.classList.contains('bpair')) { setView('find'); selectShade(t.dataset.shade, true); return; }

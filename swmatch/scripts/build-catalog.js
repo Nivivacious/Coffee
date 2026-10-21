@@ -16,7 +16,7 @@ for (const f of (process.env.SWMATCH_EXTRA_RAW || '').split(',').filter(Boolean)
 const curated = read('data/curated.json');
 
 // Brands that are Indian-owned or started in India.
-const INDIAN = /^(iba|tnw|the natural wash|mattlook|swiss beauty|lakm|sugar|kay beauty|nykaa|swiss beauty|myglamm|manish malhotra|insight|faces canada|colorbar|plum|mamaearth|renee|blue heaven|ny bae|mars|lotus|elle 18|good vibes|recode|just herbs|kiro|earth rhythm|typsy|ruby'?s organics|pilgrim|hilary rhoda|cvb|lakme|biotique|chambor|coloressence|daily life forever52|forever52|matt look|half n half|pac|bella voste|gush|gush beauty|nybae|dot & key|minimalist|sugar pop|kica|swiss|derma co|alps goodness|be bodywise|fae beauty)/i;
+const INDIAN = /^(iba|tnw|the natural wash|mattlook|swiss beauty|lakm|sugar|kay beauty|nykaa|swiss beauty|myglamm|manish malhotra|insight|faces canada|colorbar|plum|mamaearth|renee|blue heaven|ny bae|mars|lotus|elle 18|good vibes|recode|just herbs|kiro|earth rhythm|typsy|ruby'?s organics|pilgrim|hilary rhoda|cvb|lakme|biotique|chambor|coloressence|daily life forever52|forever52|matt look|half n half|pac|bella voste|gush|gush beauty|nybae|dot & key|minimalist|sugar pop|kica|swiss|derma co|alps goodness|be bodywise|fae beauty|elle18|charmacy|colors queen|dazller|glam 21|incolor|jaquline|lovechild|mila beaute|piink|purplle|ronzille|staze|the derma co|verymiss|c2p)/i;
 
 // One spelling per brand, whichever source it came from.
 const BRAND_CANON = {

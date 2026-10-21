@@ -118,8 +118,10 @@
       if (h <= 45) return 'pink pearl';
       return Lv > 78 ? 'pearl' : 'rose gold';
     }
+    if (h > 280 && h < 345 && C > 25) return Lv < 28 ? 'plum' : 'purple';
     if (Lv < 30) return h < 20 || h > 330 ? 'plum' : 'deep brown';
     if (C < 18) return Lv > 55 ? 'nude' : 'brown';
+    if ((h < 10 || h > 340) && C > 55 && Lv > 38) return 'fuchsia';
     if (h < 8 || h > 330) return Lv < 45 ? 'berry' : 'pink';
     if (h < 22) return Lv < 42 ? 'berry' : C > 45 ? 'red' : Lv > 60 ? 'pink' : 'mauve';
     if (h < 35) return C > 48 ? 'red' : Lv > 62 ? 'pink' : Lv > 48 ? 'rose' : 'mauve';
@@ -169,7 +171,7 @@
 
   // Default weights per category. Users can retune these in the page.
   const WEIGHTS = {
-    lipstick: { colour: 34, undertone: 14, depth: 10, intensity: 8, finish: 12, payoff: 8, formula: 9, ingredients: 8, community: 5 },
+    lipstick: { colour: 32, undertone: 14, depth: 10, intensity: 12, finish: 12, payoff: 8, formula: 7, ingredients: 8, community: 5 },
     blush: { colour: 30, undertone: 14, depth: 10, intensity: 10, finish: 14, payoff: 10, formula: 7, ingredients: 8, community: 5 },
     foundation: { colour: 18, undertone: 24, depth: 24, intensity: 4, finish: 10, payoff: 10, formula: 5, ingredients: 8, community: 5 },
     highlighter: { colour: 24, undertone: 14, depth: 10, intensity: 6, finish: 24, payoff: 12, formula: 5, ingredients: 8, community: 5 },
@@ -566,7 +568,8 @@
     nude: '#B98274', 'brown nude': '#9A6551', mauve: '#A8676F', rose: '#C27078', pink: '#E38AA0', 'baby pink': '#EBA8B4',
     berry: '#8E3550', wine: '#6E2735', plum: '#6E2A40', red: '#B0202C', 'blue red': '#9C1F2E', 'orange red': '#C9372A',
     brick: '#9C4535', coral: '#E8735E', peach: '#F0A080', orange: '#D9622F', brown: '#86503E', chocolate: '#5E2A2B',
-    terracotta: '#B5603E', fuchsia: '#C2246E', magenta: '#B0236A',
+    terracotta: '#B5603E', fuchsia: '#C2246E', magenta: '#B0236A', 'hot pink': '#E5236F', 'neon pink': '#E5236F',
+    purple: '#6A3586', violet: '#6A3586', lilac: '#A77BB0', 'bright orange': '#F2603A',
     gold: '#E0BE73', champagne: '#EBD3B4', bronze: '#B8865A', 'rose gold': '#E8B8A2', pearl: '#F0DED6',
   };
   const CAT_WORDS = {
@@ -603,10 +606,10 @@
 
   // Finds a named shade in free text ("dupe for rare beauty hope").
   function findNamedShade(q, pool) {
-    const t = String(q || '').toLowerCase();
+    const t = String(q || '').toLowerCase().replace(/-/g, ' ');
     let best = null, bestScore = 0;
     for (const s of pool) {
-      const shade = s.name.toLowerCase().replace(/^[0-9]+\s*/, '').replace(/\s*\(.*\)$/, '').trim();
+      const shade = s.name.toLowerCase().replace(/-/g, ' ').replace(/^[0-9]+\s*/, '').replace(/\s*\(.*\)$/, '').trim();
       if (shade.length < 3) continue;
       const re = new RegExp(`\\b${shade.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
       if (!re.test(t)) continue;
@@ -617,6 +620,7 @@
       if (score > bestScore) { bestScore = score; best = s; }
     }
     if (bestScore >= 8) return best;
+    best = null; bestScore = 0;
     // Token match for long names ("the ordinary niacinamide").
     const qt = new Set(t.match(/[a-z0-9]+/g) || []);
     for (const s of pool) {
@@ -640,7 +644,7 @@
       if (p.maxPrice && s.price && s.price > p.maxPrice) continue;
       if (p.origin && s.origin !== p.origin) continue;
       let score = 50;
-      if (target && s.hex) score = clamp(100 - deltaE2000(target, prepare(s)) * 3.5);
+      if (target && s.hex) { score = clamp(100 - deltaE2000(target, prepare(s)) * 3.5); if (score < 30) continue; }
       else if (target) continue;
       if (!s.hex) {
         // Skincare: score on words shared with the product name and actives.

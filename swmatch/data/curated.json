@@ -76,6 +76,36 @@
      "#BF8C7E",
      "warm",
      3
+    ],
+    [
+     "Candy Yum-Yum",
+     "#E5236F",
+     "cool",
+     5
+    ],
+    [
+     "Heroine",
+     "#5E3586",
+     "cool",
+     5
+    ],
+    [
+     "Flat Out Fabulous",
+     "#B0236A",
+     "cool",
+     5
+    ],
+    [
+     "Relentlessly Red",
+     "#D2304F",
+     "warm",
+     5
+    ],
+    [
+     "All Fired Up",
+     "#C71E54",
+     "cool",
+     5
     ]
    ]
   },
@@ -124,6 +154,12 @@
      "#B2242B",
      "neutral",
      5
+    ],
+    [
+     "Glastonberry",
+     "#8A2E4A",
+     "cool",
+     4
     ]
    ]
   },
@@ -154,6 +190,30 @@
      "#B68275",
      "warm",
      4
+    ],
+    [
+     "Dragon Girl",
+     "#C21E2A",
+     "cool",
+     5
+    ],
+    [
+     "Red Square",
+     "#E04230",
+     "warm",
+     5
+    ],
+    [
+     "Mexican Rose",
+     "#C83E6D",
+     "cool",
+     5
+    ],
+    [
+     "Walkyrie",
+     "#5B2244",
+     "cool",
+     5
     ]
    ]
   },
@@ -1245,6 +1305,66 @@
      "#9B6643",
      "warm",
      3
+    ]
+   ]
+  },
+  {
+   "brand": "MAC",
+   "line": "Amplified Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "satin",
+   "payoff": 5,
+   "price": 2050,
+   "size": "3 g",
+   "shades": [
+    [
+     "Morange",
+     "#F2603A",
+     "warm",
+     5
+    ],
+    [
+     "Girl About Town",
+     "#C42A6B",
+     "cool",
+     5
+    ],
+    [
+     "Vegas Volt",
+     "#F07062",
+     "warm",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Fenty Beauty",
+   "line": "Stunna Lip Paint Longwear Fluid Lip Color",
+   "cat": "lipstick",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 2300,
+   "size": "4 ml",
+   "shades": [
+    [
+     "Uncensored",
+     "#C4252F",
+     "neutral",
+     5
+    ],
+    [
+     "Unlocked",
+     "#E25A3C",
+     "warm",
+     5
+    ],
+    [
+     "Unveil",
+     "#A86F64",
+     "neutral",
+     4
     ]
    ]
   }
