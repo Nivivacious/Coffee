@@ -38,7 +38,7 @@
   const hue = ([, a, b]) => { const h = (Math.atan2(b, a) * 180) / Math.PI; return h < 0 ? h + 360 : h; };
 
   // CIEDE2000, after Sharma, Wu & Dalal (2005).
-  function deltaE2000(l1, l2) {
+  function deltaE2000(l1, l2, kL = 1, kC = 1, kH = 1) {
     const [L1, a1, b1] = l1, [L2, a2, b2] = l2;
     const rad = Math.PI / 180, deg = 180 / Math.PI;
     const C1 = Math.hypot(a1, b1), C2 = Math.hypot(a2, b2);
@@ -68,7 +68,8 @@
     const Sl = 1 + (0.015 * Math.pow(Lpm - 50, 2)) / Math.sqrt(20 + Math.pow(Lpm - 50, 2));
     const Sc = 1 + 0.045 * Cpm, Sh = 1 + 0.015 * Cpm * T;
     const Rt = -Math.sin(2 * dTheta * rad) * Rc;
-    return Math.sqrt(Math.pow(dLp / Sl, 2) + Math.pow(dCp / Sc, 2) + Math.pow(dHp / Sh, 2) + Rt * (dCp / Sc) * (dHp / Sh));
+    const l = dLp / (kL * Sl), c = dCp / (kC * Sc), hh = dHp / (kH * Sh);
+    return Math.sqrt(l * l + c * c + hh * hh + Rt * c * hh);
   }
 
   // ---- reading a shade ---------------------------------------------------------
@@ -192,17 +193,55 @@
     if (!Array.isArray(a) || !Array.isArray(b) || !a.length || !b.length) return null;
     const weigh = (list) => {
       const m = new Map();
-      list.map(normIng).filter(Boolean).forEach((x, i) => { if (!m.has(x)) m.set(x, (FILLER.test(x) ? 0.25 : 1) / Math.sqrt(i + 1)); });
+      // Past roughly the 15th ingredient most things are under 1% (the "1% line"),
+      // so the tail counts for a fifth as much.
+      list.map(normIng).filter(Boolean).forEach((x, i) => { if (!m.has(x)) m.set(x, (FILLER.test(x) ? 0.25 : 1) * (i < 15 ? 1 : 0.2) / Math.sqrt(i + 1)); });
       return m;
     };
     const A = weigh(a), B = weigh(b);
-    // Weighted Jaccard: shared weight over total weight across both lists.
-    let min = 0, max = 0;
+    // Half weighted Jaccard (shared weight over all weight), half coverage:
+    // how much of the original's formula, weighted by position, the dupe contains.
+    let min = 0, max = 0, covered = 0, own = 0;
     for (const k of new Set([...A.keys(), ...B.keys()])) {
       const x = A.get(k) || 0, y = B.get(k) || 0;
       min += Math.min(x, y); max += Math.max(x, y);
+      own += x; if (x && y) covered += x;
     }
-    return max ? clamp((min / max) * 100) : null;
+    if (!max) return null;
+    return clamp(((min / max) * 0.5 + (covered / own) * 0.5) * 100);
+  }
+
+  // What a formula does, from its ingredients (Skinsort's "benefits"):
+  // each ingredient adds its position weight to the jobs it does.
+  const FUNCS = {
+    humectant: /glycerin|hyaluron|butylene glycol|propanediol|panthenol|sodium pca|urea|betaine$|trehalose|aloe|sorbitol|pentylene glycol|honey|snail|glycereth|polyglutamic/,
+    emollient: /squalane|caprylic|triglyceride|oil\b|butter|cetyl|cetearyl|stearyl alcohol|isononyl|palmitate|shea|jojoba|isopropyl|coco caprylate/,
+    occlusive: /petrolatum|lanolin|wax|mineral oil|paraffin/,
+    silicone: /dimethicone|siloxane|methicone|dimethiconol/,
+    barrier: /ceramide|cholesterol|phytosphingosine|sphingo|linoleic|fatty acid/,
+    soothing: /allantoin|centella|madecassoside|asiaticoside|bisabolol|oat|avena|glycyrrhiza|licorice|panthenol|green tea|camellia sinensis|sepicalm|beta glucan|chamomile|aloe|propolis|calendula/,
+    antioxidant: /tocopher|ascorb|ferulic|resveratrol|camellia sinensis|ubiquinone|propolis|vitis|astaxanthin|carnosine/,
+    brightening: /niacinamide|arbutin|ascorb|tranexamic|kojic|glycyrrhiza|licorice|azelaic/,
+    exfoliant: /salicylic|glycolic|lactic acid|mandelic|gluconolactone|betaine salicylate|willow bark|polyhydroxy/,
+    retinoid: /retin|bakuchiol/,
+    peptide: /peptide|palmitoyl/,
+    ferment: /ferment|lactobacillus|bifida|saccharomyces|galactomyces/,
+    oilcontrol: /zinc pca|zinc gluconate|niacinamide|silica|kaolin|clay/,
+  };
+  function functionProfile(list) {
+    const v = {};
+    list.map(normIng).forEach((x, i) => {
+      const w = 1 / Math.sqrt(i + 1);
+      for (const [f, re] of Object.entries(FUNCS)) if (re.test(x)) v[f] = (v[f] || 0) + w;
+    });
+    return v;
+  }
+  function functionSimilarity(a, b) {
+    if (!Array.isArray(a) || !Array.isArray(b) || !a.length || !b.length) return null;
+    const A = functionProfile(a), B = functionProfile(b);
+    let dot = 0, na = 0, nb = 0;
+    for (const f of Object.keys(FUNCS)) { const x = A[f] || 0, y = B[f] || 0; dot += x * y; na += x * x; nb += y * y; }
+    return na && nb ? clamp((dot / Math.sqrt(na * nb)) * 100) : null;
   }
 
   function prepare(shade) {
@@ -213,17 +252,24 @@
   function compare(src, cand, opts) {
     const o = opts || {};
     const L1 = prepare(src), L2 = prepare(cand);
+    // Swatch colours come from retailer chips and photos, and those disagree on
+    // lightness by up to 10-20 L* and on saturation by ~20% for the same shade,
+    // while hue holds within a few degrees. So for colour products, lightness
+    // and chroma count for less (CIEDE2000's kL/kC factors). Foundation keeps
+    // strict depth: there, depth is the whole point.
+    const loose = src.cat !== 'foundation';
     const dE = deltaE2000(L1, L2);
+    const dEmatch = loose ? deltaE2000(L1, L2, 2, 1.5, 1) : dE;
     const dL = L2[0] - L1[0];
     const dC = chroma(L2) - chroma(L1);
     let dh = hue(L2) - hue(L1);
     if (dh > 180) dh -= 360; else if (dh < -180) dh += 360;
 
     const s = {
-      colour: clamp(100 - dE * 5.5) * (TRUST[cand.hexSource] || 1),
+      colour: clamp(100 - dEmatch * 5.5) * (TRUST[cand.hexSource] || 1),
       undertone: (UNDERTONE[src.undertone] || UNDERTONE.neutral)[cand.undertone] ?? 60,
-      depth: clamp(100 - Math.abs(dL) * (src.cat === 'foundation' ? 9 : 5)),
-      intensity: clamp(100 - Math.abs(dC) * 3.2),
+      depth: clamp(100 - Math.abs(dL) * (loose ? 2.5 : 9)),
+      intensity: clamp(100 - Math.abs(dC) * (loose ? 2 : 3.2)),
       finish: finishScore(src.finish, cand.finish),
       payoff: clamp(100 - Math.abs((cand.payoff || 3) - (src.payoff || 3)) * 28),
       formula: formulaScore(src.formula, cand.formula),
@@ -249,7 +295,7 @@
     // People saying it doesn't match pulls it down, like a reported dupe on Temptalia.
     if (v && v.down >= 3 && v.down / (v.up + v.down) >= 0.7) score -= 6;
     // A big colour miss can't be rescued by matching packaging and finish.
-    if (dE > 14) score = Math.min(score, 60);
+    if (dEmatch > 14) score = Math.min(score, 60);
 
     return {
       score: Math.round(score * 10) / 10, scores: s, deltaE: dE, dL, dC, dh,
@@ -260,7 +306,15 @@
 
   // Temptalia separates true dupes from "similar" shades. A dupe has to be
   // close in colour as well as score well overall.
-  function verdict(score, dE) {
+  // Formula matches run lower than colour matches (Skinsort rates its own
+  // published skincare dupes at 59-66%), so skincare gets its own cut-offs.
+  function verdict(score, dE, cat) {
+    if (SKIN.has(cat)) {
+      if (score >= 85) return { key: 'twin', label: 'Dupe' };
+      if (score >= 72) return { key: 'close', label: 'Very similar' };
+      if (score >= 60) return { key: 'near', label: 'Similar' };
+      return { key: 'vibe', label: 'Same family' };
+    }
     if (score >= 88 && (dE == null || dE < 2.5)) return { key: 'twin', label: 'Dupe' };
     if (score >= 80) return { key: 'close', label: 'Very similar' };
     if (score >= 70) return { key: 'near', label: 'Similar' };
@@ -289,8 +343,8 @@
     const rank = { retailer: 2, curated: 1, image: 0 };
     const r = Math.min(rank[src.hexSource] ?? 1, rank[cand.hexSource] ?? 1);
     if (r === 2) return { level: 'high', note: '' };
-    if (r === 1) return { level: 'medium', note: 'One swatch is a compiled estimate; check it in person.' };
-    return { level: 'low', note: 'Colour read from a product photo; check the swatch before buying.' };
+    if (r === 1) return { level: 'medium', note: 'One swatch is our estimate. Check it in store.' };
+    return { level: 'low', note: 'Colour taken from a product photo. Check the swatch.' };
   }
 
   // Price per gram or ml, so different sizes compare fairly (Skinsort shows value too).
@@ -303,35 +357,182 @@
   // Plain-language notes about how a dupe differs, written the way a friend
   // at the counter would say it.
   function explain(src, cand, r, skin) {
+    if (SKIN.has(src.cat)) return explainSkin(src, cand, r);
     const notes = [];
     const dE = r.deltaE;
-    if (dE < 2) notes.push(`Practically identical on swatch (ΔE ${dE.toFixed(1)}).`);
-    else if (dE < 4) notes.push(`Very close; you'd only spot it side by side (ΔE ${dE.toFixed(1)}).`);
-    else if (dE < 8) notes.push(`Same family, visibly different up close (ΔE ${dE.toFixed(1)}).`);
-    else notes.push(`A different shade in the same direction (ΔE ${dE.toFixed(1)}).`);
+    if (dE < 2) notes.push('Same colour on the swatch.');
+    else if (dE < 4) notes.push("Close. You'd only spot it side by side.");
+    else if (dE < 8) notes.push('Same family, but you can see the difference.');
+    else notes.push('Different shade, same direction.');
 
 
-    if (src.undertone !== cand.undertone) notes.push(`Undertone shifts from ${src.undertone} to ${cand.undertone}.`);
+    if (src.undertone !== cand.undertone) notes.push(`Leans ${cand.undertone}, not ${src.undertone}.`);
     if (src.finish !== cand.finish) {
       const bridge = {
-        'dewy>matte': 'tap a little balm or glow drops on top to get the dewy look back',
-        'matte>dewy': 'set it with a dusting of powder if you want it flatter',
-        'satin>matte': 'dab a clear balm in the centre for the satin sheen',
-        'shimmer>matte': 'it won\'t give the same sparkle',
+        'dewy>matte': 'pat balm on top for the dew',
+        'matte>dewy': 'powder it down if you want it flat',
+        'satin>matte': 'dab clear balm in the centre',
+        'shimmer>matte': 'no sparkle, though',
       }[`${src.finish}>${cand.finish}`];
-      notes.push(`Finish is ${cand.finish} instead of ${src.finish}${bridge ? `; ${bridge}` : ''}.`);
+      notes.push(`${cand.finish[0].toUpperCase() + cand.finish.slice(1)}, not ${src.finish}${bridge ? `: ${bridge}` : ''}.`);
     }
     const dp = (cand.payoff || 3) - (src.payoff || 3);
-    if (dp <= -1) notes.push(src.cat === 'foundation' ? 'Lighter coverage; build a second layer where you need it.' : 'Less pigmented; build it up in two layers.');
-    if (dp >= 1) notes.push(src.cat === 'foundation' ? 'Heavier coverage; use less.' : 'More pigmented; start with a lighter hand.');
-    if (src.formula !== cand.formula) notes.push(`Comes as a ${cand.formula} rather than a ${src.formula}.`);
+    if (dp <= -1) notes.push(src.cat === 'foundation' ? 'Lighter coverage. Layer where you need it.' : 'Sheerer. Build it up in two layers.');
+    if (dp >= 1) notes.push(src.cat === 'foundation' ? 'Fuller coverage. Use less.' : 'More pigment. Go easy.');
+    if (src.formula !== cand.formula) notes.push(`A ${cand.formula}, not a ${src.formula}.`);
 
     if (skin && src.cat !== 'foundation') {
       const sk = { fair: 82, light: 74, wheatish: 66, dusky: 52, deep: 40 }[skin];
       const Lc = prepare(cand)[0];
-      if (sk && Lc - sk > 2 && (src.cat === 'lipstick')) notes.push('On your skin tone this can read a little pale; a liner one shade deeper helps.');
-      if (sk && src.cat === 'blush' && Lc > sk + 6 && sk < 60) notes.push('Light shades can look chalky on deeper skin; apply sheer and blend out.');
+      if (sk && Lc - sk > 2 && (src.cat === 'lipstick')) notes.push('May look pale on you. Line one shade deeper.');
+      if (sk && src.cat === 'blush' && Lc > sk + 6 && sk < 60) notes.push('Can look chalky on deeper skin. Go sheer.');
     }
+    return notes;
+  }
+
+  // ---- skincare ---------------------------------------------------------------
+  // Skincare dupes are about the formula, the way Skinsort and Skinskool compare
+  // them: the actives a product is sold on (and their strength), how much of the
+  // ingredient list overlaps, what the formula does, and for sunscreen the UV
+  // filters and SPF/PA.
+  const SKIN = new Set(['serum', 'moisturiser', 'sunscreen']);
+  const SKIN_WEIGHTS = {
+    // Exact ingredient overlap between brands is low even for real dupes, so the
+    // job the formula does (actives, function) carries most of the weight.
+    serum: { actives: 45, function: 25, ingredients: 12, texture: 8, extras: 10, community: 5 },
+    moisturiser: { actives: 20, function: 40, ingredients: 12, texture: 15, extras: 13, community: 5 },
+    sunscreen: { filters: 30, protection: 25, function: 15, ingredients: 8, texture: 12, extras: 10, community: 5 },
+  };
+  const SKIN_CRITERIA = [
+    ['actives', 'Actives'], ['ingredients', 'Ingredients'], ['function', 'What it does'], ['filters', 'UV filters'],
+    ['protection', 'SPF / PA'], ['texture', 'Texture'], ['extras', 'Fragrance & alcohol'], ['community', 'Community'],
+  ];
+  const UV_FILTERS = {
+    'zinc oxide': 'mineral', 'titanium dioxide': 'mineral',
+    'avobenzone': 'chemical', 'butyl methoxydibenzoylmethane': 'chemical', 'octocrylene': 'chemical',
+    'homosalate': 'chemical', 'octisalate': 'chemical', 'ethylhexyl salicylate': 'chemical', 'oxybenzone': 'chemical',
+    'benzophenone 3': 'chemical', 'octinoxate': 'chemical', 'ethylhexyl methoxycinnamate': 'chemical',
+    'bis ethylhexyloxyphenol methoxyphenyl triazine': 'chemical', 'bemotrizinol': 'chemical',
+    'diethylamino hydroxybenzoyl hexyl benzoate': 'chemical', 'ethylhexyl triazone': 'chemical',
+    'methylene bis benzotriazolyl tetramethylbutylphenol': 'chemical', 'drometrizole trisiloxane': 'chemical',
+    'terephthalylidene dicamphor sulfonic acid': 'chemical', 'phenylbenzimidazole sulfonic acid': 'chemical',
+    'polysilicone 15': 'chemical', 'diethylhexyl butamido triazone': 'chemical',
+    'methoxypropylamino cyclohexenylidene ethoxyethylcyanoacetate': 'chemical',
+  };
+  const ALIAS = {
+    'hyaluronic acid': 'sodium hyaluronate', 'vitamin c': 'ascorbic acid', 'l ascorbic acid': 'ascorbic acid',
+    'bha': 'salicylic acid', 'vitamin e': 'tocopherol', 'zinc': 'zinc pca',
+  };
+  const canonIng = (x) => { const n = normIng(x).replace(/-/g, ' '); return ALIAS[n] || n; };
+
+  function skinProfile(p) {
+    if (p._skin) return p._skin;
+    const inci = (p.ingredients || []).map(canonIng);
+    const filters = inci.filter((x) => UV_FILTERS[x]);
+    const actives = {};
+    for (const [k, v] of Object.entries(p.actives || {})) actives[canonIng(k)] = v;
+    p._skin = {
+      inci, set: new Set(inci), actives, filters: new Set(filters),
+      filterType: !filters.length ? null : filters.every((f) => UV_FILTERS[f] === 'mineral') ? 'mineral' : filters.some((f) => UV_FILTERS[f] === 'mineral') ? 'hybrid' : 'chemical',
+      fragrance: inci.some((x) => /^(parfum|fragrance|aroma)$/.test(x) || /essential oil|limonene|linalool|citral|geraniol/.test(x)),
+      alcohol: inci.some((x) => /^(alcohol denat|alcohol|sd alcohol)/.test(x)),
+    };
+    return p._skin;
+  }
+
+  const TEXTURE_NEAR = { 'gel|gel-cream': 75, 'cream|gel-cream': 75, 'fluid|lotion': 80, 'gel|fluid': 70, 'cream|lotion': 70, 'serum|gel': 70 };
+  function textureScore(a, b) {
+    if (!a || !b) return null;
+    if (a === b) return 100;
+    return TEXTURE_NEAR[`${a}|${b}`] || TEXTURE_NEAR[`${b}|${a}`] || 40;
+  }
+
+  const FAMILY = ['peptide', 'ferment', 'retinoid', 'exfoliant', 'barrier'];
+  const pretty = (k) => k.replace(/\b(pca|ha|bha|aha)\b/g, (m) => m.toUpperCase());
+  const cap = (x) => x[0].toUpperCase() + x.slice(1);
+
+  function compareSkin(src, cand, o) {
+    const A = skinProfile(src), B = skinProfile(cand);
+    const s = {};
+    const shared = [], missing = [], stronger = [], weaker = [];
+    const names = Object.keys(A.actives);
+    if (names.length) {
+      let credit = 0;
+      for (const k of names) {
+        const a = A.actives[k], b = B.actives[k];
+        if (b !== undefined || B.set.has(k)) {
+          let c = b !== undefined ? 1 : 0.6;
+          if (a && b) { c *= Math.sqrt(Math.min(a, b) / Math.max(a, b)); if (b > a * 1.2) stronger.push([k, a, b]); else if (b < a * 0.8) weaker.push([k, a, b]); }
+          credit += c; shared.push([k, b ?? null]);
+        } else {
+          // A different ingredient that does the same specialist job (another
+          // peptide, ferment, retinoid, acid or ceramide) earns half credit.
+          const fam = FAMILY.find((f) => FUNCS[f].test(k));
+          const alt = fam && B.inci.find((x) => FUNCS[fam].test(x));
+          if (alt) { credit += 0.5; shared.push([alt, null]); } else missing.push(k);
+        }
+      }
+      s.actives = clamp((credit / names.length) * 100);
+    }
+    s.ingredients = ingredientSimilarity(A.inci, B.inci);
+    s.function = functionSimilarity(A.inci, B.inci);
+    if (src.cat === 'sunscreen') {
+      const u = new Set([...A.filters, ...B.filters]);
+      let both = 0; for (const f of A.filters) if (B.filters.has(f)) both++;
+      s.filters = u.size ? clamp((both / u.size) * 70 + (A.filterType === B.filterType ? 30 : 0)) : null;
+      s.protection = clamp(100 - Math.abs((cand.spf || 0) - (src.spf || 0)) * 2 - Math.abs((cand.pa || 0) - (src.pa || 0)) * 15 - ((cand.spf || 0) < 30 ? 40 : 0));
+    }
+    s.texture = textureScore(src.texture, cand.texture);
+    let extras = 100;
+    if (!A.fragrance && B.fragrance) extras -= 50; else if (A.fragrance !== B.fragrance) extras -= 15;
+    if (!A.alcohol && B.alcohol) extras -= 40; else if (A.alcohol !== B.alcohol) extras -= 10;
+    s.extras = clamp(extras);
+
+    const cited = o.community && o.community(src, cand);
+    const v = o.votes && o.votes(src, cand);
+    const confirmed = v && v.up >= 3 && v.up / (v.up + v.down) >= 0.7;
+    s.community = cited || confirmed ? 100 : 0;
+
+    const w = Object.assign({}, SKIN_WEIGHTS[src.cat], o.weights || {});
+    let total = 0, sum = 0;
+    for (const [k] of SKIN_CRITERIA) {
+      if (k === 'community' || s[k] == null || !w[k]) continue;
+      total += s[k] * w[k]; sum += w[k];
+    }
+    let score = sum ? total / sum : 0;
+    if (cited || confirmed) score = Math.min(100, score + (w.community || 0) * 0.6);
+    if (v && v.down >= 3 && v.down / (v.up + v.down) >= 0.7) score -= 6;
+    // Missing the main active means it does a different job, however similar the base.
+    if (names.length && missing.includes(names[0])) score = Math.min(score, 55);
+
+    const direction = [];
+    for (const [k, a, b] of stronger) direction.push(`Stronger ${pretty(k)} (${b}% vs ${a}%)`);
+    for (const [k, a, b] of weaker) direction.push(`Gentler ${pretty(k)} (${b}% vs ${a}%)`);
+    for (const k of missing) direction.push(`No ${pretty(k)}`);
+    if (src.cat === 'sunscreen') {
+      if ((cand.spf || 0) !== (src.spf || 0)) direction.push(`SPF ${cand.spf}`);
+      if (B.filterType && B.filterType !== A.filterType) direction.push(`${cap(B.filterType)} filters`);
+    }
+    if (src.texture && cand.texture && src.texture !== cand.texture) direction.push(cap(cand.texture));
+    if (B.fragrance && !A.fragrance) direction.push('Has fragrance');
+    if (!B.fragrance && A.fragrance) direction.push('Fragrance-free');
+    if (B.alcohol && !A.alcohol) direction.push('Has alcohol');
+
+    return {
+      score: Math.round(score * 10) / 10, scores: s, deltaE: null, cited: cited || null, votes: v || null,
+      direction: direction.length ? direction : ['Near identical formula'],
+      confidence: (cand.inciConfidence || 1) < 0.8 || (src.inciConfidence || 1) < 0.8
+        ? { level: 'medium', note: 'Ingredient list matched by name. Check the label.' } : { level: 'high', note: '' },
+      skin: { shared, missing, sharedCount: [...A.set].filter((x) => B.set.has(x)).length },
+    };
+  }
+
+  function explainSkin(src, cand, r) {
+    const notes = [];
+    if (r.skin.shared.length) notes.push(`Shares ${r.skin.shared.map(([k, pct]) => pretty(k) + (pct ? ` ${pct}%` : '')).join(', ')}.`);
+    const ing = r.scores.ingredients;
+    if (ing != null) notes.push(ing >= 70 ? 'Near-identical formula.' : ing >= 45 ? `Similar base, ${r.skin.sharedCount} ingredients in common.` : `Different base, ${r.skin.sharedCount} ingredients in common.`);
+    if (r.skin.missing.length) notes.push(`Missing ${r.skin.missing.map(pretty).join(', ')}.`);
     return notes;
   }
 
@@ -343,7 +544,7 @@
       if (o.maxPrice && c.price && c.price > o.maxPrice) continue;
       if (o.cheaperOnly && src.price && c.price && c.price >= src.price) continue;
       if (o.origin && o.origin !== 'all' && c.origin !== o.origin) continue;
-      const r = compare(src, c, o);
+      const r = SKIN.has(src.cat) ? compareSkin(src, c, o) : compare(src, c, o);
       if (r.score < o.minScore) continue;
       out.push(Object.assign({ shade: c }, r));
     }
@@ -353,7 +554,7 @@
     for (const r of out) {
       const k = r.shade.productId;
       perProduct[k] = (perProduct[k] || 0) + 1;
-      if (perProduct[k] <= 2) list.push(r);
+      if (perProduct[k] <= (o.perProduct || 2)) list.push(r);
       if (list.length >= o.limit) break;
     }
     return list;
@@ -437,7 +638,7 @@
 
   const api = {
     hexToRgb, rgbToLab, lab, chroma, hue, deltaE2000, inferUndertone, depthLabel, colourFamily,
-    compare, findDupes, explain, verdict, direction, confidence, unitPrice, ingredientSimilarity,
+    compare, compareSkin, findDupes, explain, functionSimilarity, SKIN, SKIN_WEIGHTS, SKIN_CRITERIA, verdict, direction, confidence, unitPrice, ingredientSimilarity,
     parseQuery, search, findNamedShade, WEIGHTS, CRITERIA, FINISH,
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

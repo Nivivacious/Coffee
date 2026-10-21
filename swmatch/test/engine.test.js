@@ -73,7 +73,7 @@ test('named shades are found inside a question', () => {
 });
 
 test('every catalog shade has the fields the engine needs', () => {
-  for (const s of shades) {
+  for (const s of shades.filter((x) => !S.SKIN.has(x.cat))) {
     assert.match(s.hex, /^#[0-9A-F]{6}$/i, s.id);
     assert.ok(['warm', 'cool', 'neutral', 'olive'].includes(s.undertone), s.id);
     assert.ok(S.FINISH[s.finish], `${s.id} finish ${s.finish}`);
@@ -119,4 +119,10 @@ test('price per gram compares different pack sizes fairly', () => {
 test('low-confidence colours are flagged', () => {
   assert.strictEqual(S.confidence({ hexSource: 'retailer' }, { hexSource: 'image' }).level, 'low');
   assert.strictEqual(S.confidence({ hexSource: 'retailer' }, { hexSource: 'retailer' }).level, 'high');
+});
+
+test('skincare entries carry ingredient lists', () => {
+  const skin = shades.filter((x) => S.SKIN.has(x.cat));
+  assert.ok(skin.length >= 40);
+  for (const s of skin) assert.ok(s.ingredients.length >= 5, s.id);
 });

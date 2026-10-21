@@ -57,6 +57,7 @@ function lineName(names, shadeNames, brand) {
 }
 
 function inferFormula(t, cat) {
+  if (cat === 'lipstick') t = t.replace(/powder|palette|compact|brick|pressed/g, ' ');  // 'powder matte' lipsticks and 'Brick Blush' shades are still bullets
   if (/crayon|pencil/.test(t)) return 'crayon';
   if (/mousse/.test(t)) return 'mousse';
   if (/baked/.test(t)) return 'baked';
@@ -172,6 +173,25 @@ for (const c of curated.products) {
       id: slug(`${id}-${name}`), name, hex, hexSource: 'curated', undertone, undertoneSource: 'brand', payoff, finish,
       price: c.price, mrp: c.price, rating: null, ratingCount: 0, inStock: true, where: where(c.brand, c.line, name).concat([{ store: 'Purplle', url: `https://www.purplle.com/search?q=${encodeURIComponent(`${c.brand} ${c.line} ${name}`)}` }]),
     })),
+  });
+}
+
+// Skincare: one entry per product, matched on formula rather than colour.
+const skin = read('data/skincare.json') || { products: [] };
+const inci = read('data/skincare-inci.json') || {};
+for (const c of skin.products) {
+  const got = inci[`${c.brand}|${c.name}`];
+  if (!got || !got.ingredients || !got.ingredients.length) { console.warn('no ingredients for', c.brand, c.name); continue; }
+  const brand = canonBrand(c.brand);
+  const id = slug(`${brand}-${c.name}-${c.cat}`);
+  products.push({
+    id, brand, line: c.name, cat: c.cat, source: 'incidecoder', origin: c.origin || (INDIAN.test(brand) ? 'IN' : 'INTL'), size: c.size,
+    shades: [{
+      id, name: c.name, price: c.price, mrp: c.price, size: c.size, rating: null, ratingCount: 0, inStock: true,
+      ingredients: got.ingredients, inciUrl: got.url, inciConfidence: got.confidence,
+      actives: c.actives || {}, texture: c.texture || 'serum', spf: c.spf || null, pa: c.pa || null,
+      where: where(brand, '', c.name).concat([{ store: 'Purplle', url: `https://www.purplle.com/search?q=${encodeURIComponent(`${brand} ${c.name}`)}` }]),
+    }],
   });
 }
 

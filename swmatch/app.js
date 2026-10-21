@@ -103,7 +103,7 @@
   function renderBrands() {
     const list = brandsFor(state.cat);
     if (state.brand && !list.includes(state.brand)) state.brand = null;
-    $('#brand').innerHTML = `<option value="">Choose a brand</option>`
+    $('#brand').innerHTML = `<option value="">Pick a brand</option>`
       + list.map((b) => `<option value="${esc(b)}" ${state.brand === b ? 'selected' : ''}>${esc(b)}</option>`).join('');
   }
 
@@ -172,7 +172,7 @@
 
       <div class="filters">
         ${pill('cheaper', state.cheaperOnly, `Cheaper than ${inr(src.price)}`)}
-        ${pill('indianOnly', state.dupeOrigin === 'IN', 'Indian brands only')}
+        ${pill('indianOnly', state.dupeOrigin === 'IN', 'Indian brands')}
         ${state.maxPrice ? pill('clearMax', true, `Under ${inr(state.maxPrice)} ×`) : ''}
         ${src.cat !== 'foundation' ? `<select id="skin" aria-label="Your skin tone">
           <option value="">Your skin tone</option>
@@ -180,16 +180,16 @@
         </select>` : ''}
       </div>
 
-      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i, bestValue)).join('') : '<div class="empty">No close dupes with these filters. Try turning one off.</div>'}</div>
+      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i, bestValue)).join('') : '<div class="empty">Nothing close. Drop a filter.</div>'}</div>
       ${all.length > dupes.length ? `<button type="button" class="more" id="showAll">Show ${all.length - dupes.length} more</button>` : ''}
 
       <div class="extras">
         <div class="stylist">
-          <button type="button" id="askStylist" ${all.length ? '' : 'disabled'}>Ask the AI stylist</button>
+          <button type="button" id="askStylist" ${all.length ? '' : 'disabled'}>Ask the stylist</button>
           <div class="out" id="stylistOut"></div>
         </div>
         <details class="tune" id="tune">
-          <summary>Adjust what matters</summary>
+          <summary>Change what counts</summary>
           <div class="weights">${S.CRITERIA.map(([k, label]) => {
             const w = (state.weights[k] ?? S.WEIGHTS[src.cat][k]);
             return `<div class="field"><label for="w-${k}">${label} <span class="mono">${w}</span></label><input type="range" id="w-${k}" data-w="${k}" min="0" max="40" value="${w}"></div>`;
@@ -200,7 +200,7 @@
 
   function dupeCard(src, d, i, bestValue) {
     const s = d.shade;
-    const v = S.verdict(d.score, d.deltaE);
+    const v = S.verdict(d.score, d.deltaE, src.cat);
     const u = S.unitPrice(s);
     const mine = myVotes[src.id + '|' + s.id];
     const vc = d.votes || { up: 0, down: 0 };
@@ -212,7 +212,7 @@
       return `<div class="bar">${label}<span>${val}</span><div class="track"><div class="fill ${val >= 85 ? 'hi' : ''}" style="width:${val}%"></div></div></div>`;
     }).join('');
     const where = s.where || [];
-    const cite = d.cited ? `<p class="cite">Also paired by ${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source)}.</p>` : '';
+    const cite = d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this too.</p>` : '';
     return `<article class="dupe ${i === 0 && d.score >= 82 ? 'top' : ''}">
       <div class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></div>
       <div class="body">
@@ -234,7 +234,7 @@
           ${votesOn ? `<span class="vote">Good match?
             <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
             <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></span>` : ''}
-          <details class="why"><summary>Score breakdown</summary><div class="bars">${bars}</div>${d.confidence.level === 'medium' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}</details>
+          <details class="why"><summary>Why ${Math.round(d.score)}%</summary><div class="bars">${bars}</div><p class="conf" style="color:var(--ink-2)">Colour gap ΔE ${d.deltaE.toFixed(1)}</p>${d.confidence.level === 'medium' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}</details>
         </div>
       </div>
     </article>`;
@@ -275,7 +275,7 @@
       if (parsed.maxPrice) { state.maxPrice = parsed.maxPrice; }
       if (parsed.origin) state.dupeOrigin = parsed.origin;
       if (parsed.skin) state.skin = parsed.skin;
-      box.innerHTML = `<div class="ask-panel"><h3>Matching ${esc(named.brand)} ${esc(named.name)}</h3><div class="parsed">${parsed.maxPrice ? `Showing dupes under ${inr(parsed.maxPrice)}. ` : ''}Scroll down for the full match card.</div></div>`;
+      box.innerHTML = '';
       selectShade(named.id, true);
       return;
     }
@@ -283,8 +283,8 @@
     const p = r.parsed;
     const bits = [p.cat, p.colour, p.finish, p.undertone && p.undertone + ' undertone', p.skin && p.skin + ' skin', p.maxPrice && 'under ' + inr(p.maxPrice), p.origin === 'IN' ? 'Indian brands' : p.origin === 'INTL' ? 'international brands' : ''].filter(Boolean);
     box.innerHTML = `<div class="ask-panel">
-      <h3>${r.results.length ? 'Closest shades' : 'No shades matched'}</h3>
-      <div class="parsed">${bits.length ? 'Understood: ' + esc(bits.join(' · ')) + '. ' : ''}Tap a shade to see its dupes.</div>
+      <h3>${r.results.length ? 'Pick one' : 'No shades found. Try a brand or colour.'}</h3>
+      ${bits.length ? `<div class="parsed">${esc(bits.join(' · '))}</div>` : ''}
       <div class="mini-grid">${r.results.map(({ shade: s }) => `<button type="button" class="mini" data-shade="${esc(s.id)}"><span class="dot" style="background:${esc(s.hex)};flex:none"></span><span class="t"><b>${esc(s.name)}</b><span>${esc(s.brand)} · ${inr(s.price)}</span></span></button>`).join('')}</div>
     </div>`;
   }
@@ -296,7 +296,7 @@
     if (!src || !btn) return;
     const dupes = S.findDupes(src, shades, { community, votes: votesFor, weights: state.weights, cheaperOnly: state.cheaperOnly, maxPrice: state.maxPrice || 0, origin: state.dupeOrigin, limit: 6, minScore: 50 });
     const pack = (s) => ({ brand: s.brand, line: s.line, shade: s.name, hex: s.hex, undertone: s.undertone, finish: s.finish, formula: s.formula, payoff: s.payoff, price_inr: s.price, origin: s.origin });
-    btn.disabled = true; out.textContent = 'Thinking about your shade…';
+    btn.disabled = true; out.textContent = 'Looking…';
     try {
       const r = await fetch('api/ask', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -312,31 +312,30 @@
     } catch (e) {
       const top = dupes[0];
       out.textContent = top
-        ? `The AI stylist runs on the deployed swmatch site, so here is the engine's own read instead.\n\nBest match: ${top.shade.brand} ${top.shade.name} at ${Math.round(top.score)}%. ${S.explain(src, top.shade, top, state.skin).join(' ')}`
-        : 'The AI stylist is not available here.';
+        ? `The stylist is offline here. Quick read: ${top.shade.brand} ${top.shade.name}, ${Math.round(top.score)}% match. ${S.explain(src, top.shade, top, state.skin).join(' ')}`
+        : 'The stylist is offline here.';
     } finally { btn.disabled = false; }
   }
 
   // ---- method section ----
   function renderMethod() {
     const C = {
-      colour: 'CIEDE2000 colour distance between the two swatches, the standard used in the cosmetics and paint industries. Under 2 is invisible to most eyes; over 8 is a different shade.',
-      undertone: 'Warm, cool, neutral or olive. Taken from the brand where it says (W/C/N codes, "golden", "olive"), otherwise read from the swatch hue.',
-      depth: 'Lightness gap (L*). For foundation it is labelled in Indian complexion terms, from Fair and Wheatish to Dusky and Deep, and weighted heavily.',
-      intensity: 'Chroma gap: is it as vivid as the original, or more muted and dusty?',
-      finish: 'Matte, soft-matte, satin, dewy, glossy, shimmer or metallic, scored by sheen and sparkle so matte to satin is a small step and matte to metallic is a big one.',
-      payoff: 'Pigmentation (or coverage for foundation): how much colour one swipe gives.',
-      formula: 'Bullet, crayon, liquid, cream, stick, powder or baked. Similar textures score closer.',
-      ingredients: 'When both products list ingredients, how much of the formula they share, with early ingredients counting more because labels list them by amount (the way Skinsort and Skinskool compare formulas).',
-      community: 'A bonus when dupe sites or beauty editors already pair the two, or when shoppers here mark the dupe as a good match. Mostly "no" votes pull a dupe down.',
+      colour: 'How far apart the swatches are (CIEDE2000). Under 2, you can\'t tell.',
+      undertone: 'Warm, cool, neutral or olive. Brand\'s word first, swatch second.',
+      depth: 'How light or deep. Foundation uses Fair, Wheatish, Dusky and Deep.',
+      intensity: 'Bright or muted.',
+      finish: 'Matte to satin is a small jump. Matte to metallic isn\'t.',
+      payoff: 'Colour per swipe. Coverage, for foundation.',
+      formula: 'Bullet, crayon, liquid, cream or powder.',
+      ingredients: 'Skincare: how much of the formula overlaps. First ingredients count most.',
+      community: 'Goes up when dupe sites or shoppers agree, down when shoppers say no.',
     };
     $('#crit').innerHTML = S.CRITERIA.map(([k, label]) => `<dt>${label}</dt><dd>${C[k]}</dd>`).join('');
-    const nP = CAT.products.filter((p) => p.source === 'purplle').length;
     $('#fine').innerHTML = `
-      <p><b>Labels.</b> A <b>Dupe</b> scores 88% or more and is within ΔE 2.5 in colour, close enough that most people can't tell them apart. <b>Very similar</b> is 80% and up, <b>Similar</b> 70% and up. Each card also says how the dupe differs: darker or lighter, warmer or cooler, more muted, more shimmer, sheerer.</p>
-      <p><b>Where the data comes from.</b> ${nP ? `${nP} ranges, with their shade swatch colours, prices and ratings, come from Purplle's public catalog${CAT.sources.purplle ? ` (fetched ${esc(CAT.sources.purplle)})` : ''}.` : ''} Prestige and international ranges that Purplle doesn't stock (MAC, Charlotte Tilbury, NARS, Rare Beauty, Fenty Beauty, Huda Beauty, Estée Lauder and others) are compiled by hand from brand and reviewer swatches, with approximate Indian prices. Nykaa, Tira and Myntra don't allow automated catalog reads, so swmatch links to their search for each shade instead.</p>
-      <p><b>Screens lie a little.</b> Swatch colours on a phone are close, not exact. Check a shade in natural light or on your inner wrist before you buy, and treat prices as a guide: sales on Nykaa and Purplle change them weekly.</p>`;
-    $('#foot').textContent = `${shades.length} shades · ${CAT.products.length} ranges · catalog built ${CAT.builtAt || ''}`;
+      <p>Dupe: 88% or more, and the colours are near-identical. Very similar: 80%+. Similar: 70%+.</p>
+      <p>Shades and prices come from Purplle. Prestige brands use our own swatch notes and approximate ₹ prices. Nykaa, Tira and Myntra don't allow catalog reads, so we link to their search.</p>
+      <p>Screens shift colour. Swatch it on your wrist before you buy.</p>`;
+    $('#foot').textContent = `${shades.length.toLocaleString('en-IN')} shades · updated ${CAT.builtAt || ''}`;
   }
 
   // ---- events ----

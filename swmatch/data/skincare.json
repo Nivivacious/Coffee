@@ -1,0 +1,640 @@
+{
+ "note": "Skincare ranges for swmatch. Ingredient lists are fetched from INCIDecoder by scripts/fetch_skincare.py (query = what to search there). Prices are approximate Indian MRP (Nykaa, Tira, Amazon India) and change often. actives = the ingredients the product is sold on, with % where the brand states it.",
+ "products": [
+  {
+   "cat": "serum",
+   "brand": "The Ordinary",
+   "name": "Niacinamide 10% + Zinc 1%",
+   "query": "the ordinary niacinamide 10% zinc 1%",
+   "price": 750,
+   "size": "30 ml",
+   "actives": {
+    "niacinamide": 10,
+    "zinc pca": 1
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "The Ordinary",
+   "name": "Salicylic Acid 2% Solution",
+   "query": "the ordinary salicylic acid 2% solution",
+   "price": 750,
+   "size": "30 ml",
+   "actives": {
+    "salicylic acid": 2
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "The Ordinary",
+   "name": "Hyaluronic Acid 2% + B5",
+   "query": "the ordinary hyaluronic acid 2% + b5",
+   "price": 890,
+   "size": "30 ml",
+   "actives": {
+    "sodium hyaluronate": 2,
+    "panthenol": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "The Ordinary",
+   "name": "Alpha Arbutin 2% + HA",
+   "query": "the ordinary alpha arbutin 2% + ha",
+   "price": 1050,
+   "size": "30 ml",
+   "actives": {
+    "alpha-arbutin": 2,
+    "sodium hyaluronate": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "The Ordinary",
+   "name": "Retinol 0.5% in Squalane",
+   "query": "the ordinary retinol 0.5% in squalane",
+   "price": 950,
+   "size": "30 ml",
+   "actives": {
+    "retinol": 0.5,
+    "squalane": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Paula's Choice",
+   "name": "Skin Perfecting 2% BHA Liquid Exfoliant",
+   "query": "paula's choice skin perfecting 2% bha liquid exfoliant",
+   "price": 3950,
+   "size": "118 ml",
+   "actives": {
+    "salicylic acid": 2
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Paula's Choice",
+   "name": "10% Niacinamide Booster",
+   "query": "paula's choice 10% niacinamide booster",
+   "price": 4300,
+   "size": "20 ml",
+   "actives": {
+    "niacinamide": 10,
+    "glycyrrhiza glabra root extract": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "SkinCeuticals",
+   "name": "C E Ferulic",
+   "query": "skinceuticals c e ferulic",
+   "price": 15800,
+   "size": "30 ml",
+   "actives": {
+    "ascorbic acid": 15,
+    "tocopherol": 1,
+    "ferulic acid": 0.5
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Drunk Elephant",
+   "name": "C-Firma Fresh Day Serum",
+   "query": "drunk elephant c-firma fresh day serum",
+   "price": 7500,
+   "size": "28 ml",
+   "actives": {
+    "ascorbic acid": 15,
+    "ferulic acid": null,
+    "tocopherol": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Estée Lauder",
+   "name": "Advanced Night Repair Synchronized Multi-Recovery Complex",
+   "query": "estee lauder advanced night repair synchronized multi-recovery complex",
+   "price": 8200,
+   "size": "50 ml",
+   "actives": {
+    "bifida ferment lysate": null,
+    "sodium hyaluronate": null,
+    "tripeptide-32": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "La Roche-Posay",
+   "name": "Hyalu B5 Serum",
+   "query": "la roche-posay hyalu b5 serum",
+   "price": 3850,
+   "size": "30 ml",
+   "actives": {
+    "sodium hyaluronate": null,
+    "panthenol": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Beauty of Joseon",
+   "name": "Glow Serum: Propolis + Niacinamide",
+   "query": "beauty of joseon glow serum propolis niacinamide",
+   "price": 1500,
+   "size": "30 ml",
+   "actives": {
+    "propolis extract": 60,
+    "niacinamide": 2
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "COSRX",
+   "name": "Advanced Snail 96 Mucin Power Essence",
+   "query": "cosrx advanced snail 96 mucin power essence",
+   "price": 1900,
+   "size": "100 ml",
+   "actives": {
+    "snail secretion filtrate": 96
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Revolution Skincare",
+   "name": "10% Niacinamide + 1% Zinc Blemish & Pore Refining Serum",
+   "query": "revolution skincare niacinamide 10% zinc 1% blemish pore refining serum",
+   "price": 999,
+   "size": "30 ml",
+   "actives": {
+    "niacinamide": 10,
+    "zinc pca": 1
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Timeless",
+   "name": "20% Vitamin C + E Ferulic Acid Serum",
+   "query": "timeless 20% vitamin c + e ferulic acid serum",
+   "price": 2900,
+   "size": "30 ml",
+   "actives": {
+    "ascorbic acid": 20,
+    "tocopherol": null,
+    "ferulic acid": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Manyo",
+   "name": "Bifida Biome Complex Ampoule",
+   "query": "manyo bifida biome complex ampoule",
+   "price": 2300,
+   "size": "50 ml",
+   "actives": {
+    "bifida ferment lysate": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Isntree",
+   "name": "TW-Real Bifida Ampoule",
+   "query": "isntree tw-real bifida ampoule",
+   "price": 2000,
+   "size": "50 ml",
+   "actives": {
+    "bifida ferment lysate": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Minimalist",
+   "name": "Niacinamide 10% Face Serum",
+   "query": "minimalist niacinamide 10% face serum",
+   "price": 599,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "niacinamide": 10
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Minimalist",
+   "name": "Salicylic Acid 2% Face Serum",
+   "query": "minimalist salicylic acid 2% face serum",
+   "price": 545,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "salicylic acid": 2
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Minimalist",
+   "name": "Hyaluronic Acid 2% + B5 Face Serum",
+   "query": "minimalist hyaluronic acid 2% face serum",
+   "price": 599,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "sodium hyaluronate": 2,
+    "panthenol": null
+   },
+   "page": "/products/be-minimalist-hyaluronic-acid-2"
+  },
+  {
+   "cat": "serum",
+   "brand": "Minimalist",
+   "name": "Alpha Arbutin 2% + HA Face Serum",
+   "query": "minimalist alpha arbutin 2%",
+   "price": 549,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "alpha-arbutin": 2,
+    "sodium hyaluronate": 1
+   },
+   "page": "/products/be-minimalist-alpha-arbutin-2-hyaluronic-acid-1"
+  },
+  {
+   "cat": "serum",
+   "brand": "Minimalist",
+   "name": "Retinol 0.3% + Q10 Face Serum",
+   "query": "minimalist retinol 0.3% q10",
+   "price": 649,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "retinol": 0.3,
+    "ubiquinone": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Minimalist",
+   "name": "Vitamin C 10% Face Serum",
+   "query": "minimalist vitamin c 10% face serum",
+   "price": 699,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "ethyl ascorbic acid": 10,
+    "ferulic acid": null
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "The Derma Co",
+   "name": "10% Niacinamide Face Serum",
+   "query": "the derma co 10% niacinamide serum",
+   "price": 599,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "niacinamide": 10
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "The Derma Co",
+   "name": "2% Salicylic Acid Face Serum",
+   "query": "the derma co 2% salicylic acid serum",
+   "price": 599,
+   "size": "30 ml",
+   "origin": "IN",
+   "actives": {
+    "salicylic acid": 2
+   }
+  },
+  {
+   "cat": "serum",
+   "brand": "Plum",
+   "name": "15% Vitamin C Face Serum",
+   "query": "plum 15% vitamin c face serum",
+   "price": 849,
+   "size": "20 ml",
+   "origin": "IN",
+   "actives": {
+    "ethyl ascorbic acid": 15
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Clinique",
+   "name": "Moisture Surge 100H Auto-Replenishing Hydrator",
+   "query": "clinique moisture surge 100h auto-replenishing hydrator",
+   "price": 3900,
+   "size": "50 ml",
+   "texture": "gel-cream",
+   "actives": {
+    "hyaluronic acid": null,
+    "aloe barbadensis leaf water": null,
+    "caffeine": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Neutrogena",
+   "name": "Hydro Boost Water Gel",
+   "query": "neutrogena hydro boost water gel",
+   "price": 999,
+   "size": "50 g",
+   "texture": "gel",
+   "actives": {
+    "sodium hyaluronate": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "CeraVe",
+   "name": "Moisturising Cream",
+   "query": "cerave moisturising cream",
+   "price": 1600,
+   "size": "340 g",
+   "texture": "cream",
+   "actives": {
+    "ceramide np": null,
+    "sodium hyaluronate": null
+   },
+   "page": "/products/cerave-moisturizing-cream"
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Cetaphil",
+   "name": "Moisturising Cream",
+   "query": "cetaphil moisturising cream",
+   "price": 1299,
+   "size": "250 g",
+   "texture": "cream",
+   "actives": {
+    "glycerin": null,
+    "dimethicone": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Drunk Elephant",
+   "name": "Protini Polypeptide Cream",
+   "query": "drunk elephant protini polypeptide cream",
+   "price": 6000,
+   "size": "50 ml",
+   "texture": "cream",
+   "actives": {
+    "sh-oligopeptide-1": null,
+    "pygmy waterlily stem cell extract": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Kiehl's",
+   "name": "Ultra Facial Cream",
+   "query": "kiehl's ultra facial cream",
+   "price": 2850,
+   "size": "50 ml",
+   "texture": "cream",
+   "actives": {
+    "squalane": null,
+    "glycerin": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "The Ordinary",
+   "name": "Natural Moisturizing Factors + HA",
+   "query": "the ordinary natural moisturizing factors + ha",
+   "price": 750,
+   "size": "30 ml",
+   "texture": "cream",
+   "actives": {
+    "sodium hyaluronate": null,
+    "ceramide np": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Earth Rhythm",
+   "name": "Phyto-Repair Advanced Cell Repair Moisturizer",
+   "query": "earth rhythm phyto-repair advanced cell repair moisturizer",
+   "price": 799,
+   "size": "50 ml",
+   "texture": "cream",
+   "origin": "IN",
+   "actives": {
+    "sodium hyaluronate": null,
+    "palmitoyl tripeptide-1": null
+   },
+   "page": "/products/earth-rhythm-phyto-repair-advanced-cell-repair-moisturiser"
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Minimalist",
+   "name": "Sepicalm 3% + Oat Moisturizer",
+   "query": "minimalist sepicalm 3% oat moisturizer",
+   "price": 349,
+   "size": "50 ml",
+   "texture": "gel-cream",
+   "origin": "IN",
+   "actives": {
+    "sepicalm s": 3
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Re'equil",
+   "name": "Ceramide & Hyaluronic Acid Moisturiser",
+   "query": "re'equil ceramide hyaluronic acid moisturiser",
+   "price": 595,
+   "size": "50 g",
+   "texture": "cream",
+   "origin": "IN",
+   "actives": {
+    "ceramide np": null,
+    "sodium hyaluronate": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Plum",
+   "name": "Green Tea Oil-Free Moisturizer",
+   "query": "plum green tea oil-free moisturizer",
+   "price": 470,
+   "size": "50 ml",
+   "texture": "gel-cream",
+   "origin": "IN",
+   "actives": {
+    "camellia sinensis leaf extract": null
+   }
+  },
+  {
+   "cat": "moisturiser",
+   "brand": "Foxtale",
+   "name": "Oil Free Moisturizer",
+   "query": "foxtale oil free moisturizer",
+   "price": 349,
+   "size": "50 ml",
+   "texture": "gel",
+   "origin": "IN",
+   "actives": {
+    "niacinamide": null,
+    "sodium hyaluronate": null
+   }
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "La Roche-Posay",
+   "name": "Anthelios UVMune 400 Invisible Fluid SPF 50+",
+   "query": "la roche-posay anthelios uvmune 400 invisible fluid spf50+",
+   "price": 2400,
+   "size": "50 ml",
+   "texture": "fluid",
+   "spf": 50,
+   "pa": 4,
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Supergoop!",
+   "name": "Unseen Sunscreen SPF 40",
+   "query": "supergoop unseen sunscreen spf 40",
+   "price": 3500,
+   "size": "50 ml",
+   "texture": "gel",
+   "spf": 40,
+   "pa": 3,
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Beauty of Joseon",
+   "name": "Relief Sun: Rice + Probiotics SPF 50+ PA++++",
+   "query": "beauty of joseon relief sun rice probiotics",
+   "price": 1400,
+   "size": "50 ml",
+   "texture": "cream",
+   "spf": 50,
+   "pa": 4,
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Isntree",
+   "name": "Hyaluronic Acid Watery Sun Gel SPF 50+",
+   "query": "isntree hyaluronic acid watery sun gel",
+   "price": 1700,
+   "size": "50 ml",
+   "texture": "gel",
+   "spf": 50,
+   "pa": 4,
+   "actives": {
+    "sodium hyaluronate": null
+   }
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Neutrogena",
+   "name": "Ultra Sheer Dry-Touch Sunblock SPF 50+",
+   "query": "neutrogena ultra sheer dry-touch sunscreen spf 50",
+   "price": 699,
+   "size": "88 ml",
+   "texture": "lotion",
+   "spf": 50,
+   "pa": 3,
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Minimalist",
+   "name": "SPF 50 Multi-Vitamin Sunscreen",
+   "query": "minimalist spf 50 sunscreen multi vitamins",
+   "price": 399,
+   "size": "50 g",
+   "texture": "cream",
+   "spf": 50,
+   "pa": 4,
+   "origin": "IN",
+   "actives": {},
+   "page": "/products/be-minimalist-multi-vitamin-spf-50"
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Re'equil",
+   "name": "Ultra Matte Dry Touch Sunscreen Gel SPF 50",
+   "query": "re'equil ultra matte dry touch sunscreen gel",
+   "price": 595,
+   "size": "50 g",
+   "texture": "gel",
+   "spf": 50,
+   "pa": 4,
+   "origin": "IN",
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Deconstruct",
+   "name": "Gel Sunscreen SPF 55+",
+   "query": "deconstruct gel sunscreen spf 55",
+   "price": 474,
+   "size": "50 g",
+   "texture": "gel",
+   "spf": 55,
+   "pa": 4,
+   "origin": "IN",
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "The Derma Co",
+   "name": "1% Hyaluronic Sunscreen Aqua Gel SPF 50",
+   "query": "the derma co 1% hyaluronic sunscreen aqua gel",
+   "price": 499,
+   "size": "50 g",
+   "texture": "gel",
+   "spf": 50,
+   "pa": 4,
+   "origin": "IN",
+   "actives": {
+    "sodium hyaluronate": 1
+   }
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Dot & Key",
+   "name": "Watermelon Cooling Sunscreen SPF 50",
+   "query": "dot & key watermelon cooling sunscreen spf 50",
+   "price": 495,
+   "size": "50 g",
+   "texture": "gel",
+   "spf": 50,
+   "pa": 4,
+   "origin": "IN",
+   "actives": {},
+   "page": "/products/dot-key-watermelon-cooling-sunscreen"
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Aqualogica",
+   "name": "Glow+ Dewy Sunscreen SPF 50",
+   "query": "aqualogica glow+ dewy sunscreen",
+   "price": 399,
+   "size": "50 g",
+   "texture": "cream",
+   "spf": 50,
+   "pa": 4,
+   "origin": "IN",
+   "actives": {}
+  },
+  {
+   "cat": "sunscreen",
+   "brand": "Lakmé",
+   "name": "Sun Expert Ultra Matte SPF 50 Gel Sunscreen",
+   "query": "lakme sun expert ultra matte spf 50 gel",
+   "price": 399,
+   "size": "50 ml",
+   "texture": "gel",
+   "spf": 50,
+   "pa": 3,
+   "origin": "IN",
+   "actives": {}
+  }
+ ]
+}

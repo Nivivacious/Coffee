@@ -1,0 +1,171 @@
+{
+ "note": "Dupe pairs published by dupe sites and beauty press. The test checks swmatch finds each one on its own (community bonus off). rank = how high the dupe must place among every candidate in its category.",
+ "pairs": [
+  {
+   "cat": "blush",
+   "src": [
+    "Rare Beauty",
+    "Hope"
+   ],
+   "dupe": [
+    "A'PIEU",
+    "Guava"
+   ],
+   "rank": 5,
+   "source": "Beautymone",
+   "url": "https://beautymone.com/rare-beauty-liquid-blush-dupe/"
+  },
+  {
+   "cat": "blush",
+   "src": [
+    "Rare Beauty",
+    "Hope"
+   ],
+   "dupe": [
+    "Charlotte Tilbury",
+    "Pillow Talk"
+   ],
+   "rank": 10,
+   "source": "Skinsort",
+   "url": "https://skinsort.com/products/rare-beauty/soft-pinch-liquid-blush/hope/dupes"
+  },
+  {
+   "cat": "blush",
+   "src": [
+    "NARS",
+    "Orgasm"
+   ],
+   "dupe": [
+    "Milani",
+    "Luminoso"
+   ],
+   "rank": 5,
+   "source": "dupe roundups"
+  },
+  {
+   "cat": "lipstick",
+   "src": [
+    "MAC",
+    "Ruby Woo"
+   ],
+   "dupe": [
+    "Lakmé",
+    "Red Coat"
+   ],
+   "rank": 10,
+   "source": "Urban Company",
+   "url": "https://www.urbancompany.com/blog/the-best-red-lipstick-shades-in-lakme-9-to-5-range",
+   "knownIssue": "Purplle's colour chip for Red Coat (#DA0632) is far brighter than the bullet (L* +11, chroma x1.37 against a swatch photo), so many brighter reds outrank it. Hue matches; it still scores Similar."
+  },
+  {
+   "cat": "lipstick",
+   "src": [
+    "Charlotte Tilbury",
+    "Pillow Talk"
+   ],
+   "dupe": [
+    "Maybelline New York",
+    "Lead The Way"
+   ],
+   "rank": 15,
+   "source": "Elle India",
+   "url": "https://elle.in/?p=193560"
+  },
+  {
+   "cat": "highlighter",
+   "src": [
+    "Charlotte Tilbury",
+    "4 Medium"
+   ],
+   "dupe": [
+    "e.l.f.",
+    "4 Medium"
+   ],
+   "rank": 3,
+   "source": "dupe roundups"
+  },
+  {
+   "cat": "serum",
+   "src": [
+    "Paula's Choice",
+    "Skin Perfecting 2% BHA Liquid Exfoliant"
+   ],
+   "dupe": [
+    "The Ordinary",
+    "Salicylic Acid 2% Solution"
+   ],
+   "rank": 4,
+   "source": "Skinsort",
+   "url": "https://skinsort.com/products/paula-s-choice/skin-perfecting-2-bha-liquid-exfoliant/dupes"
+  },
+  {
+   "cat": "serum",
+   "src": [
+    "The Ordinary",
+    "Niacinamide 10% + Zinc 1%"
+   ],
+   "dupe": [
+    "Revolution Skincare",
+    "10% Niacinamide + 1% Zinc Blemish & Pore Refining Serum"
+   ],
+   "rank": 2,
+   "source": "Beautiful With Brains",
+   "url": "https://www.beautifulwithbrains.com/?p=116936"
+  },
+  {
+   "cat": "serum",
+   "src": [
+    "SkinCeuticals",
+    "C E Ferulic"
+   ],
+   "dupe": [
+    "Timeless",
+    "20% Vitamin C + E Ferulic Acid Serum"
+   ],
+   "rank": 2,
+   "source": "HuffPost",
+   "url": "https://www.huffingtonpost.ca/entry/skinceuticals-c-e-ferulic-dupe-price_l_5d94d19ee4b0ac3cddb255cb"
+  },
+  {
+   "cat": "serum",
+   "src": [
+    "Estée Lauder",
+    "Advanced Night Repair Synchronized Multi-Recovery Complex"
+   ],
+   "dupe": [
+    "Manyo",
+    "Bifida Biome Complex Ampoule"
+   ],
+   "rank": 3,
+   "source": "Skinskool"
+  },
+  {
+   "cat": "moisturiser",
+   "src": [
+    "Clinique",
+    "Moisture Surge 100H Auto-Replenishing Hydrator"
+   ],
+   "dupe": [
+    "Neutrogena",
+    "Hydro Boost Water Gel"
+   ],
+   "rank": 3,
+   "source": "Skinsignal",
+   "url": "https://skinsignal.com/compare/neutrogena-hydro-boost-vs-clinique-moisture-surge-100h-auto-replenishing-hydrator-moisturizer"
+  },
+  {
+   "cat": "moisturiser",
+   "src": [
+    "Drunk Elephant",
+    "Protini Polypeptide Cream"
+   ],
+   "dupe": [
+    "Earth Rhythm",
+    "Phyto-Repair Advanced Cell Repair Moisturizer"
+   ],
+   "rank": 4,
+   "source": "Skinsort",
+   "url": "https://skinsort.com/products/drunk-elephant/protini-polypeptide-cream-96b56bfd-f342-4b6a-acd9-d9bdef9506d2/dupes"
+  }
+ ]
+}
