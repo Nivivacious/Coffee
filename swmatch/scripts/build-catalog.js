@@ -9,6 +9,10 @@ const S = require('../engine.js');
 const root = path.join(__dirname, '..');
 const read = (f) => { try { return JSON.parse(fs.readFileSync(path.join(root, f), 'utf8')); } catch (e) { return null; } };
 const raw = read('data/purplle-raw.json') || { products: [] };
+// Optional older pulls to fold in (comma-separated paths), e.g. while a new pull is still running.
+for (const f of (process.env.SWMATCH_EXTRA_RAW || '').split(',').filter(Boolean)) {
+  try { raw.products = raw.products.concat(JSON.parse(fs.readFileSync(f, 'utf8')).products || []); } catch (e) { console.warn('could not read', f); }
+}
 const curated = read('data/curated.json');
 
 // Brands that are Indian-owned or started in India.
@@ -126,17 +130,19 @@ for (const f of raw.products || []) {
   seen.add(id);
   const shades = [];
   const names = new Set();
-  for (const s of f.shades) {
+  f.shades.forEach((s, i) => {
     const name = tidy(s.name);
-    if (!name || NOT_A_SHADE.test(name) || names.has(name.toLowerCase())) continue;
+    const sz = String(f.names[i] || '').match(/([0-9]+(?:\.[0-9]+)?)\s?(gm|gms|g|ml)\b/i);
+    if (!name || NOT_A_SHADE.test(name) || names.has(name.toLowerCase())) return;
     names.add(name.toLowerCase());
     shades.push({
       id: slug(`${id}-${name}`), name, hex: s.hex, hexSource: s.hexSource,
       undertone: stated(name, f.category) || S.inferUndertone(s.hex, f.category), undertoneSource: stated(name, f.category) ? 'brand' : 'swatch',
       price: s.price || null, mrp: s.mrp || null, rating: s.rating || null, ratingCount: s.ratingCount || 0, inStock: s.inStock,
+      size: sz ? `${Number(sz[1])} ${/ml/i.test(sz[2]) ? 'ml' : 'g'}` : null,
       where: [{ store: 'Purplle', url: s.url }].concat(where(f.brand, line, name).filter((w) => w.store !== 'Purplle')),
     });
-  }
+  });
   if (!shades.length) continue;
   products.push({
     id, brand: f.brand, line, cat: f.category, formula, finish, payoff, source: 'purplle',

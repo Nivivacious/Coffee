@@ -80,3 +80,43 @@ test('every catalog shade has the fields the engine needs', () => {
     assert.ok(s.payoff >= 1 && s.payoff <= 5, s.id);
   }
 });
+
+test('dupe tiers need a close colour, not just a high score', () => {
+  assert.strictEqual(S.verdict(92, 1.8).label, 'Dupe');
+  assert.strictEqual(S.verdict(92, 4).label, 'Very similar');
+  assert.strictEqual(S.verdict(74, 6).label, 'Similar');
+});
+
+test('direction words describe how the dupe differs', () => {
+  const src = { cat: 'lipstick', hex: '#B9776F', finish: 'matte', payoff: 4 };
+  const deeper = { cat: 'lipstick', hex: '#9E5E57', finish: 'shimmer', payoff: 2, hexSource: 'retailer' };
+  const r = S.compare(src, deeper);
+  assert.ok(r.direction.includes('Darker'), r.direction.join());
+  assert.ok(r.direction.includes('More shimmer'), r.direction.join());
+  assert.ok(r.direction.includes('Sheerer'), r.direction.join());
+});
+
+test('ingredient overlap favours shared key ingredients early in the list', () => {
+  const a = ['Water', 'Niacinamide', 'Glycerin', 'Zinc PCA'];
+  assert.strictEqual(S.ingredientSimilarity(a, a), 100);
+  assert.ok(S.ingredientSimilarity(a, ['Aqua', 'Niacinamide', 'Zinc PCA']) > S.ingredientSimilarity(a, ['Aqua', 'Glycerin', 'Panthenol']));
+  assert.strictEqual(S.ingredientSimilarity(a, null), null);
+});
+
+test('confirmed votes lift a dupe and rejected ones sink it', () => {
+  const a = find('MAC', 'Ruby Woo'), b = Object.assign({}, find('MAC', 'Russian Red'), { productId: 'x' });
+  const base = S.compare(a, b).score;
+  assert.ok(S.compare(a, b, { votes: () => ({ up: 5, down: 0 }) }).score > base);
+  assert.ok(S.compare(a, b, { votes: () => ({ up: 0, down: 5 }) }).score < base);
+  assert.strictEqual(S.compare(a, b, { votes: () => ({ up: 1, down: 0 }) }).score, base, 'one vote is not enough');
+});
+
+test('price per gram compares different pack sizes fairly', () => {
+  assert.deepStrictEqual(S.unitPrice({ price: 700, size: '3.5 g' }), { value: 200, unit: 'g' });
+  assert.strictEqual(S.unitPrice({ price: 700 }), null);
+});
+
+test('low-confidence colours are flagged', () => {
+  assert.strictEqual(S.confidence({ hexSource: 'retailer' }, { hexSource: 'image' }).level, 'low');
+  assert.strictEqual(S.confidence({ hexSource: 'retailer' }, { hexSource: 'retailer' }).level, 'high');
+});

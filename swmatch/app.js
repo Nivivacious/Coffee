@@ -25,7 +25,7 @@
     for (const s of p.shades) {
       const row = Object.assign({}, s, {
         productId: p.id, brand: p.brand, line: p.line, cat: p.cat, origin: p.origin, source: p.source,
-        formula: p.formula, finish: s.finish || p.finish, payoff: s.payoff || p.payoff, size: p.size,
+        formula: p.formula, finish: s.finish || p.finish, payoff: s.payoff || p.payoff, size: s.size || p.size,
       });
       shades.push(row);
       byId.set(row.id, row);
@@ -59,6 +59,29 @@
     shadeId: null, cheaperOnly: false, maxPrice: 0, dupeOrigin: 'all', skin: store.get('skin', ''),
     weights: {},
   };
+  // Findation-style confirmations: { [srcId]: { [dupeId]: {up, down} } }, null when votes are off.
+  let votesOn = true;
+  const votes = {};
+  const myVotes = store.get('votes', {});
+  const votesFor = (src, cand) => (votes[src.id] || {})[cand.id] || null;
+  async function loadVotes(srcId) {
+    if (!votesOn || votes[srcId]) return;
+    try {
+      const r = await fetch('api/vote?src=' + encodeURIComponent(srcId));
+      if (!r.ok) throw new Error();
+      votes[srcId] = (await r.json()).votes || {};
+      if (state.shadeId === srcId) renderMatch();
+    } catch (e) { votesOn = false; if (state.shadeId === srcId) renderMatch(); }
+  }
+  async function castVote(srcId, dupeId, vote) {
+    const key = srcId + '|' + dupeId;
+    if (myVotes[key]) return;
+    myVotes[key] = vote; store.set('votes', myVotes);
+    const v = ((votes[srcId] = votes[srcId] || {})[dupeId] = (votes[srcId] || {})[dupeId] || { up: 0, down: 0 });
+    v[vote > 0 ? 'up' : 'down']++;
+    renderMatch();
+    try { await fetch('api/vote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ src: srcId, dupe: dupeId, vote }) }); } catch (e) { /* offline */ }
+  }
 
   function defaultShade() {
     return shades.find((s) => s.brand === 'Rare Beauty' && s.name === 'Hope') || shades.find((s) => s.cat === 'blush') || shades[0];
@@ -124,10 +147,15 @@
     if (!src) { el.innerHTML = '<div class="empty">Pick a shade to see its dupes.</div>'; return; }
 
     const opts = {
-      community, weights: state.weights, cheaperOnly: state.cheaperOnly,
+      community, votes: votesFor, weights: state.weights, cheaperOnly: state.cheaperOnly,
       maxPrice: state.maxPrice || 0, origin: state.dupeOrigin, limit: 10, minScore: 50,
     };
     const all = S.findDupes(src, shades, opts);
+    // Best value: the lowest price per gram/ml among the strong matches.
+    // Only compare like with like: grams with grams, ml with ml (the original's unit when it has one).
+    const unit = (S.unitPrice(src) || {}).unit || 'g';
+    const strong = all.filter((d) => d.score >= 80).map((d) => ({ d, u: S.unitPrice(d.shade) })).filter((x) => x.u && x.u.unit === unit);
+    const bestValue = strong.length > 1 ? strong.sort((a, b) => a.u.value - b.u.value)[0].d.shade.id : null;
     const dupes = state.showAll ? all : all.slice(0, 4);
     const pill = (id, on, label) => `<button type="button" class="pill" id="${id}" aria-pressed="${on}">${label}</button>`;
 
@@ -152,7 +180,7 @@
         </select>` : ''}
       </div>
 
-      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i)).join('') : '<div class="empty">No close dupes with these filters. Try turning one off.</div>'}</div>
+      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i, bestValue)).join('') : '<div class="empty">No close dupes with these filters. Try turning one off.</div>'}</div>
       ${all.length > dupes.length ? `<button type="button" class="more" id="showAll">Show ${all.length - dupes.length} more</button>` : ''}
 
       <div class="extras">
@@ -170,13 +198,16 @@
       </div>`;
   }
 
-  function dupeCard(src, d, i) {
+  function dupeCard(src, d, i, bestValue) {
     const s = d.shade;
-    const v = S.verdict(d.score);
+    const v = S.verdict(d.score, d.deltaE);
+    const u = S.unitPrice(s);
+    const mine = myVotes[src.id + '|' + s.id];
+    const vc = d.votes || { up: 0, down: 0 };
     const notes = S.explain(src, s, d, state.skin).slice(0, 3);
     const diff = src.price && s.price ? src.price - s.price : 0;
     const pct = src.price && s.price ? Math.round((diff / src.price) * 100) : 0;
-    const bars = S.CRITERIA.filter(([k]) => k !== 'community').map(([k, label]) => {
+    const bars = S.CRITERIA.filter(([k]) => k !== 'community' && d.scores[k] != null).map(([k, label]) => {
       const val = Math.round(d.scores[k]);
       return `<div class="bar">${label}<span>${val}</span><div class="track"><div class="fill ${val >= 85 ? 'hi' : ''}" style="width:${val}%"></div></div></div>`;
     }).join('');
@@ -189,16 +220,21 @@
           <div>
             <h4>${esc(s.name)}</h4>
             <div class="by">${esc(s.brand)} · ${esc(s.line)}</div>
+            <p class="dir">${d.direction.map(esc).join(' · ')}</p>
           </div>
           <div class="pct"><b>${Math.round(d.score)}%</b><span class="v-${v.key}">${v.label}</span></div>
         </div>
-        <div class="price"><span class="now">${inr(s.price)}</span>${diff > 0 ? `<span class="save">save ${pct}%</span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}${s.origin === 'IN' ? '<span class="in">Indian brand</span>' : ''}</div>
+        <div class="price"><span class="now">${inr(s.price)}</span>${u ? `<span class="unit">${inr(u.value)}/${u.unit}</span>` : ''}${s.id === bestValue ? '<span class="value">Best value</span>' : ''}${diff > 0 ? `<span class="save">save ${pct}%</span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}${s.origin === 'IN' ? '<span class="in">Indian brand</span>' : ''}</div>
         <ul class="notes">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
         ${cite}
+        ${d.confidence.level === 'low' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
         <div class="foot">
           ${where[0] ? `<a class="buy1" href="${esc(where[0].url)}" target="_blank" rel="noopener">Buy on ${esc(where[0].store)}</a>` : ''}
           ${where.slice(1).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}</a>`).join('')}
-          <details class="why"><summary>Score breakdown</summary><div class="bars">${bars}</div></details>
+          ${votesOn ? `<span class="vote">Good match?
+            <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
+            <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></span>` : ''}
+          <details class="why"><summary>Score breakdown</summary><div class="bars">${bars}</div>${d.confidence.level === 'medium' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}</details>
         </div>
       </div>
     </article>`;
@@ -210,6 +246,7 @@
     if (!s) return;
     state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false;
     renderAll();
+    loadVotes(id);
     try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed */ }
     if (scroll) $('#match').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -257,7 +294,7 @@
     const src = byId.get(state.shadeId);
     const out = $('#stylistOut'), btn = $('#askStylist');
     if (!src || !btn) return;
-    const dupes = S.findDupes(src, shades, { community, weights: state.weights, cheaperOnly: state.cheaperOnly, maxPrice: state.maxPrice || 0, origin: state.dupeOrigin, limit: 6, minScore: 50 });
+    const dupes = S.findDupes(src, shades, { community, votes: votesFor, weights: state.weights, cheaperOnly: state.cheaperOnly, maxPrice: state.maxPrice || 0, origin: state.dupeOrigin, limit: 6, minScore: 50 });
     const pack = (s) => ({ brand: s.brand, line: s.line, shade: s.name, hex: s.hex, undertone: s.undertone, finish: s.finish, formula: s.formula, payoff: s.payoff, price_inr: s.price, origin: s.origin });
     btn.disabled = true; out.textContent = 'Thinking about your shade…';
     try {
@@ -266,7 +303,7 @@
         body: JSON.stringify({
           skin: state.skin || null,
           source: pack(src),
-          candidates: dupes.map((d) => Object.assign(pack(d.shade), { match: Math.round(d.score), deltaE: Number(d.deltaE.toFixed(1)), scores: Object.fromEntries(Object.entries(d.scores).map(([k, v]) => [k, Math.round(v)])) })),
+          candidates: dupes.map((d) => Object.assign(pack(d.shade), { match: Math.round(d.score), deltaE: Number(d.deltaE.toFixed(1)), compared: d.direction.join(', '), colour_confidence: d.confidence.level, scores: Object.fromEntries(Object.entries(d.scores).map(([k, v]) => [k, Math.round(v)])) })),
         }),
       });
       const data = await r.json().catch(() => ({}));
@@ -290,11 +327,13 @@
       finish: 'Matte, soft-matte, satin, dewy, glossy, shimmer or metallic, scored by sheen and sparkle so matte to satin is a small step and matte to metallic is a big one.',
       payoff: 'Pigmentation (or coverage for foundation): how much colour one swipe gives.',
       formula: 'Bullet, crayon, liquid, cream, stick, powder or baked. Similar textures score closer.',
-      community: 'A bonus when dupe sites or Indian beauty editors already pair the two. It never lowers a score.',
+      ingredients: 'When both products list ingredients, how much of the formula they share, with early ingredients counting more because labels list them by amount (the way Skinsort and Skinskool compare formulas).',
+      community: 'A bonus when dupe sites or beauty editors already pair the two, or when shoppers here mark the dupe as a good match. Mostly "no" votes pull a dupe down.',
     };
     $('#crit').innerHTML = S.CRITERIA.map(([k, label]) => `<dt>${label}</dt><dd>${C[k]}</dd>`).join('');
     const nP = CAT.products.filter((p) => p.source === 'purplle').length;
     $('#fine').innerHTML = `
+      <p><b>Labels.</b> A <b>Dupe</b> scores 88% or more and is within ΔE 2.5 in colour, close enough that most people can't tell them apart. <b>Very similar</b> is 80% and up, <b>Similar</b> 70% and up. Each card also says how the dupe differs: darker or lighter, warmer or cooler, more muted, more shimmer, sheerer.</p>
       <p><b>Where the data comes from.</b> ${nP ? `${nP} ranges, with their shade swatch colours, prices and ratings, come from Purplle's public catalog${CAT.sources.purplle ? ` (fetched ${esc(CAT.sources.purplle)})` : ''}.` : ''} Prestige and international ranges that Purplle doesn't stock (MAC, Charlotte Tilbury, NARS, Rare Beauty, Fenty Beauty, Huda Beauty, Estée Lauder and others) are compiled by hand from brand and reviewer swatches, with approximate Indian prices. Nykaa, Tira and Myntra don't allow automated catalog reads, so swmatch links to their search for each shade instead.</p>
       <p><b>Screens lie a little.</b> Swatch colours on a phone are close, not exact. Check a shade in natural light or on your inner wrist before you buy, and treat prices as a guide: sales on Nykaa and Purplle change them weekly.</p>`;
     $('#foot').textContent = `${shades.length} shades · ${CAT.products.length} ranges · catalog built ${CAT.builtAt || ''}`;
@@ -312,6 +351,7 @@
     if (t.id === 'clearMax') { state.maxPrice = 0; renderMatch(); return; }
     if (t.id === 'showAll') { state.showAll = true; renderMatch(); return; }
     if (t.id === 'askStylist') { askStylist(); return; }
+    if (t.dataset.vote) { castVote(state.shadeId, t.dataset.dupe, Number(t.dataset.vote)); return; }
     if (t.id === 'resetW') { state.weights = {}; renderMatch(); $('#tune').open = true; }
   });
   document.addEventListener('input', (e) => {

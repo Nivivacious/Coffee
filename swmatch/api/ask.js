@@ -16,6 +16,7 @@ Write a short verdict in plain English for an Indian shopper:
 - Say honestly how each pick differs (deeper, warmer, less pigmented, matte instead of dewy) and one practical tip to close the gap.
 - If the shopper gave their skin tone (fair, light, wheatish, dusky, deep), say how the shade will read on it.
 - If nothing is a close match (best under about 80), say so plainly instead of overselling.
+- If a candidate's colour data confidence is low, tell them to check that swatch in person.
 Use only the products you were given. Don't invent shades, prices or claims. No markdown headings; at most 130 words.`;
 
 const clip = (v, n) => String(v == null ? '' : v).slice(0, n);
@@ -44,7 +45,7 @@ module.exports = async (req, res) => {
     `Shade they love: ${describe(src)}.`,
     skin ? `Their skin tone: ${skin}.` : 'They did not give a skin tone.',
     'Candidates from the engine, best first:',
-    ...cands.map((c, i) => `${i + 1}. ${describe(c)}; match ${Number(c.match) || 0}%, ΔE ${Number(c.deltaE) || 0}; scores ${JSON.stringify(c.scores || {})}`),
+    ...cands.map((c, i) => `${i + 1}. ${describe(c)}; match ${Number(c.match) || 0}%, ΔE ${Number(c.deltaE) || 0}; compared to the original: ${clip(c.compared, 120) || 'n/a'}; colour data confidence ${clip(c.colour_confidence, 8) || 'n/a'}; scores ${JSON.stringify(c.scores || {})}`),
   ].join('\n');
 
   try {

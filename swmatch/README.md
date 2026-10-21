@@ -19,7 +19,18 @@ Every candidate in the same category gets eight scores, 0–100, blended with pe
 | Finish | Matte → soft-matte → satin → dewy → glossy, plus shimmer and metallic, placed on sheen and sparkle axes. |
 | Payoff | Pigmentation, or coverage for foundation. |
 | Formula | Bullet, crayon, liquid, cream, stick, powder, baked. |
-| Community | A bonus when dupe sites or Indian beauty editors already pair the two. It never lowers a score. |
+| Ingredients | When both products have an INCI list: weighted overlap, with early (higher-concentration) ingredients counting more and fillers less. Skipped when either list is missing. |
+| Community | A bonus when dupe sites or beauty editors already pair the two, or when shoppers confirm the match. Mostly "no" votes pull it down. |
+
+### What we borrowed from other dupe sites
+
+| Site | How it matches | In swmatch |
+|---|---|---|
+| Temptalia | Swatched shades judged on depth, undertone and shimmer; true dupes listed apart from "similar"; side-by-side swatches; readers report wrong dupes | Dupe / Very similar / Similar tiers (a Dupe also needs ΔE < 2.5), "Darker · Warmer · More shimmer" labels, side-by-side swatch, "No" votes |
+| Skinsort, Skinskool | Ingredient similarity plus attributes and benefits, aimed at cheaper alternatives | Ingredient overlap criterion, price per gram or ml with a "Best value" pick |
+| Findation | Crowd data on which shades people actually wear across brands | "Good match?" votes (`api/vote.js`): 3+ votes, mostly yes, earn the community bonus |
+| Sephora Color IQ | Depth, undertone and saturation, not just depth and undertone | Depth, undertone and intensity are separate criteria |
+| BeautyIQ, Sofie | Colour distance plus formula and texture, with a low-confidence flag | Formula and finish criteria; a warning when a colour was read from a product photo |
 
 A colour miss of ΔE > 14 caps the score at 60, so packaging and finish can't rescue the wrong shade.
 Each card also gets plain-language notes ("a touch deeper, finish is matte instead of dewy; tap a
@@ -57,5 +68,6 @@ npm test                                   # engine tests
 python3 -m http.server                     # then open http://localhost:8000
 ```
 
-Deploy the `swmatch/` folder to Vercel as its own project (root directory `swmatch`) and set
-`ANTHROPIC_API_KEY`. The site is static apart from `api/ask.js`.
+Deploy the `swmatch/` folder to Vercel as its own project (root directory `swmatch`), set
+`ANTHROPIC_API_KEY` for the stylist, and add the Upstash Redis integration for votes. The site is
+static apart from `api/ask.js` and `api/vote.js`; without those the page still works and hides them.

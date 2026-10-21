@@ -168,20 +168,42 @@
 
   // Default weights per category. Users can retune these in the page.
   const WEIGHTS = {
-    lipstick: { colour: 34, undertone: 14, depth: 10, intensity: 8, finish: 12, payoff: 8, formula: 9, community: 5 },
-    blush: { colour: 30, undertone: 14, depth: 10, intensity: 10, finish: 14, payoff: 10, formula: 7, community: 5 },
-    foundation: { colour: 18, undertone: 24, depth: 24, intensity: 4, finish: 10, payoff: 10, formula: 5, community: 5 },
-    highlighter: { colour: 24, undertone: 14, depth: 10, intensity: 6, finish: 24, payoff: 12, formula: 5, community: 5 },
+    lipstick: { colour: 34, undertone: 14, depth: 10, intensity: 8, finish: 12, payoff: 8, formula: 9, ingredients: 8, community: 5 },
+    blush: { colour: 30, undertone: 14, depth: 10, intensity: 10, finish: 14, payoff: 10, formula: 7, ingredients: 8, community: 5 },
+    foundation: { colour: 18, undertone: 24, depth: 24, intensity: 4, finish: 10, payoff: 10, formula: 5, ingredients: 8, community: 5 },
+    highlighter: { colour: 24, undertone: 14, depth: 10, intensity: 6, finish: 24, payoff: 12, formula: 5, ingredients: 8, community: 5 },
   };
 
   const CRITERIA = [
     ['colour', 'Colour'], ['undertone', 'Undertone'], ['depth', 'Depth'], ['intensity', 'Intensity'],
-    ['finish', 'Finish'], ['payoff', 'Payoff'], ['formula', 'Formula'], ['community', 'Community'],
+    ['finish', 'Finish'], ['payoff', 'Payoff'], ['formula', 'Formula'], ['ingredients', 'Ingredients'], ['community', 'Community'],
   ];
 
   // How much a shade's colour data can be trusted. Retailer hex codes and
   // curated swatches score full; colours read off a product photo are noisier.
   const TRUST = { retailer: 1, curated: 1, image: 0.85 };
+
+  // Ingredient overlap, for when both products have an INCI list. Lists are
+  // ordered by amount, so early ingredients weigh more; filler like water
+  // and common preservatives count for little.
+  const FILLER = /^(aqua|water|eau|glycerin|butylene glycol|propylene glycol|phenoxyethanol|ethylhexylglycerin|tocopherol|silica|mica|talc|parfum|fragrance|ci \d+|iron oxides?|titanium dioxide)$/;
+  const normIng = (x) => String(x).toLowerCase().replace(/\(.*?\)/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/^aqua$|^eau$/, 'water');
+  function ingredientSimilarity(a, b) {
+    if (!Array.isArray(a) || !Array.isArray(b) || !a.length || !b.length) return null;
+    const weigh = (list) => {
+      const m = new Map();
+      list.map(normIng).filter(Boolean).forEach((x, i) => { if (!m.has(x)) m.set(x, (FILLER.test(x) ? 0.25 : 1) / Math.sqrt(i + 1)); });
+      return m;
+    };
+    const A = weigh(a), B = weigh(b);
+    // Weighted Jaccard: shared weight over total weight across both lists.
+    let min = 0, max = 0;
+    for (const k of new Set([...A.keys(), ...B.keys()])) {
+      const x = A.get(k) || 0, y = B.get(k) || 0;
+      min += Math.min(x, y); max += Math.max(x, y);
+    }
+    return max ? clamp((min / max) * 100) : null;
+  }
 
   function prepare(shade) {
     if (!shade._lab) shade._lab = lab(shade.hex);
@@ -207,29 +229,75 @@
       formula: formulaScore(src.formula, cand.formula),
       community: 0,
     };
+    const ing = ingredientSimilarity(src.ingredients, cand.ingredients);
+    if (ing != null) s.ingredients = ing;
     const cited = o.community && o.community(src, cand);
-    if (cited) s.community = 100;
+    // People confirming a match (Findation-style): needs a few votes, mostly yes.
+    const v = o.votes && o.votes(src, cand);
+    const confirmed = v && v.up >= 3 && v.up / (v.up + v.down) >= 0.7;
+    if (cited || confirmed) s.community = 100;
 
     const w = Object.assign({}, WEIGHTS[src.cat] || WEIGHTS.lipstick, o.weights || {});
     // Community is a bonus, never a penalty: it only counts when present.
     let total = 0, sum = 0;
     for (const [k] of CRITERIA) {
-      if (k === 'community') continue;
+      if (k === 'community' || s[k] == null) continue;
       total += s[k] * (w[k] || 0); sum += (w[k] || 0);
     }
     let score = sum ? total / sum : 0;
-    if (cited) score = Math.min(100, score + (w.community || 0) * 0.6);
+    if (cited || confirmed) score = Math.min(100, score + (w.community || 0) * 0.6);
+    // People saying it doesn't match pulls it down, like a reported dupe on Temptalia.
+    if (v && v.down >= 3 && v.down / (v.up + v.down) >= 0.7) score -= 6;
     // A big colour miss can't be rescued by matching packaging and finish.
     if (dE > 14) score = Math.min(score, 60);
 
-    return { score: Math.round(score * 10) / 10, scores: s, deltaE: dE, dL, dC, dh, cited: cited || null };
+    return {
+      score: Math.round(score * 10) / 10, scores: s, deltaE: dE, dL, dC, dh,
+      cited: cited || null, votes: v || null,
+      direction: direction(src, cand, dE, dL, dC, dh), confidence: confidence(src, cand),
+    };
   }
 
-  function verdict(score) {
-    if (score >= 90) return { key: 'twin', label: 'Twin' };
-    if (score >= 82) return { key: 'close', label: 'Close dupe' };
-    if (score >= 72) return { key: 'near', label: 'Near match' };
+  // Temptalia separates true dupes from "similar" shades. A dupe has to be
+  // close in colour as well as score well overall.
+  function verdict(score, dE) {
+    if (score >= 88 && (dE == null || dE < 2.5)) return { key: 'twin', label: 'Dupe' };
+    if (score >= 80) return { key: 'close', label: 'Very similar' };
+    if (score >= 70) return { key: 'near', label: 'Similar' };
     return { key: 'vibe', label: 'Same family' };
+  }
+
+  // Short comparison words, the way swatch sites label a dupe: "Darker, warmer".
+  function direction(src, cand, dE, dL, dC, dh) {
+    if (dE < 1.5) return ['Identical'];
+    const out = [];
+    if (Math.abs(dL) >= 2) out.push(dL > 0 ? 'Lighter' : 'Darker');
+    if (Math.abs(dh) >= 3) out.push(src.cat === 'foundation' ? (dh > 0 ? 'More golden' : 'Pinker') : (dh > 0 ? 'Warmer' : 'Cooler'));
+    if (Math.abs(dC) >= 4) out.push(dC > 0 ? 'Brighter' : 'More muted');
+    const sp = (f) => (FINISH[f] || FINISH.satin)[1], sh = (f) => (FINISH[f] || FINISH.satin)[0];
+    if (sp(cand.finish) - sp(src.finish) >= 0.5) out.push('More shimmer');
+    else if (sp(src.finish) - sp(cand.finish) >= 0.5) out.push('Less shimmer');
+    else if (sh(cand.finish) - sh(src.finish) >= 1.5) out.push('Glossier');
+    else if (sh(src.finish) - sh(cand.finish) >= 1.5) out.push('More matte');
+    if ((cand.payoff || 3) - (src.payoff || 3) >= 1) out.push('More pigmented');
+    if ((src.payoff || 3) - (cand.payoff || 3) >= 1) out.push('Sheerer');
+    return out.length ? out : ['Near identical'];
+  }
+
+  // How much to trust the colour comparison (BeautyIQ-style low-confidence flag).
+  function confidence(src, cand) {
+    const rank = { retailer: 2, curated: 1, image: 0 };
+    const r = Math.min(rank[src.hexSource] ?? 1, rank[cand.hexSource] ?? 1);
+    if (r === 2) return { level: 'high', note: '' };
+    if (r === 1) return { level: 'medium', note: 'One swatch is a compiled estimate; check it in person.' };
+    return { level: 'low', note: 'Colour read from a product photo; check the swatch before buying.' };
+  }
+
+  // Price per gram or ml, so different sizes compare fairly (Skinsort shows value too).
+  function unitPrice(s) {
+    const m = String(s.size || '').match(/([0-9]+(?:\.[0-9]+)?)\s*(g|gm|ml)\b/i);
+    if (!s.price || !m || !Number(m[1])) return null;
+    return { value: s.price / Number(m[1]), unit: /ml/i.test(m[2]) ? 'ml' : 'g' };
   }
 
   // Plain-language notes about how a dupe differs, written the way a friend
@@ -242,12 +310,6 @@
     else if (dE < 8) notes.push(`Same family, visibly different up close (ΔE ${dE.toFixed(1)}).`);
     else notes.push(`A different shade in the same direction (ΔE ${dE.toFixed(1)}).`);
 
-    const tone = [];
-    if (Math.abs(r.dL) >= 2.5) tone.push(r.dL > 0 ? 'lighter' : 'deeper');
-    if (Math.abs(r.dh) >= 4 && src.cat !== 'foundation') tone.push(r.dh > 0 ? 'warmer' : 'cooler');
-    if (Math.abs(r.dh) >= 3 && src.cat === 'foundation') tone.push(r.dh > 0 ? 'more golden' : 'pinker');
-    if (Math.abs(r.dC) >= 5) tone.push(r.dC > 0 ? 'brighter' : 'more muted');
-    if (tone.length) notes.push(`A touch ${tone.join(', ')}.`);
 
     if (src.undertone !== cand.undertone) notes.push(`Undertone shifts from ${src.undertone} to ${cand.undertone}.`);
     if (src.finish !== cand.finish) {
@@ -270,7 +332,6 @@
       if (sk && Lc - sk > 2 && (src.cat === 'lipstick')) notes.push('On your skin tone this can read a little pale; a liner one shade deeper helps.');
       if (sk && src.cat === 'blush' && Lc > sk + 6 && sk < 60) notes.push('Light shades can look chalky on deeper skin; apply sheer and blend out.');
     }
-    if (r.cited) notes.push(`Also paired by ${r.cited.source}.`);
     return notes;
   }
 
@@ -376,7 +437,8 @@
 
   const api = {
     hexToRgb, rgbToLab, lab, chroma, hue, deltaE2000, inferUndertone, depthLabel, colourFamily,
-    compare, findDupes, explain, verdict, parseQuery, search, findNamedShade, WEIGHTS, CRITERIA, FINISH,
+    compare, findDupes, explain, verdict, direction, confidence, unitPrice, ingredientSimilarity,
+    parseQuery, search, findNamedShade, WEIGHTS, CRITERIA, FINISH,
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Swmatch = api;
