@@ -44,6 +44,31 @@ it, the page falls back to the engine's own notes.
 Plain-language search ("warm nude matte lipstick under ₹800", "MAC Ruby Woo dupe under ₹600") runs
 in the browser.
 
+## Skincare
+
+Serums, moisturisers and sunscreens are matched on formula, the way Skinsort and Skinskool do it:
+the actives the product is sold on and their strength (a different peptide, ferment, retinoid, acid
+or ceramide gets half credit), what the formula does (hydrating, barrier, soothing, exfoliating,
+read from the ingredient list), ingredient overlap weighted to the top of the list (past about the
+15th ingredient most things are under 1%), UV filters and SPF/PA for sunscreen, texture, and
+fragrance or alcohol. Formula matches score lower than colour matches, so skincare uses its own
+labels: Dupe 85%+, Very similar 72%+, Similar 60%+. Ingredient lists come from INCIDecoder
+(`scripts/fetch_skincare.py`); the product list and prices live in `data/skincare.json`.
+
+## Tested against published dupes
+
+`data/benchmarks.json` lists dupe pairs from Skinsort, Beautymone, Elle India, HuffPost,
+Skinsignal and others. `node scripts/benchmark.js` (and `npm test`) checks that swmatch finds each one
+on its own, with the community bonus off: it has to rank in the top 10% of its category (or the pair's
+own bar for small categories) and be labelled at least Similar. 11 of 12 pass. The miss, Ruby Woo to
+Lakmé Red Coat, is a data problem: Purplle's colour chip for Red Coat is much brighter than the
+bullet. The hue matches and it still scores Similar.
+
+Comparing the shades that appear in both sources showed retailer chips and swatch photos disagree
+on lightness by 10-20 L\* and on chroma by about 20%, in different directions per brand, while hue
+holds within a few degrees. So for lipstick, blush and highlighter the colour score leans on hue
+(CIEDE2000 with kL = 2, kC = 1.5); foundation keeps strict depth matching.
+
 ## Data
 
 - **Purplle** (`scripts/fetch_purplle.py`): lipstick, blush, foundation and bronzer/highlighter ranges,

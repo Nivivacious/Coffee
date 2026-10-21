@@ -219,8 +219,10 @@ for (const c of curated.community) {
 }
 
 products.sort((a, b) => a.cat.localeCompare(b.cat) || a.brand.localeCompare(b.brand) || a.line.localeCompare(b.line));
+const bench = read('data/benchmarks.json') || { pairs: [] };
 const out = {
   builtAt: new Date().toISOString().slice(0, 10),
+  benchmarks: bench.pairs,
   sources: { purplle: raw.fetchedAt || null, curated: curated.note },
   products, community,
 };

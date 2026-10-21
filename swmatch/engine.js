@@ -574,6 +574,9 @@
     blush: /\b(blush|blusher|cheek)\b/,
     foundation: /\b(foundation|base|complexion)\b/,
     highlighter: /\b(highlight|highlighter|illuminator|glow powder|strobe)\b/,
+    serum: /\b(serum|essence|ampoule|exfoliant|booster)\b/,
+    moisturiser: /\b(moisturi[sz]er|moisturi[sz]ing|cream|gel cream|hydrator)\b/,
+    sunscreen: /\b(sunscreen|sunblock|spf|sun gel|sun cream)\b/,
   };
   const FINISH_WORDS = { matte: /\bmatte\b/, dewy: /\bdewy\b/, satin: /\bsatin\b/, shimmer: /\bshimmer|sparkl/, metallic: /\bmetallic|chrome|foil/, glossy: /\bgloss/ };
   const SKIN_WORDS = { fair: /\bfair\b/, light: /\blight skin|light\b/, wheatish: /\bwheatish|medium\b/, dusky: /\bdusky|tan|brown skin\b/, deep: /\bdeep|dark\b/ };
@@ -613,7 +616,19 @@
       if (CAT_WORDS[s.cat] && CAT_WORDS[s.cat].test(' ' + t + ' ')) score += 5;
       if (score > bestScore) { bestScore = score; best = s; }
     }
-    return bestScore >= 8 ? best : null;
+    if (bestScore >= 8) return best;
+    // Token match for long names ("the ordinary niacinamide").
+    const qt = new Set(t.match(/[a-z0-9]+/g) || []);
+    for (const s of pool) {
+      const bt = (s.brand.toLowerCase().match(/[a-z0-9]+/g) || []);
+      if (!bt.every((w) => qt.has(w))) continue;
+      const nt = (s.name.toLowerCase().match(/[a-z]{3,}/g) || []);
+      if (!nt.length) continue;
+      const hit = nt.filter((w) => qt.has(w)).length;
+      const sc = hit / nt.length + hit * 0.05;
+      if (hit && sc > bestScore) { bestScore = sc; best = s; }
+    }
+    return best && bestScore >= 0.2 ? best : null;
   }
 
   function search(q, pool, limit) {
@@ -625,7 +640,14 @@
       if (p.maxPrice && s.price && s.price > p.maxPrice) continue;
       if (p.origin && s.origin !== p.origin) continue;
       let score = 50;
-      if (target) score = clamp(100 - deltaE2000(target, prepare(s)) * 3.5);
+      if (target && s.hex) score = clamp(100 - deltaE2000(target, prepare(s)) * 3.5);
+      else if (target) continue;
+      if (!s.hex) {
+        // Skincare: score on words shared with the product name and actives.
+        const words = String(q).toLowerCase().match(/[a-z]{3,}/g) || [];
+        const hay = (s.brand + ' ' + s.name + ' ' + Object.keys(s.actives || {}).join(' ')).toLowerCase();
+        score = 40 + words.filter((w) => hay.includes(w)).length * 15;
+      }
       if (p.finish) score += s.finish === p.finish ? 15 : -10;
       if (p.undertone) score += s.undertone === p.undertone ? 12 : -6;
       if (p.skin && s.cat === 'foundation') score += depthLabel(s.hex).toLowerCase().startsWith(p.skin.slice(0, 4)) ? 20 : -10;
