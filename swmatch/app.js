@@ -551,10 +551,11 @@
   function renderMap() {
     const sec = $('#explore');
     if (!sec) return;
-    const src = byId.get(state.shadeId);
-    const cat = src ? src.cat : state.cat;
-    if (isSkin(cat)) { sec.hidden = true; return; }
-    sec.hidden = false;
+    const sel = byId.get(state.shadeId);
+    const cat = state.mapCat;
+    const src = sel && sel.cat === cat ? sel : null;
+    $('#mapCats').innerHTML = ALL_CATS.filter((c) => !isSkin(c.key)).map((c) => `<button type="button" data-mapcat="${c.key}" aria-pressed="${c.key === cat}">${c.label}</button>`).join('');
+    renderMapSide(src, cat);
     $('#mapTitle').textContent = `Every ${ALL_CATS.find((c) => c.key === cat).label.toLowerCase()} shade, by colour`;
     const cv = $('#map');
     const w = cv.clientWidth, h = cv.clientHeight, dpr = Math.min(2, devicePixelRatio || 1);
@@ -566,10 +567,13 @@
     const pool = shades.filter((s) => s.cat === cat && s.hex);
     const labs = pool.map((s) => S.lab(s.hex));
     const hues = labs.map((l) => { let x = S.hue(l); return x > 300 ? x - 360 : x; });
-    const hMin = Math.min(...hues), hMax = Math.max(...hues);
-    const Ls = labs.map((l) => l[0]), lMin = Math.min(...Ls), lMax = Math.max(...Ls);
+    // Scale to the 2nd-98th percentile so a few odd shades don't squash the rest; outliers sit on the edge.
+    const pct = (arr, q) => { const v = [...arr].sort((x, y) => x - y); return v[Math.floor(q * (v.length - 1))]; };
+    const hMin = pct(hues, 0.02), hMax = pct(hues, 0.98);
+    const Ls = labs.map((l) => l[0]), lMin = pct(Ls, 0.02), lMax = pct(Ls, 0.98);
     const pad = 18;
-    mapPts = pool.map((s, i) => ({ s, x: pad + ((hues[i] - hMin) / (hMax - hMin || 1)) * (w - pad * 2), y: pad + (1 - (Ls[i] - lMin) / (lMax - lMin || 1)) * (h - pad * 2) }));
+    const fit = (v, lo, hi) => Math.max(0, Math.min(1, (v - lo) / (hi - lo || 1)));
+    mapPts = pool.map((s, i) => ({ s, x: pad + fit(hues[i], hMin, hMax) * (w - pad * 2), y: pad + (1 - fit(Ls[i], lMin, lMax)) * (h - pad * 2) }));
     const dupeIds = src ? new Set(S.findDupes(src, shades, dupeOpts({ limit: 5 })).map((d) => d.shade.id)) : new Set();
     const me = src && mapPts.find((p) => p.s.id === src.id);
     for (const p of mapPts) {
@@ -585,6 +589,19 @@
       g.beginPath(); g.arc(me.x, me.y, 10, 0, 7); g.lineWidth = 3; g.strokeStyle = '#F8F3A6'; g.stroke();
       g.beginPath(); g.arc(me.x, me.y, 13, 0, 7); g.lineWidth = 1.5; g.strokeStyle = '#2B1519'; g.stroke();
     }
+  }
+  function renderMapSide(src, cat) {
+    const side = $('#mapSide');
+    if (!src) {
+      side.innerHTML = `<h3>Your shade</h3><p class="cite" style="margin:0">Click a dot with a bigger ring (international brands) to see its closest dupes here.</p>`;
+      return;
+    }
+    const top = S.findDupes(src, shades, dupeOpts({ limit: 5 }));
+    side.innerHTML = `<h3>Your shade</h3>
+      <div class="me"><i style="background:${esc(src.hex)}"></i><div><b>${esc(src.name)}</b><span>${esc(src.brand)} · ${inr(src.price)}</span></div></div>
+      <h3>Closest dupes</h3>
+      ${top.map((d) => `<button type="button" class="mrow" data-goto="${esc(src.id)}">${pic(d.shade)}<div style="min-width:0"><b>${esc(d.shade.name)}</b><span>${esc(d.shade.brand)} · ${inr(d.shade.price)}</span></div><em>${Math.round(d.score)}%</em></button>`).join('') || '<p class="cite">Nothing close.</p>'}
+      <button type="button" class="go" data-goto="${esc(src.id)}">See all dupes</button>`;
   }
   function nearest(e) {
     const cv = $('#map'); const r = cv.getBoundingClientRect();
@@ -605,7 +622,7 @@
   document.addEventListener('click', (e) => {
     if (!e.target.closest || !e.target.closest('#map')) return;
     const p = nearest(e);
-    if (p && p.s.origin !== 'IN') selectShade(p.s.id, true);
+    if (p && p.s.origin !== 'IN') selectShade(p.s.id, false);
   });
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(renderMap, 150); });
 
@@ -615,6 +632,7 @@
     if (!s) return;
     state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false;
     state.kind = isSkin(s.cat) ? 'skin' : 'makeup';
+    if (!isSkin(s.cat)) state.mapCat = s.cat;
     renderAll();
     loadVotes(id);
     try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed */ }
@@ -691,10 +709,25 @@
   document.addEventListener('focusin', (e) => { if (e.target.classList && e.target.classList.contains('dot')) showPeek(e.target); else peek.hidden = true; });
   window.addEventListener('scroll', () => { peek.hidden = true; }, { passive: true });
 
+  // ---- tabs ----
+  state.mapCat = 'blush';
+  function setView(v) {
+    state.view = v;
+    document.body.dataset.view = v;
+    document.querySelectorAll('[data-pane]').forEach((p) => { p.hidden = p.dataset.pane !== v; });
+    document.querySelectorAll('.tabs [data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
+    if (v === 'map') renderMap();
+    window.scrollTo(0, 0);
+  }
+
   // ---- events ----
   document.addEventListener('click', (e) => {
     const t = e.target.closest('button, a');
     if (!t) return;
+    if (t.dataset.view) { setView(t.dataset.view); return; }
+    if (t.dataset.mapcat) { state.mapCat = t.dataset.mapcat; renderMap(); return; }
+    if (t.dataset.goto) { setView('find'); selectShade(t.dataset.goto, true); return; }
+    if (t.classList.contains('bpair')) { setView('find'); selectShade(t.dataset.shade, true); return; }
     if (t.dataset.slide) { slide = Number(t.dataset.slide); stopAuto(); renderCompare(); return; }
     if (t.dataset.kind) { const d = defaultFor(CATS[t.dataset.kind][0].key); if (d) selectShade(d.id, false); return; }
     if (t.dataset.cat) { const cur = byId.get(state.shadeId); const pick = cur && cur.cat === t.dataset.cat ? cur : defaultFor(t.dataset.cat); if (pick) selectShade(pick.id, true); return; }
@@ -727,6 +760,7 @@
   renderCompare(); startAuto();
   renderTicker();
   renderProof();
+  setView('find');
   const fromHash = byId.get(decodeURIComponent((location.hash || '').slice(1)));
   const start = fromHash && fromHash.origin !== 'IN' ? fromHash : defaultFor('blush');
   if (start) selectShade(start.id, false); else renderAll();
