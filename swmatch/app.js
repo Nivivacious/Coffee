@@ -52,7 +52,7 @@
     set(k, v) { try { localStorage.setItem('swmatch:' + k, JSON.stringify(v)); } catch (e) { /* storage blocked */ } },
   };
   const state = {
-    cat: 'blush', origin: 'all', brand: null, brandFilter: '',
+    cat: 'blush', brand: null, showAll: false,
     shadeId: null, cheaperOnly: false, maxPrice: 0, dupeOrigin: 'all', skin: store.get('skin', ''),
     weights: {},
   };
@@ -70,28 +70,24 @@
 
   function brandsFor(cat) {
     const m = new Map();
-    for (const p of CAT.products) {
-      if (p.cat !== cat) continue;
-      if (state.origin !== 'all' && p.origin !== state.origin) continue;
-      const e = m.get(p.brand) || { brand: p.brand, origin: p.origin, n: 0 };
-      e.n += p.shades.length; m.set(p.brand, e);
-    }
-    return [...m.values()].sort((a, b) => a.brand.localeCompare(b.brand));
+    for (const p of CAT.products) if (p.cat === cat && !m.has(p.brand)) m.set(p.brand, p.origin);
+    return [...m.entries()].map(([brand, origin]) => ({ brand, origin })).sort((a, b) => a.brand.localeCompare(b.brand));
   }
 
   function renderBrands() {
-    const f = state.brandFilter.trim().toLowerCase();
-    const list = brandsFor(state.cat).filter((b) => !f || b.brand.toLowerCase().includes(f));
+    const list = brandsFor(state.cat);
     if (state.brand && !list.some((b) => b.brand === state.brand)) state.brand = null;
-    $('#brands').innerHTML = list.length
-      ? list.map((b) => `<button type="button" class="chip" data-brand="${esc(b.brand)}" aria-pressed="${state.brand === b.brand}">${esc(b.brand)}${b.origin === 'IN' ? '<span class="flag">IN</span>' : ''}</button>`).join('')
-      : '<span class="eyebrow">No brands match that filter.</span>';
+    const opt = (b) => `<option value="${esc(b.brand)}" ${state.brand === b.brand ? 'selected' : ''}>${esc(b.brand)}</option>`;
+    const IN = list.filter((b) => b.origin === 'IN'), INTL = list.filter((b) => b.origin !== 'IN');
+    $('#brand').innerHTML = `<option value="">Choose a brand</option>`
+      + (IN.length ? `<optgroup label="Indian brands">${IN.map(opt).join('')}</optgroup>` : '')
+      + (INTL.length ? `<optgroup label="International brands">${INTL.map(opt).join('')}</optgroup>` : '');
   }
 
   function renderLines() {
     const el = $('#lines');
     if (!state.brand) {
-      el.innerHTML = '<div class="empty">Pick a brand to see its shades, or use the search above.</div>';
+      el.innerHTML = '';
       return;
     }
     const ps = CAT.products.filter((p) => p.cat === state.cat && p.brand === state.brand);
@@ -99,8 +95,7 @@
       const price = p.shades.map((s) => s.price).filter(Boolean);
       const lo = Math.min(...price), hi = Math.max(...price);
       const priceTxt = price.length ? (lo === hi ? inr(lo) : `${inr(lo)}–${inr(hi)}`) : '';
-      return `<div class="line"><h4>${esc(p.line)}</h4>
-        <div class="meta">${esc(p.finish)} · ${esc(p.formula)}${priceTxt ? ' · ' + priceTxt : ''}${p.size ? ' · ' + esc(p.size) : ''}</div>
+      return `<div class="line"><h4>${esc(p.line)} <span>${priceTxt}</span></h4>
         <div class="dots">${p.shades.map((s) => `<button type="button" class="dot" data-shade="${esc(s.id)}" title="${esc(s.name)}" aria-label="${esc(s.name)}" aria-pressed="${state.shadeId === s.id}" style="background:${esc(s.hex)}"></button>`).join('')}</div>
       </div>`;
     }).join('');
@@ -114,17 +109,9 @@
   function payoffWord(s) { return (s.cat === 'foundation' ? COVER_WORD : PAYOFF_WORD)[s.payoff] || 'Medium'; }
 
   function facts(s) {
-    const fam = S.colourFamily(s.hex, s.cat);
-    const parts = [
-      `<span class="fact"><b>${esc(s.undertone)}</b> undertone</span>`,
-      s.cat === 'foundation' ? `<span class="fact"><b>${esc(S.depthLabel(s.hex))}</b> depth</span>` : `<span class="fact"><b>${esc(fam)}</b></span>`,
-      `<span class="fact"><b>${esc(s.finish)}</b> finish</span>`,
-      `<span class="fact"><b>${esc(payoffWord(s))}</b> ${s.cat === 'foundation' ? 'coverage' : 'payoff'}</span>`,
-      `<span class="fact">${esc(s.formula)}</span>`,
-      `<span class="fact"><b>${inr(s.price)}</b>${s.size ? ' / ' + esc(s.size) : ''}</span>`,
-      `<span class="fact hex">${esc(s.hex)}</span>`,
-    ];
-    return parts.join('');
+    const bits = [`${s.undertone} undertone`, s.cat === 'foundation' ? S.depthLabel(s.hex).toLowerCase() + ' depth' : null, s.finish, s.formula,
+      `${payoffWord(s).toLowerCase()} ${s.cat === 'foundation' ? 'coverage' : 'payoff'}`].filter(Boolean);
+    return esc(bits.join(' · '));
   }
 
   function buyLinks(s) {
@@ -134,110 +121,86 @@
   function renderMatch() {
     const el = $('#match');
     const src = byId.get(state.shadeId);
-    if (!src) { el.innerHTML = '<div class="empty">Pick a shade from the library to see its dupes.</div>'; return; }
+    if (!src) { el.innerHTML = '<div class="empty">Pick a shade to see its dupes.</div>'; return; }
 
     const opts = {
       community, weights: state.weights, cheaperOnly: state.cheaperOnly,
       maxPrice: state.maxPrice || 0, origin: state.dupeOrigin, limit: 10, minScore: 50,
     };
-    const dupes = S.findDupes(src, shades, opts);
-    const maxSeen = Math.max(500, ...shades.filter((s) => s.cat === src.cat).map((s) => s.price || 0));
-    const sourceNote = src.source === 'purplle'
-      ? `Swatch colour ${src.hexSource === 'image' ? 'read from' : 'from'} Purplle's listing.`
-      : 'Swatch colour compiled from brand and reviewer swatches.';
+    const all = S.findDupes(src, shades, opts);
+    const dupes = state.showAll ? all : all.slice(0, 4);
+    const pill = (id, on, label) => `<button type="button" class="pill" id="${id}" aria-pressed="${on}">${label}</button>`;
 
     el.innerHTML = `
       <div class="hero">
         ${swatchHtml(src)}
         <div>
-          <div class="eyebrow">${esc(CATS.find((c) => c.key === src.cat).label)} · ${src.origin === 'IN' ? 'Indian brand' : 'International brand'}</div>
-          <h2>${esc(src.name)}</h2>
           <div class="who">${esc(src.brand)} · ${esc(src.line)}</div>
-          <div class="facts">${facts(src)}</div>
-          <div class="buy">${buyLinks(src)}</div>
+          <h2>${esc(src.name)}</h2>
+          <p class="facts">${facts(src)}</p>
+          <p class="cost">${inr(src.price)}${src.size ? ` <span>${esc(src.size)}</span>` : ''}</p>
         </div>
       </div>
 
-      <div class="controls">
-        <label class="toggle"><input type="checkbox" id="cheaper" ${state.cheaperOnly ? 'checked' : ''}> Only cheaper than ${inr(src.price)}</label>
-        <div class="field grow">
-          <label for="maxPrice">Max price: <span class="mono" id="maxPriceOut">${state.maxPrice ? inr(state.maxPrice) : 'any'}</span></label>
-          <input type="range" id="maxPrice" min="0" max="${Math.ceil(maxSeen / 100) * 100}" step="100" value="${state.maxPrice || 0}">
-        </div>
-        <div class="field">
-          <label for="dupeOrigin">Dupe brands</label>
-          <select id="dupeOrigin">
-            <option value="all" ${state.dupeOrigin === 'all' ? 'selected' : ''}>Indian + international</option>
-            <option value="IN" ${state.dupeOrigin === 'IN' ? 'selected' : ''}>Indian only</option>
-            <option value="INTL" ${state.dupeOrigin === 'INTL' ? 'selected' : ''}>International only</option>
-          </select>
-        </div>
-        ${src.cat !== 'foundation' ? `<div class="field">
-          <label for="skin">Your skin</label>
-          <select id="skin">
-            <option value="">Not set</option>
-            ${['fair', 'light', 'wheatish', 'dusky', 'deep'].map((k) => `<option value="${k}" ${state.skin === k ? 'selected' : ''}>${k[0].toUpperCase() + k.slice(1)}</option>`).join('')}
-          </select>
-        </div>` : ''}
+      <div class="filters">
+        ${pill('cheaper', state.cheaperOnly, `Cheaper than ${inr(src.price)}`)}
+        ${pill('indianOnly', state.dupeOrigin === 'IN', 'Indian brands only')}
+        ${state.maxPrice ? pill('clearMax', true, `Under ${inr(state.maxPrice)} ×`) : ''}
+        ${src.cat !== 'foundation' ? `<select id="skin" aria-label="Your skin tone">
+          <option value="">Your skin tone</option>
+          ${['fair', 'light', 'wheatish', 'dusky', 'deep'].map((k) => `<option value="${k}" ${state.skin === k ? 'selected' : ''}>${k[0].toUpperCase() + k.slice(1)} skin</option>`).join('')}
+        </select>` : ''}
       </div>
 
-      <div class="summary">
-        <h3>${dupes.length ? `${dupes.length} dupe${dupes.length > 1 ? 's' : ''} for ${esc(src.name)}` : 'No dupes with these filters'}</h3>
-        <p>${esc(sourceNote)}</p>
-      </div>
+      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i)).join('') : '<div class="empty">No close dupes with these filters. Try turning one off.</div>'}</div>
+      ${all.length > dupes.length ? `<button type="button" class="more" id="showAll">Show ${all.length - dupes.length} more</button>` : ''}
 
-      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i)).join('') : '<div class="empty">Nothing scores 50% or more with these filters. Loosen the price limit or include international brands.</div>'}</div>
-
-      <div class="stylist" id="stylist">
-        <div class="row">
-          <h3>Ask the AI stylist about these matches</h3>
-          <button type="button" id="askStylist" ${dupes.length ? '' : 'disabled'}>Get a verdict</button>
+      <div class="extras">
+        <div class="stylist">
+          <button type="button" id="askStylist" ${all.length ? '' : 'disabled'}>Ask the AI stylist</button>
+          <div class="out" id="stylistOut"></div>
         </div>
-        <div class="out" id="stylistOut"></div>
-      </div>
-
-      <details class="tune" id="tune">
-        <summary>Tune the matching engine</summary>
-        <div class="weights">${S.CRITERIA.map(([k, label]) => {
-          const w = (state.weights[k] ?? S.WEIGHTS[src.cat][k]);
-          return `<div class="field"><label for="w-${k}">${label} <span class="mono">${w}</span></label><input type="range" id="w-${k}" data-w="${k}" min="0" max="40" value="${w}"></div>`;
-        }).join('')}<button type="button" id="resetW">Reset to ${esc(CATS.find((c) => c.key === src.cat).label.toLowerCase())} defaults</button></div>
-      </details>`;
+        <details class="tune" id="tune">
+          <summary>Adjust what matters</summary>
+          <div class="weights">${S.CRITERIA.map(([k, label]) => {
+            const w = (state.weights[k] ?? S.WEIGHTS[src.cat][k]);
+            return `<div class="field"><label for="w-${k}">${label} <span class="mono">${w}</span></label><input type="range" id="w-${k}" data-w="${k}" min="0" max="40" value="${w}"></div>`;
+          }).join('')}<button type="button" id="resetW">Reset</button></div>
+        </details>
+      </div>`;
   }
 
   function dupeCard(src, d, i) {
     const s = d.shade;
     const v = S.verdict(d.score);
-    const notes = S.explain(src, s, d, state.skin);
+    const notes = S.explain(src, s, d, state.skin).slice(0, 3);
     const diff = src.price && s.price ? src.price - s.price : 0;
     const pct = src.price && s.price ? Math.round((diff / src.price) * 100) : 0;
     const bars = S.CRITERIA.filter(([k]) => k !== 'community').map(([k, label]) => {
       const val = Math.round(d.scores[k]);
       return `<div class="bar">${label}<span>${val}</span><div class="track"><div class="fill ${val >= 85 ? 'hi' : ''}" style="width:${val}%"></div></div></div>`;
     }).join('');
-    const cite = d.cited ? (d.cited.url ? `<a class="tag cite" href="${esc(d.cited.url)}" target="_blank" rel="noopener">Cited: ${esc(d.cited.source)}</a>` : `<span class="tag cite">Cited: ${esc(d.cited.source)}</span>`) : '';
+    const where = s.where || [];
+    const cite = d.cited ? `<p class="cite">Also paired by ${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source)}.</p>` : '';
     return `<article class="dupe ${i === 0 && d.score >= 82 ? 'top' : ''}">
-      <div>
-        <div class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></div>
-        <div class="split-cap"><span>Yours</span><span>Dupe</span></div>
-      </div>
-      <div style="min-width:0">
-        <h4>${esc(s.name)}</h4>
-        <div class="by">${esc(s.brand)} · ${esc(s.line)}</div>
-        <div class="tags">
-          <span class="tag v-${v.key}">${v.label}</span>
-          ${s.origin === 'IN' ? '<span class="tag in">Indian brand</span>' : ''}
-          <span class="tag">${esc(s.undertone)}</span><span class="tag">${esc(s.finish)}</span><span class="tag">${esc(s.formula)}</span>
-          ${s.rating ? `<span class="tag">★ ${Number(s.rating).toFixed(1)} (${s.ratingCount})</span>` : ''}
-          ${cite}
+      <div class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></div>
+      <div class="body">
+        <div class="head">
+          <div>
+            <h4>${esc(s.name)}</h4>
+            <div class="by">${esc(s.brand)} · ${esc(s.line)}</div>
+          </div>
+          <div class="pct"><b>${Math.round(d.score)}%</b><span class="v-${v.key}">${v.label}</span></div>
         </div>
-        <div class="price"><span class="now">${inr(s.price)}</span>${s.size ? `<span class="by">${esc(s.size)}</span>` : ''}
-          ${diff > 0 ? `<span class="save">Save ${inr(diff)} (${pct}%)</span>` : diff < 0 ? `<span class="more">${inr(-diff)} more</span>` : ''}</div>
-        <div class="bars">${bars}</div>
+        <div class="price"><span class="now">${inr(s.price)}</span>${diff > 0 ? `<span class="save">save ${pct}%</span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}${s.origin === 'IN' ? '<span class="in">Indian brand</span>' : ''}</div>
         <ul class="notes">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
-        <div class="buy">${buyLinks(s)}</div>
+        ${cite}
+        <div class="foot">
+          ${where[0] ? `<a class="buy1" href="${esc(where[0].url)}" target="_blank" rel="noopener">Buy on ${esc(where[0].store)}</a>` : ''}
+          ${where.slice(1).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}</a>`).join('')}
+          <details class="why"><summary>Score breakdown</summary><div class="bars">${bars}</div></details>
+        </div>
       </div>
-      <div class="score"><div class="ring" style="--p:${d.score}"><b>${Math.round(d.score)}</b></div><small>% match</small></div>
     </article>`;
   }
 
@@ -245,8 +208,7 @@
   function selectShade(id, scroll) {
     const s = byId.get(id);
     if (!s) return;
-    state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {};
-    if (state.origin !== 'all' && s.origin !== state.origin) state.origin = 'all';
+    state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false;
     renderAll();
     try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed */ }
     if (scroll) $('#match').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -254,18 +216,14 @@
 
   function renderAll() {
     renderTabs();
-    document.querySelectorAll('#originSeg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === state.origin)));
     renderBrands(); renderLines(); renderMatch();
   }
 
   // ---- plain-language search ----
   const EXAMPLES = [
-    'dupe for Rare Beauty Hope',
-    'MAC Ruby Woo dupe under ₹600',
-    'warm nude matte lipstick under ₹800',
-    'foundation for dusky skin with warm undertone',
-    'peachy blush from an Indian brand',
-    'champagne highlighter',
+    'MAC Ruby Woo under ₹600',
+    'warm nude matte lipstick',
+    'foundation for dusky skin',
   ];
   function renderExamples() {
     $('#examples').innerHTML = EXAMPLES.map((e) => `<button type="button" data-q="${esc(e)}">${esc(e)}</button>`).join('');
@@ -334,11 +292,9 @@
       formula: 'Bullet, crayon, liquid, cream, stick, powder or baked. Similar textures score closer.',
       community: 'A bonus when dupe sites or Indian beauty editors already pair the two. It never lowers a score.',
     };
-    const w = S.WEIGHTS;
-    $('#crit').innerHTML = S.CRITERIA.map(([k, label]) => `<div><h3>${label}<span>L ${w.lipstick[k]} · B ${w.blush[k]} · F ${w.foundation[k]} · H ${w.highlighter[k]}</span></h3><p>${C[k]}</p></div>`).join('');
+    $('#crit').innerHTML = S.CRITERIA.map(([k, label]) => `<dt>${label}</dt><dd>${C[k]}</dd>`).join('');
     const nP = CAT.products.filter((p) => p.source === 'purplle').length;
     $('#fine').innerHTML = `
-      <p>Numbers on each card are the default weights per category (L lipstick, B blush, F foundation, H highlighter). Change them under "Tune the matching engine" on any match card.</p>
       <p><b>Where the data comes from.</b> ${nP ? `${nP} ranges, with their shade swatch colours, prices and ratings, come from Purplle's public catalog${CAT.sources.purplle ? ` (fetched ${esc(CAT.sources.purplle)})` : ''}.` : ''} Prestige and international ranges that Purplle doesn't stock (MAC, Charlotte Tilbury, NARS, Rare Beauty, Fenty Beauty, Huda Beauty, Estée Lauder and others) are compiled by hand from brand and reviewer swatches, with approximate Indian prices. Nykaa, Tira and Myntra don't allow automated catalog reads, so swmatch links to their search for each shade instead.</p>
       <p><b>Screens lie a little.</b> Swatch colours on a phone are close, not exact. Check a shade in natural light or on your inner wrist before you buy, and treat prices as a guide: sales on Nykaa and Purplle change them weekly.</p>`;
     $('#foot').textContent = `${shades.length} shades · ${CAT.products.length} ranges · catalog built ${CAT.builtAt || ''}`;
@@ -349,24 +305,22 @@
     const t = e.target.closest('button, a');
     if (!t) return;
     if (t.dataset.cat) { state.cat = t.dataset.cat; state.brand = null; renderAll(); return; }
-    if (t.dataset.brand) { state.brand = state.brand === t.dataset.brand ? null : t.dataset.brand; renderBrands(); renderLines(); return; }
     if (t.dataset.shade) { selectShade(t.dataset.shade, t.classList.contains('mini') || window.innerWidth < 960); return; }
     if (t.dataset.q) { $('#askInput').value = t.dataset.q; runAsk(t.dataset.q); return; }
-    if (t.closest('#originSeg') && t.dataset.v) { state.origin = t.dataset.v; renderAll(); return; }
+    if (t.id === 'cheaper') { state.cheaperOnly = !state.cheaperOnly; renderMatch(); return; }
+    if (t.id === 'indianOnly') { state.dupeOrigin = state.dupeOrigin === 'IN' ? 'all' : 'IN'; renderMatch(); return; }
+    if (t.id === 'clearMax') { state.maxPrice = 0; renderMatch(); return; }
+    if (t.id === 'showAll') { state.showAll = true; renderMatch(); return; }
     if (t.id === 'askStylist') { askStylist(); return; }
     if (t.id === 'resetW') { state.weights = {}; renderMatch(); $('#tune').open = true; }
   });
   document.addEventListener('input', (e) => {
     const t = e.target;
-    if (t.id === 'brandFilter') { state.brandFilter = t.value; renderBrands(); }
-    if (t.id === 'maxPrice') { $('#maxPriceOut').textContent = Number(t.value) ? inr(Number(t.value)) : 'any'; }
     if (t.dataset && t.dataset.w) { t.previousElementSibling.querySelector('span').textContent = t.value; }
   });
   document.addEventListener('change', (e) => {
     const t = e.target;
-    if (t.id === 'cheaper') { state.cheaperOnly = t.checked; renderMatch(); }
-    if (t.id === 'maxPrice') { state.maxPrice = Number(t.value); renderMatch(); }
-    if (t.id === 'dupeOrigin') { state.dupeOrigin = t.value; renderMatch(); }
+    if (t.id === 'brand') { state.brand = t.value || null; renderLines(); }
     if (t.id === 'skin') { state.skin = t.value; store.set('skin', t.value); renderMatch(); }
     if (t.dataset && t.dataset.w) { state.weights[t.dataset.w] = Number(t.value); renderMatch(); $('#tune').open = true; }
   });
