@@ -323,12 +323,13 @@
     </div>`;
   }
 
+  let current = null;
   function renderMatch() {
     const el = $('#match');
     const src = byId.get(state.shadeId);
     if (!src) { el.innerHTML = '<div class="empty">Pick something you love to see its dupes.</div>'; return; }
     const all = S.findDupes(src, shades, dupeOpts());
-    const dupes = state.showAll ? all : all.slice(0, 6);
+    const dupes = state.showAll ? all : all.slice(0, 5);
     const unit = (S.unitPrice(src) || {}).unit || 'g';
     const strong = all.filter((d) => S.verdict(d.score, d.deltaE, src.cat).key !== 'vibe').map((d) => ({ d, u: S.unitPrice(d.shade) })).filter((x) => x.u && x.u.unit === unit);
     const bestValue = strong.length > 1 ? strong.sort((a, b) => a.u.value - b.u.value)[0].d.shade.id : null;
@@ -336,17 +337,10 @@
     const crit = isSkin(src.cat) ? S.SKIN_CRITERIA : S.CRITERIA;
     const wts = isSkin(src.cat) ? S.SKIN_WEIGHTS[src.cat] : S.WEIGHTS[src.cat];
 
-    el.style.setProperty('--wash', src.hex ? tint(src.hex, 0.86) : 'var(--sunk)');
+    const pickIdx = Math.min(state.pick || 0, Math.max(0, all.length - 1));
+    current = { src, all, bestValue };
     el.innerHTML = `
-      <div class="mhero">
-        ${src.image || isSkin(src.cat) || !src.hex ? pic(src, 'mart', 480) : `<div class="pic mart swatchonly" style="--skin:${(SKINS.find((t) => t[0] === state.tone) || SKINS[2])[2]}">${swatchImg(src, 'sw')}</div>`}
-        <div>
-          <div class="who">${esc(src.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(src.line)}</div>
-          <h2>${esc(src.name)}</h2>
-          <div class="facts">${factsHtml(src)}</div>
-          <p class="cost">${inr(src.price)}${src.size ? ` <span>${esc(src.size)}</span>` : ''}</p>
-        </div>
-      </div>
+      ${all.length ? faceoff(src, all[pickIdx], pickIdx, bestValue) : `<div class="fo-empty">${pic(src, 'mart', 480)}<div><div class="who">${esc(src.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(src.line)}</div><h2>${esc(src.name)}</h2><p class="cite">Nothing close yet. Drop a filter below.</p></div></div>`}
       <div class="filters">
         ${pill('cheaper', state.cheaperOnly, `Under ${inr(src.price)}`)}
         ${pill('indianOnly', state.dupeOrigin === 'IN', 'Indian brands')}
@@ -356,8 +350,8 @@
           ${['fair', 'light', 'wheatish', 'dusky', 'deep'].map((k) => `<option value="${k}" ${state.skin === k ? 'selected' : ''}>${k[0].toUpperCase() + k.slice(1)} skin</option>`).join('')}
         </select>` : ''}
       </div>
-      <div class="dupes-head"><h3>${all.length ? `Its ${all.length > 1 ? 'closest dupes' : 'closest dupe'}` : 'No close dupes'}</h3><span>${all.length ? `${all.length} found · best first` : ''}</span></div>
-      <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i, bestValue)).join('') : '<div class="empty">Nothing close. Drop a filter.</div>'}</div>
+      ${all.length > 1 ? `<div class="dupes-head"><h3>More <em>dupes</em></h3><span>${all.length} found · tap one to compare</span></div>
+      <div class="dupes">${dupes.map((d, i) => dupeCard(src, d, i, bestValue, i === pickIdx)).join('')}</div>` : ''}
       ${all.length > dupes.length ? `<button type="button" class="more" id="showAll">Show ${all.length - dupes.length} more</button>` : ''}
       ${onSkin(src, all)}
       <div class="extras">
@@ -372,67 +366,78 @@
     animateIn(el);
   }
 
-  // Small tags that slide in over the photo: the facts that decided the match.
-  function callouts(src, s, d) {
-    const tags = isSkin(src.cat)
-      ? [d.skin && d.skin.sharedCount ? `${d.skin.sharedCount} shared ingredient${d.skin.sharedCount === 1 ? '' : 's'}` : null, s.texture, s.spf ? `SPF ${s.spf}` : null]
-      : [d.deltaE != null ? `ΔE ${d.deltaE.toFixed(1)}` : null, s.undertone ? `${s.undertone} undertone` : null, s.finish];
-    const list = tags.filter(Boolean).slice(0, 3);
-    return list.length ? `<ul class="callouts" aria-hidden="true">${list.map((t, i) => `<li style="--i:${i}">${esc(t)}</li>`).join('')}</ul>` : '';
+  const VERDICT = { twin: 'A true dupe', close: 'Very close', near: 'Similar', vibe: 'Same family' };
+  // Four equal store buttons: Purplle opens the product page when we have it.
+  const storesHtml = (s) => `<div class="stores" role="group" aria-label="Buy ${esc(s.brand + ' ' + s.name)}">${storesFor(s).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}<span aria-hidden="true">↗</span></a>`).join('')}</div>`;
+  // The engine's criteria as a radar: each spoke is one score, 0 at the centre, 100 at the rim.
+  function radar(src, d) {
+    const crit = (isSkin(src.cat) ? S.SKIN_CRITERIA : S.CRITERIA).filter(([k]) => k !== 'community' && d.scores[k] != null);
+    const n = crit.length, R = 78, cx = 120, cy = 112;
+    if (n < 3) return '';
+    const pt = (i, r) => { const a = -Math.PI / 2 + (i / n) * Math.PI * 2; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+    const ring = (f) => crit.map((_, i) => pt(i, R * f).map((v) => v.toFixed(1)).join(',')).join(' ');
+    const poly = crit.map(([k], i) => pt(i, R * Math.max(0.04, d.scores[k] / 100)).map((v) => v.toFixed(1)).join(',')).join(' ');
+    const labels = crit.map(([k, label], i) => {
+      const [x, y] = pt(i, R + 18);
+      const anchor = Math.abs(x - cx) < 8 ? 'middle' : x > cx ? 'start' : 'end';
+      return `<text x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="${anchor}">${esc(label)} <tspan>${Math.round(d.scores[k])}</tspan></text>`;
+    }).join('');
+    return `<svg class="radar" viewBox="-44 -4 328 232" role="img" aria-label="Scores: ${crit.map(([k, l]) => `${l} ${Math.round(d.scores[k])}`).join(', ')}">
+      ${[0.25, 0.5, 0.75, 1].map((f) => `<polygon class="rg" points="${ring(f)}"/>`).join('')}
+      ${crit.map((_, i) => { const [x, y] = pt(i, R); return `<line class="rs" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; }).join('')}
+      <polygon class="rp" points="${poly}"/>${labels}</svg>`;
+  }
+  function faceoff(src, d, idx, bestValue) {
+    const s = d.shade;
+    const v = S.verdict(d.score, d.deltaE, src.cat);
+    const diff = src.price && s.price ? src.price - s.price : 0;
+    const pct = src.price && s.price ? Math.round((diff / src.price) * 100) : 0;
+    const notes = S.explain(src, s, d, state.skin).slice(0, 3);
+    const side = (x, role) => `<figure class="fo-side ${role}" style="--wash:${x.hex ? tint(x.hex, 0.8) : 'var(--sunk)'}">
+        <div class="fo-photo">${x.image ? `<img src="${esc(photo(x, 480))}" alt="${esc(x.brand + ' ' + x.name)}" data-fallback>` : isSkin(x.cat) || !x.hex ? art(x.cat, x) : swatchImg(x, 'sw')}${x.hex ? `<span class="fo-dot" style="background:${esc(x.hex)}" aria-hidden="true"></span>` : ''}</div>
+        <figcaption><span class="fo-role">${role === 'a' ? 'The original' : idx === 0 ? 'Best dupe' : `Dupe no. ${idx + 1}`}</span>
+          <span class="fo-by">${esc(x.brand)}${isSkin(x.cat) ? '' : ' · ' + esc(x.line)}</span>
+          <b class="fo-name">${esc(x.name)}</b>
+          <span class="fo-price">${inr(x.price)}${x.size ? ` <small>${esc(x.size)}</small>` : ''}</span>
+          ${role === 'a' ? `<span class="facts">${factsHtml(x)}</span>` : `${diff > 0 ? `<span class="fo-save">You save ${inr(diff)} · ${pct}%</span>` : diff < 0 ? `<span class="fo-more">${inr(-diff)} more</span>` : ''}${storesHtml(x)}`}
+        </figcaption></figure>`;
+    return `<section class="faceoff rise" id="faceoff" aria-label="${esc(src.name)} compared with ${esc(s.name)}">
+      ${side(src, 'a')}
+      <div class="fo-mid">
+        <div class="fo-score">${ring(d.score, v.label, 'big')}<em>${VERDICT[v.key] || v.label}</em></div>
+        ${radar(src, d)}
+        ${d.deltaE != null ? `<div class="sbar" aria-label="Colour gap ΔE ${d.deltaE.toFixed(1)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i><span>ΔE ${d.deltaE.toFixed(1)} · ${d.deltaE < 2 ? 'hard to tell apart' : d.deltaE < 5 ? 'close side by side' : 'visible difference'}</span></div>` : `<div class="sbar skin"><span>${d.skin.sharedCount} key ingredient${d.skin.sharedCount === 1 ? '' : 's'} in common</span></div>`}
+        <ul class="fo-notes">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
+        ${d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this pair too.</p>` : ''}
+        ${d.confidence.level !== 'high' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
+      </div>
+      ${side(s, 'b')}
+    </section>`;
   }
 
   // The engine's verdict as a ring: the score fills it and counts up when it scrolls in.
   const ring = (score, label, cls) => `<div class="ring ${cls || ''}" style="--p:${Math.round(score)}" role="img" aria-label="${Math.round(score)}% match, ${esc(label)}"><b data-count="${Math.round(score)}">${Math.round(score)}</b><i>%</i></div>`;
 
-  function dupeCard(src, d, i, bestValue) {
+  function dupeCard(src, d, i, bestValue, picked) {
     const s = d.shade;
     const v = S.verdict(d.score, d.deltaE, src.cat);
-    const u = S.unitPrice(s);
-    const mine = myVotes[src.id + '|' + s.id];
-    const vc = d.votes || { up: 0, down: 0 };
-    const notes = S.explain(src, s, d, state.skin).slice(0, 3);
     const diff = src.price && s.price ? src.price - s.price : 0;
     const pct = src.price && s.price ? Math.round((diff / src.price) * 100) : 0;
-    const crit = isSkin(src.cat) ? S.SKIN_CRITERIA : S.CRITERIA;
-    const wts = Object.assign({}, isSkin(src.cat) ? S.SKIN_WEIGHTS[src.cat] : S.WEIGHTS[src.cat], state.weights);
-    const used = crit.filter(([k]) => k !== 'community' && d.scores[k] != null);
-    const wsum = used.reduce((t, [k]) => t + (wts[k] || 0), 0) || 1;
-    const bars = used.map(([k, label]) => {
-      const val = Math.round(d.scores[k]);
-      const share = Math.round(((wts[k] || 0) / wsum) * 100);
-      return `<div class="bar"><span class="bl">${label}<small>${share}% of score</small></span><span class="bv mono">${val}</span><div class="track"><div class="fill ${val >= 85 ? 'hi' : val < 60 ? 'lo' : ''}" style="--w:${val}%"></div></div></div>`;
-    }).join('');
-    const stores = storesFor(s);
-    const cite = d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this too.</p>` : '';
-    const visual = isSkin(src.cat) || !src.hex || !s.hex
-      ? pic(s, 'thumb', 480)
-      : `${s.image ? pic(s, 'thumb', 480) : `<div class="pic thumb swatchonly">${swatchImg(s, 'sw')}</div>`}<span class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></span>`;
-    const gap = d.deltaE != null ? `Colour gap ΔE ${d.deltaE.toFixed(1)}${d.deltaE < 2 ? ', hard to tell apart' : d.deltaE < 5 ? ', close side by side' : ''}` : `${d.skin.sharedCount} ingredients in common`;
-    const chips = d.direction.map((x) => `<span class="chip">${esc(x)}</span>`).join('') + (s.origin === 'IN' ? '<span class="chip in">Indian brand</span>' : '') + (s.id === bestValue ? '<span class="chip value">Best value</span>' : '');
-    const top = i === 0 && (v.key === 'twin' || v.key === 'close');
-    return `<article class="dupe ${top ? 'top' : ''}">
-      <div class="dvis">${visual}${top ? '<span class="badge-top">Best match</span>' : ''}${callouts(src, s, d)}<div class="score">${ring(d.score, v.label)}<span>${v.label}</span></div></div>
-      <div class="dmain">
-        <div class="by">${esc(s.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(s.line)}</div>
-        <h3>${esc(s.name)}</h3>
-        ${chips ? `<div class="chips">${chips}</div>` : ''}
-        <div class="price"><span class="now">${inr(s.price)}</span>${u ? `<span class="unit mono">${inr(u.value)}/${u.unit}</span>` : ''}${diff > 0 ? `<span class="save">Save ${inr(diff)} <b>${pct}%</b></span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}</div>
-        <ul class="notes">${notes.slice(0, 1).map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
-        ${cite}
-        <div class="foot">
-          <a class="buy1" href="${esc(stores[0].url)}" target="_blank" rel="noopener">Buy on ${esc(stores[0].store)}</a>
-          <span class="also">${stores.slice(1).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}</a>`).join('')}</span>
-        </div>
-        <details class="why"><summary>Why ${Math.round(d.score)}%</summary>
-          ${notes.length > 1 ? `<ul class="notes">${notes.slice(1).map((n) => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}
-          <div class="bars">${bars}</div>
-          <p class="cite">${esc(gap)}${s.inciUrl ? ` · <a href="${esc(s.inciUrl)}" target="_blank" rel="noopener">Ingredient list</a>` : ''}</p>
-          ${d.confidence.level !== 'high' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
-          ${votesOn ? `<div class="vote">Good match?
-            <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
-            <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></div>` : ''}
-        </details>
-      </div>
+    const mine = myVotes[src.id + '|' + s.id];
+    const vc = d.votes || { up: 0, down: 0 };
+    return `<article class="dupe ${picked ? 'picked' : ''}" style="--wash:${s.hex ? tint(s.hex, 0.84) : 'var(--sunk)'}">
+      <button type="button" class="dpick" data-pick="${i}" aria-pressed="${picked}" aria-label="Compare ${esc(s.brand + ' ' + s.name)} with ${esc(src.name)}">
+        <span class="dphoto">${s.image ? `<img src="${esc(photo(s, 480))}" alt="" loading="lazy" data-fallback>` : isSkin(s.cat) || !s.hex ? art(s.cat, s) : swatchImg(s, 'sw')}${s.hex ? `<i class="ddot" style="background:${esc(s.hex)}"></i>` : ''}</span>
+        <span class="dmeta">
+          <span class="dby">${esc(s.brand)}</span>
+          <b class="dname">${esc(s.name)}</b>
+          <span class="dline">${inr(s.price)}${diff > 0 ? ` <em>−${pct}%</em>` : ''}${s.id === bestValue ? ' <small>Best value</small>' : ''}${s.origin === 'IN' ? ' <small>Indian</small>' : ''}</span>
+        </span>
+        <span class="dscore"><b>${Math.round(d.score)}</b><i>%</i><small>${esc(v.label)}</small></span>
+      </button>
+      ${votesOn ? `<div class="vote">Good match?
+        <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
+        <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></div>` : ''}
     </article>`;
   }
 
@@ -764,7 +769,7 @@
   function selectShade(id, scroll) {
     const s = byId.get(id);
     if (!s) return;
-    state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false;
+    state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false; state.pick = 0;
     state.kind = isSkin(s.cat) ? 'skin' : 'makeup';
     if (!isSkin(s.cat)) state.mapCat = s.cat;
     if (document.startViewTransition && !reduced && state.started) document.startViewTransition(renderAll);
@@ -903,6 +908,12 @@
     const t = e.target.closest('button, a');
     if (!t) return;
     if (t.dataset.view) { setView(t.dataset.view); return; }
+    if (t.dataset.pick) {
+      state.pick = Number(t.dataset.pick);
+      const go = () => { renderMatch(); $('#faceoff').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }); };
+      if (document.startViewTransition && !reduced) document.startViewTransition(go); else go();
+      return;
+    }
     if (t.dataset.family) { state.family = t.dataset.family === 'All' ? null : t.dataset.family; renderLines(); return; }
     if (t.dataset.mapcat) { state.mapCat = t.dataset.mapcat; renderMap(); return; }
     if (t.dataset.goto) { setView('find'); selectShade(t.dataset.goto, true); return; }
@@ -913,8 +924,8 @@
     if (t.dataset.shade) { selectShade(t.dataset.shade, t.classList.contains('mini') || t.classList.contains('cmp-card') || t.classList.contains('rcard') || window.innerWidth < 960); return; }
     if (t.dataset.q) { $('#askInput').value = t.dataset.q; runAsk(t.dataset.q); return; }
     if (t.dataset.tone) { state.tone = t.dataset.tone; store.set('tone', state.tone); renderMatch(); renderCompare(); return; }
-    if (t.id === 'cheaper') { state.cheaperOnly = !state.cheaperOnly; renderMatch(); return; }
-    if (t.id === 'indianOnly') { state.dupeOrigin = state.dupeOrigin === 'IN' ? 'all' : 'IN'; renderMatch(); return; }
+    if (t.id === 'cheaper') { state.cheaperOnly = !state.cheaperOnly; state.pick = 0; renderMatch(); return; }
+    if (t.id === 'indianOnly') { state.dupeOrigin = state.dupeOrigin === 'IN' ? 'all' : 'IN'; state.pick = 0; renderMatch(); return; }
     if (t.id === 'clearMax') { state.maxPrice = 0; renderMatch(); return; }
     if (t.id === 'showAll') { state.showAll = true; renderMatch(); return; }
     if (t.id === 'askStylist') { askStylist(); return; }
