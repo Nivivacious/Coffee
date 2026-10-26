@@ -57,6 +57,12 @@ function download(url, file) {
     const keep = pickImages(cat);
     fs.mkdirSync(path.join(imgDir, 'img'), { recursive: true });
     fs.mkdirSync(path.join(imgDir, 'assets/tex'), { recursive: true });
+    // Product-level photos (ranges Purplle doesn't sell) are always kept.
+    for (const p of cat.products) {
+      if (!p.image) continue;
+      const rel = `img/p-${p.id}.jpg`, file = path.join(imgDir, rel);
+      if (fs.existsSync(file) || download(p.image, file)) { p.image = rel; files[rel] = file; } else p.image = null;
+    }
     for (const p of cat.products) for (const s of p.shades) {
       if (!s.image) continue;
       if (!keep.has(s.id)) { s.image = null; continue; }

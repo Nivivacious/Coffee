@@ -213,6 +213,13 @@ for (const c of curated.community) {
   else console.warn('community pair not found:', c.a.join(' / '), '<>', c.b.join(' / '));
 }
 
+// Ranges Purplle doesn't sell get one product photo from INCIDecoder
+// (scripts/fetch_product_photos.py); shades without their own photo use it.
+const productPhotos = read('data/product-photos.json') || {};
+for (const p of products) {
+  const ph = productPhotos[p.id];
+  if (ph && ph.image && !p.shades.some((s) => s.image)) p.image = ph.image;
+}
 products.sort((a, b) => a.cat.localeCompare(b.cat) || a.brand.localeCompare(b.brand) || a.line.localeCompare(b.line));
 const bench = read('data/benchmarks.json') || { pairs: [] };
 const out = {

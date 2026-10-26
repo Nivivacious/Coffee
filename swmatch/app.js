@@ -50,6 +50,7 @@
       const row = Object.assign({}, s, {
         productId: p.id, brand: p.brand, line: p.line, cat: p.cat, origin: p.origin, source: p.source,
         formula: p.formula, finish: s.finish || p.finish, payoff: s.payoff || p.payoff, size: s.size || p.size,
+        image: s.image || p.image || null,
       });
       shades.push(row);
       byId.set(row.id, row);
@@ -327,7 +328,7 @@
     const src = byId.get(state.shadeId);
     if (!src) { el.innerHTML = '<div class="empty">Pick something you love to see its dupes.</div>'; return; }
     const all = S.findDupes(src, shades, dupeOpts());
-    const dupes = state.showAll ? all : all.slice(0, 4);
+    const dupes = state.showAll ? all : all.slice(0, 6);
     const unit = (S.unitPrice(src) || {}).unit || 'g';
     const strong = all.filter((d) => S.verdict(d.score, d.deltaE, src.cat).key !== 'vibe').map((d) => ({ d, u: S.unitPrice(d.shade) })).filter((x) => x.u && x.u.unit === unit);
     const bestValue = strong.length > 1 ? strong.sort((a, b) => a.u.value - b.u.value)[0].d.shade.id : null;
@@ -354,9 +355,10 @@
           ${['fair', 'light', 'wheatish', 'dusky', 'deep'].map((k) => `<option value="${k}" ${state.skin === k ? 'selected' : ''}>${k[0].toUpperCase() + k.slice(1)} skin</option>`).join('')}
         </select>` : ''}
       </div>
-      ${onSkin(src, all)}
+      <div class="dupes-head"><h3>${all.length ? `Its ${all.length > 1 ? 'closest dupes' : 'closest dupe'}` : 'No close dupes'}</h3><span>${all.length ? `${all.length} found · best first` : ''}</span></div>
       <div class="dupes">${dupes.length ? dupes.map((d, i) => dupeCard(src, d, i, bestValue)).join('') : '<div class="empty">Nothing close. Drop a filter.</div>'}</div>
       ${all.length > dupes.length ? `<button type="button" class="more" id="showAll">Show ${all.length - dupes.length} more</button>` : ''}
+      ${onSkin(src, all)}
       <div class="extras">
         <div class="stylist"><button type="button" id="askStylist" ${all.length ? '' : 'disabled'}>Ask the stylist</button><div class="out" id="stylistOut"></div></div>
         <details class="tune" id="tune"><summary>Change what counts</summary>
@@ -392,34 +394,30 @@
     }).join('');
     const stores = storesFor(s);
     const cite = d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this too.</p>` : '';
-    const visual = isSkin(src.cat)
-      ? pic(s, 'thumb', 240)
-      : `${s.image ? pic(s, 'thumb', 240) : `<div class="pic thumb swatchonly">${swatchImg(s, 'sw')}</div>`}<span class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></span>`;
+    const visual = isSkin(src.cat) || !src.hex || !s.hex
+      ? pic(s, 'thumb', 480)
+      : `${s.image ? pic(s, 'thumb', 480) : `<div class="pic thumb swatchonly">${swatchImg(s, 'sw')}</div>`}<span class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></span>`;
     const gap = d.deltaE != null ? `Colour gap ΔE ${d.deltaE.toFixed(1)}${d.deltaE < 2 ? ', hard to tell apart' : d.deltaE < 5 ? ', close side by side' : ''}` : `${d.skin.sharedCount} ingredients in common`;
     const chips = d.direction.map((x) => `<span class="chip">${esc(x)}</span>`).join('') + (s.origin === 'IN' ? '<span class="chip in">Indian brand</span>' : '') + (s.id === bestValue ? '<span class="chip value">Best value</span>' : '');
-    return `<article class="dupe ${i === 0 && (v.key === 'twin' || v.key === 'close') ? 'top' : ''}">
-      <div class="dvis">${visual}</div>
+    const top = i === 0 && (v.key === 'twin' || v.key === 'close');
+    return `<article class="dupe ${top ? 'top' : ''}">
+      <div class="dvis">${visual}${top ? '<span class="badge-top">Best match</span>' : ''}<div class="score">${ring(d.score, v.label)}<span>${v.label}</span></div></div>
       <div class="dmain">
-        <div class="head">
-          <div style="min-width:0">
-            <h3>${esc(s.name)}</h3>
-            <div class="by">${esc(s.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(s.line)}</div>
-          </div>
-          <div class="score">${ring(d.score, v.label)}<span>${v.label}</span></div>
-        </div>
+        <div class="by">${esc(s.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(s.line)}</div>
+        <h3>${esc(s.name)}</h3>
         ${chips ? `<div class="chips">${chips}</div>` : ''}
         <div class="price"><span class="now">${inr(s.price)}</span>${u ? `<span class="unit mono">${inr(u.value)}/${u.unit}</span>` : ''}${diff > 0 ? `<span class="save">Save ${inr(diff)} <b>${pct}%</b></span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}</div>
-        <ul class="notes">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
+        <ul class="notes">${notes.slice(0, 1).map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
         ${cite}
-        ${d.confidence.level === 'low' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
         <div class="foot">
           <a class="buy1" href="${esc(stores[0].url)}" target="_blank" rel="noopener">Buy on ${esc(stores[0].store)}</a>
           <span class="also">${stores.slice(1).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}</a>`).join('')}</span>
         </div>
         <details class="why"><summary>Why ${Math.round(d.score)}%</summary>
+          ${notes.length > 1 ? `<ul class="notes">${notes.slice(1).map((n) => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}
           <div class="bars">${bars}</div>
           <p class="cite">${esc(gap)}${s.inciUrl ? ` · <a href="${esc(s.inciUrl)}" target="_blank" rel="noopener">Ingredient list</a>` : ''}</p>
-          ${d.confidence.level === 'medium' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
+          ${d.confidence.level !== 'high' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
           ${votesOn ? `<div class="vote">Good match?
             <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
             <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></div>` : ''}
@@ -429,16 +427,27 @@
   }
 
   // ---- hero compare slider ----
-  const FEATURED = [
-    ['lipstick', ['MAC', 'Ruby Woo']], ['lipstick', ['MAC', 'Candy Yum-Yum']], ['blush', ['Rare Beauty', 'Hope']], ['lipstick', ['MAC', 'Morange']], ['serum', ['The Ordinary', 'Niacinamide 10% + Zinc 1%']],
-    ['blush', ['NARS', 'Orgasm']], ['lipstick', ['Charlotte Tilbury', 'Pillow Talk']], ['moisturiser', ['Clinique', 'Moisture Surge 100H Auto-Replenishing Hydrator']],
-  ];
-  const pairs = FEATURED.map(([cat, key]) => {
-    const src = findShade(cat, key);
-    if (!src) return null;
-    const d = S.findDupes(src, shades, { community, cheaperOnly: true, limit: 1, minScore: 60 })[0];
-    return d ? { src, dupe: d.shade, score: d.score } : null;
-  }).filter(Boolean);
+  // Hero pairs: international originals and Indian dupes that both have a real
+  // product photo, strong matches with big savings, spread across categories and colours.
+  const pairs = (() => {
+    const out = [], want = { lipstick: 4, blush: 2, foundation: 2 };
+    const cands = sources.filter((s) => s.image && s.price >= 450 && want[s.cat])
+      .sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0));
+    for (const src of cands) {
+      if (!want[src.cat]) continue;
+      const fam = S.colourFamily(src.hex, src.cat);
+      if (out.some((p) => p.src.productId === src.productId || (p.src.cat === src.cat && S.colourFamily(p.src.hex, p.src.cat) === fam))) continue;
+      const d = S.findDupes(src, shades, { community, cheaperOnly: true, origin: 'IN', limit: 3, minScore: 88 }).find((x) => x.shade.image && x.shade.price <= src.price * 0.6);
+      if (!d || out.some((p) => p.dupe.productId === d.shade.productId)) continue;
+      out.push({ src, dupe: d.shade, score: d.score });
+      want[src.cat]--;
+    }
+    // Alternate categories so the slider doesn't show four lipsticks in a row.
+    const by = (c) => out.filter((p) => p.src.cat === c);
+    const mixed = [], lists = [by('lipstick'), by('blush'), by('foundation')];
+    while (lists.some((l) => l.length)) for (const l of lists) if (l.length) mixed.push(l.shift());
+    return mixed;
+  })();
   let slide = 0, autoplay = !reduced, timer = null;
   const sideBg = (s) => (s.hex ? `radial-gradient(circle at 50% 38%, ${tint(s.hex, 0.82)}, ${tint(s.hex, 0.5)} 60%, ${tint(s.hex, 0.25)})` : `radial-gradient(circle at 50% 40%, #fff, ${pastel(s.brand)})`);
   const short = (x) => (x.length > 26 ? x.slice(0, 24) + '…' : x);
@@ -449,20 +458,17 @@
     if (!pairs.length) { box.hidden = true; return; }
     const p = pairs[slide];
     const save = p.src.price && p.dupe.price ? Math.round((1 - p.dupe.price / p.src.price) * 100) : 0;
-    const tone = (SKINS.find((t) => t[0] === state.tone) || SKINS[2])[2];
-    const side = (s) => (isSkin(s.cat) || !s.hex
-      ? `<div class="cmp-art">${s.image ? `<img class="cmp-photo" src="${esc(photo(s, 480))}" alt="" data-fallback>` : art(s.cat, s)}</div>`
-      : swatchImg(s, 'cmp-sw', Math.min(1, 0.6 + (s.payoff || 3) * 0.09)));
+    const side = (s) => `<div class="cmp-art">${s.image ? `<img class="cmp-photo" src="${esc(photo(s, 480))}" alt="${esc(s.brand + ' ' + s.name)}" data-fallback>` : art(s.cat, s)}</div>${s.hex ? `<span class="cmp-chip" style="background:${esc(s.hex)}" aria-hidden="true"></span>` : ''}`;
     const x = $('#cmpStage') ? $('#cmpStage').getAttribute('aria-valuenow') : 50;
     box.innerHTML = `
-      <div class="cmp-stage" id="cmpStage" tabindex="0" role="slider" aria-label="Drag to compare ${esc(p.src.name)} with ${esc(p.dupe.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${x}" style="--x:${x}%; --skin:${tone}">
+      <div class="cmp-stage" id="cmpStage" tabindex="0" role="slider" aria-label="Drag to compare ${esc(p.src.name)} with ${esc(p.dupe.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${x}" style="--x:${x}%; --a:${esc(tint(p.src.hex || '#F4D6D2', 0.78))}; --b:${esc(tint(p.dupe.hex || '#F4D6D2', 0.78))}">
         <div class="cmp-side cmp-a">${side(p.src)}<span class="cmp-tag">${esc(p.src.brand)} · ${inr(p.src.price)}</span></div>
         <div class="cmp-side cmp-b">${side(p.dupe)}<span class="cmp-tag">${esc(p.dupe.brand)} · ${inr(p.dupe.price)}</span></div>
         <div class="cmp-handle"><span></span></div>
       </div>
       <button type="button" class="cmp-card" data-shade="${esc(p.src.id)}">
         ${p.dupe.image ? `<img src="${esc(photo(p.dupe, 240))}" alt="" data-fallback>` : `<i style="background:${esc(p.dupe.hex || '#eee')}"></i>`}
-        <span><small>${esc(p.src.brand)} ${esc(short(p.src.name))} dupe</small><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><em>${Math.round(p.score)}% match${save > 0 ? ` · ${save}% less` : ''}</em></span>
+        <span><small>The dupe</small><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><em>${Math.round(p.score)}% match${save > 0 ? ` · ${save}% less` : ''}</em></span>
       </button>
       <div class="cmp-dots">${pairs.map((q, i) => `<button type="button" data-slide="${i}" aria-label="${esc(q.src.brand + ' ' + q.src.name)}" aria-pressed="${i === slide}"></button>`).join('')}</div>`;
     if (!reduced && !$('#cmpStage').dataset.swept) sweep();
