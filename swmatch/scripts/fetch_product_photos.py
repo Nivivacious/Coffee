@@ -7,7 +7,7 @@ robots.txt allows product and search pages.
 
     python3 scripts/fetch_product_photos.py
 """
-import json, os, re, sys, time
+import json, os, re, sys, time, urllib.parse
 sys.path.insert(0, os.path.dirname(__file__))
 from fetch_skincare import get, best_hit
 
@@ -36,7 +36,14 @@ def main():
         if retry:  # drop generic words that search ranks badly ("Matte Lipstick", "Blush")
             query = p['brand'] + ' ' + ' '.join(w for w in p['line'].split() if w.lower() not in GENERIC)
         try:
-            hit = best_hit(query, get('/search?query=' + re.sub(r'\s+', '+', re.sub(r'[^\w\s]', ' ', query).strip())))
+            inci = next((sh.get('inciUrl') for sh in p['shades'] if sh.get('inciUrl')), None)
+            if inci:  # skincare already has its INCIDecoder page
+                url = photo(get(inci))
+                out[p['id']] = {'image': url, 'page': inci, 'matched': p['line'], 'confidence': 1.0} if url else None
+                print(query, '-> ingredient page', 'photo' if url else 'no photo', file=sys.stderr)
+                json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1)
+                continue
+            hit = best_hit(query, get('/search?query=' + urllib.parse.quote_plus(re.sub(r'[^\w\s]', ' ', query).strip())))
             if not hit or hit[0] < 0.3:
                 out[p['id']] = None
                 print('no match', query, file=sys.stderr)

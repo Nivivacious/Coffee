@@ -271,7 +271,7 @@
     if (isSkin(state.cat)) {
       el.innerHTML = `<div class="line">${ps.map((p) => {
         const s = p.shades[0];
-        return `<button type="button" class="prod" data-shade="${esc(s.id)}" aria-pressed="${state.shadeId === s.id}">${art(p.cat, Object.assign({ brand: p.brand }, s))}<span>${esc(p.line)}<small>${inr(s.price)} · ${esc(s.size || '')}</small></span></button>`;
+        return `<button type="button" class="prod" data-shade="${esc(s.id)}" aria-pressed="${state.shadeId === s.id}">${pic(byId.get(s.id), 'pthumb', 120)}<span>${esc(p.line)}<small>${inr(s.price)} · ${esc(s.size || '')}</small></span></button>`;
       }).join('')}</div>`;
       return;
     }
