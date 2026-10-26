@@ -9,7 +9,7 @@ primary product image URL. One request at a time.
 import json, os, re, sys, time, urllib.request
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
-RAW = os.path.join(ROOT, 'data', 'purplle-raw.json')
+RAW = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'data', 'purplle-raw.json')
 UA = 'Mozilla/5.0 (compatible; swmatch-catalog/1.0)'
 
 def get(url):

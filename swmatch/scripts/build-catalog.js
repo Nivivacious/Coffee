@@ -10,7 +10,9 @@ const root = path.join(__dirname, '..');
 const read = (f) => { try { return JSON.parse(fs.readFileSync(path.join(root, f), 'utf8')); } catch (e) { return null; } };
 const raw = read('data/purplle-raw.json') || { products: [] };
 // Optional older pulls to fold in (comma-separated paths), e.g. while a new pull is still running.
-for (const f of (process.env.SWMATCH_EXTRA_RAW || '').split(',').filter(Boolean)) {
+// data/purplle-more.json holds deeper feed pages fetched later (fetch_purplle.py --out ... --skip ...).
+const extraRaw = ['data/purplle-more.json'].filter((f) => fs.existsSync(path.join(root, f))).map((f) => path.join(root, f));
+for (const f of extraRaw.concat((process.env.SWMATCH_EXTRA_RAW || '').split(',').filter(Boolean))) {
   try { raw.products = raw.products.concat(JSON.parse(fs.readFileSync(f, 'utf8')).products || []); } catch (e) { console.warn('could not read', f); }
 }
 const curated = read('data/curated.json');

@@ -1,0 +1,303 @@
+{
+ "source": "purplle.com",
+ "fetchedAt": "2026-10-26",
+ "products": [
+  {
+   "brand": "Maybelline",
+   "category": "lipstick",
+   "purplleCategory": "Lipstick",
+   "names": [
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 695 Divine Wine, 3.9 gm",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick Touch Of Spice (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick - Siren In Scarlet 690 (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 656 Clay Crush, 3.9 gm",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 657 Nude Nuance, 3.9 gm",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick - Burgundy Blush 696 (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 808 Plum Perfection (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 673 Midtown Pink (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Mattes Lipstick Toasted Brown (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 507 Almond Pink (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick - Chilli Nude(3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 671 Heated Pink (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 677 Noho Amber (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 807 Dried Rose (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 903 Midnight Date (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 640 Red Liberation (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 630 Flaming Fuchsia (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 634 Bold Crimson (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 674 Madison Red (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 680 Mesmerizing Magenta (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 680 Mesmerizing Magenta (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 695 Divine Wine, 3.9 gm",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick, 676 East Village Rose (3.9 gm)",
+    "Maybelline New York Color Sensational Creamy Matte Lipstick - Rich Ruby (3.9 gm)"
+   ],
+   "shades": [
+    {
+     "name": "695 Divine Wine",
+     "hex": "#961A22",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.2,
+     "ratingCount": 463,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-divine-wine-4-2-g-17-12-19-16"
+    },
+    {
+     "name": "660 Touch Of Spice",
+     "hex": "#BD5E6A",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.2,
+     "ratingCount": 585,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-touch-of-spice-4-2-g-46-16-51"
+    },
+    {
+     "name": "Siren In Scarlet 690",
+     "hex": "#991B16",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.1,
+     "ratingCount": 180,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-siren-in-scarlet-4-2-g-47"
+    },
+    {
+     "name": "656 Clay Crush",
+     "hex": "#BB645A",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 3.1,
+     "ratingCount": 77,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-mattes-clay-crush-4-2-g-17-20"
+    },
+    {
+     "name": "657 Nude Nuance",
+     "hex": "#C45F6D",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.3,
+     "ratingCount": 1585,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-nude-nuance-4-2-g-20-13"
+    },
+    {
+     "name": "696 Burgundy Blush",
+     "hex": "#56101A",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.3,
+     "ratingCount": 546,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-burgundy-blush-4-2-g-18"
+    },
+    {
+     "name": "808 Plum Perfection",
+     "hex": "#7B2731",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.3,
+     "ratingCount": 236,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-powder-matte-lipsticks-plum-perfection-3-7-g-53-98-15-12-74-14"
+    },
+    {
+     "name": "673 Midtown Pink",
+     "hex": "#B04E42",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.3,
+     "ratingCount": 326,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-673-midtown-pink-3-9-g-88-20"
+    },
+    {
+     "name": "506 Toasted Brown",
+     "hex": "#B26051",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.3,
+     "ratingCount": 429,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-inti-matte-nude-lipstick-toasted-brown-3-9-g-73-23"
+    },
+    {
+     "name": "507 Almond Pink",
+     "hex": "#C26570",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.2,
+     "ratingCount": 379,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-inti-matte-nude-lipstick-almond-pink-3-9-g-14-14-16-83"
+    },
+    {
+     "name": "Chilli Nude",
+     "hex": "#A24852",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.1,
+     "ratingCount": 200,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-inti-matte-nude-lipstick-chilli-nude-3-9-g-15-13"
+    },
+    {
+     "name": "671 Heated Pink",
+     "hex": "#D24754",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.1,
+     "ratingCount": 138,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-671-heated-pink-3-9-g-57"
+    },
+    {
+     "name": "677 Noho Amber",
+     "hex": "#A12019",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.2,
+     "ratingCount": 83,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-677-noho-amber-3-9-g-13"
+    },
+    {
+     "name": "807 Dried Rose",
+     "hex": "#B34047",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.0,
+     "ratingCount": 333,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-807-dried-rose-3-9-g-15-50"
+    },
+    {
+     "name": "903 Midnight Date",
+     "hex": "#771D27",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.2,
+     "ratingCount": 562,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-loaded-bold-lipstick-09-midnight-date-3-9-g-11-47-15"
+    },
+    {
+     "name": "640 Red Liberation",
+     "hex": "#AD1425",
+     "hexSource": "retailer",
+     "price": 198.0,
+     "mrp": 349.0,
+     "rating": 4.1,
+     "ratingCount": 231,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-640-red-liberation-3-9-g-12-19"
+    },
+    {
+     "name": "630 Flaming Fuchsia",
+     "hex": "#FF457A",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 3.9,
+     "ratingCount": 281,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-630-flaming-fuchsia-3-9-g-11-12"
+    },
+    {
+     "name": "634 Bold Crimson",
+     "hex": "#A21D25",
+     "hexSource": "retailer",
+     "price": 198.0,
+     "mrp": 349.0,
+     "rating": 4.1,
+     "ratingCount": 291,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-634-bold-crimson-3-9-g-13-16"
+    },
+    {
+     "name": "674 Madison Red",
+     "hex": "#BB3F2C",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.1,
+     "ratingCount": 65,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-674-madison-red-3-9-g-12-18"
+    },
+    {
+     "name": "680 Mesmerizing Magenta",
+     "hex": "#B22952",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.0,
+     "ratingCount": 401,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-mesmerizing-magenta-4-2-g-16-18-93"
+    },
+    {
+     "name": "680 Mesmerizing Magenta",
+     "hex": "#B22952",
+     "hexSource": "retailer",
+     "price": 332.0,
+     "mrp": 585.0,
+     "rating": 4.0,
+     "ratingCount": 401,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-mesmerizing-magenta-4-2-g-16-17"
+    },
+    {
+     "name": "695 Divine Wine",
+     "hex": "#961A22",
+     "hexSource": "retailer",
+     "price": 332.0,
+     "mrp": 585.0,
+     "rating": 4.2,
+     "ratingCount": 463,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-divine-wine-4-2-g-17-12-19-92"
+    },
+    {
+     "name": "676 East Village Rose",
+     "hex": "#98403B",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.1,
+     "ratingCount": 905,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-lipstick-676-east-village-rose-3-9-g-84"
+    },
+    {
+     "name": "691 Rich Ruby",
+     "hex": "#A32537",
+     "hexSource": "retailer",
+     "price": 187.0,
+     "mrp": 329.0,
+     "rating": 4.3,
+     "ratingCount": 448,
+     "inStock": true,
+     "url": "https://www.purplle.com/product/maybelline-new-york-color-sensational-creamy-matte-rich-ruby-4-2-g-21-17"
+    }
+   ]
+  }
+ ]
+}

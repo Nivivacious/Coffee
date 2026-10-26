@@ -27,6 +27,7 @@ CATEGORY = {
     'blush': 'blush', 'blusher': 'blush',
     'foundation': 'foundation',
     'highlighter': 'highlighter', 'highlighters': 'highlighter', 'illuminator': 'highlighter',
+    'highlighter & illuminator': 'highlighter', 'highlighter and illuminator': 'highlighter',
 }
 OUT = os.path.join(os.path.dirname(__file__), '..', 'data', 'purplle-raw.json')
 
@@ -73,9 +74,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pages', type=int, default=12)
     ap.add_argument('--delay', type=float, default=0.6)
+    ap.add_argument('--out', default=None, help='write here instead of data/purplle-raw.json')
+    ap.add_argument('--skip', default=None, help='a raw file whose shades are already fetched')
     args = ap.parse_args()
+    global OUT
+    if args.out: OUT = args.out
 
     seen_products, families = set(), {}
+    known = set()
+    if args.skip:
+        for fam in json.load(open(args.skip))['products']:
+            for sh in fam['shades']: known.add(sh['url'].rsplit('/', 1)[-1])
     for feed, ours in FEEDS.items():
         empty = 0
         for page in range(1, args.pages + 1):
@@ -105,6 +114,7 @@ def main():
                 if not rows:
                     seen_products.add(pid); continue
                 for row in rows: seen_products.add(str(row.get('product_id')))
+                if any(row.get('slug') in known for row in rows): continue
                 w0 = rows[0].get('item_widget') or {}
                 cat = CATEGORY.get(str(w0.get('category_name', '')).strip().lower())
                 if not cat: continue

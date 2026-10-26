@@ -64,6 +64,20 @@
     if (c.shades) { citedShade.set(c.shades.join('|'), c); citedShade.set([c.shades[1], c.shades[0]].join('|'), c); }
     if (c.lines) { citedLine.set(c.lines.join('|'), c); citedLine.set([c.lines[1], c.lines[0]].join('|'), c); }
   }
+  // Pairs dupe sites or editors published (data/benchmarks.json) get a Verified mark.
+  const published = new Map();
+  for (const b of CAT.benchmarks || []) {
+    const n = (x) => String(x).toLowerCase();
+    const a = shades.find((s) => s.cat === b.cat && s.brand === b.src[0] && (n(s.name) === n(b.src[1]) || n(s.name).endsWith(' ' + n(b.src[1]))));
+    const d = shades.find((s) => s.cat === b.cat && s.brand === b.dupe[0] && (n(s.name) === n(b.dupe[1]) || n(s.name).endsWith(' ' + n(b.dupe[1]))));
+    if (a && d) { published.set(a.id + '|' + d.id, b); published.set(d.id + '|' + a.id, b); }
+  }
+  const verifiedBy = (src, s, d) => {
+    const b = published.get(src.id + '|' + s.id);
+    if (b) return b.source[0].toUpperCase() + b.source.slice(1);
+    if (d && d.cited) return d.cited.source[0].toUpperCase() + d.cited.source.slice(1);
+    return null;
+  };
   // Line-level pairings only count for shades that are already close in colour.
   const community = (a, b) => {
     const direct = citedShade.get(a.id + '|' + b.id);
@@ -399,7 +413,8 @@
           <span class="fo-by">${esc(x.brand)}${isSkin(x.cat) ? '' : ' · ' + esc(x.line)}</span>
           <b class="fo-name">${esc(x.name)}</b>
           <span class="fo-price">${inr(x.price)}${x.size ? ` <small>${esc(x.size)}</small>` : ''}</span>
-          ${role === 'a' ? `<span class="facts">${factsHtml(x)}</span>` : `${diff > 0 ? `<span class="fo-save">You save ${inr(diff)} · ${pct}%</span>` : diff < 0 ? `<span class="fo-more">${inr(-diff)} more</span>` : ''}${storesHtml(x)}`}
+          ${role === 'b' && verifiedBy(src, x, d) ? `<span class="verified">Verified pair · ${esc(verifiedBy(src, x, d))}</span>` : ''}
+          ${role === 'a' ? `<span class="facts">${factsHtml(x)}</span>` : `${diff > 0 ? `<span class="fo-save">You save <b data-count="${diff}" data-fmt="inr">${inr(diff)}</b> · ${pct}%</span>` : diff < 0 ? `<span class="fo-more">${inr(-diff)} more</span>` : ''}${storesHtml(x)}`}
         </figcaption></figure>`;
     return `<section class="faceoff rise" id="faceoff" aria-label="${esc(src.name)} compared with ${esc(s.name)}">
       ${side(src, 'a')}
@@ -408,7 +423,6 @@
         ${radar(src, d)}
         ${d.deltaE != null ? `<div class="sbar" aria-label="Colour gap ΔE ${d.deltaE.toFixed(1)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i><span>ΔE ${d.deltaE.toFixed(1)} · ${d.deltaE < 2 ? 'hard to tell apart' : d.deltaE < 5 ? 'close side by side' : 'visible difference'}</span></div>` : `<div class="sbar skin"><span>${d.skin.sharedCount} key ingredient${d.skin.sharedCount === 1 ? '' : 's'} in common</span></div>`}
         <ul class="fo-notes">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
-        ${d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this pair too.</p>` : ''}
         ${d.confidence.level !== 'high' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
       </div>
       ${side(s, 'b')}
@@ -427,7 +441,7 @@
     const vc = d.votes || { up: 0, down: 0 };
     return `<article class="dupe ${picked ? 'picked' : ''}" style="--wash:${s.hex ? tint(s.hex, 0.84) : 'var(--sunk)'}">
       <button type="button" class="dpick" data-pick="${i}" aria-pressed="${picked}" aria-label="Compare ${esc(s.brand + ' ' + s.name)} with ${esc(src.name)}">
-        <span class="dphoto">${s.image ? `<img src="${esc(photo(s, 480))}" alt="" loading="lazy" data-fallback>` : isSkin(s.cat) || !s.hex ? art(s.cat, s) : swatchImg(s, 'sw')}${s.hex ? `<i class="ddot" style="background:${esc(s.hex)}"></i>` : ''}</span>
+        <span class="dphoto">${s.image ? `<img src="${esc(photo(s, 480))}" alt="" loading="lazy" data-fallback>` : isSkin(s.cat) || !s.hex ? art(s.cat, s) : swatchImg(s, 'sw')}${s.hex ? `<i class="ddot" style="background:${esc(s.hex)}"></i>` : ''}${verifiedBy(src, s, d) ? '<span class="verified">Verified</span>' : ''}</span>
         <span class="dmeta">
           <span class="dby">${esc(s.brand)}</span>
           <b class="dname">${esc(s.name)}</b>
@@ -675,7 +689,7 @@
       ['Sun protection', 'Same UV filters, SPF and PA.'],
       ['Shoppers', 'Up when dupe sites or shoppers agree. Down when shoppers say no.'],
     ];
-    $('#crit').innerHTML = C.map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join('');
+    if ($('#crit')) $('#crit').innerHTML = C.map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join('');
     $('#fine').innerHTML = `
       <p>Makeup labels: Dupe 88%+ with near-identical colour, Very similar 80%+, Similar 70%+. Skincare scores run lower, as on Skinsort: Dupe 85%+, Very similar 72%+, Similar 60%+.</p>
       <p>Shades and prices: Purplle. Prestige brands: our own swatch notes. Ingredients: INCIDecoder. Nykaa, Tira and Myntra block catalog reads, so we link to their search. Prices are a guide.</p>
@@ -852,6 +866,109 @@
   document.addEventListener('focusin', (e) => { if (e.target.classList && e.target.classList.contains('dot')) showPeek(e.target); else peek.hidden = true; });
   window.addEventListener('scroll', () => { peek.hidden = true; }, { passive: true });
 
+
+  // ---- scoring tab: the engine, opened up ----
+  const SEG = ['#F26671', '#C8404D', '#8E2F45', '#D98A5F', '#E9B07A', '#B35C77', '#6E3B4E', '#F2A3A9'];
+  state.labW = {};
+  state.labPair = null;
+  function labPairs() {
+    const out = [];
+    if (current && current.all.length) {
+      const d = current.all[Math.min(state.pick || 0, current.all.length - 1)];
+      out.push({ src: current.src, cand: d.shade, label: 'Your face-off' });
+    }
+    for (const p of CAT.benchmarks || []) {
+      const a = findShade(p.cat, p.src), b = findShade(p.cat, p.dupe);
+      if (a && b) out.push({ src: a, cand: b, label: `Published pair · ${p.source}` });
+    }
+    return out;
+  }
+  function labScore(src, cand) {
+    const skin = isSkin(src.cat);
+    const base = skin ? S.SKIN_WEIGHTS[src.cat] : S.WEIGHTS[src.cat];
+    const w = Object.assign({}, base, state.labW);
+    const r = (skin ? S.compareSkin : S.compare)(src, cand, { community, weights: w });
+    const used = (skin ? S.SKIN_CRITERIA : S.CRITERIA).filter(([k]) => k !== 'community' && r.scores[k] != null);
+    const wsum = used.reduce((t, [k]) => t + (w[k] || 0), 0) || 1;
+    const rows = used.map(([k, label], i) => ({ k, label, s: r.scores[k], w: w[k] || 0, base: base[k] || 0, pts: (r.scores[k] * (w[k] || 0)) / wsum, color: SEG[i % SEG.length] }));
+    const raw = rows.reduce((t, x) => t + x.pts, 0);
+    return { r, rows, raw, w, skin };
+  }
+  function renderScore() {
+    const pairs = labPairs();
+    if (!pairs.length) return;
+    const pi = Math.min(state.labPair ?? 0, pairs.length - 1);
+    const { src, cand } = pairs[pi];
+    const { rows } = labScore(src, cand);
+    const mini = (x, role) => `<figure class="lab-p"><span class="lab-ph" style="--wash:${x.hex ? tint(x.hex, 0.8) : 'var(--sunk)'}">${x.image ? `<img src="${esc(photo(x, 240))}" alt="" data-fallback>` : x.hex ? `<i style="background:${esc(x.hex)}"></i>` : art(x.cat, x)}</span><figcaption><small>${role}</small><b>${esc(x.brand)}</b><span>${esc(x.name)}</span></figcaption></figure>`;
+    $('#lab').innerHTML = `
+      <div class="lab-top">
+        <label class="lab-pick">Compare <select id="labPick">${pairs.map((p, i) => `<option value="${i}" ${i === pi ? 'selected' : ''}>${esc(`${p.src.brand} ${p.src.name} → ${p.cand.brand} ${p.cand.name}`)} (${esc(p.label)})</option>`).join('')}</select></label>
+        <button type="button" class="pill" id="labReset">Reset weights</button>
+      </div>
+      <div class="lab-grid">
+        <div class="lab-pairbox">${mini(src, 'Original')}<span class="lab-vs">vs</span>${mini(cand, 'Dupe')}</div>
+        <div class="lab-total"><div class="ring big" id="labRing" style="--p:0"><b id="labNum">0</b><i>%</i></div><em id="labVerdict"></em></div>
+        <div class="lab-scale" aria-hidden="true"><span class="sc-track" style="${isSkin(src.cat) ? 'background:linear-gradient(90deg, var(--sunk) 0 60%, color-mix(in srgb, var(--coral) 45%, var(--sunk)) 60% 72%, var(--coral) 72% 85%, var(--accent) 85%)' : ''}">${(isSkin(src.cat) ? [60, 72, 85] : [70, 80, 88]).map((n) => `<i style="left:${n}%"></i>`).join('')}</span><span class="sc-marker" id="labMarker"></span>
+          ${(isSkin(src.cat) ? [60, 72, 85] : [70, 80, 88]).map((n) => `<span class="sc-lab" style="left:${n}%">${n}</span>`).join('')}</div>
+      </div>
+      <div class="stack" id="labStack" role="img"></div>
+      <div class="lab-rows">${rows.map((x) => `
+        <div class="lab-row" data-k="${x.k}">
+          <span class="lr-key" style="background:${x.color}"></span>
+          <span class="lr-name">${x.label}</span>
+          <span class="lr-score"><span class="lr-bar"><span style="width:${x.s}%"></span></span><b class="lr-s">${Math.round(x.s)}</b></span>
+          <label class="lr-w">weight <input type="range" min="0" max="50" value="${x.w}" data-lw="${x.k}" aria-label="${x.label} weight"><output class="lr-wv">${x.w}</output></label>
+          <span class="lr-pts">+<b>0</b></span>
+        </div>`).join('')}</div>
+      <p class="lab-rules" id="labRules"></p>`;
+    updateLab();
+  }
+  function updateLab() {
+    const pairs = labPairs();
+    const pi = Math.min(state.labPair ?? 0, pairs.length - 1);
+    const { src, cand } = pairs[pi];
+    const { r, rows, raw, w } = labScore(src, cand);
+    const v = S.verdict(r.score, r.deltaE, src.cat);
+    $('#labNum').textContent = Math.round(r.score);
+    $('#labRing').style.setProperty('--p', Math.round(r.score));
+    $('#labVerdict').textContent = VERDICT[v.key] || v.label;
+    $('#labMarker').style.left = Math.max(0, Math.min(100, r.score)) + '%';
+    $('#labStack').innerHTML = rows.map((x) => `<span style="width:${x.pts}%;background:${x.color}" title="${x.label}: +${x.pts.toFixed(1)}"></span>`).join('') + `<span class="gap" style="width:${Math.max(0, 100 - raw)}%"></span>`;
+    $('#labStack').setAttribute('aria-label', `Score parts: ${rows.map((x) => `${x.label} ${x.pts.toFixed(1)}`).join(', ')}`);
+    for (const x of rows) {
+      const row = document.querySelector(`.lab-row[data-k="${x.k}"]`);
+      if (!row) continue;
+      row.querySelector('.lr-pts b').textContent = x.pts.toFixed(1);
+      row.querySelector('.lr-wv').textContent = w[x.k] || 0;
+      row.classList.toggle('changed', (w[x.k] || 0) !== x.base);
+    }
+    const notes = [];
+    const diff = Math.round((r.score - raw) * 10) / 10;
+    if (Math.abs(diff) >= 0.1) notes.push(diff > 0 ? `+${diff} because dupe sites or shoppers already pair these two.` : r.deltaE != null && r.deltaE > 14 ? `Capped at 60: the colours are too far apart for packaging or finish to make up for it.` : `${diff} because shoppers mostly said this isn’t a match.`);
+    if (!isSkin(src.cat) && r.score >= 88 && r.deltaE >= 2.5) notes.push(`Scores like a dupe, but a dupe also needs a colour gap under ΔE 2.5 (this one is ${r.deltaE.toFixed(1)}), so it’s called Very similar.`);
+    notes.push(`Weighted sum of the parts: ${raw.toFixed(1)}. Final score: ${r.score.toFixed(1)}.`);
+    $('#labRules').textContent = notes.join(' ');
+  }
+  function renderWeights() {
+    const cats = [...CATS.makeup, ...CATS.skin];
+    $('#catWeights').innerHTML = cats.map((c) => {
+      const skin = isSkin(c.key);
+      const w = (skin ? S.SKIN_WEIGHTS : S.WEIGHTS)[c.key];
+      const crit = (skin ? S.SKIN_CRITERIA : S.CRITERIA).filter(([k]) => k !== 'community' && w[k] != null && !(k === 'ingredients' && !skin));
+      const sum = crit.reduce((t, [k]) => t + w[k], 0);
+      return `<div class="cw"><b>${c.label}</b><span class="stack thin">${crit.map(([k, label], i) => `<span style="width:${(w[k] / sum) * 100}%;background:${SEG[i % SEG.length]}" title="${label} ${Math.round((w[k] / sum) * 100)}%"></span>`).join('')}</span>
+        <span class="cw-legend">${crit.slice().sort((a, b) => w[b[0]] - w[a[0]]).slice(0, 3).map(([k, label]) => `${label} ${Math.round((w[k] / sum) * 100)}%`).join(' · ')}</span></div>`;
+    }).join('');
+  }
+  document.addEventListener('input', (e) => {
+    const t = e.target;
+    if (t.dataset && t.dataset.lw) { state.labW[t.dataset.lw] = Number(t.value); updateLab(); }
+  });
+  document.addEventListener('change', (e) => {
+    if (e.target.id === 'labPick') { state.labPair = Number(e.target.value); state.labW = {}; renderScore(); }
+  });
+
   // ---- tabs ----
   state.mapCat = 'blush';
   function setView(v) {
@@ -861,7 +978,7 @@
     document.querySelectorAll('.tabs [data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
     moveThumb();
     if (v === 'map') renderMap();
-    if (v === 'proof') animateIn($('#proof'));
+    if (v === 'score') { state.labPair = 0; state.labW = {}; renderScore(); renderWeights(); animateIn($('#scoring')); animateIn($('#proof')); }
     window.scrollTo(0, 0);
   }
   // The white thumb slides to the selected tab.
@@ -884,14 +1001,15 @@
   }, { threshold: 0.2 }) : null;
   function countUp(el) {
     const to = Number(el.dataset.count);
-    if (reduced || !to) { el.textContent = to; return; }
+    if (reduced || !to) { el.textContent = el.dataset.fmt === 'inr' ? inr(to) : to; return; }
     const t0 = performance.now();
     const step = (t) => {
       const k = Math.min(1, (t - t0) / 900);
-      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      const n = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      el.textContent = el.dataset.fmt === 'inr' ? inr(n) : n;
       if (k < 1) requestAnimationFrame(step);
     };
-    el.textContent = '0';
+    el.textContent = el.dataset.fmt === 'inr' ? '₹0' : '0';
     requestAnimationFrame(step);
   }
   function animateIn(root) {
@@ -900,7 +1018,7 @@
     if (!io || reduced) { items.forEach((x) => x.classList.add('in')); return; }
     items.forEach((x, i) => { x.style.setProperty('--d', (i % 6) * 70 + 'ms'); io.observe(x); });
     // Never leave anything hidden: whatever hasn't scrolled in after a few seconds just shows.
-    setTimeout(() => items.forEach((x) => { if (!x.classList.contains('in')) { x.classList.add('in'); x.querySelectorAll('[data-count]').forEach((c) => { c.textContent = c.dataset.count; }); } }), 4000);
+    setTimeout(() => items.forEach((x) => { if (!x.classList.contains('in')) { x.classList.add('in'); x.querySelectorAll('[data-count]').forEach((c) => { c.textContent = c.dataset.fmt === 'inr' ? inr(Number(c.dataset.count)) : c.dataset.count; }); } }), 4000);
   }
 
   // ---- events ----
@@ -930,6 +1048,7 @@
     if (t.id === 'showAll') { state.showAll = true; renderMatch(); return; }
     if (t.id === 'askStylist') { askStylist(); return; }
     if (t.dataset.vote) { castVote(state.shadeId, t.dataset.dupe, Number(t.dataset.vote)); return; }
+    if (t.id === 'labReset') { state.labW = {}; renderScore(); return; }
     if (t.id === 'resetW') { state.weights = {}; renderMatch(); $('#tune').open = true; }
   });
   document.addEventListener('input', (e) => {
@@ -951,6 +1070,55 @@
   renderReel();
   renderProof();
   setView('find');
+  // Headings rise in word by word (text nodes only, so <em> keeps its style).
+  function splitWords(el) {
+    if (!el || el.dataset.split) return;
+    el.dataset.split = '1';
+    let i = 0;
+    const walk = (node) => {
+      for (const n of [...node.childNodes]) {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const sp = document.createElement('span'); sp.className = 'w'; sp.style.setProperty('--i', i++); sp.textContent = part; frag.appendChild(sp);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      }
+    };
+    walk(el);
+  }
+  document.querySelectorAll('.shelf-head h2, .sc-head h2, .explore-head h2').forEach(splitWords);
+  animateIn($('.shelf-wrap'));
+  // The search box types out example shades while it's empty and not in use.
+  (function typeHints() {
+    const input = $('#askInput');
+    if (!input || reduced) return;
+    const hints = ['MAC Ruby Woo', 'Rare Beauty Hope', 'NARS Orgasm', 'Charlotte Tilbury Pillow Talk', 'The Ordinary Niacinamide', 'red lipstick under ₹600'];
+    let h = 0, c = 0, dir = 1;
+    setInterval(() => {
+      if (document.activeElement === input || input.value) return;
+      const word = hints[h];
+      c += dir;
+      if (c > word.length + 12) dir = -1;
+      if (c <= 0) { dir = 1; c = 0; h = (h + 1) % hints.length; }
+      input.placeholder = 'Try ' + word.slice(0, Math.max(0, Math.min(c, word.length)));
+    }, 70);
+  })();
+  // The search button leans toward the pointer a little.
+  (function magnet() {
+    const btn = $('.ask button');
+    if (!btn || reduced) return;
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const r = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      const near = Math.hypot(dx, dy) < 90;
+      btn.style.transform = near ? `translate(${(dx * 0.12).toFixed(1)}px, ${(dy * 0.18).toFixed(1)}px)` : '';
+    }, { passive: true });
+  })();
   const fromHash = byId.get(decodeURIComponent((location.hash || '').slice(1)));
   const start = fromHash && fromHash.origin !== 'IN' ? fromHash : defaultFor('blush');
   if (start) selectShade(start.id, false); else renderAll();
