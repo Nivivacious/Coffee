@@ -1,4 +1,4 @@
-// swmatch page logic: hero compare slider, ticker, category shelf, picker,
+// swmatch page logic: hero compare slider, popular-swaps reel, category shelf, picker,
 // match card, plain-language search, AI stylist, votes and the proof section.
 (function () {
   'use strict';
@@ -8,6 +8,25 @@
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const inr = (n) => (n ? '₹' + Math.round(n).toLocaleString('en-IN') : '—');
   const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Purplle photos are stored as a path; the page asks the CDN for the width it shows.
+  const photo = (s, w) => (!s || !s.image ? '' : /^(img\/|https?:)/.test(s.image) ? s.image
+    : `https://media6.ppl-media.com/tr:w-${w || 240},c-at_max/static/img/product/${s.image}`);
+  // Where to buy: the Purplle product page when we have it, otherwise a search on each store.
+  function storesFor(s) {
+    const q = encodeURIComponent(`${s.brand} ${s.line || ''} ${s.name}`.replace(/\s+/g, ' ').trim());
+    const m = `${s.brand} ${s.line || ''}`.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    return [
+      { store: 'Purplle', url: s.url || `https://www.purplle.com/search?q=${q}` },
+      { store: 'Nykaa', url: `https://www.nykaa.com/search/result/?q=${q}` },
+      { store: 'Tira', url: `https://www.tirabeauty.com/search?q=${q}` },
+      { store: 'Myntra', url: `https://www.myntra.com/${m}` },
+    ];
+  }
+  // Public-domain plates for categories with no product photos (credited in the footer).
+  const PLATE = {
+    serum: 'assets/archive/serum-lotus.jpg', moisturiser: 'assets/archive/moisturiser-peony.jpg',
+    sunscreen: 'assets/archive/sunscreen-lily.jpg', highlighter: 'assets/archive/highlighter-bubble.jpg',
+  };
 
   const CATS = {
     makeup: [
@@ -138,14 +157,14 @@
   // Grey swatch textures (assets/tex, drawn by scripts/make_textures.py) tinted to
   // the exact shade, so every swatch shows product texture.
   // Retailer product photos where the catalog has one; the drawing shows otherwise.
-  const pic = (s, cls) => (s && s.image
-    ? `<div class="pic ${cls || ''}"><img src="${esc(s.image)}" alt="" loading="lazy" data-fallback><div class="art">${art(s.cat, s)}</div></div>`
+  const pic = (s, cls, w) => (s && s.image
+    ? `<div class="pic ${cls || ''}"><img src="${esc(photo(s, w))}" alt="" loading="lazy" data-fallback><div class="art">${art(s.cat, s)}</div></div>`
     : `<div class="pic nophoto ${cls || ''}"><div class="art">${art(s && s.cat, s)}</div></div>`);
   const TEX_FOR = { lipstick: 'smear', foundation: 'smear', blush: 'powder', highlighter: 'powder', serum: 'drop', moisturiser: 'cream', sunscreen: 'cream' };
   const tex = {};
   for (const k of ['smear', 'powder', 'cream', 'drop']) {
     const im = new Image();
-    im.onload = () => { tex[k] = im; if (state.shadeId) renderMatch(); };
+    im.onload = () => { tex[k] = im; if (state.shadeId) renderMatch(); renderCompare(); };
     im.src = `assets/tex/${k}.png`;
   }
   const tintCache = new Map();
@@ -220,8 +239,9 @@
       const show = sel && sel.cat === c.key ? sel : defaultFor(c.key);
       const unit = isSkin(c.key) ? 'products' : 'shades';
       return `<button type="button" class="tile" data-cat="${c.key}" aria-pressed="${state.cat === c.key}">
-        ${(collage[c.key] || []).length === 3
-    ? `<div class="photo stack">${collage[c.key].map((x) => `<img src="${esc(x.image)}" alt="" loading="lazy" data-fallback>`).join('')}<div class="art">${art(c.key, show)}</div></div>`
+        ${PLATE[c.key] ? `<div class="photo plate"><img src="${PLATE[c.key]}" alt="" loading="lazy" data-fallback><div class="art">${art(c.key, show)}</div></div>`
+    : (collage[c.key] || []).length === 3
+    ? `<div class="photo stack">${collage[c.key].map((x) => `<img src="${esc(photo(x, 360))}" alt="" loading="lazy" data-fallback>`).join('')}<div class="art">${art(c.key, show)}</div></div>`
     : `<div class="photo nophoto"><div class="art">${art(c.key, show)}</div></div>`}
         <div class="tmeta"><b>${c.label}</b><span>${(counts[c.key] || 0).toLocaleString('en-IN')} ${unit}</span></div></button>`;
     }).join('');
@@ -317,7 +337,7 @@
 
     el.innerHTML = `
       <div class="mhero">
-        ${pic(src, 'mart')}
+        ${src.image || isSkin(src.cat) || !src.hex ? pic(src, 'mart', 480) : `<div class="pic mart swatchonly" style="--skin:${(SKINS.find((t) => t[0] === state.tone) || SKINS[2])[2]}">${swatchImg(src, 'sw')}</div>`}
         <div>
           <div class="who">${esc(src.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(src.line)}</div>
           <h2>${esc(src.name)}</h2>
@@ -346,7 +366,11 @@
           }).join('')}<button type="button" id="resetW">Reset</button></div>
         </details>
       </div>`;
+    animateIn(el);
   }
+
+  // The engine's verdict as a ring: the score fills it and counts up when it scrolls in.
+  const ring = (score, label, cls) => `<div class="ring ${cls || ''}" style="--p:${Math.round(score)}" role="img" aria-label="${Math.round(score)}% match, ${esc(label)}"><b data-count="${Math.round(score)}">${Math.round(score)}</b><i>%</i></div>`;
 
   function dupeCard(src, d, i, bestValue) {
     const s = d.shade;
@@ -358,39 +382,48 @@
     const diff = src.price && s.price ? src.price - s.price : 0;
     const pct = src.price && s.price ? Math.round((diff / src.price) * 100) : 0;
     const crit = isSkin(src.cat) ? S.SKIN_CRITERIA : S.CRITERIA;
-    const bars = crit.filter(([k]) => k !== 'community' && d.scores[k] != null).map(([k, label]) => {
+    const wts = Object.assign({}, isSkin(src.cat) ? S.SKIN_WEIGHTS[src.cat] : S.WEIGHTS[src.cat], state.weights);
+    const used = crit.filter(([k]) => k !== 'community' && d.scores[k] != null);
+    const wsum = used.reduce((t, [k]) => t + (wts[k] || 0), 0) || 1;
+    const bars = used.map(([k, label]) => {
       const val = Math.round(d.scores[k]);
-      return `<div class="bar">${label}<span>${val}</span><div class="track"><div class="fill ${val >= 85 ? 'hi' : ''}" style="width:${val}%"></div></div></div>`;
+      const share = Math.round(((wts[k] || 0) / wsum) * 100);
+      return `<div class="bar"><span class="bl">${label}<small>${share}% of score</small></span><span class="bv mono">${val}</span><div class="track"><div class="fill ${val >= 85 ? 'hi' : val < 60 ? 'lo' : ''}" style="--w:${val}%"></div></div></div>`;
     }).join('');
-    const where = s.where || [];
+    const stores = storesFor(s);
     const cite = d.cited ? `<p class="cite">${d.cited.url ? `<a href="${esc(d.cited.url)}" target="_blank" rel="noopener">${esc(d.cited.source)}</a>` : esc(d.cited.source[0].toUpperCase() + d.cited.source.slice(1))} picked this too.</p>` : '';
     const visual = isSkin(src.cat)
-      ? `<div class="dvis">${pic(s, 'thumb')}</div>`
-      : `<div class="dvis">${s.image ? pic(s, 'thumb') : ''}<div class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></div></div>`;
-    const gap = d.deltaE != null ? `Colour gap ΔE ${d.deltaE.toFixed(1)}` : `${d.skin.sharedCount} ingredients in common`;
+      ? pic(s, 'thumb', 240)
+      : `${s.image ? pic(s, 'thumb', 240) : `<div class="pic thumb swatchonly">${swatchImg(s, 'sw')}</div>`}<span class="split" role="img" aria-label="${esc(src.name)} next to ${esc(s.name)}"><i style="background:${esc(src.hex)}"></i><i style="background:${esc(s.hex)}"></i></span>`;
+    const gap = d.deltaE != null ? `Colour gap ΔE ${d.deltaE.toFixed(1)}${d.deltaE < 2 ? ', hard to tell apart' : d.deltaE < 5 ? ', close side by side' : ''}` : `${d.skin.sharedCount} ingredients in common`;
+    const chips = d.direction.map((x) => `<span class="chip">${esc(x)}</span>`).join('') + (s.origin === 'IN' ? '<span class="chip in">Indian brand</span>' : '') + (s.id === bestValue ? '<span class="chip value">Best value</span>' : '');
     return `<article class="dupe ${i === 0 && (v.key === 'twin' || v.key === 'close') ? 'top' : ''}">
-      ${visual}
-      <div style="min-width:0">
+      <div class="dvis">${visual}</div>
+      <div class="dmain">
         <div class="head">
           <div style="min-width:0">
-            <h4>${esc(s.name)}</h4>
+            <h3>${esc(s.name)}</h3>
             <div class="by">${esc(s.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(s.line)}</div>
-            <p class="dir">${d.direction.map(esc).join(' · ')}</p>
           </div>
-          <div class="pct"><b>${Math.round(d.score)}%</b><span>${v.label}</span></div>
+          <div class="score">${ring(d.score, v.label)}<span>${v.label}</span></div>
         </div>
-        <div class="price"><span class="now">${inr(s.price)}</span>${u ? `<span class="unit">${inr(u.value)}/${u.unit}</span>` : ''}${s.id === bestValue ? '<span class="value">Best value</span>' : ''}${diff > 0 ? `<span class="save">save ${pct}%</span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}${s.origin === 'IN' ? '<span class="in">Indian brand</span>' : ''}</div>
+        ${chips ? `<div class="chips">${chips}</div>` : ''}
+        <div class="price"><span class="now">${inr(s.price)}</span>${u ? `<span class="unit mono">${inr(u.value)}/${u.unit}</span>` : ''}${diff > 0 ? `<span class="save">Save ${inr(diff)} <b>${pct}%</b></span>` : diff < 0 ? `<span class="more-cost">${inr(-diff)} more</span>` : ''}</div>
         <ul class="notes">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
         ${cite}
         ${d.confidence.level === 'low' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
         <div class="foot">
-          ${where[0] ? `<a class="buy1" href="${esc(where[0].url)}" target="_blank" rel="noopener">Buy on ${esc(where[0].store)}</a>` : ''}
-          ${where.slice(1).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}</a>`).join('')}
-          ${votesOn ? `<span class="vote">Good match?
-            <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
-            <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></span>` : ''}
-          <details class="why"><summary>Why ${Math.round(d.score)}%</summary><div class="bars">${bars}</div><p class="cite">${esc(gap)}${s.inciUrl ? ` · <a href="${esc(s.inciUrl)}" target="_blank" rel="noopener">Ingredient list</a>` : ''}</p>${d.confidence.level === 'medium' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}</details>
+          <a class="buy1" href="${esc(stores[0].url)}" target="_blank" rel="noopener">Buy on ${esc(stores[0].store)}</a>
+          <span class="also">${stores.slice(1).map((w) => `<a href="${esc(w.url)}" target="_blank" rel="noopener">${esc(w.store)}</a>`).join('')}</span>
         </div>
+        <details class="why"><summary>Why ${Math.round(d.score)}%</summary>
+          <div class="bars">${bars}</div>
+          <p class="cite">${esc(gap)}${s.inciUrl ? ` · <a href="${esc(s.inciUrl)}" target="_blank" rel="noopener">Ingredient list</a>` : ''}</p>
+          ${d.confidence.level === 'medium' ? `<p class="conf">${esc(d.confidence.note)}</p>` : ''}
+          ${votesOn ? `<div class="vote">Good match?
+            <button type="button" data-vote="1" data-dupe="${esc(s.id)}" aria-pressed="${mine === 1}" ${mine ? 'disabled' : ''}>Yes${vc.up ? ' ' + vc.up : ''}</button>
+            <button type="button" data-vote="-1" data-dupe="${esc(s.id)}" aria-pressed="${mine === -1}" ${mine ? 'disabled' : ''}>No${vc.down ? ' ' + vc.down : ''}</button></div>` : ''}
+        </details>
       </div>
     </article>`;
   }
@@ -412,22 +445,27 @@
 
   function renderCompare() {
     const box = $('#compare');
+    if (!box) return;
     if (!pairs.length) { box.hidden = true; return; }
     const p = pairs[slide];
     const save = p.src.price && p.dupe.price ? Math.round((1 - p.dupe.price / p.src.price) * 100) : 0;
+    const tone = (SKINS.find((t) => t[0] === state.tone) || SKINS[2])[2];
+    const side = (s) => (isSkin(s.cat) || !s.hex
+      ? `<div class="cmp-art">${s.image ? `<img class="cmp-photo" src="${esc(photo(s, 480))}" alt="" data-fallback>` : art(s.cat, s)}</div>`
+      : swatchImg(s, 'cmp-sw', Math.min(1, 0.6 + (s.payoff || 3) * 0.09)));
+    const x = $('#cmpStage') ? $('#cmpStage').getAttribute('aria-valuenow') : 50;
     box.innerHTML = `
-      <div class="cmp-stage" id="cmpStage" tabindex="0" role="slider" aria-label="Drag to compare ${esc(p.src.name)} with ${esc(p.dupe.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--x:50%">
-        <div class="cmp-side cmp-a" style="background:${sideBg(p.src)}">${art(p.src.cat, p.src)}<span class="cmp-tag">Original</span></div>
-        <div class="cmp-side cmp-b" style="background:${sideBg(p.dupe)}">${p.dupe.image ? `<img class="cmp-photo" src="${esc(p.dupe.image)}" alt="" data-fallback>` : art(p.dupe.cat, p.dupe)}<span class="cmp-tag">Dupe</span></div>
-        <div class="cmp-handle"></div>
+      <div class="cmp-stage" id="cmpStage" tabindex="0" role="slider" aria-label="Drag to compare ${esc(p.src.name)} with ${esc(p.dupe.name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${x}" style="--x:${x}%; --skin:${tone}">
+        <div class="cmp-side cmp-a">${side(p.src)}<span class="cmp-tag">${esc(p.src.brand)} · ${inr(p.src.price)}</span></div>
+        <div class="cmp-side cmp-b">${side(p.dupe)}<span class="cmp-tag">${esc(p.dupe.brand)} · ${inr(p.dupe.price)}</span></div>
+        <div class="cmp-handle"><span></span></div>
       </div>
-      <div class="cmp-legend">
-        <div><b>${esc(p.src.brand)} ${esc(short(p.src.name))}</b><span>${inr(p.src.price)}</span></div>
-        <span class="cmp-save">${Math.round(p.score)}% match${save > 0 ? ` · save ${save}%` : ''}</span>
-        <div class="r"><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><span>${inr(p.dupe.price)}</span></div>
-      </div>
-      <div class="cmp-dots">${pairs.map((_, i) => `<button type="button" data-slide="${i}" aria-label="Pair ${i + 1}" aria-pressed="${i === slide}"></button>`).join('')}</div>`;
-    if (!reduced) sweep();
+      <button type="button" class="cmp-card" data-shade="${esc(p.src.id)}">
+        ${p.dupe.image ? `<img src="${esc(photo(p.dupe, 240))}" alt="" data-fallback>` : `<i style="background:${esc(p.dupe.hex || '#eee')}"></i>`}
+        <span><small>${esc(p.src.brand)} ${esc(short(p.src.name))} dupe</small><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><em>${Math.round(p.score)}% match${save > 0 ? ` · ${save}% less` : ''}</em></span>
+      </button>
+      <div class="cmp-dots">${pairs.map((q, i) => `<button type="button" data-slide="${i}" aria-label="${esc(q.src.brand + ' ' + q.src.name)}" aria-pressed="${i === slide}"></button>`).join('')}</div>`;
+    if (!reduced && !$('#cmpStage').dataset.swept) sweep();
   }
   function setX(pct) {
     const st = $('#cmpStage');
@@ -464,14 +502,12 @@
       const st = $('#cmpStage'); const r = st.getBoundingClientRect();
       setX(((e.clientX - r.left) / r.width) * 100);
     }
-    // Gentle tilt on dupe cards, mouse only.
-    const card = !reduced && e.pointerType === 'mouse' && e.target.closest ? e.target.closest('.dupe') : null;
-    document.querySelectorAll('.dupe[data-tilt]').forEach((c) => { if (c !== card) { c.style.transform = ''; c.removeAttribute('data-tilt'); } });
+    // A soft coral light follows the pointer across cards (mouse only).
+    const card = e.pointerType === 'mouse' && e.target.closest ? e.target.closest('.dupe, .bpair, .tile') : null;
     if (card) {
       const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${(-y * 2.2).toFixed(2)}deg) rotateY(${(x * 2.2).toFixed(2)}deg) translateY(-2px)`;
-      card.setAttribute('data-tilt', '');
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
     }
   });
   document.addEventListener('pointerup', () => { dragging = false; });
@@ -482,25 +518,75 @@
     setX(Number(st.getAttribute('aria-valuenow')) + (e.key === 'ArrowLeft' ? -5 : 5));
   });
 
-  // ---- ticker ----
-  function renderTicker() {
-    const picks = [];
+  // ---- reel: a draggable, gently curved strip of original → dupe pairs ----
+  const reelPicks = [];
+  function renderReel() {
     for (const cat of ALL_CATS.map((c) => c.key)) {
       const list = sources.filter((s) => s.cat === cat && s.price > 1500);
       let n = 0;
       for (const src of list) {
-        if (n >= (cat === 'lipstick' ? 5 : 3)) break;
-        if (picks.some((p) => p.src.productId === src.productId || (src.hex && p.src.hex && p.src.cat === cat && S.colourFamily(p.src.hex, cat) === S.colourFamily(src.hex, cat)))) continue;
+        if (n >= (cat === 'lipstick' ? 6 : 3)) break;
+        if (reelPicks.some((p) => p.src.productId === src.productId || (src.hex && p.src.hex && p.src.cat === cat && S.colourFamily(p.src.hex, cat) === S.colourFamily(src.hex, cat)))) continue;
         const d = S.findDupes(src, shades, { community, cheaperOnly: true, limit: 1, minScore: isSkin(cat) ? 62 : 84 })[0];
-        if (d) { picks.push({ src, dupe: d.shade }); n++; }
+        if (d) { reelPicks.push({ src, dupe: d.shade, score: d.score }); n++; }
       }
     }
-    const dot = (s) => (s.image ? `<img src="${esc(s.image)}" alt="" loading="lazy">` : `<i style="background:${s.hex ? esc(s.hex) : pastel(s.brand)}"></i>`);
-    const item = (p) => `<span class="tick">${dot(p.src)}${esc(p.src.brand)} ${esc(short(p.src.name))} <s>${inr(p.src.price)}</s> → ${dot(p.dupe)}${esc(p.dupe.brand)} ${esc(short(p.dupe.name))} <em>${inr(p.dupe.price)}</em></span>`;
-    const html = picks.map(item).join('');
-    const tk = $('#ticker');
-    tk.innerHTML = html + html;
-    requestAnimationFrame(() => { tk.style.animationDuration = Math.max(60, tk.scrollWidth / 2 / 45) + 's'; });
+    const face = (s) => (s.hex && !isSkin(s.cat) ? `<span class="rs" style="--c:${esc(s.hex)}"></span>` : `<span class="rs plate" style="background-image:url(${PLATE[s.cat] || ''})"></span>`);
+    const card = (p) => {
+      const save = p.src.price && p.dupe.price ? Math.round((1 - p.dupe.price / p.src.price) * 100) : 0;
+      return `<button type="button" class="rcard" data-shade="${esc(p.src.id)}" tabindex="-1">
+        <span class="rtop">${face(p.src)}${p.dupe.image ? `<img src="${esc(photo(p.dupe, 240))}" alt="" loading="lazy" data-fallback>` : face(p.dupe)}</span>
+        <span class="rtxt"><small>${esc(p.src.brand)} · <s>${inr(p.src.price)}</s></small><b>${esc(short(p.src.name))}</b>
+        <small>→ ${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</small><em>${inr(p.dupe.price)}${save > 0 ? ` <i>−${save}%</i>` : ''}</em></span></button>`;
+    };
+    const track = $('#reelTrack');
+    track.innerHTML = reelPicks.map(card).join('') + reelPicks.map(card).join('');
+    reelLoop();
+  }
+  // Drifts left on its own, follows a drag, coasts after release, and bends cards
+  // away from the centre a little so it reads as a curved shelf.
+  let reelX = 0, reelV = 0, reelDrag = null, reelMoved = 0;
+  function reelLoop() {
+    const track = $('#reelTrack'), view = $('#reel');
+    if (!track || !view) return;
+    const half = track.scrollWidth / 2;
+    let last = performance.now();
+    const cards = [...track.children];
+    const frame = (t) => {
+      const dt = Math.min(64, t - last); last = t;
+      if (!reelDrag) {
+        const drift = reduced || view.matches(':hover') ? 0 : -0.03;
+        reelV += (drift - reelV) * 0.04;
+        reelX += reelV * dt;
+      }
+      if (reelX < -half) reelX += half; if (reelX > 0) reelX -= half;
+      track.style.transform = `translate3d(${reelX}px,0,0)`;
+      if (!reduced) {
+        const mid = view.clientWidth / 2;
+        for (const c of cards) {
+          const r = c.offsetLeft + reelX + c.offsetWidth / 2 - mid;
+          const k = Math.max(-1, Math.min(1, r / (mid + 200)));
+          c.style.transform = `translateY(${(k * k * 18).toFixed(1)}px) rotate(${(k * 4).toFixed(2)}deg) scale(${(1 - k * k * 0.06).toFixed(3)})`;
+        }
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+    view.addEventListener('pointerdown', (e) => { reelDrag = { x: e.clientX, x0: reelX, t: performance.now() }; reelMoved = 0; reelV = 0; view.setPointerCapture(e.pointerId); });
+    view.addEventListener('pointermove', (e) => {
+      if (!reelDrag) return;
+      const nx = reelDrag.x0 + (e.clientX - reelDrag.x);
+      const now = performance.now();
+      reelV = (nx - reelX) / Math.max(8, now - reelDrag.t); reelDrag.t = now;
+      reelMoved += Math.abs(nx - reelX); reelX = nx;
+    });
+    const end = () => { reelDrag = null; };
+    view.addEventListener('pointerup', end); view.addEventListener('pointercancel', end);
+    // A drag is not a click.
+    view.addEventListener('click', (e) => { if (reelMoved > 6) { e.stopPropagation(); e.preventDefault(); } }, true);
+    view.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); reelX += e.key === 'ArrowLeft' ? 220 : -220; }
+    });
   }
 
   // ---- grain ----
@@ -534,7 +620,7 @@
       return { p, src, dupe, rank: i + 1, pool: list.length, pass: i >= 0 && i + 1 <= allowed && S.verdict(score, 0, p.cat).key !== 'vibe' };
     }).filter(Boolean);
     const found = results.filter((r) => r.pass).length;
-    if (results.length) $('#proofTitle').innerHTML = `We found <em>${found} of ${results.length}</em> published dupes on our own.`;
+    if (results.length) $('#proofTitle').innerHTML = `We found <em><b data-count="${found}">${found}</b> of ${results.length}</em> published dupes on our own.`;
     const sw = (s) => (s.hex ? `<i style="background:${esc(s.hex)}"></i>` : art(s.cat, s));
     $('#benchList').innerHTML = results.map((r) => `<button type="button" class="bpair ${r.pass ? '' : 'miss'}" data-shade="${esc(r.src.id)}">
       <span class="sw">${sw(r.src)}${sw(r.dupe)}</span>
@@ -670,7 +756,7 @@
     // a name search sticks to the international shades you'd want a dupe for.
     const r = S.search(q, parsed.colour || parsed.maxPrice ? shades : sources, 8);
     box.innerHTML = `<div class="ask-panel"><h3>${r.results.length ? 'Pick one to match' : 'Nothing found. Try a brand or colour.'}</h3>
-      <div class="mini-grid">${r.results.map(({ shade: s }) => `<button type="button" class="mini" data-shade="${esc(s.id)}">${pic(s)}<span class="t"><b>${esc(s.name)}</b><span>${esc(s.brand)} · ${inr(s.price)}</span></span></button>`).join('')}</div></div>`;
+      <div class="mini-grid">${r.results.map(({ shade: s }) => `<button type="button" class="mini" data-shade="${esc(s.id)}">${pic(s, '', 120)}<span class="t"><b>${esc(s.name)}</b><span>${esc(s.brand)} · ${inr(s.price)}</span></span></button>`).join('')}</div></div>`;
   }
 
   // ---- AI stylist (served by /api/ask on the deployed site) ----
@@ -712,7 +798,7 @@
     const d = peekCache.get(s.id);
     peek.innerHTML = `<div class="pk-sw">${swatchImg(s, 'sw')}</div>
       <b>${esc(s.name)}</b><span>${esc(s.undertone)} · ${esc(s.finish || '')} · ${inr(s.price)}</span>
-      ${d ? `<div class="pk-d">${d.shade.image ? `<img src="${esc(d.shade.image)}" alt="">` : `<i style="background:${esc(d.shade.hex)}"></i>`}<span><b>${esc(d.shade.brand)} ${esc(short(d.shade.name))}</b>${Math.round(d.score)}% · ${inr(d.shade.price)}</span></div>` : '<div class="pk-d"><span>No cheaper twin yet</span></div>'}`;
+      ${d ? `<div class="pk-d">${d.shade.image ? `<img src="${esc(photo(d.shade, 120))}" alt="">` : `<i style="background:${esc(d.shade.hex)}"></i>`}<span><b>${esc(d.shade.brand)} ${esc(short(d.shade.name))}</b>${Math.round(d.score)}% · ${inr(d.shade.price)}</span></div>` : '<div class="pk-d"><span>No cheaper twin yet</span></div>'}`;
     const r = dot.getBoundingClientRect();
     peek.hidden = false;
     const w = peek.offsetWidth;
@@ -733,8 +819,48 @@
     document.body.dataset.view = v;
     document.querySelectorAll('[data-pane]').forEach((p) => { p.hidden = p.dataset.pane !== v; });
     document.querySelectorAll('.tabs [data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
+    moveThumb();
     if (v === 'map') renderMap();
+    if (v === 'proof') animateIn($('#proof'));
     window.scrollTo(0, 0);
+  }
+  // The white thumb slides to the selected tab.
+  function moveThumb() {
+    const nav = $('.tabs'), on = nav && nav.querySelector('[aria-selected="true"]');
+    if (!on) return;
+    nav.style.setProperty('--tx', on.offsetLeft + 'px');
+    nav.style.setProperty('--tw', on.offsetWidth + 'px');
+  }
+  addEventListener('resize', moveThumb);
+
+  // ---- motion: scores count up and cards rise in as they scroll into view ----
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+    for (const en of entries) {
+      if (!en.isIntersecting) continue;
+      io.unobserve(en.target);
+      en.target.classList.add('in');
+      en.target.querySelectorAll('[data-count]').forEach(countUp);
+    }
+  }, { threshold: 0.2 }) : null;
+  function countUp(el) {
+    const to = Number(el.dataset.count);
+    if (reduced || !to) { el.textContent = to; return; }
+    const t0 = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / 900);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    el.textContent = '0';
+    requestAnimationFrame(step);
+  }
+  function animateIn(root) {
+    if (!root) return;
+    const items = root.querySelectorAll('.dupe, .bpair, .rise');
+    if (!io || reduced) { items.forEach((x) => x.classList.add('in')); return; }
+    items.forEach((x, i) => { x.style.setProperty('--d', (i % 6) * 70 + 'ms'); io.observe(x); });
+    // Never leave anything hidden: whatever hasn't scrolled in after a few seconds just shows.
+    setTimeout(() => items.forEach((x) => { if (!x.classList.contains('in')) { x.classList.add('in'); x.querySelectorAll('[data-count]').forEach((c) => { c.textContent = c.dataset.count; }); } }), 4000);
   }
 
   // ---- events ----
@@ -749,9 +875,9 @@
     if (t.dataset.slide) { slide = Number(t.dataset.slide); stopAuto(); renderCompare(); return; }
     if (t.dataset.kind) { const d = defaultFor(CATS[t.dataset.kind][0].key); if (d) selectShade(d.id, false); return; }
     if (t.dataset.cat) { const cur = byId.get(state.shadeId); const pick = cur && cur.cat === t.dataset.cat ? cur : defaultFor(t.dataset.cat); if (pick) selectShade(pick.id, true); return; }
-    if (t.dataset.shade) { selectShade(t.dataset.shade, t.classList.contains('mini') || t.classList.contains('bpair') || window.innerWidth < 960); return; }
+    if (t.dataset.shade) { selectShade(t.dataset.shade, t.classList.contains('mini') || t.classList.contains('cmp-card') || t.classList.contains('rcard') || window.innerWidth < 960); return; }
     if (t.dataset.q) { $('#askInput').value = t.dataset.q; runAsk(t.dataset.q); return; }
-    if (t.dataset.tone) { state.tone = t.dataset.tone; store.set('tone', state.tone); renderMatch(); return; }
+    if (t.dataset.tone) { state.tone = t.dataset.tone; store.set('tone', state.tone); renderMatch(); renderCompare(); return; }
     if (t.id === 'cheaper') { state.cheaperOnly = !state.cheaperOnly; renderMatch(); return; }
     if (t.id === 'indianOnly') { state.dupeOrigin = state.dupeOrigin === 'IN' ? 'all' : 'IN'; renderMatch(); return; }
     if (t.id === 'clearMax') { state.maxPrice = 0; renderMatch(); return; }
@@ -776,7 +902,7 @@
   $('#examples').innerHTML = EXAMPLES.map((q) => `<button type="button" data-q="${esc(q)}">${esc(q)}</button>`).join('');
   grain();
   renderCompare(); startAuto();
-  renderTicker();
+  renderReel();
   renderProof();
   setView('find');
   const fromHash = byId.get(decodeURIComponent((location.hash || '').slice(1)));

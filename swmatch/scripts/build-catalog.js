@@ -100,15 +100,10 @@ function stated(shadeName, cat) {
 }
 
 const tier = (p) => (!p ? 'unknown' : p < 700 ? 'budget' : p <= 1800 ? 'mid' : 'luxe');
-const where = (brand, line, shade) => {
-  const q = encodeURIComponent(`${brand} ${line} ${shade}`.replace(/\s+/g, ' '));
-  const m = slug(`${brand} ${line}`);
-  return [
-    { store: 'Nykaa', url: `https://www.nykaa.com/search/result/?q=${q}` },
-    { store: 'Tira', url: `https://www.tirabeauty.com/search?q=${q}` },
-    { store: 'Myntra', url: `https://www.myntra.com/${m}` },
-  ];
-};
+// Store links are built in the browser from brand, range and shade (app.js
+// storesFor); the catalog only keeps the Purplle product URL when there is one.
+// Photos keep only the path after Purplle's CDN prefix; the page picks the size.
+const PHOTO_PREFIX = /^https:\/\/media6\.ppl-media\.com\/tr:[^/]+\/static\/img\/product\//;
 
 const products = [];
 const seen = new Set();
@@ -141,8 +136,8 @@ for (const f of raw.products || []) {
       undertone: stated(name, f.category) || S.inferUndertone(s.hex, f.category), undertoneSource: stated(name, f.category) ? 'brand' : 'swatch',
       price: s.price || null, mrp: s.mrp || null, rating: s.rating || null, ratingCount: s.ratingCount || 0, inStock: s.inStock,
       size: sz ? `${Number(sz[1])} ${/ml/i.test(sz[2]) ? 'ml' : 'g'}` : null,
-      image: s.image || null,
-      where: [{ store: 'Purplle', url: s.url }].concat(where(f.brand, line, name).filter((w) => w.store !== 'Purplle')),
+      image: s.image && PHOTO_PREFIX.test(s.image) ? s.image.replace(PHOTO_PREFIX, '') : null,
+      url: s.url,
     });
   });
   if (!shades.length) continue;
@@ -172,7 +167,7 @@ for (const c of curated.products) {
     origin: c.origin || (INDIAN.test(c.brand) ? 'IN' : 'INTL'), size: c.size,
     shades: c.shades.map(([name, hex, undertone, payoff, finish]) => ({
       id: slug(`${id}-${name}`), name, hex, hexSource: 'curated', undertone, undertoneSource: 'brand', payoff, finish,
-      price: c.price, mrp: c.price, rating: null, ratingCount: 0, inStock: true, where: where(c.brand, c.line, name).concat([{ store: 'Purplle', url: `https://www.purplle.com/search?q=${encodeURIComponent(`${c.brand} ${c.line} ${name}`)}` }]),
+      price: c.price, mrp: c.price, rating: null, ratingCount: 0, inStock: true,
     })),
   });
 }
@@ -191,7 +186,6 @@ for (const c of skin.products) {
       id, name: c.name, price: c.price, mrp: c.price, size: c.size, rating: null, ratingCount: 0, inStock: true,
       ingredients: got.ingredients, inciUrl: got.url, inciConfidence: got.confidence,
       actives: c.actives || {}, texture: c.texture || 'serum', spf: c.spf || null, pa: c.pa || null,
-      where: where(brand, '', c.name).concat([{ store: 'Purplle', url: `https://www.purplle.com/search?q=${encodeURIComponent(`${brand} ${c.name}`)}` }]),
     }],
   });
 }

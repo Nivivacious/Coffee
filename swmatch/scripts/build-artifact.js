@@ -62,12 +62,16 @@ function download(url, file) {
       if (!keep.has(s.id)) { s.image = null; continue; }
       const rel = `img/${s.id}.jpg`;
       const file = path.join(imgDir, rel);
-      const ok = fs.existsSync(file) || download(s.image.replace(/\/tr:[^/]+\//, '/tr:w-240,c-at_max/'), file);
+      const url = /^https?:/.test(s.image) ? s.image.replace(/\/tr:[^/]+\//, '/tr:w-240,c-at_max/') : `https://media6.ppl-media.com/tr:w-240,c-at_max/static/img/product/${s.image}`;
+      const ok = fs.existsSync(file) || download(url, file);
       if (ok) { s.image = rel; files[rel] = file; } else s.image = null;
     }
-    for (const t of fs.readdirSync(path.join(root, 'assets/tex'))) {
-      fs.copyFileSync(path.join(root, 'assets/tex', t), path.join(imgDir, 'assets/tex', t));
-      files[`assets/tex/${t}`] = path.join(imgDir, 'assets/tex', t);
+    for (const dir of ['assets/tex', 'assets/archive']) {
+      fs.mkdirSync(path.join(imgDir, dir), { recursive: true });
+      for (const t of fs.readdirSync(path.join(root, dir))) {
+        fs.copyFileSync(path.join(root, dir, t), path.join(imgDir, dir, t));
+        files[`${dir}/${t}`] = path.join(imgDir, dir, t);
+      }
     }
     catalogJs = `window.SWMATCH_CATALOG = ${JSON.stringify(cat)};`;
     fs.writeFileSync(path.join(imgDir, 'files.json'), JSON.stringify(files, null, 1));

@@ -102,3 +102,12 @@ python3 -m http.server                     # then open http://localhost:8000
 Deploy the `swmatch/` folder to Vercel as its own project (root directory `swmatch`), set
 `ANTHROPIC_API_KEY` for the stylist, and add the Upstash Redis integration for votes. The site is
 static apart from `api/ask.js` and `api/vote.js`; without those the page still works and hides them.
+
+## Design
+
+`DESIGN.md` holds the colour, type, spacing and motion rules. Category tiles with no product photos
+(serum, moisturiser, sunscreen, highlighter) and the Tested page use public-domain plates from the
+[Public Domain Image Archive](https://pdimagearchive.org/), resized into `assets/archive/` and
+credited in the footer. Motion ideas (the draggable swaps reel, the score ring that counts up, the
+pointer light on cards) were rebuilt in plain JS after a look through motionsites.ai and
+reactbits.dev; no code was copied from either.
