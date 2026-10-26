@@ -29,20 +29,22 @@ Shade swatches are data, not decoration: they always show the catalogue hex, nev
 
 ## Typography
 
-One family, Nunito (rounded, friendly, matches the wordmark), plus IBM Plex Mono for numbers that
-are compared side by side (prices per ml, ΔE, ranks).
+Nunito (rounded, friendly, matches the wordmark) for everything you read or tap, Instrument Serif
+for display headlines only, and IBM Plex Mono for numbers compared side by side (price per ml, ΔE,
+ranks). Prices and scores use tabular figures. Nothing renders below 12px; selects are 16px on
+phones so iOS doesn't zoom.
 
 | Step | Size / line | Weight | Use |
 |---|---|---|---|
-| Display | clamp(40px, 6.4vw, 84px) / .95 | 900 | Hero h1 only |
-| H2 | clamp(26px, 3vw, 36px) / 1.1 | 900 | Section titles |
+| Display | clamp(52px, 7.4vw, 104px) / .94 | Instrument Serif 400 | Hero h1 only |
+| H2 | clamp(32px, 3.6vw, 46px) / 1.05 | Instrument Serif 400 | Section titles, shade name |
 | H3 | 22px / 1.2 | 900 | Shade name in the match panel, Tested headline parts |
 | Title | 17px / 1.25 | 800 | Card titles (dupe name, tile name) |
 | Body | 16px / 1.55 | 400–600 | Copy, notes |
 | Small | 13px / 1.4 | 700 | Meta lines, chips, labels |
 | Eyebrow | 12px, +.12em, caps | 800 | Section kickers |
 
-Emphasis inside a headline is italic 800 with a butter marker underneath (`.mark`), never gradient
+Emphasis inside a headline is the serif italic with a butter marker underneath (`.mark`), never gradient
 text. Lines stay under 70 characters (`max-width: 60ch` on copy blocks).
 
 ## Spacing, shape, depth
@@ -82,3 +84,8 @@ No stock photos, no AI images standing in for real swatches, no emoji icons.
 One easing, `cubic-bezier(.22, 1, .36, 1)`, 0.5–0.7s for reveals, 60–90ms stagger. Motion explains
 something (a score counting up, a swatch revealed under the cursor, the dupe sliding into place)
 or it isn't there. Everything respects `prefers-reduced-motion`.
+
+Interaction rules: anything that moves on its own pauses on hover and focus and has a visible pause
+(the swaps reel) or progress (the hero dots); every card a pointer can open is reachable with Tab;
+buttons give a small press (scale .96); switching shades cross-fades the panel; the panel takes a
+wash of the picked shade; hovering a dupe slides in callouts with the facts behind its score.

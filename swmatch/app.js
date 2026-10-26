@@ -336,6 +336,7 @@
     const crit = isSkin(src.cat) ? S.SKIN_CRITERIA : S.CRITERIA;
     const wts = isSkin(src.cat) ? S.SKIN_WEIGHTS[src.cat] : S.WEIGHTS[src.cat];
 
+    el.style.setProperty('--wash', src.hex ? tint(src.hex, 0.86) : 'var(--sunk)');
     el.innerHTML = `
       <div class="mhero">
         ${src.image || isSkin(src.cat) || !src.hex ? pic(src, 'mart', 480) : `<div class="pic mart swatchonly" style="--skin:${(SKINS.find((t) => t[0] === state.tone) || SKINS[2])[2]}">${swatchImg(src, 'sw')}</div>`}
@@ -371,6 +372,15 @@
     animateIn(el);
   }
 
+  // Small tags that slide in over the photo: the facts that decided the match.
+  function callouts(src, s, d) {
+    const tags = isSkin(src.cat)
+      ? [d.skin && d.skin.sharedCount ? `${d.skin.sharedCount} shared ingredient${d.skin.sharedCount === 1 ? '' : 's'}` : null, s.texture, s.spf ? `SPF ${s.spf}` : null]
+      : [d.deltaE != null ? `ΔE ${d.deltaE.toFixed(1)}` : null, s.undertone ? `${s.undertone} undertone` : null, s.finish];
+    const list = tags.filter(Boolean).slice(0, 3);
+    return list.length ? `<ul class="callouts" aria-hidden="true">${list.map((t, i) => `<li style="--i:${i}">${esc(t)}</li>`).join('')}</ul>` : '';
+  }
+
   // The engine's verdict as a ring: the score fills it and counts up when it scrolls in.
   const ring = (score, label, cls) => `<div class="ring ${cls || ''}" style="--p:${Math.round(score)}" role="img" aria-label="${Math.round(score)}% match, ${esc(label)}"><b data-count="${Math.round(score)}">${Math.round(score)}</b><i>%</i></div>`;
 
@@ -401,7 +411,7 @@
     const chips = d.direction.map((x) => `<span class="chip">${esc(x)}</span>`).join('') + (s.origin === 'IN' ? '<span class="chip in">Indian brand</span>' : '') + (s.id === bestValue ? '<span class="chip value">Best value</span>' : '');
     const top = i === 0 && (v.key === 'twin' || v.key === 'close');
     return `<article class="dupe ${top ? 'top' : ''}">
-      <div class="dvis">${visual}${top ? '<span class="badge-top">Best match</span>' : ''}<div class="score">${ring(d.score, v.label)}<span>${v.label}</span></div></div>
+      <div class="dvis">${visual}${top ? '<span class="badge-top">Best match</span>' : ''}${callouts(src, s, d)}<div class="score">${ring(d.score, v.label)}<span>${v.label}</span></div></div>
       <div class="dmain">
         <div class="by">${esc(s.brand)}${isSkin(src.cat) ? '' : ' · ' + esc(s.line)}</div>
         <h3>${esc(s.name)}</h3>
@@ -470,7 +480,7 @@
         ${p.dupe.image ? `<img src="${esc(photo(p.dupe, 240))}" alt="" data-fallback>` : `<i style="background:${esc(p.dupe.hex || '#eee')}"></i>`}
         <span><small>The dupe</small><b>${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</b><em>${Math.round(p.score)}% match${save > 0 ? ` · ${save}% less` : ''}</em></span>
       </button>
-      <div class="cmp-dots">${pairs.map((q, i) => `<button type="button" data-slide="${i}" aria-label="${esc(q.src.brand + ' ' + q.src.name)}" aria-pressed="${i === slide}"></button>`).join('')}</div>`;
+      <div class="cmp-dots ${autoplay ? 'playing' : ''}">${pairs.map((q, i) => `<button type="button" data-slide="${i}" aria-label="${esc(q.src.brand + ' ' + q.src.name)}" aria-pressed="${i === slide}"></button>`).join('')}</div>`;
     if (!reduced && !$('#cmpStage').dataset.swept) sweep();
   }
   function setX(pct) {
@@ -492,7 +502,11 @@
   function startAuto() {
     clearInterval(timer);
     if (!autoplay || pairs.length < 2) return;
-    timer = setInterval(() => { slide = (slide + 1) % pairs.length; renderCompare(); }, 5200);
+    timer = setInterval(() => {
+      const box = $('#compare');
+      if (box.matches(':hover') || box.contains(document.activeElement)) return;
+      slide = (slide + 1) % pairs.length; renderCompare();
+    }, 5200);
   }
   function stopAuto() { autoplay = false; clearInterval(timer); }
   let dragging = false;
@@ -538,30 +552,30 @@
       }
     }
     const face = (s) => (s.hex && !isSkin(s.cat) ? `<span class="rs" style="--c:${esc(s.hex)}"></span>` : `<span class="rs plate" style="background-image:url(${PLATE[s.cat] || ''})"></span>`);
-    const card = (p) => {
+    const card = (p, copy) => {
       const save = p.src.price && p.dupe.price ? Math.round((1 - p.dupe.price / p.src.price) * 100) : 0;
-      return `<button type="button" class="rcard" data-shade="${esc(p.src.id)}" tabindex="-1">
-        <span class="rtop">${face(p.src)}${p.dupe.image ? `<img src="${esc(photo(p.dupe, 240))}" alt="" loading="lazy" data-fallback>` : face(p.dupe)}</span>
+      return `<button type="button" class="rcard" data-shade="${esc(p.src.id)}"${copy ? ' tabindex="-1"' : ''} aria-label="${esc(`${p.src.brand} ${p.src.name}, ${inr(p.src.price)}. Dupe: ${p.dupe.brand} ${p.dupe.name}, ${inr(p.dupe.price)}`)}">
+        <span class="rtop">${[p.src, p.dupe].map((x) => (x.image ? `<span class="rph"><img src="${esc(photo(x, 240))}" alt="" loading="lazy" data-fallback>${x.hex ? `<i style="background:${esc(x.hex)}"></i>` : ''}</span>` : face(x))).join('')}</span>
         <span class="rtxt"><small>${esc(p.src.brand)} · <s>${inr(p.src.price)}</s></small><b>${esc(short(p.src.name))}</b>
         <small>→ ${esc(p.dupe.brand)} ${esc(short(p.dupe.name))}</small><em>${inr(p.dupe.price)}${save > 0 ? ` <i>−${save}%</i>` : ''}</em></span></button>`;
     };
     const track = $('#reelTrack');
-    track.innerHTML = reelPicks.map(card).join('') + reelPicks.map(card).join('');
+    track.innerHTML = reelPicks.map(card).join('') + `<div class="reel-copy" aria-hidden="true">${reelPicks.map((p) => card(p, true)).join('')}</div>`;
     reelLoop();
   }
   // Drifts left on its own, follows a drag, coasts after release, and bends cards
   // away from the centre a little so it reads as a curved shelf.
-  let reelX = 0, reelV = 0, reelDrag = null, reelMoved = 0;
+  let reelX = 0, reelV = 0, reelDrag = null, reelMoved = 0, reelPaused = false;
   function reelLoop() {
     const track = $('#reelTrack'), view = $('#reel');
     if (!track || !view) return;
     const half = track.scrollWidth / 2;
     let last = performance.now();
-    const cards = [...track.children];
+    const cards = [...track.querySelectorAll('.rcard')];
     const frame = (t) => {
       const dt = Math.min(64, t - last); last = t;
       if (!reelDrag) {
-        const drift = reduced || view.matches(':hover') ? 0 : -0.03;
+        const drift = reduced || reelPaused || view.matches(':hover') || view.contains(document.activeElement) ? 0 : -0.03;
         reelV += (drift - reelV) * 0.04;
         reelX += reelV * dt;
       }
@@ -590,6 +604,19 @@
     view.addEventListener('pointerup', end); view.addEventListener('pointercancel', end);
     // A drag is not a click.
     view.addEventListener('click', (e) => { if (reelMoved > 6) { e.stopPropagation(); e.preventDefault(); } }, true);
+    // Tabbing to a card brings it into view.
+    view.addEventListener('focusin', (e) => {
+      const c = e.target.closest && e.target.closest('.rcard');
+      if (!c) return;
+      const mid = view.clientWidth / 2;
+      reelX = Math.min(0, mid - (c.offsetLeft + c.offsetWidth / 2));
+    });
+    $('#reelPause').addEventListener('click', (e) => {
+      e.stopPropagation();
+      reelPaused = !reelPaused;
+      e.currentTarget.setAttribute('aria-pressed', String(reelPaused));
+      e.currentTarget.textContent = reelPaused ? 'Play' : 'Pause';
+    });
     view.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); reelX += e.key === 'ArrowLeft' ? 220 : -220; }
     });
@@ -634,9 +661,9 @@
       <span class="res">#${r.rank} of ${r.pool}<small>${r.pass ? 'Found' : r.p.knownIssue ? 'Missed: chip colour' : 'Missed'}</small></span></button>`).join('');
     const C = [
       ['Colour', 'How far apart the swatches are (CIEDE2000), judged mostly on hue.'],
-      ['Undertone', 'Warm, cool, neutral or olive. Brand\'s word first, swatch second.'],
+      ['Undertone', 'Warm, cool, neutral or olive. Brand’s word first, swatch second.'],
       ['Depth', 'How light or deep. Foundation uses Fair, Wheatish, Dusky and Deep.'],
-      ['Finish', 'Matte to satin is a small jump. Matte to metallic isn\'t.'],
+      ['Finish', 'Matte to satin is a small jump. Matte to metallic isn’t.'],
       ['Payoff and formula', 'Colour per swipe. Bullet, crayon, liquid, cream or powder.'],
       ['Actives', 'Skincare: the same hero ingredient at a similar strength.'],
       ['What it does', 'Hydrating, barrier, soothing, exfoliating. Read from the ingredient list.'],
@@ -740,7 +767,9 @@
     state.shadeId = id; state.cat = s.cat; state.brand = s.brand; state.weights = {}; state.showAll = false;
     state.kind = isSkin(s.cat) ? 'skin' : 'makeup';
     if (!isSkin(s.cat)) state.mapCat = s.cat;
-    renderAll();
+    if (document.startViewTransition && !reduced && state.started) document.startViewTransition(renderAll);
+    else renderAll();
+    state.started = true;
     loadVotes(id);
     try { history.replaceState(null, '', '#' + id); } catch (e) { /* sandboxed */ }
     if (scroll) $('#library').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });

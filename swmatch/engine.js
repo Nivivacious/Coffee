@@ -363,7 +363,7 @@
     const notes = [];
     const dE = r.deltaE;
     if (dE < 2) notes.push('Same colour on the swatch.');
-    else if (dE < 4) notes.push("Close. You'd only spot it side by side.");
+    else if (dE < 4) notes.push('Close. You’d only spot it side by side.');
     else if (dE < 8) notes.push('Same family, but you can see the difference.');
     else notes.push('Different shade, same direction.');
 
