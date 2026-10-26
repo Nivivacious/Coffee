@@ -2,8 +2,8 @@
 
 swmatch is a shopping tool first: people arrive with one shade in mind and want its dupe fast. The
 look is the logo's own world, a warm coral stage and a quiet blush-white counter, made premium by
-real product photos, real swatch colour and restraint, not by effects. Light theme is the brand;
-dark mode is a courtesy for people who browse at night.
+real product photos, real swatch colour and restraint, not by effects. One theme, light: there
+is no dark mode, and the page tells browsers not to darken it (`color-scheme: light`).
 
 Direction was set from the brand files and the owner's feedback (keep the coral design, add real
 imagery and interaction, nothing dark or WebGL). Motion and layout ideas came from motionsites.ai,
@@ -13,17 +13,17 @@ reactbits.dev and pdimagearchive.org (see README), rebuilt in plain CSS/JS.
 
 Every colour has one job. Tokens live on `:root` in `index.html`.
 
-| Token | Light | Dark | Role |
-|---|---|---|---|
-| `--coral` | `#F26671` | `#D9505C` | The stage behind the hero and the footer. Never text. |
-| `--butter` | `#F8F3A6` | same | The logo slash, highlights behind words, the ticker, focus ring. Never text on coral. |
-| `--plum` | `#2B1519` | `#120A0C` | Primary buttons, text on coral and butter (5.6:1 on coral, 13:1 on butter). |
-| `--on-coral` | `#FFFFFF` | same | Large type on coral only (h1, wordmark): 3:1, passes for large text. |
-| `--accent` | `#C8404D` | `#F26671` | Selected states, match %, links. 4.9:1 on white. |
-| `--bg` / `--surface` / `--sunk` | `#FFF8F6` / `#FFFFFF` / `#FCEDEB` | `#1B1113` / `#26191C` / `#332326` | Page, cards, wells. |
-| `--ink` / `--ink-2` | `#2B1519` / `#7A5A5F` | `#FFF1F0` / `#D2B4B7` | Body text / secondary text (5.4:1 on white). |
-| `--line` | `#F2DAD7` | `#432E32` | Hairlines and card borders. |
-| `--good` / `--warn` | `#1F8A5B` / `#946010` | `#4CC08A` / `#E3AE52` | Savings / low-confidence notes. |
+| Token | Value | Role |
+|---|---|---|
+| `--coral` | `#F26671` | The stage behind the hero and the footer. Never text. |
+| `--butter` | `#F8F3A6` | The logo slash, highlights behind words, the ticker, focus ring. Never text on coral. |
+| `--plum` | `#2B1519` | Primary buttons, text on coral and butter (5.6:1 on coral, 13:1 on butter). |
+| `--on-coral` | `#FFFFFF` | Large type on coral only (h1, wordmark): 3:1, passes for large text. |
+| `--accent` | `#C8404D` | Selected states, match %, links. 4.9:1 on white. |
+| `--bg` / `--surface` / `--sunk` | `#FFF8F6` / `#FFFFFF` / `#FCEDEB` | Page, cards, wells. |
+| `--ink` / `--ink-2` | `#2B1519` / `#7A5A5F` | Body text / secondary text (5.4:1 on white). |
+| `--line` | `#F2DAD7` | Hairlines and card borders. |
+| `--good` / `--warn` | `#1F8A5B` / `#946010` | Savings / low-confidence notes. |
 
 Shade swatches are data, not decoration: they always show the catalogue hex, never a brand colour.
 
@@ -35,7 +35,7 @@ ranks). Prices and scores use tabular figures. Nothing renders below 12px; selec
 phones so iOS doesn't zoom.
 
 | Step | Size / line | Weight | Use |
-|---|---|---|---|
+|---|---|---|
 | Display | clamp(52px, 7.4vw, 104px) / .94 | Instrument Serif 400 | Hero h1 only |
 | H2 | clamp(32px, 3.6vw, 46px) / 1.05 | Instrument Serif 400 | Section titles, shade name |
 | H3 | 22px / 1.2 | 900 | Shade name in the match panel, Tested headline parts |
