@@ -1367,6 +1367,384 @@
      4
     ]
    ]
+  },
+  {
+   "brand": "Huda Beauty",
+   "line": "#FauxFilter Luminous Matte Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 3500,
+   "size": "35 ml",
+   "shades": [
+    [
+     "110N Milkshake",
+     "#F0D2BC",
+     "neutral",
+     5
+    ],
+    [
+     "200B Panna Cotta",
+     "#E3C0A2",
+     "neutral",
+     5
+    ],
+    [
+     "250G Toasted Coconut",
+     "#D7AD86",
+     "warm",
+     5
+    ],
+    [
+     "320G Butterscotch",
+     "#C39469",
+     "warm",
+     5
+    ],
+    [
+     "350G Cinnamon",
+     "#B4825B",
+     "warm",
+     5
+    ],
+    [
+     "420G Mocha",
+     "#8E6142",
+     "warm",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "NARS",
+   "line": "Light Reflecting Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "natural",
+   "payoff": 4,
+   "price": 4500,
+   "size": "30 ml",
+   "shades": [
+    [
+     "Mont Blanc",
+     "#F0D5C0",
+     "cool",
+     4
+    ],
+    [
+     "Fiji",
+     "#E4C2A1",
+     "warm",
+     4
+    ],
+    [
+     "Punjab",
+     "#D6A882",
+     "warm",
+     4
+    ],
+    [
+     "Syracuse",
+     "#BE8F68",
+     "neutral",
+     4
+    ],
+    [
+     "Macao",
+     "#A9774F",
+     "warm",
+     4
+    ],
+    [
+     "New Caledonia",
+     "#8C5D3E",
+     "neutral",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Rare Beauty",
+   "line": "Liquid Touch Weightless Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "natural",
+   "payoff": 3,
+   "price": 3000,
+   "size": "30 ml",
+   "shades": [
+    [
+     "170W",
+     "#E7C3A2",
+     "warm",
+     3
+    ],
+    [
+     "200N",
+     "#DDB590",
+     "neutral",
+     3
+    ],
+    [
+     "250W",
+     "#CFA27A",
+     "warm",
+     3
+    ],
+    [
+     "310N",
+     "#BB8C63",
+     "neutral",
+     3
+    ],
+    [
+     "370W",
+     "#A6744D",
+     "warm",
+     3
+    ],
+    [
+     "450N",
+     "#7F5536",
+     "neutral",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "Charlotte Tilbury",
+   "line": "Airbrush Flawless Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "matte",
+   "payoff": 5,
+   "price": 4300,
+   "size": "30 ml",
+   "shades": [
+    [
+     "4 Neutral",
+     "#E8C6A8",
+     "neutral",
+     5
+    ],
+    [
+     "6 Warm",
+     "#D9B08B",
+     "warm",
+     5
+    ],
+    [
+     "8 Neutral",
+     "#C99B72",
+     "neutral",
+     5
+    ],
+    [
+     "10 Warm",
+     "#B5855C",
+     "warm",
+     5
+    ],
+    [
+     "12 Cool",
+     "#9C6C4E",
+     "cool",
+     5
+    ],
+    [
+     "14 Neutral",
+     "#7D5439",
+     "neutral",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Dior",
+   "line": "Forever Skin Glow Foundation",
+   "cat": "foundation",
+   "formula": "liquid",
+   "finish": "dewy",
+   "payoff": 4,
+   "price": 4900,
+   "size": "30 ml",
+   "shades": [
+    [
+     "2W Warm",
+     "#E2BD9C",
+     "warm",
+     4
+    ],
+    [
+     "3N Neutral",
+     "#D4AB86",
+     "neutral",
+     4
+    ],
+    [
+     "4W Warm",
+     "#C49871",
+     "warm",
+     4
+    ],
+    [
+     "5N Neutral",
+     "#AE8160",
+     "neutral",
+     4
+    ],
+    [
+     "6N Neutral",
+     "#8F6447",
+     "neutral",
+     4
+    ]
+   ]
+  },
+  {
+   "brand": "Dior",
+   "line": "Rouge Dior Lipstick",
+   "cat": "lipstick",
+   "formula": "bullet",
+   "finish": "satin",
+   "payoff": 5,
+   "price": 4100,
+   "size": "3.5 g",
+   "shades": [
+    [
+     "999",
+     "#B41F2B",
+     "neutral",
+     5
+    ],
+    [
+     "100 Nude Look",
+     "#B57D70",
+     "neutral",
+     4
+    ],
+    [
+     "080 Red Smile",
+     "#C1272F",
+     "warm",
+     5
+    ],
+    [
+     "525 Chérie",
+     "#B8566B",
+     "cool",
+     4
+    ],
+    [
+     "720 Icône",
+     "#A85048",
+     "warm",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Dior",
+   "line": "Backstage Rosy Glow Blush",
+   "cat": "blush",
+   "formula": "powder",
+   "finish": "satin",
+   "payoff": 3,
+   "price": 3700,
+   "size": "4.4 g",
+   "shades": [
+    [
+     "001 Pink",
+     "#E77FA0",
+     "cool",
+     3
+    ],
+    [
+     "004 Coral",
+     "#F08A6C",
+     "warm",
+     3
+    ],
+    [
+     "012 Rosewood",
+     "#C27270",
+     "neutral",
+     3
+    ]
+   ]
+  },
+  {
+   "brand": "MAC",
+   "line": "Powder Blush",
+   "cat": "blush",
+   "formula": "powder",
+   "finish": "matte",
+   "payoff": 4,
+   "price": 2500,
+   "size": "6 g",
+   "shades": [
+    [
+     "Melba",
+     "#D88D78",
+     "warm",
+     3
+    ],
+    [
+     "Warm Soul",
+     "#C58866",
+     "warm",
+     4
+    ],
+    [
+     "Mocha",
+     "#B57A6C",
+     "neutral",
+     4
+    ],
+    [
+     "Peaches",
+     "#E4A189",
+     "warm",
+     4
+    ],
+    [
+     "Frankly Scarlet",
+     "#C24A4A",
+     "warm",
+     5
+    ]
+   ]
+  },
+  {
+   "brand": "Dior",
+   "line": "Forever Glow Luminizer",
+   "cat": "highlighter",
+   "formula": "powder",
+   "finish": "radiant",
+   "payoff": 4,
+   "price": 3900,
+   "size": "6 g",
+   "shades": [
+    [
+     "01 Nude Glow",
+     "#E8C8AE",
+     "neutral",
+     4
+    ],
+    [
+     "03 Pearlescent Glow",
+     "#F1DBCF",
+     "cool",
+     4
+    ],
+    [
+     "05 Rose Gold Glow",
+     "#E2AE96",
+     "warm",
+     4
+    ]
+   ]
   }
  ],
  "community": [

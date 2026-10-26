@@ -56,8 +56,22 @@
       byId.set(row.id, row);
     }
   }
-  // You pick the one you love from international brands; dupes come from everyone.
-  const sources = shades.filter((s) => s.origin !== 'IN');
+  // You pick the one you love from high-end brands; dupes come from everyone.
+  // High-end means the brand's typical price in that category sits at or above
+  // the premium line for that category in India.
+  const PREMIUM = { lipstick: 1500, blush: 1500, highlighter: 1500, foundation: 1800, serum: 1400, moisturiser: 1400, sunscreen: 1200 };
+  const highEndProducts = new Set();
+  {
+    const byBrand = {};
+    for (const s of shades) if (s.price) (byBrand[s.cat + '|' + s.brand] = byBrand[s.cat + '|' + s.brand] || []).push(s.price);
+    const median = (a) => a.slice().sort((x, y) => x - y)[a.length >> 1];
+    for (const p of CAT.products) {
+      const prices = byBrand[p.cat + '|' + p.brand];
+      if (p.origin !== 'IN' && prices && median(prices) >= (PREMIUM[p.cat] || 1500)) highEndProducts.add(p.id);
+    }
+  }
+  const isHighEnd = (s) => highEndProducts.has(s.productId);
+  const sources = shades.filter(isHighEnd);
 
   const citedShade = new Map(), citedLine = new Map();
   for (const c of CAT.community || []) {
@@ -228,7 +242,7 @@
   // ---- shelf ----
   const DEFAULTS = {
     lipstick: ['MAC', 'Ruby Woo'], blush: ['Rare Beauty', 'Hope'], foundation: ['MAC', 'NC42'], highlighter: ['Charlotte Tilbury', '4 Medium'],
-    serum: ['The Ordinary', 'Niacinamide 10% + Zinc 1%'], moisturiser: ['Clinique', 'Moisture Surge 100H Auto-Replenishing Hydrator'],
+    serum: ['Paula\'s Choice', '10% Niacinamide Booster'], moisturiser: ['Clinique', 'Moisture Surge 100H Auto-Replenishing Hydrator'],
     sunscreen: ['La Roche-Posay', 'Anthelios UVMune 400 Invisible Fluid SPF 50+'],
   };
   const findShade = (cat, [brand, name]) => { const n = String(name || '').toLowerCase(); return shades.find((s) => s.cat === cat && s.brand === brand && (s.name.toLowerCase() === n || s.name.toLowerCase().endsWith(' ' + n))); };
@@ -265,7 +279,7 @@
   // ---- picker ----
   function brandsFor(cat) {
     const m = new Set();
-    for (const p of CAT.products) if (p.cat === cat && p.origin !== 'IN') m.add(p.brand);
+    for (const p of CAT.products) if (p.cat === cat && highEndProducts.has(p.id)) m.add(p.brand);
     return [...m].sort((a, b) => a.localeCompare(b));
   }
   function renderBrands() {
@@ -281,7 +295,7 @@
   function renderLines() {
     const el = $('#lines');
     if (!state.brand) { el.innerHTML = ''; return; }
-    const ps = CAT.products.filter((p) => p.cat === state.cat && p.brand === state.brand && p.origin !== 'IN');
+    const ps = CAT.products.filter((p) => p.cat === state.cat && p.brand === state.brand && highEndProducts.has(p.id));
     if (isSkin(state.cat)) {
       el.innerHTML = `<div class="line">${ps.map((p) => {
         const s = p.shades[0];
@@ -730,7 +744,7 @@
     const dupeIds = src ? new Set(S.findDupes(src, shades, dupeOpts({ limit: 5 })).map((d) => d.shade.id)) : new Set();
     const me = src && mapPts.find((p) => p.s.id === src.id);
     for (const p of mapPts) {
-      g.beginPath(); g.arc(p.x, p.y, p.s.origin === 'IN' ? 3.2 : 4.2, 0, 7);
+      g.beginPath(); g.arc(p.x, p.y, isHighEnd(p.s) ? 4.4 : 3.2, 0, 7);
       g.fillStyle = p.s.hex; g.globalAlpha = dupeIds.size && !dupeIds.has(p.s.id) && p !== me ? 0.55 : 1; g.fill();
     }
     g.globalAlpha = 1;
@@ -746,7 +760,7 @@
   function renderMapSide(src, cat) {
     const side = $('#mapSide');
     if (!src) {
-      side.innerHTML = `<h3>Your shade</h3><p class="cite" style="margin:0">Click a dot with a bigger ring (international brands) to see its closest dupes here.</p>`;
+      side.innerHTML = `<h3>Your shade</h3><p class="cite" style="margin:0">Click one of the bigger dots (high-end brands) to see its closest dupes here.</p>`;
       return;
     }
     const top = S.findDupes(src, shades, dupeOpts({ limit: 5 }));
@@ -770,12 +784,12 @@
     tip.hidden = false;
     tip.style.left = p.x + 'px'; tip.style.top = p.y + 'px';
     tip.innerHTML = `<i style="background:${esc(p.s.hex)}"></i><b>${esc(p.s.name)}</b><span>${esc(p.s.brand)} · ${inr(p.s.price)}${p.s.origin === 'IN' ? ' · Indian' : ''}</span>`;
-    $('#map').style.cursor = p.s.origin !== 'IN' ? 'pointer' : 'default';
+    $('#map').style.cursor = isHighEnd(p.s) ? 'pointer' : 'default';
   });
   document.addEventListener('click', (e) => {
     if (!e.target.closest || !e.target.closest('#map')) return;
     const p = nearest(e);
-    if (p && p.s.origin !== 'IN') selectShade(p.s.id, false);
+    if (p && isHighEnd(p.s)) selectShade(p.s.id, false);
   });
   let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(renderMap, 150); });
 
@@ -796,7 +810,7 @@
   function renderAll() { renderShelf(); renderBrands(); renderLines(); renderMatch(); renderMap(); }
 
   // ---- plain-language search ----
-  const EXAMPLES = ['MAC Candy Yum-Yum', 'Rare Beauty Hope', 'hot pink lipstick under ₹500', 'orange lipstick', 'The Ordinary Niacinamide'];
+  const EXAMPLES = ['MAC Candy Yum-Yum', 'Rare Beauty Hope', 'hot pink lipstick under ₹500', 'orange lipstick', 'Drunk Elephant Protini'];
   function runAsk(q) {
     const box = $('#askResults');
     if (!q.trim()) { box.innerHTML = ''; return; }
@@ -804,7 +818,7 @@
     if (parsed.maxPrice) state.maxPrice = parsed.maxPrice;
     if (parsed.origin) state.dupeOrigin = parsed.origin;
     if (parsed.skin) state.skin = parsed.skin;
-    const named = S.findNamedShade(q, sources);
+    const named = S.findNamedShade(q, sources) || S.findNamedShade(q, shades);
     if (named) { box.innerHTML = ''; selectShade(named.id, true); return; }
     // A colour or price search ("hot pink lipstick under ₹500") looks at every brand;
     // a name search sticks to the international shades you'd want a dupe for.
@@ -1096,7 +1110,7 @@
   (function typeHints() {
     const input = $('#askInput');
     if (!input || reduced) return;
-    const hints = ['MAC Ruby Woo', 'Rare Beauty Hope', 'NARS Orgasm', 'Charlotte Tilbury Pillow Talk', 'The Ordinary Niacinamide', 'red lipstick under ₹600'];
+    const hints = ['MAC Ruby Woo', 'Rare Beauty Hope', 'NARS Orgasm', 'Charlotte Tilbury Pillow Talk', 'Clinique Moisture Surge', 'red lipstick under ₹600'];
     let h = 0, c = 0, dir = 1;
     setInterval(() => {
       if (document.activeElement === input || input.value) return;
@@ -1120,6 +1134,6 @@
     }, { passive: true });
   })();
   const fromHash = byId.get(decodeURIComponent((location.hash || '').slice(1)));
-  const start = fromHash && fromHash.origin !== 'IN' ? fromHash : defaultFor('blush');
+  const start = fromHash && isHighEnd(fromHash) ? fromHash : defaultFor('blush');
   if (start) selectShade(start.id, false); else renderAll();
 })();

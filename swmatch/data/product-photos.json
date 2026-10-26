@@ -411,5 +411,49 @@
  },
  "est-e-lauder-double-wear-stay-in-place-foundation-foundation": null,
  "lakm-absolute-liquid-highlighter-highlighter": null,
- "lakm-9to5-primer-matte-lip-color-lipstick": null
+ "lakm-9to5-primer-matte-lip-color-lipstick": null,
+ "dior-backstage-rosy-glow-blush-blush": {
+  "image": "https://incidecoder-content.storage.googleapis.com/915048ba-6262-4e8e-8e2b-7af89a468dba/products/dior-backstage-rosy-glow-blush/dior-backstage-rosy-glow-blush_front_photo_300x300@2x.jpeg",
+  "page": "https://incidecoder.com/products/dior-backstage-rosy-glow-blush",
+  "matched": "Dior Backstage Rosy Glow Blush",
+  "confidence": 1.0
+ },
+ "mac-powder-blush-blush": null,
+ "charlotte-tilbury-airbrush-flawless-foundation-foundation": {
+  "image": "https://incidecoder-content.storage.googleapis.com/6389dfd1-627b-4c5f-809f-2056c0889e43/products/charlotte-tilbury-airbrush-flawless-foundation-3/charlotte-tilbury-airbrush-flawless-foundation-3_front_photo_300x300@2x.jpeg",
+  "page": "https://incidecoder.com/products/charlotte-tilbury-airbrush-flawless-foundation-3",
+  "matched": "Charlotte Tilbury Airbrush Flawless Foundation",
+  "confidence": 1.0
+ },
+ "dior-forever-skin-glow-foundation-foundation": {
+  "image": "https://incidecoder-content.storage.googleapis.com/0f3a5594-3185-40a6-a0f6-3f478fd44f26/products/dior-forever-skin-glow-foundation/dior-forever-skin-glow-foundation_front_photo_300x300@2x.jpeg",
+  "page": "https://incidecoder.com/products/dior-forever-skin-glow-foundation",
+  "matched": "Dior Forever Skin Glow Foundation",
+  "confidence": 1.0
+ },
+ "huda-beauty-fauxfilter-luminous-matte-foundation-foundation": {
+  "image": "https://incidecoder-content.storage.googleapis.com/639839cb-458a-47bc-8b19-67587f25f481/products/huda-beauty-fauxfilter-luminous-matte-foundation/huda-beauty-fauxfilter-luminous-matte-foundation_front_photo_original.jpeg",
+  "page": "https://incidecoder.com/products/huda-beauty-fauxfilter-luminous-matte-foundation",
+  "matched": "Huda Beauty #Fauxfilter Luminous Matte Foundation",
+  "confidence": 1.0
+ },
+ "nars-light-reflecting-foundation-foundation": {
+  "image": "https://incidecoder-content.storage.googleapis.com/f1d8bd58-fe5a-478c-9dd5-0c2500517a1f/products/nars-light-reflecting-foundation/nars-light-reflecting-foundation_front_photo_300x300@2x.jpeg",
+  "page": "https://incidecoder.com/products/nars-light-reflecting-foundation",
+  "matched": "Nars Light Reflecting Foundation",
+  "confidence": 1.0
+ },
+ "rare-beauty-liquid-touch-weightless-foundation-foundation": null,
+ "dior-forever-glow-luminizer-highlighter": {
+  "image": "https://incidecoder-content.storage.googleapis.com/538e9542-b27b-46fb-bdf3-5ad26cfac635/products/dior-forever-glow-luminizer/dior-forever-glow-luminizer_front_photo_300x300@2x.jpeg",
+  "page": "https://incidecoder.com/products/dior-forever-glow-luminizer",
+  "matched": "Dior Forever Glow Luminizer",
+  "confidence": 1.0
+ },
+ "dior-rouge-dior-lipstick-lipstick": {
+  "image": "https://incidecoder-content.storage.googleapis.com/6730152f-0506-453b-9662-fd0b15c8eb3b/products/dior-rouge-dior-lipstick-999-satin-red/dior-rouge-dior-lipstick-999-satin-red_front_photo_300x300@2x.jpeg",
+  "page": "https://incidecoder.com/products/dior-rouge-dior-lipstick-999-satin-red",
+  "matched": "Dior Rouge Dior Lipstick",
+  "confidence": 1.0
+ }
 }
